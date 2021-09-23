@@ -1,17 +1,18 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Import dependencies
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-const http = require('http');                                           // For hosting the web server
-const express = require('express');                                     // Web server framework
-const path = require('path');                                           // For joining local paths
-const morgan = require('morgan');                                       // For outputing information about the requests
-const cors = require('cors');                                           // For handeling CORS
+const http = require('http');                                        // For hosting the web server
+const express = require('express');                                  // Web server framework
+const morgan = require('morgan');                                    // For outputing information about the requests
+const cors = require('cors');                                        // For handeling CORS
+require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` })   // Load different .env files based on NODE_ENV
+const config = require('./config');                                  // Loads the config
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Determine environment variables
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-const host = process.env.host || '0.0.0.0';                             // Get the hosting address
-const port = process.env.port || 8086;                                  // Get the hosting port
+const host = config.hostname;                                         // Get the hosting address
+const port = config.port;                                             // Get the hosting port
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Create App
@@ -28,9 +29,9 @@ app.use(morgan('dev'));                                                 // Outpu
 // Handle CORS
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const corsOptions = {
-    origin: true,
-    credentials: true
-  }
+  origin: true,
+  credentials: true
+}
 app.use(cors(corsOptions));
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
