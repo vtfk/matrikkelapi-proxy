@@ -7,7 +7,6 @@
     "start": "node app.js",
     "dev": "standardx && cross-env NODE_ENV=development nodemon app.js",
     "standard": "standardx",
-    "test": "standardx && npm audit",
     "test:offline": "standard && jest",
     "refresh": "rm -rf node_modules && rm package-lock.json && npm i"
   },
