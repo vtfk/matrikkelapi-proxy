@@ -1,0 +1,75 @@
+openapi: 3.0.0
+servers:
+  - description: Development endpoint
+    url: http://localhost:8080/api/v1
+  # Added by API Auto Mocking Plugin
+  - description: Production endpoint
+    url: https://test-matrikkel-api.azurewebsites.net/api/v1
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/VTFK/kartverket-matrikkel-api/1.0.0
+info:
+  title: Kartverket Matrikkel API Proxy
+  description: Kartverket Matrikkel
+  version: "1.0.0"
+  contact:
+    email: utvikling@vtfk.no
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags: 
+  - name: Matrikkelenheter
+    description: Endepunkter som omhandler matrikkeleneheter
+paths:
+  /matrikkelenheter:
+    post:
+      tags:
+        - Matrikkelenheter
+      summary: Finner matrikkelenheter
+      operationId: findMatrikkelenheter
+      description: |
+        Finner matrikkelenheter basert på spesifisert input.
+        Må være POST for å sende med body
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MatrikkelenhetSoek'
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MatrikkelenhetSoek'
+        '500':
+          description: Error
+components:
+  schemas:
+    KoordinatSystem:
+      type: string
+      enum: [EUREF89 Sone 30, EUREF89 Sone 31, EUREF89 Sone 32, EUREF89 GEO]
+      default: EUREF89 Sone 32
+    MatrikkelenhetSoek:
+      type: object
+      required:
+        - polygon
+      properties:
+        koordinatsystem:
+          $ref: '#/components/schemas/KoordinatSystem'
+        polygon:
+          type: array
+          minItems: 3
+          items:
+            type: object
+            required:
+              - x
+              - y
+            properties:
+              x:
+                type: number
+              y:
+                type: number
+              z:
+                type: number

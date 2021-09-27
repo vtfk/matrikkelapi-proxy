@@ -2,9 +2,14 @@
 // Import dependencies
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const http = require('http');                                        // For hosting the web server
-const express = require('express');                                  // Web server framework
+const fs = require('fs');                                            // For working with the file system
+const path = require('path');                                        // For combining paths
+const yamljs = require('yamljs');                                    // For converting YAML to JSON
+const express = require('express');                                  // Main system for running the API
 const morgan = require('morgan');                                    // For outputing information about the requests
 const cors = require('cors');                                        // For handeling CORS
+const swaggerUi = require('swagger-ui-express');                     // For hosting and displaying the APIs documentation
+const OpenApiValidator = require('express-openapi-validator');       // Validates all routes based on the requested resource
 require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` })   // Load different .env files based on NODE_ENV
 const config = require('./config');                                  // Loads the config
 
@@ -35,10 +40,76 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Host the documentation and validate requests
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+const swaggerUIOptions = {
+  deepLinking: false,
+  displayOperationId: true
+}
+
+const oasDocumentationEndpoints = [];
+const routeChildren = fs.readdirSync(path.join(__dirname, 'routes'));
+if (routeChildren && Array.isArray(routeChildren)) {
+  for (let i = 0; i < routeChildren.length; i++) {
+    try {
+      const oasSpecPath = path.join(__dirname, 'routes', routeChildren[i], 'openapispec.yaml');
+      if (fs.existsSync(oasSpecPath)) {
+        // Load the file as JSON and determine what the endpoint will be
+        const oasJSON = yamljs.load(oasSpecPath)
+        const oasDocEndpoint = '/api/' + routeChildren[i] + '/docs';
+        oasDocumentationEndpoints.push(oasDocEndpoint);
+
+        // Host the documentation
+        app.use(oasDocEndpoint, swaggerUi.serve, swaggerUi.setup(oasJSON, swaggerUIOptions));
+
+        // Register the API validator
+        app.use(
+          OpenApiValidator.middleware({
+            apiSpec: oasSpecPath,
+            validateRequests: true
+          })
+        )
+      }
+    } catch (err) {
+      console.log('Something went wrong')
+    }
+  }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Routes
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-app.use('/api/v1/matrikkel', require('./routes/v1/matrikkel'));
+app.use('/api/v1/matrikkelenheter', require('./routes/v1/matrikkelenheter'));
 app.use('/api/v1/teig', require('./routes/v1/teig'));
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Error handling
+// This will catch any errors that occured anywhere in the routes and handle them
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+app.use((err, req, res, next) => {
+  console.log('❌ Error occured ❌');
+
+  // Construct an error object
+  let error = {}
+  // Setup the error object based on type
+  if (typeof err === 'object') {
+    // Get all enumurable and non-enumurable property from the error object
+    Object.getOwnPropertyNames(err).forEach((key) => {
+      error[key] = err[key];
+    })
+  } else if (typeof err === 'string') {
+    error.message = err;
+  } else {
+    error = err;
+  }
+
+  // Output the error
+  console.error(error);
+
+  // Send the error
+  res.status(err.status || 500).json(error);
+  next();
+})
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Host the server
@@ -48,7 +119,13 @@ server.listen(port, host, () => {
   let hostname = host;
   if (host === '0.0.0.0') { hostname = 'localhost' }
 
+  // Output the root adress the server is listening on
+  console.log('Root endpoint:')
   console.log('Your server is listening on port %d (http://%s:%d)', port, hostname, port);
-  console.log('Swagger-ui is available on http://%s:%d/api/v1/docs', hostname, port);
-  // console.log('Swagger-ui is available on http://app.indcidenthub.no:' + port + '/api/v1/docs');
+
+  // Output API endpoint documentation URLs
+  console.log('\nDocumentation endpoints:')
+  oasDocumentationEndpoints.forEach((endpoint) => {
+    console.log('http://%s:%d' + endpoint, hostname, port);
+  })
 })
