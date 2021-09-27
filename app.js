@@ -14,7 +14,7 @@ require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` })   // Load dif
 const config = require('./config');                                  // Loads the config
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Determine environment variables
+// Determine variables and constants
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const host = config.hostname;                                         // Get the hosting address
 const port = config.port;                                             // Get the hosting port
@@ -88,6 +88,7 @@ app.use('/api/v1/teig', require('./routes/v1/teig'));
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 app.use((err, req, res, next) => {
   console.log('❌ Error occured ❌');
+  const requestedHost = req.protocol + '://' + req.get('host');
 
   // Construct an error object
   let error = {}
@@ -102,9 +103,35 @@ app.use((err, req, res, next) => {
   } else {
     error = err;
   }
+  // Attempt to determine what documentation is correct for the failed request
+  if (req.openapi && req.openapi.expressRoute) {
+    // Attempt to match the express route with the API version
+    let route = req.openapi.expressRoute;
+    if (req.openapi.expressRoute.startsWith('/')) {
+      route = route.substring(1);
+    }
+    const split = route.split('/');
+    if (split.length >= 2) {
+      const reconstructedRoute = '/' + split[0] + '/' + split[1] + '/docs';
+      console.log(req.openapi);
+      if (oasDocumentationEndpoints.includes(reconstructedRoute)) {
+        error.documentation = {
+          full: requestedHost + reconstructedRoute
+        }
+
+        if(req.openapi.schema && req.openapi.schema.operationId && req.openapi.schema.tags) {
+          error.documentation['method'] = requestedHost + reconstructedRoute + '/#/' + req.openapi.schema.tags[0] + '/' + req.openapi.schema.operationId
+        }
+
+      }
+    }
+  }
 
   // Output the error
   console.error(error);
+
+  // Req
+  // console.log(req.openapi)
 
   // Send the error
   res.status(err.status || 500).json(error);
