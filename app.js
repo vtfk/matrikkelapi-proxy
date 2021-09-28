@@ -79,6 +79,7 @@ if (routeChildren && Array.isArray(routeChildren)) {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Routes
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+app.use('/api/v1/*', require('./routes/v1/beforeRouteMiddleware'));
 app.use('/api/v1/matrikkelenheter', require('./routes/v1/matrikkelenheter'));
 app.use('/api/v1/teig', require('./routes/v1/teig'));
 
@@ -119,19 +120,15 @@ app.use((err, req, res, next) => {
           full: requestedHost + reconstructedRoute
         }
 
-        if(req.openapi.schema && req.openapi.schema.operationId && req.openapi.schema.tags) {
-          error.documentation['method'] = requestedHost + reconstructedRoute + '/#/' + req.openapi.schema.tags[0] + '/' + req.openapi.schema.operationId
+        if (req.openapi.schema && req.openapi.schema.operationId && req.openapi.schema.tags) {
+          error.documentation.method = requestedHost + reconstructedRoute + '/#/' + req.openapi.schema.tags[0] + '/' + req.openapi.schema.operationId
         }
-
       }
     }
   }
 
   // Output the error
   console.error(error);
-
-  // Req
-  // console.log(req.openapi)
 
   // Send the error
   res.status(err.status || 500).json(error);
