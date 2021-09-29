@@ -1,0 +1,27 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mat="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/matrikkelenhet" xmlns:mat1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet" xmlns:geom="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri" xmlns:dom="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <mat:findMatrikkelenheter>
+            <mat:matrikkelenhetsokModel>
+                <mat1:selectionPolygon>
+                <geom:polygon>
+                    <geom:koordinatsystemKodeId>
+                        <dom:value>{{COORDINATESYSTEM}}</dom:value>
+                    </geom:koordinatsystemKodeId>
+                    <geom:ytreAvgrensning>
+                        <geom:positions>
+                            {{COORDINATES}}
+                        </geom:positions>
+                    </geom:ytreAvgrensning>
+                </geom:polygon>
+                <geom:koordinatsystemKodeId>
+                    <dom:value>{{COORDINATESYSTEM}}</dom:value>
+                </geom:koordinatsystemKodeId>
+                </mat1:selectionPolygon>
+            </mat:matrikkelenhetsokModel>
+            <mat:matrikkelContext>
+                {{CONTEXT}}
+            </mat:matrikkelContext>
+        </mat:findMatrikkelenheter>
+    </soapenv:Body>
+</soapenv:Envelope>

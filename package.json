@@ -7,7 +7,7 @@
     "start": "node app.js",
     "dev": "standardx && cross-env NODE_ENV=development nodemon app.js",
     "standard": "standardx",
-    "test:offline": "standard && jest",
+    "test": "standardx && jest",
     "refresh": "rm -rf node_modules && rm package-lock.json && npm i"
   },
   "repository": {
@@ -31,7 +31,7 @@
     "jest": "^27.2.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.12",
-    "standard": "^16.0.3"
+    "standardx": "^7.0.0"
   },
   "dependencies": {
     "axios": "^0.21.4",
@@ -44,5 +44,11 @@
     "swagger-ui-express": "^4.1.6",
     "xml2js": "^0.4.23",
     "yamljs": "^0.3.0"
+  },
+  "jest": {
+    "testMatch": [
+      "**/test/**/*test.[jt]s?(x)",
+      "**/?(*.)+.(spec|test).[jt]s?(x)"
+    ]
   }
 }
