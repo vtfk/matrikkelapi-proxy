@@ -49,6 +49,9 @@ jobs:
       with:
         name: node-app
 
+    - name: 'Extract tar'
+      run: 'tar -xvf app.tar'
+
     - name: 'Deploy to Azure Web App'
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
