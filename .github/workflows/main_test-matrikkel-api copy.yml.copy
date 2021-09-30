@@ -27,14 +27,11 @@ jobs:
         npm run build --if-present
         npm run test --if-present
 
-    - name: Tar files
-      run: -cvf app.tar .
-
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
       with:
         name: node-app
-        path: app.tar
+        path: .
 
   deploy:
     runs-on: ubuntu-latest
