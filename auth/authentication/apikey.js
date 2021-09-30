@@ -11,7 +11,7 @@ function getEnvironmentAPIKeys () {
     currentKey = process.env['APIKEY' + counter];
     if (currentKey) { APIKeys.push(currentKey); } else { break; }
     counter++;
-    if(counter == 1000) { break; }  // Protect against infinity loop
+    if (counter === 1000) { break; }  // Protect against infinity loop
   }
   return APIKeys;
 }
