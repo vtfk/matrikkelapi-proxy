@@ -40,13 +40,17 @@
     "express": "^4.17.1",
     "express-openapi-validator": "^4.13.1",
     "node-fetch": "^2.6.4",
+    "passport": "^0.5.0",
+    "passport-localapikey": "^0.0.3",
     "prettify-xml": "^1.2.0",
     "swagger-ui-express": "^4.1.6",
     "xml2js": "^0.4.23",
     "yamljs": "^0.3.0"
   },
   "standardx": {
-    "env": [ "jest" ]
+    "env": [
+      "jest"
+    ]
   },
   "jest": {
     "testMatch": [

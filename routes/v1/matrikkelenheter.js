@@ -11,17 +11,14 @@ const MatrikkelClient = require('../../lib/KartverketMatrikkelAPI/MatrikkelClien
 router.post('/', async (req, res, next) => {
   try {
     // Construct the polygon
-    console.log(req.body);
-
     res.setHeader('Content-Type', 'application/json');
     const client = new MatrikkelClient('vtfkBergstrom', '496fPqhJ<qCtu(qAM7Z]', 'https://prodtest.matrikkel.no:443/matrikkelapi/wsapi/v1/MatrikkelenhetServiceWS');
 
-    const result = await client.getMatrikkelPolygon(req.body.polygon)
+    const result = await client.getMatrikkelPolygon(req, req.body.polygon)
 
     res.type('json').send(JSON.stringify(result, null, 2));
   } catch (err) {
-    res.type('json').send({ error: err })
-    console.log(err);
+    return next(err);
   }
 })
 

@@ -51,27 +51,23 @@ const oasDocumentationEndpoints = [];
 const routeChildren = fs.readdirSync(path.join(__dirname, 'routes'));
 if (routeChildren && Array.isArray(routeChildren)) {
   for (let i = 0; i < routeChildren.length; i++) {
-    try {
-      const oasSpecPath = path.join(__dirname, 'routes', routeChildren[i], 'openapispec.yaml');
-      if (fs.existsSync(oasSpecPath)) {
-        // Load the file as JSON and determine what the endpoint will be
-        const oasJSON = yamljs.load(oasSpecPath)
-        const oasDocEndpoint = '/api/' + routeChildren[i] + '/docs';
-        oasDocumentationEndpoints.push(oasDocEndpoint);
+    const oasSpecPath = path.join(__dirname, 'routes', routeChildren[i], 'openapispec.yaml');
+    if (fs.existsSync(oasSpecPath)) {
+      // Load the file as JSON and determine what the endpoint will be
+      const oasJSON = yamljs.load(oasSpecPath)
+      const oasDocEndpoint = '/api/' + routeChildren[i] + '/docs';
+      oasDocumentationEndpoints.push(oasDocEndpoint);
 
-        // Host the documentation
-        app.use(oasDocEndpoint, swaggerUi.serve, swaggerUi.setup(oasJSON, swaggerUIOptions));
+      // Host the documentation
+      app.use(oasDocEndpoint, swaggerUi.serve, swaggerUi.setup(oasJSON, swaggerUIOptions));
 
-        // Register the API validator
-        app.use(
-          OpenApiValidator.middleware({
-            apiSpec: oasSpecPath,
-            validateRequests: true
-          })
-        )
-      }
-    } catch (err) {
-      console.log('Something went wrong')
+      // Register the API validator
+      app.use(
+        OpenApiValidator.middleware({
+          apiSpec: oasSpecPath,
+          validateRequests: true
+        })
+      )
     }
   }
 }
@@ -114,7 +110,6 @@ app.use((err, req, res, next) => {
     const split = route.split('/');
     if (split.length >= 2) {
       const reconstructedRoute = '/' + split[0] + '/' + split[1] + '/docs';
-      console.log(req.openapi);
       if (oasDocumentationEndpoints.includes(reconstructedRoute)) {
         error.documentation = {
           full: requestedHost + reconstructedRoute

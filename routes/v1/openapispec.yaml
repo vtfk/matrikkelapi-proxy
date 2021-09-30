@@ -47,6 +47,21 @@ paths:
                   $ref: '#/components/schemas/MatrikkelenhetSoek'
         '500':
           description: Error
+  /storeservice:
+    post:
+      tags:
+        - Store service
+      summary: Henter ut data fra ett array av IDer
+      operationId: storeGetObjects
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StoreRequest'
+      responses:
+        200:
+          description: ok
+      
 components:
   schemas:
     KoordinatSystemId:
@@ -68,7 +83,7 @@ components:
         * 9 - EUREF89 UTM Sone 31
         * 10 - EUREF89 UTM Sone 32
         * 11 - EUREF89 UTM Sone 33
-        * 12- EUREF89 UTM Sone 34
+        * 12 - EUREF89 UTM Sone 34
         * 13 - EUREF89 UTM Sone 35
         * 14 - EUREF89 UTM Sone 36
         * 15 - EDM UTM Sone 31
@@ -133,3 +148,13 @@ components:
           $ref: '#/components/schemas/KoordinatSystemId'
         polygon:
           $ref: '#/components/schemas/Polygon'
+    StoreRequest:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          type:
+            type: string
+        

@@ -6,7 +6,7 @@
                 <mat1:selectionPolygon>
                 <geom:polygon>
                     <geom:koordinatsystemKodeId>
-                        <dom:value>{{COORDINATESYSTEM}}</dom:value>
+                        <dom:value>{{KOORDINATSYSTEMID}}</dom:value>
                     </geom:koordinatsystemKodeId>
                     <geom:ytreAvgrensning>
                         <geom:positions>
@@ -15,7 +15,7 @@
                     </geom:ytreAvgrensning>
                 </geom:polygon>
                 <geom:koordinatsystemKodeId>
-                    <dom:value>{{COORDINATESYSTEM}}</dom:value>
+                    <dom:value>{{KOORDINATSYSTEMID}}</dom:value>
                 </geom:koordinatsystemKodeId>
                 </mat1:selectionPolygon>
             </mat:matrikkelenhetsokModel>

@@ -7,12 +7,11 @@ const TemplateClient = require('../../lib/TemplateClient/TemplateClient');
 // Middleware function
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 async function f (req, res, next) {
-  const templateClient = new TemplateClient();
-  let matrikkelContext = templateClient.getTemplate('matrikkelContext.xml');
+  let matrikkelContext = TemplateClient.getTemplate('matrikkelContext.xml');
 
-  matrikkelContext = templateClient.replacePlaceholder(matrikkelContext, { LOCALE: 'testtest' });
-  matrikkelContext = templateClient.fillDefaultValues(matrikkelContext);
+  matrikkelContext = TemplateClient.replacePlaceholder(matrikkelContext, req.body.matrikkelContext);
 
+  matrikkelContext = TemplateClient.fillDefaultValues(matrikkelContext);
   req.matrikkelContext = matrikkelContext;
 
   next();
