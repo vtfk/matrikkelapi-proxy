@@ -1,17 +1,17 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Import dependencies
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-const http = require('http');                                        // For hosting the web server
-const fs = require('fs');                                            // For working with the file system
-const path = require('path');                                        // For combining paths
-const yamljs = require('yamljs');                                    // For converting YAML to JSON
-const express = require('express');                                  // Main system for running the API
-const morgan = require('morgan');                                    // For outputing information about the requests
-const cors = require('cors');                                        // For handeling CORS
-const swaggerUi = require('swagger-ui-express');                     // For hosting and displaying the APIs documentation
-const OpenApiValidator = require('express-openapi-validator');       // Validates all routes based on the requested resource
-require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` })   // Load different .env files based on NODE_ENV
-const config = require('./config');                                  // Loads the config
+const http = require('http');                                         // For hosting the web server
+const fs = require('fs');                                             // For working with the file system
+const path = require('path');                                         // For combining paths
+const yamljs = require('yamljs');                                     // For converting YAML to JSON
+const express = require('express');                                   // Main system for running the API
+const morgan = require('morgan');                                     // For outputing information about the requests
+const cors = require('cors');                                         // For handeling CORS
+const swaggerUi = require('swagger-ui-express');                      // For hosting and displaying the APIs documentation
+const OpenApiValidator = require('express-openapi-validator');        // Validates all routes based on the requested resource
+require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` })    // Load different .env files based on NODE_ENV
+const config = require('./config');                                   // Loads the config
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Determine variables and constants
@@ -40,7 +40,8 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Host the documentation and validate requests
+// Documentation & Validation
+// Host SwaggerUI and validate incoming requests based on OpenAPI 3.0 spesification files
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const swaggerUIOptions = {
   deepLinking: false,
@@ -73,6 +74,23 @@ if (routeChildren && Array.isArray(routeChildren)) {
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Authentication
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Import dependencies
+const passport = require('passport');                                 // Engine for authenticating using different strategies
+const headerAPIKeyStrategy = require('./auth/authentication/apikey'); // Passport strategy for authenticating with APIKey
+// Register strategies
+passport.use(headerAPIKeyStrategy);
+// Use strategies
+app.all('*',
+  passport.authenticate(['headerapikey'], { session: false }),
+  (req, res, next) => {
+    // This function triggers when a request has been successfully authenticated
+    next();
+  }
+);
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Routes
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // v1 routes
@@ -87,7 +105,6 @@ app.use('/api/v1/teig', require('./routes/v1/teig'));
 app.use('/*', (req, res, next) => {
   res.type('json').send(JSON.stringify(req.response, null, 2));
 })
-
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Error handling

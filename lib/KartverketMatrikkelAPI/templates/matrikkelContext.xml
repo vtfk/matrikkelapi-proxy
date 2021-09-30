@@ -1,7 +1,0 @@
-<dom:locale>{{LOCALE}}</dom:locale>
-<dom:brukOriginaleKoordinater>{{BRUKORGINALEKOORDINATER}}</dom:brukOriginaleKoordinater>
-<dom:koordinatsystemKodeId>
-    <dom:value>{{KOORDINATSYSTEMKODE}}</dom:value>
-</dom:koordinatsystemKodeId>
-<dom:systemVersion>{{SYSTEMVERSION}}</dom:systemVersion>
-<dom:klientIdentifikasjon>{{KLIENTIDENTIFIKASJON}}</dom:klientIdentifikasjon>

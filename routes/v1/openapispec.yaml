@@ -23,11 +23,14 @@ tags:
     description: Endepunkter som omhandler matrikkeleneheter
 paths:
   /matrikkelenheter:
+    
     post:
+      operationId: findMatrikkelenheter
+      summary: Finner matrikkelenheter
+      security: 
+        - APIKeyAuth: []
       tags:
         - Matrikkelenheter
-      summary: Finner matrikkelenheter
-      operationId: findMatrikkelenheter
       description: |
         Finner matrikkelenheter basert på spesifisert input.
         Må være POST for å sende med body
@@ -49,10 +52,12 @@ paths:
           description: Error
   /storeservice:
     post:
+      operationId: storeGetObjects
+      summary: Henter ut data fra ett array av IDer
+      security: 
+        - APIKeyAuth: []
       tags:
         - Store service
-      summary: Henter ut data fra ett array av IDer
-      operationId: storeGetObjects
       requestBody:
         content:
           application/json:
@@ -61,7 +66,6 @@ paths:
       responses:
         200:
           description: ok
-      
 components:
   schemas:
     KoordinatSystemId:
@@ -158,3 +162,9 @@ components:
             type: string
           type:
             type: string
+  securitySchemes:
+    APIKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+    
