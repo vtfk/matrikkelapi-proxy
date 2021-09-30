@@ -3,5 +3,5 @@
 <dom:koordinatsystemKodeId>
     <dom:value>{{KOORDINATSYSTEMID}}::[[24]]</dom:value>
 </dom:koordinatsystemKodeId>
-<dom:systemVersion>{{SYSTEMVERSION}}::[[test]]</dom:systemVersion>
+<dom:systemVersion>{{SYSTEMVERSION}}::[[trunk]]</dom:systemVersion>
 <dom:klientIdentifikasjon>{{KLIENTIDENTIFIKASJON}}</dom:klientIdentifikasjon>

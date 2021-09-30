@@ -100,7 +100,7 @@ components:
         * 26 - NGO 56B (Møre)
     Polygon:
       type: array
-      minItems: 3
+      minItems: 4
       items:
         type: object
         required:
@@ -116,6 +116,7 @@ components:
           z:
             type: number
             description: Height
+            default: 0
     MatrikkelContext:
       type: object
       required:
@@ -157,4 +158,3 @@ components:
             type: string
           type:
             type: string
-        
