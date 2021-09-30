@@ -6,12 +6,12 @@ const HeaderAPIKeyStrategy = require('passport-headerapikey').HeaderAPIKeyStrate
 function getEnvironmentAPIKeys () {
   const APIKeys = [];
   let currentKey = 'initial';
-  let count = 1;
+  let counter = 1;
   while (currentKey !== undefined) {
-    currentKey = process.env['APIKEY' + count];
+    currentKey = process.env['APIKEY' + counter];
     if (currentKey) { APIKeys.push(currentKey); } else { break; }
-    count++;
-    console.log('Counter: ' + count)
+    counter++;
+    if(counter == 1000) { break; }  // Protect against infinity loop
   }
   return APIKeys;
 }
@@ -43,7 +43,7 @@ module.exports = new HeaderAPIKeyStrategy(
     // If the key was not found
     if (!isKeyFound) {
       console.log('❌ No matching API Key could be found');
-      return done(null, false); 
+      return done(null, false);
     }
 
     // The key was found

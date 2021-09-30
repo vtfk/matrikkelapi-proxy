@@ -4,6 +4,7 @@
 const express = require('express');
 const router = express.Router();
 const MatrikkelClient = require('../../lib/KartverketMatrikkelAPI/MatrikkelClient');
+const config = require('../../config');
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Routes
@@ -12,7 +13,7 @@ router.post('/', async (req, res, next) => {
   try {
     // Construct the client
     res.setHeader('Content-Type', 'application/json');
-    const client = new MatrikkelClient('vtfkBergstrom', '496fPqhJ<qCtu(qAM7Z]', 'https://prodtest.matrikkel.no:443/matrikkelapi/wsapi/v1/MatrikkelenhetServiceWS');
+    const client = new MatrikkelClient(config.matrikkelAPIUsername, config.matrikkelAPIPassword, 'https://prodtest.matrikkel.no:443/matrikkelapi/wsapi/v1/MatrikkelenhetServiceWS');
     // Get the matrikkel polygon
     req.response = await client.getMatrikkelPolygon(req, req.body.polygon);
     // Pass to next function
