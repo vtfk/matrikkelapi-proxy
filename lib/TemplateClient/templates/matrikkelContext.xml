@@ -1,0 +1,7 @@
+<dom:locale>{{LOCALE}}::[[no_NB]]</dom:locale>
+<dom:brukOriginaleKoordinater>{{BRUKORIGINALEKOORDINATER}}::[[false]]</dom:brukOriginaleKoordinater>
+<dom:koordinatsystemKodeId>
+    <dom:value>{{KOORDINATSYSTEMID}}::[[24]]</dom:value>
+</dom:koordinatsystemKodeId>
+<dom:systemVersion>{{SYSTEMVERSION}}::[[trunk]]</dom:systemVersion>
+<dom:klientIdentifikasjon>{{KLIENTIDENTIFIKASJON}}</dom:klientIdentifikasjon>

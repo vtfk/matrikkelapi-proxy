@@ -1,0 +1,5 @@
+<geom:item>
+    <geom:x>{{X}}</geom:x>
+    <geom:y>{{Y}}</geom:y>
+    <geom:z>{{Z}}::[[0]]</geom:z>
+</geom:item>

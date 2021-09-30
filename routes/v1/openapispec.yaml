@@ -1,10 +1,12 @@
 openapi: 3.0.0
 servers:
   - description: Development endpoint
-    url: http://localhost:8080/api/v1
+    url: http://localhost:8086/api/v1
   # Added by API Auto Mocking Plugin
   - description: Production endpoint
     url: https://test-matrikkel-api.azurewebsites.net/api/v1
+  - description: Development endpoint
+    url: http://localhost:8080/api/v1/
   - description: SwaggerHub API Auto Mocking
     url: https://virtserver.swaggerhub.com/VTFK/kartverket-matrikkel-api/1.0.0
 info:
@@ -21,11 +23,14 @@ tags:
     description: Endepunkter som omhandler matrikkeleneheter
 paths:
   /matrikkelenheter:
+    
     post:
+      operationId: findMatrikkelenheter
+      summary: Finner matrikkelenheter
+      security: 
+        - APIKeyAuth: []
       tags:
         - Matrikkelenheter
-      summary: Finner matrikkelenheter
-      operationId: findMatrikkelenheter
       description: |
         Finner matrikkelenheter basert på spesifisert input.
         Må være POST for å sende med body
@@ -45,31 +50,121 @@ paths:
                   $ref: '#/components/schemas/MatrikkelenhetSoek'
         '500':
           description: Error
+  /storeservice:
+    post:
+      operationId: storeGetObjects
+      summary: Henter ut data fra ett array av IDer
+      security: 
+        - APIKeyAuth: []
+      tags:
+        - Store service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StoreRequest'
+      responses:
+        200:
+          description: ok
 components:
   schemas:
-    KoordinatSystem:
-      type: string
-      enum: [EUREF89 Sone 30, EUREF89 Sone 31, EUREF89 Sone 32, EUREF89 GEO]
-      default: EUREF89 Sone 32
+    KoordinatSystemId:
+      type: number
+      default: 24
+      minimum: 0
+      maximum: 26
+      description: |
+        Beskriver hvilket koordinatsystem som skal benyttes
+        * 0 - NGO1948 Gauss-K. Akse 1
+        * 1 - NGO1948 Gauss-K. Akse 2
+        * 2 - NGO1948 Gauss-K. Akse 3
+        * 3 - NGO1948 Gauss-K. Akse 4
+        * 4 - NGO1948 Gauss-K. Akse 5
+        * 5 - NGO1948 Gauss-K. Akse 6
+        * 6 - NGO1948 Gauss-K. Akse 7
+        * 7 - NGO1948 Gauss-K. Akse 8
+        * 8 - NGO1948 Geografisk
+        * 9 - EUREF89 UTM Sone 31
+        * 10 - EUREF89 UTM Sone 32
+        * 11 - EUREF89 UTM Sone 33
+        * 12 - EUREF89 UTM Sone 34
+        * 13 - EUREF89 UTM Sone 35
+        * 14 - EUREF89 UTM Sone 36
+        * 15 - EDM UTM Sone 31
+        * 16 - EDM UTM Sone 32
+        * 17 - EDM UTM Sone 33
+        * 18 - EDM UTM Sone 34
+        * 19 - EDM UTM Sone 35
+        * 20 - EDM UTM Sone 36
+        * 21 - ED50 Geografisk
+        * 22 - Møre A
+        * 23 - Møre B
+        * 24 - EUREF89 Geografisk (Long, lat)
+        * 25 - NGO 56A (Møre)
+        * 26 - NGO 56B (Møre)
+    Polygon:
+      type: array
+      minItems: 4
+      items:
+        type: object
+        required:
+          - x
+          - y
+        properties:
+          x:
+            type: number
+            description: Longitude or Easting
+          y:
+            type: number
+            description: Latitude or Northing
+          z:
+            type: number
+            description: Height
+            default: 0
+    MatrikkelContext:
+      type: object
+      required:
+        - klientIdentifikasjon
+      properties:
+        locale:
+          type: string
+          default: no_NB
+        brukOriginaleKoordinater:
+          type: boolean
+          default: false
+        koordinatSystemId:
+          allOf:
+            - $ref: "#/components/schemas/KoordinatSystemId"
+          default: 24
+        systemVersion:
+          type: string
+          default: trunk
+        klientIdentifikasjon:
+          type: string
+          example: "[Firmanavn]-[Tjenestenavn]"
     MatrikkelenhetSoek:
       type: object
       required:
         - polygon
       properties:
-        koordinatsystem:
-          $ref: '#/components/schemas/KoordinatSystem'
+        matrikkelContext:
+          $ref: '#/components/schemas/MatrikkelContext'
+        koordinatSystemId:
+          $ref: '#/components/schemas/KoordinatSystemId'
         polygon:
-          type: array
-          minItems: 3
-          items:
-            type: object
-            required:
-              - x
-              - y
-            properties:
-              x:
-                type: number
-              y:
-                type: number
-              z:
-                type: number
+          $ref: '#/components/schemas/Polygon'
+    StoreRequest:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          type:
+            type: string
+  securitySchemes:
+    APIKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+    
