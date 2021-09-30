@@ -28,7 +28,7 @@ jobs:
         npm run test --if-present
 
     - name: Tar files
-      run: -cvf app.tar .
+      run: tar -cvf app.tar .
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
