@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        version="1.0"
+        targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommunetillegg/koder"
+        xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommunetillegg/koder"
+        xmlns:kodens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:import schemaLocation="kodeliste.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"/>
+
+    <xs:complexType name="AdresseReferanseKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AdresseReferanseKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AdresseReferanseKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="AdresseReferanseKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="BrukAvGrunnKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BrukAvGrunnKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BrukAvGrunnKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="BrukAvGrunnKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="BygningReferanseKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BygningReferanseKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BygningReferanseKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="BygningReferanseKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="EtatsKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="EtatsKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="EtatsKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="EtatsKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="FundamenteringsKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FundamenteringsKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FundamenteringsKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="FundamenteringsKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="HorisontalBarekonstrKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="HorisontalBarekonstrKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="HorisontalBarekonstrKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="HorisontalBarekonstrKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="KildePrivatVannforsyningKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KildePrivatVannforsyningKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KildePrivatVannforsyningKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="KildePrivatVannforsyningKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="KommentartypeKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KommentartypeKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KommentartypeKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="KommentartypeKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="KretsReferanseKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KretsReferanseKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KretsReferanseKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="KretsReferanseKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="MaterialeIYtterveggKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MaterialeIYtterveggKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MaterialeIYtterveggKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="MaterialeIYtterveggKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="MatrikkelenhetReferanseKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetReferanseKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetReferanseKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="MatrikkelenhetReferanseKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="PrivatKloakkRensingsKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="PrivatKloakkRensingsKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="PrivatKloakkRensingsKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="PrivatKloakkRensingsKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="RenovasjonsKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="RenovasjonsKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="RenovasjonsKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="RenovasjonsKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="VegReferanseKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="VegReferanseKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="VegReferanseKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="VegReferanseKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="VertikalBarekonstrKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="VertikalBarekonstrKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="VertikalBarekonstrKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="VertikalBarekonstrKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/sefrak" xmlns:ns2="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" xmlns:ns3="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" xmlns:ns4="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning" xmlns:ns5="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" xmlns:tns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/sefrak" elementFormDefault="qualified" targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/sefrak" version="1.0">
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/sefrak" schemaLocation="sefrak.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" schemaLocation="geometriKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" schemaLocation="basistyper.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning" schemaLocation="bygning.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" schemaLocation="kommune.xsd"/>
+
+  <xs:element name="findSefrakMinneIdForIdent" type="tns:findSefrakMinneIdForIdent"/>
+
+  <xs:element name="findSefrakMinneIdForIdentResponse" type="tns:findSefrakMinneIdForIdentResponse"/>
+
+  <xs:element name="findSefrakMinneIdsForIdents" type="tns:findSefrakMinneIdsForIdents"/>
+
+  <xs:element name="findSefrakMinneIdsForIdentsResponse" type="tns:findSefrakMinneIdsForIdentsResponse"/>
+
+  <xs:element name="findSefrakMinneInfoObjekt" type="tns:findSefrakMinneInfoObjekt"/>
+
+  <xs:element name="findSefrakMinneInfoObjektResponse" type="tns:findSefrakMinneInfoObjektResponse"/>
+
+  <xs:element name="findSefrakMinnerForBygg" type="tns:findSefrakMinnerForBygg"/>
+
+  <xs:element name="findSefrakMinnerForByggList" type="tns:findSefrakMinnerForByggList"/>
+
+  <xs:element name="findSefrakMinnerForByggListResponse" type="tns:findSefrakMinnerForByggListResponse"/>
+
+  <xs:element name="findSefrakMinnerForByggResponse" type="tns:findSefrakMinnerForByggResponse"/>
+
+  <xs:element name="findSefrakminne" type="tns:findSefrakminne"/>
+
+  <xs:element name="findSefrakminneResponse" type="tns:findSefrakminneResponse"/>
+
+  <xs:element name="findSefrakminnerForBygning" type="tns:findSefrakminnerForBygning"/>
+
+  <xs:element name="findSefrakminnerForBygningResponse" type="tns:findSefrakminnerForBygningResponse"/>
+
+  <xs:complexType name="findSefrakMinneIdsForIdents">
+    <xs:sequence>
+      <xs:element name="sefrakIdents" type="ns1:SefrakIdentList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSefrakMinneIdsForIdentsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:SefrakIdentTilSefrakMinneIdMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSefrakminnerForBygning">
+    <xs:sequence>
+      <xs:element name="byggId" type="ns4:ByggId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSefrakminnerForBygningResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="ns1:SefrakMinneId"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSefrakMinnerForBygg">
+    <xs:sequence>
+      <xs:element name="byggId" type="ns4:ByggId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSefrakMinnerForByggResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:SefrakMinneIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSefrakMinneInfoObjekt">
+    <xs:sequence>
+      <xs:element name="byggId" type="ns4:ByggId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSefrakMinneInfoObjektResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:SefrakMinneKartInfo"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSefrakminne">
+    <xs:sequence>
+      <xs:element name="KommuneId" type="ns5:KommuneId"/>
+      <xs:element name="registreringskretsnr" type="xs:int"/>
+      <xs:element name="huslopenr" type="xs:int"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSefrakminneResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:SefrakMinneId"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSefrakMinneIdForIdent">
+    <xs:sequence>
+      <xs:element name="sefrakIdent" type="ns1:SefrakIdent"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSefrakMinneIdForIdentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:SefrakMinneId"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSefrakMinnerForByggList">
+    <xs:sequence>
+      <xs:element name="byggIdList" type="ns4:ByggIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSefrakMinnerForByggListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:ByggIdTilSefrakMinneIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

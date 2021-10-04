@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        version="1.0"
+        targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kart"
+        xmlns:kartns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kart"
+        xmlns:adressens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse"
+        xmlns:adressekoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse/koder"
+        xmlns:bygningns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning"
+        xmlns:bygningkoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning/koder"
+        xmlns:geometrins="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri"
+        xmlns:geometrikoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder"
+        xmlns:kommunens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune"
+        xmlns:matrikkelenhetns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"
+        xmlns:matrikkelenhetkoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet/koder"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified">
+
+    <xs:import schemaLocation="adresse.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse"/>
+    <xs:import schemaLocation="adresseKoder.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse/koder"/>
+    <xs:import schemaLocation="bygning.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning"/>
+    <xs:import schemaLocation="bygningKoder.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning/koder"/>
+    <xs:import schemaLocation="kommune.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune"/>
+    <xs:import schemaLocation="matrikkelenhet.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"/>
+    <xs:import schemaLocation="matrikkelenhetKoder.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet/koder"/>
+    <xs:import schemaLocation="geometri.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri"/>
+    <xs:import schemaLocation="geometriKoder.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder"/>
+    <xs:import schemaLocation="util.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/util"/>
+
+
+    <xs:complexType name="MatrikkelFeature" abstract="true">
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelFeatureList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="kartns:MatrikkelFeature"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="FeatureTypeTilStringIdTilMatrikkelFeatureMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="xs:string"/>
+                        <xs:element name="value" nillable="true"
+                                    type="kartns:StringIdTilMatrikkelFeatureMap"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="StringIdTilMatrikkelFeatureMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="xs:string"/>
+                        <xs:element name="value" nillable="true" type="kartns:MatrikkelFeature"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AdresseFeature">
+        <xs:complexContent>
+            <xs:extension base="kartns:MatrikkelFeature">
+                <xs:sequence>
+                    <xs:element name="punkt" type="geometrins:Point" minOccurs="0"/>
+                    <xs:element name="text" type="xs:string" minOccurs="0"/>
+                    <xs:element name="bubbleId" type="adressens:AdresseId" minOccurs="0"/>
+                    <xs:element name="bokstav" type="xs:string" minOccurs="0"/>
+                    <xs:element name="adressenavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="adressekode" type="xs:int" minOccurs="0"/>
+                    <xs:element name="nr" type="xs:int" minOccurs="0"/>
+                    <xs:element name="matrikkelenhetIdent" type="matrikkelenhetns:MatrikkelenhetIdent"
+                                minOccurs="0"/>
+                    <xs:element name="undernr" type="xs:int" minOccurs="0"/>
+                    <xs:element name="adressetilleggsnavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="kommuneId" type="kommunens:KommuneId" minOccurs="0"/>
+                    <xs:element name="atkomstpunkt" type="geometrins:Point" minOccurs="0"/>
+                    <xs:element name="atkomstpunktSommer" type="geometrins:Point" minOccurs="0"/>
+                    <xs:element name="atkomstpunktVinter" type="geometrins:Point" minOccurs="0"/>
+                    <xs:element name="textAtkomst" type="xs:string" minOccurs="0"/>
+                    <xs:element name="textAtkomstSommer" type="xs:string" minOccurs="0"/>
+                    <xs:element name="textAtkomstVinter" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AtkomstFeature">
+        <xs:complexContent>
+            <xs:extension base="kartns:MatrikkelFeature">
+                <xs:sequence>
+                    <xs:element name="atkomstpunkt" type="geometrins:Point"/>
+                    <xs:element name="text" type="xs:string">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Inneholder adressenavn, husnummer og husbokstav dersom atkomsten er knyttet til en vegadresse.
+                                Inneholder gårdsnummer, bruksnummer, festenummer og undernummer dersom atkomsten er knyttet til matrikkeladresse.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="atkomsttypeKodeId"
+                                type="adressekoderns:AtkomsttypeKodeId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggsprojeksjonsFlateFeature">
+        <xs:complexContent>
+            <xs:extension base="kartns:MatrikkelFeature">
+                <xs:sequence>
+                    <xs:element name="flate" type="geometrins:Polygon"/>
+                    <xs:element name="bubbleId" type="matrikkelenhetns:AnleggsprojeksjonsflateId"/>
+                    <xs:element name="representasjonspunkt" type="geometrins:Point"/>
+                    <xs:element name="teigtype" type="xs:int" minOccurs="0"/>
+                    <xs:element name="anleggsprojeksjonsflatetype" type="xs:int" minOccurs="0"/>
+                    <xs:element name="matrikkelenhetForTeigInfo"
+                                type="kartns:MatrikkelenhetForTeigInfoList"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggsprojeksjonsgrenseFeature">
+        <xs:complexContent>
+            <xs:extension base="kartns:MatrikkelFeature">
+                <xs:sequence>
+                    <xs:element name="kurve" type="geometrins:PointList" minOccurs="0"/>
+                    <xs:element name="kurvepunkt" type="geometrins:PointList" minOccurs="0"/>
+                    <xs:element name="bubbleId" type="matrikkelenhetns:AnleggsprojeksjonsgrenseId"
+                                minOccurs="0"/>
+                    <xs:element name="noyaktighetsklasseId"
+                                type="geometrikoderns:NoyaktighetsklasseKodeId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggsprojeksjonspunktFeature">
+        <xs:complexContent>
+            <xs:extension base="kartns:MatrikkelFeature">
+                <xs:sequence>
+                    <xs:element name="bubbleId" type="matrikkelenhetns:AnleggsprojeksjonspunktId"
+                                minOccurs="0"/>
+                    <xs:element name="grensepunktnr" type="xs:string" minOccurs="0"/>
+                    <xs:element name="punkt" type="geometrins:Point" minOccurs="0"/>
+                    <xs:element name="grensepunkttypeId"
+                                type="matrikkelenhetkoderns:GrensepunkttypeKodeId" minOccurs="0"/>
+                    <xs:element name="noyaktighetsklasseId"
+                                type="geometrikoderns:NoyaktighetsklasseKodeId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ByggFeature">
+        <xs:complexContent>
+            <xs:extension base="kartns:MatrikkelFeature">
+                <xs:sequence>
+                    <xs:element name="punkt" type="geometrins:Point" minOccurs="0"/>
+                    <xs:element name="text" type="xs:string" minOccurs="0"/>
+                    <xs:element name="bubbleId" type="bygningns:ByggId" minOccurs="0"/>
+                    <xs:element name="antallAdresser" type="xs:int" minOccurs="0"/>
+                    <xs:element name="antallBygningsendringer" type="xs:int" minOccurs="0"/>
+                    <xs:element name="avlopskodeId" type="bygningkoderns:AvlopsKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="bebygdAreal" type="xs:double" minOccurs="0"/>
+                    <xs:element name="bygningsnr" type="xs:long" minOccurs="0"/>
+                    <xs:element name="bygningsstatusKodeId"
+                                type="bygningkoderns:BygningsstatusKodeId" minOccurs="0"/>
+                    <xs:element name="bygningstypeKodeId" type="bygningkoderns:BygningstypeKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="bygningId" type="bygningns:BygningId" minOccurs="0"/>
+                    <xs:element name="kommuneId" type="kommunens:KommuneId" minOccurs="0"/>
+                    <xs:element name="naringsgruppeKodeId" type="bygningkoderns:NaringsgruppeKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="opprinnelsesKodeId" type="bygningkoderns:OpprinnelsesKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="kulturminne" type="xs:int" minOccurs="0"/>
+                    <xs:element name="sefrakminne" type="xs:int" minOccurs="0"/>
+                    <xs:element name="fornminne" type="xs:int" minOccurs="0"/>
+                    <xs:element name="sefrakVernevedtak" type="xs:int" minOccurs="0"/>
+                    <xs:element name="sefrakFredning" type="xs:int" minOccurs="0"/>
+                    <xs:element name="sefrakMeldeplikt" type="xs:int" minOccurs="0"/>
+                    <xs:element name="sefrakPlanlagtVern" type="xs:int" minOccurs="0"/>
+                    <xs:element name="tidigereBygningId" type="bygningns:ByggId" minOccurs="0"/>
+                    <xs:element name="bygningsendringsKodeId"
+                                type="bygningkoderns:BygningsendringsKodeId" minOccurs="0"/>
+                    <xs:element name="lopenr" type="xs:int" minOccurs="0"/>
+                    <xs:element name="vannforsyningsKodeId"
+                                type="bygningkoderns:VannforsyningsKodeId" minOccurs="0"/>
+                    <xs:element name="heis" type="xs:int" minOccurs="0"/>
+                    <xs:element name="ufullstendigAreal" type="xs:int" minOccurs="0"/>
+                    <xs:element name="utenBebygdAreal" type="xs:int" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KretsFeature">
+        <xs:complexContent>
+            <xs:extension base="kartns:MatrikkelFeature">
+                <xs:sequence>
+                    <xs:element name="geometri" type="geometrins:Polygon" minOccurs="0"/>
+                    <xs:element name="representasjonspunkt" type="geometrins:Point"
+                                minOccurs="0"/>
+                    <xs:element name="bubbleId" type="adressens:KretsId" minOccurs="0"/>
+                    <xs:element name="kretsflateId" type="xs:string" minOccurs="0"/>
+                    <xs:element name="navnOgNr" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TeigFeature">
+        <xs:complexContent>
+            <xs:extension base="kartns:MatrikkelFeature">
+                <xs:sequence>
+                    <xs:element name="flate" type="geometrins:Polygon" minOccurs="0"/>
+                    <xs:element name="bubbleId" type="matrikkelenhetns:TeigId" minOccurs="0"/>
+                    <xs:element name="representasjonspunkt" type="geometrins:Point"
+                                minOccurs="0"/>
+                    <xs:element name="teigtype" type="xs:int" minOccurs="0"/>
+                    <xs:element name="underSammenslaingBestar" type="xs:int" minOccurs="0"/>
+                    <xs:element name="underSammenslaingUtgar" type="xs:int" minOccurs="0"/>
+                    <xs:element name="matrikkelenhetForTeiginfo"
+                                type="kartns:MatrikkelenhetForTeigInfoList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TeiggrenseFeature">
+        <xs:complexContent>
+            <xs:extension base="kartns:MatrikkelFeature">
+                <xs:sequence>
+                    <xs:element name="kurve" type="geometrins:PointList" minOccurs="0"/>
+                    <xs:element name="kurvepunkt" type="geometrins:PointList" minOccurs="0"/>
+                    <xs:element name="bubbleId" type="matrikkelenhetns:TeiggrenseId" minOccurs="0"/>
+                    <xs:element name="teiggrensetypeId"
+                                type="matrikkelenhetkoderns:HjelpelinjetypeKodeId" minOccurs="0"/>
+                    <xs:element name="noyaktighetsklasseId"
+                                type="geometrikoderns:NoyaktighetsklasseKodeId" minOccurs="0"/>
+                    <xs:element name="admintypeId"
+                                type="matrikkelenhetkoderns:AdministrativGrenseKodeId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TeiggrensepunktFeature">
+        <xs:complexContent>
+            <xs:extension base="kartns:MatrikkelFeature">
+                <xs:sequence>
+                    <xs:element name="bubbleId" type="matrikkelenhetns:TeiggrensepunktId"
+                                minOccurs="0"/>
+                    <xs:element name="grensepunktnr" type="xs:string" minOccurs="0"/>
+                    <xs:element name="punkt" type="geometrins:Point" minOccurs="0"/>
+                    <xs:element name="grensepunkttypeId"
+                                type="matrikkelenhetkoderns:GrensepunkttypeKodeId" minOccurs="0"/>
+                    <xs:element name="noyaktighetsklasseId"
+                                type="geometrikoderns:NoyaktighetsklasseKodeId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetForTeigInfo">
+        <xs:sequence>
+            <xs:element name="matrikkelenhetId" type="matrikkelenhetns:MatrikkelenhetId"
+                        minOccurs="0"/>
+            <xs:element name="typenavn" type="xs:string" minOccurs="0"/>
+            <xs:element name="matrikkelenhetIdent" type="matrikkelenhetns:MatrikkelenhetIdent" minOccurs="0"/>
+            <xs:element name="teigErHovedteig" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="seksjonert" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="undersmsl" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="harRegistrertGrunnerverv" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="harRegistrertJordskifteKrevd" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="harAnmerketKlage" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="harAvtaleGrensePunktfeste" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="harAvtaleStedbundenRettighet" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="inngarISamlaFastEiendom" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="tinglyst" type="xs:boolean" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetForTeigInfoList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="kartns:MatrikkelenhetForTeigInfo"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

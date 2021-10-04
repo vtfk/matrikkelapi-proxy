@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" xmlns:ns2="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri" xmlns:ns3="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning" xmlns:ns4="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning/koder" xmlns:ns5="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommunetillegg" xmlns:ns6="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" xmlns:ns7="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" xmlns:ns8="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommunetillegg/koder" xmlns:tns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/bygning/oppdatering" elementFormDefault="qualified" targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/bygning/oppdatering" version="1.0">
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" schemaLocation="kommune.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri" schemaLocation="geometri.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning" schemaLocation="bygning.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning/koder" schemaLocation="bygningKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommunetillegg" schemaLocation="kommunetillegg.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" schemaLocation="basistyper.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" schemaLocation="geometriKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommunetillegg/koder" schemaLocation="kommunetilleggKoder.xsd"/>
+
+  <xs:element name="allokerBygningsnr" type="tns:allokerBygningsnr"/>
+
+  <xs:element name="allokerBygningsnrResponse" type="tns:allokerBygningsnrResponse"/>
+
+  <xs:element name="byggSomBygningsendringForAnnenBygning" type="tns:byggSomBygningsendringForAnnenBygning"/>
+
+  <xs:element name="byggSomBygningsendringForAnnenBygningResponse" type="tns:byggSomBygningsendringForAnnenBygningResponse"/>
+
+  <xs:element name="endreByggUnntattSoknadsplikt" type="tns:endreByggUnntattSoknadsplikt"/>
+
+  <xs:element name="endreByggUnntattSoknadspliktResponse" type="tns:endreByggUnntattSoknadspliktResponse"/>
+
+  <xs:element name="endreBygningsdata" type="tns:endreBygningsdata"/>
+
+  <xs:element name="endreBygningsdataResponse" type="tns:endreBygningsdataResponse"/>
+
+  <xs:element name="endreBygningstatus" type="tns:endreBygningstatus"/>
+
+  <xs:element name="endreBygningstatusResponse" type="tns:endreBygningstatusResponse"/>
+
+  <xs:element name="etablerTilbyggSomBygning" type="tns:etablerTilbyggSomBygning"/>
+
+  <xs:element name="etablerTilbyggSomBygningResponse" type="tns:etablerTilbyggSomBygningResponse"/>
+
+  <xs:element name="etterregistrerBygning" type="tns:etterregistrerBygning"/>
+
+  <xs:element name="etterregistrerBygningResponse" type="tns:etterregistrerBygningResponse"/>
+
+  <xs:element name="findNesteLopenr" type="tns:findNesteLopenr"/>
+
+  <xs:element name="findNesteLopenrResponse" type="tns:findNesteLopenrResponse"/>
+
+  <xs:element name="flyttBygning" type="tns:flyttBygning"/>
+
+  <xs:element name="flyttBygningResponse" type="tns:flyttBygningResponse"/>
+
+  <xs:element name="lockObjectsForOppdatering" type="tns:lockObjectsForOppdatering"/>
+
+  <xs:element name="lockObjectsForOppdateringInklbygningsendring" type="tns:lockObjectsForOppdateringInklbygningsendring"/>
+
+  <xs:element name="lockObjectsForOppdateringInklbygningsendringResponse" type="tns:lockObjectsForOppdateringInklbygningsendringResponse"/>
+
+  <xs:element name="lockObjectsForOppdateringResponse" type="tns:lockObjectsForOppdateringResponse"/>
+
+  <xs:element name="registrerNyBygning" type="tns:registrerNyBygning"/>
+
+  <xs:element name="registrerNyBygningResponse" type="tns:registrerNyBygningResponse"/>
+
+  <xs:element name="settByggAvlyst" type="tns:settByggAvlyst"/>
+
+  <xs:element name="settByggAvlystResponse" type="tns:settByggAvlystResponse"/>
+
+  <xs:element name="settByggUtgatt" type="tns:settByggUtgatt"/>
+
+  <xs:element name="settByggUtgattResponse" type="tns:settByggUtgattResponse"/>
+
+  <xs:element name="settBygningGodkjentRevet" type="tns:settBygningGodkjentRevet"/>
+
+  <xs:element name="settBygningGodkjentRevetResponse" type="tns:settBygningGodkjentRevetResponse"/>
+
+  <xs:element name="settBygningRevet" type="tns:settBygningRevet"/>
+
+  <xs:element name="settBygningRevetResponse" type="tns:settBygningRevetResponse"/>
+
+  <xs:element name="setteByggAvlyst" type="tns:setteByggAvlyst"/>
+
+  <xs:element name="setteByggAvlystResponse" type="tns:setteByggAvlystResponse"/>
+
+  <xs:element name="setteByggUtgatt" type="tns:setteByggUtgatt"/>
+
+  <xs:element name="setteByggUtgattResponse" type="tns:setteByggUtgattResponse"/>
+
+  <xs:element name="setteBygningGodkjentRevet" type="tns:setteBygningGodkjentRevet"/>
+
+  <xs:element name="setteBygningGodkjentRevetResponse" type="tns:setteBygningGodkjentRevetResponse"/>
+
+  <xs:element name="setteBygningRevet" type="tns:setteBygningRevet"/>
+
+  <xs:element name="setteBygningRevetResponse" type="tns:setteBygningRevetResponse"/>
+
+  <xs:element name="slettFeilregistrertBygning" type="tns:slettFeilregistrertBygning"/>
+
+  <xs:element name="slettFeilregistrertBygningResponse" type="tns:slettFeilregistrertBygningResponse"/>
+
+  <xs:element name="splittBygning" type="tns:splittBygning"/>
+
+  <xs:element name="splittBygningResponse" type="tns:splittBygningResponse"/>
+
+  <xs:complexType name="setteBygningGodkjentRevet">
+    <xs:sequence>
+      <xs:element name="bygg" type="ns3:Bygg"/>
+      <xs:element minOccurs="0" name="godkjentDate" type="ns6:LocalDate"/>
+      <xs:element minOccurs="0" name="referanse" type="xs:string"/>
+      <xs:element name="matrikkelContext" type="ns6:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="setteBygningGodkjentRevetResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="byggSomBygningsendringForAnnenBygning">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns3:ByggSomBygningsendringForAnnenBygningUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns6:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="byggSomBygningsendringForAnnenBygningResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="etterregistrerBygning">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns3:NyttByggUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns6:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="etterregistrerBygningResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="settByggAvlyst">
+    <xs:sequence>
+      <xs:element name="byggId" type="ns3:ByggId"/>
+      <xs:element name="avlystDate" type="ns6:LocalDate"/>
+      <xs:element minOccurs="0" name="referanse" type="ns5:BygningsReferanse"/>
+      <xs:element name="matrikkelContext" type="ns6:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="settByggAvlystResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="setteBygningRevet">
+    <xs:sequence>
+      <xs:element name="bygning" type="ns3:Bygning"/>
+      <xs:element minOccurs="0" name="revetDate" type="ns6:LocalDate"/>
+      <xs:element minOccurs="0" name="referanse" type="xs:string"/>
+      <xs:element name="matrikkelContext" type="ns6:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="setteBygningRevetResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="allokerBygningsnr">
+    <xs:sequence>
+      <xs:element name="matrikkelContext" type="ns6:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="allokerBygningsnrResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="etablerTilbyggSomBygning">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns3:TilbyggSomBygningUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns6:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="etablerTilbyggSomBygningResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="settByggUtgatt">
+    <xs:sequence>
+      <xs:element name="byggId" type="ns3:ByggId"/>
+      <xs:element minOccurs="0" name="utgattDate" type="ns6:LocalDate"/>
+      <xs:element minOccurs="0" name="referanse" type="ns5:BygningsReferanse"/>
+      <xs:element name="matrikkelContext" type="ns6:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="settByggUtgattResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="lockObjectsForOppdatering">
+    <xs:sequence>
+      <xs:element name="byggId" type="ns3:ByggId"/>
+      <xs:element name="matrikkelContext" type="ns6:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="lockObjectsForOppdateringResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns3:BygningBubbleTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="slettFeilregistrertBygning">
+    <xs:sequence>
+      <xs:element name="byggId" type="ns3:ByggId"/>
+      <xs:element name="matrikkelContext" type="ns6:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="slettFeilregistrertBygningResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="flyttBygning">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns3:FlyttBygningUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns6:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="flyttBygningResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="setteByggUtgatt">
+    <xs:sequence>
+      <xs:element name="bygg" type="ns3:Bygg"/>
+      <xs:element minOccurs="0" name="utgattDate" type="ns6:LocalDate"/>
+      <xs:element minOccurs="0" name="referanse" type="xs:string"/>
+      <xs:element name="matrikkelContext" type="ns6:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="setteByggUtgattResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="settBygningGodkjentRevet">
+    <xs:sequence>
+      <xs:element name="bygningId" type="ns3:BygningId"/>
+      <xs:element minOccurs="0" name="godkjentDate" type="ns6:LocalDate"/>
+      <xs:element minOccurs="0" name="referanse" type="ns5:BygningsReferanse"/>
+      <xs:element name="matrikkelContext" type="ns6:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="settBygningGodkjentRevetResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="findNesteLopenr">
+    <xs:sequence>
+      <xs:element name="bygningId" type="ns3:BygningId"/>
+      <xs:element name="matrikkelContext" type="ns6:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findNesteLopenrResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="endreByggUnntattSoknadsplikt">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns3:EndreByggUnntattSoknadspliktUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns6:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="endreByggUnntattSoknadspliktResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="settBygningRevet">
+    <xs:sequence>
+      <xs:element name="bygningId" type="ns3:BygningId"/>
+      <xs:element minOccurs="0" name="revetDate" type="ns6:LocalDate"/>
+      <xs:element minOccurs="0" name="referanse" type="ns5:BygningsReferanse"/>
+      <xs:element name="matrikkelContext" type="ns6:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="settBygningRevetResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="registrerNyBygning">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns3:NyttByggUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns6:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="registrerNyBygningResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="endreBygningsdata">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns3:EndreBygningsdataUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns6:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="endreBygningsdataResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="setteByggAvlyst">
+    <xs:sequence>
+      <xs:element name="bygg" type="ns3:Bygg"/>
+      <xs:element name="avlystDate" type="ns6:LocalDate"/>
+      <xs:element minOccurs="0" name="referanse" type="xs:string"/>
+      <xs:element name="matrikkelContext" type="ns6:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="setteByggAvlystResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="splittBygning">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns3:SplittBygningUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns6:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="splittBygningResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="lockObjectsForOppdateringInklbygningsendring">
+    <xs:sequence>
+      <xs:element name="byggId" type="ns3:ByggId"/>
+      <xs:element name="matrikkelContext" type="ns6:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="lockObjectsForOppdateringInklbygningsendringResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns3:BygningBubbleTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="endreBygningstatus">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns3:EndreBygningstatusUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns6:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="endreBygningstatusResponse">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>

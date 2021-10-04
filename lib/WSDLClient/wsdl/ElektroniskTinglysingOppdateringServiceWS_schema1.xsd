@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/forretning" xmlns:ns2="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person" xmlns:ns3="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/elektronisktinglysing" xmlns:ns4="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" xmlns:ns5="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" xmlns:tns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/elektronisktinglysing/oppdatering" elementFormDefault="qualified" targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/elektronisktinglysing/oppdatering" version="1.0">
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/forretning" schemaLocation="forretning.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person" schemaLocation="person.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/elektronisktinglysing" schemaLocation="elektronisktinglysing.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" schemaLocation="geometriKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" schemaLocation="basistyper.xsd"/>
+
+  <xs:element name="sendTilTinglysing" type="tns:sendTilTinglysing"/>
+
+  <xs:element name="sendTilTinglysingResponse" type="tns:sendTilTinglysingResponse"/>
+
+  <xs:element name="tvungenSendTilTinglysing" type="tns:tvungenSendTilTinglysing"/>
+
+  <xs:element name="tvungenSendTilTinglysingResponse" type="tns:tvungenSendTilTinglysingResponse"/>
+
+  <xs:complexType name="sendTilTinglysing">
+    <xs:sequence>
+      <xs:element name="meldingTilTinglysingRequest" type="ns3:MeldingTilTinglysingRequest"/>
+      <xs:element name="matrikkelContext" type="ns5:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="sendTilTinglysingResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="tvungenSendTilTinglysing">
+    <xs:sequence>
+      <xs:element name="meldingTilTinglysingRequest" type="ns3:MeldingTilTinglysingRequest"/>
+      <xs:element name="grunnForGjeninnsending" type="xs:string"/>
+      <xs:element name="matrikkelContext" type="ns5:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="tvungenSendTilTinglysingResponse">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>

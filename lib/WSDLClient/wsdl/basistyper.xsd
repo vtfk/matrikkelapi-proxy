@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        version="1.0"
+        targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"
+        xmlns:basistyperns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"
+        xmlns:geometrikoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified">
+
+    <xs:import schemaLocation="geometriKoder.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder"/>
+    <!-- ================================================= -->
+    <!-- Basisklasser                                      -->
+    <!-- ================================================= -->
+    <xs:complexType name="Timestamp">
+        <xs:sequence>
+            <xs:element name="timestamp" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="LocalDate">
+        <xs:sequence>
+            <xs:element name="date" type="xs:date"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelComponentWithHistory">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="oppdateringsdato" type="basistyperns:Timestamp" nillable="true"/>
+                    <xs:element name="sluttdato" type="basistyperns:Timestamp" minOccurs="0"/>
+                    <xs:element name="versjonId" type="xs:long"/>
+                    <xs:element name="oppdatertAv" type="xs:string" nillable="true"/>
+                    <xs:element name="avsluttetAv" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelComponent">
+        <xs:sequence>
+            <xs:element name="metadata" type="basistyperns:Metadata" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelBubbleId">
+        <xs:sequence>
+            <xs:element name="value" type="xs:long"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelBubbleIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="basistyperns:MatrikkelBubbleId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelBubbleIdListForMatrikkelBubbleIdsMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="basistyperns:MatrikkelBubbleId"/>
+                        <xs:element name="value" nillable="true" type="basistyperns:MatrikkelBubbleIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SnapshotVersionToMatrikkelBubbleIdMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" type="basistyperns:Timestamp"/>
+                        <xs:element name="value" type="basistyperns:MatrikkelBubbleId"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelBubbleIdToMatrikkelBubbleObjectMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" type="basistyperns:MatrikkelBubbleId"/>
+                        <xs:element name="value" type="basistyperns:MatrikkelBubbleObject"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelBubbleIdToSnapshotBubbleIdsMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="basistyperns:MatrikkelBubbleId"/>
+                        <xs:element name="value" type="basistyperns:SnapshotVersionToMatrikkelBubbleIdMap"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelBubbleObject" abstract="true">
+        <xs:sequence>
+            <xs:element name="id" type="basistyperns:MatrikkelBubbleId"/>
+            <xs:element name="metadata" type="basistyperns:Metadata" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelBubbleObjectWithHistory" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObject">
+                <xs:sequence>
+                    <xs:element name="oppdateringsdato" type="basistyperns:Timestamp" nillable="true"/>
+                    <xs:element name="sluttdato" type="basistyperns:Timestamp" minOccurs="0"/>
+                    <xs:element name="versjonId" type="xs:long"/>
+                    <xs:element name="oppdatertAv" type="xs:string" nillable="true"/>
+                    <xs:element name="avsluttetAv" type="xs:string" minOccurs="0"/>
+                    <xs:element name="versjon" type="xs:long"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelBubbleObjectList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="basistyperns:MatrikkelBubbleObject"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelContext">
+        <xs:sequence>
+            <xs:element name="locale" type="xs:string"/>
+            <xs:element name="brukOriginaleKoordinater" type="xs:boolean"/>
+            <xs:element name="koordinatsystemKodeId" type="geometrikoderns:KoordinatsystemKodeId"/>
+            <xs:element name="systemVersion" type="xs:string"/>
+            <xs:element name="klientIdentifikasjon" type="xs:string"/>
+            <xs:element name="snapshotVersion" type="basistyperns:Timestamp" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="StringList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Metadata">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="IntegerList">
+        <xs:annotation>
+            <xs:documentation>
+                Brukes i Endringslogg for å angi flere kommunenr som en liste med integers.
+                Dette bør kanskje endres da kommunenr angis som stringer ellers?
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="item" type="xs:int" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="IntList">
+        <xs:annotation>
+            <xs:documentation>
+                Brukes i rapportgenerering for å angi hvilke rapportinfos som skal genereres i rapporten.
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="item" type="xs:int" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Ident" abstract="true">
+        <xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="KodeIdent">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:Ident">
+                <xs:sequence>
+                    <xs:element name="kodeverdi" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="UUID">
+        <xs:annotation>
+            <xs:documentation>
+                Denne klassen er kun tilgjengelig for klientversjon fra 3.17 eller senere. For eldre klienter returneres ikke dette objektet.
+                @since 3.17
+            </xs:documentation>
+        </xs:annotation>
+        <xs:sequence minOccurs="0">
+            <xs:element name="navnerom" type="xs:string"/>
+            <xs:element name="uuid" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="LocalizedString">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="xs:string"/>
+                        <xs:element name="value" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="StringStringListMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="xs:string"/>
+                        <xs:element name="value" type="basistyperns:StringList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="UnitOfWorkTransfer">
+        <xs:sequence>
+            <xs:element name="insertedObjects" type="basistyperns:MatrikkelBubbleObjectList"/>
+            <xs:element name="updatedObjects" type="basistyperns:MatrikkelBubbleObjectList"/>
+            <xs:element name="deletedObjects" type="basistyperns:MatrikkelBubbleObjectList"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BubbleTransfer">
+        <xs:sequence>
+            <xs:element name="lockedIds" type="basistyperns:MatrikkelBubbleIdList"/>
+            <xs:element name="bubbleObjects" type="basistyperns:MatrikkelBubbleObjectList"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BokInfo" abstract="true">
+        <xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BokInfoList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="basistyperns:BokInfo"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

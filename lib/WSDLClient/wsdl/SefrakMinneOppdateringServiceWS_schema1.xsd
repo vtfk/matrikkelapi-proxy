@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" xmlns:ns2="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/sefrak" xmlns:ns3="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" xmlns:ns4="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" xmlns:tns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/sefrak/oppdatering" elementFormDefault="qualified" targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/sefrak/oppdatering" version="1.0">
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" schemaLocation="kommune.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/sefrak" schemaLocation="sefrak.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" schemaLocation="basistyper.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" schemaLocation="geometriKoder.xsd"/>
+
+  <xs:element name="insertSefrakminne" type="tns:insertSefrakminne"/>
+
+  <xs:element name="insertSefrakminneResponse" type="tns:insertSefrakminneResponse"/>
+
+  <xs:element name="removeSefrakminne" type="tns:removeSefrakminne"/>
+
+  <xs:element name="removeSefrakminneResponse" type="tns:removeSefrakminneResponse"/>
+
+  <xs:element name="updateSefrakminne" type="tns:updateSefrakminne"/>
+
+  <xs:element name="updateSefrakminneObjektnummer" type="tns:updateSefrakminneObjektnummer"/>
+
+  <xs:element name="updateSefrakminneObjektnummerResponse" type="tns:updateSefrakminneObjektnummerResponse"/>
+
+  <xs:element name="updateSefrakminneResponse" type="tns:updateSefrakminneResponse"/>
+
+  <xs:complexType name="insertSefrakminne">
+    <xs:sequence>
+      <xs:element name="sefrakminne" type="ns2:SefrakMinne"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="insertSefrakminneResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="updateSefrakminneObjektnummer">
+    <xs:sequence>
+      <xs:element name="sefrakminneId" type="ns2:SefrakMinneId"/>
+      <xs:element name="kommuneId" type="ns1:KommuneId"/>
+      <xs:element name="objektnrRubrikk" type="ns2:ObjektnummerRubrikk"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updateSefrakminneObjektnummerResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="updateSefrakminne">
+    <xs:sequence>
+      <xs:element name="sefrakminne" type="ns2:SefrakMinne"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updateSefrakminneResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="removeSefrakminne">
+    <xs:sequence>
+      <xs:element name="sefrakminne" type="ns2:SefrakMinne"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="removeSefrakminneResponse">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>

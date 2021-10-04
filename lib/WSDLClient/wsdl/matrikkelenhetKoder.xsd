@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        version="1.0"
+        targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet/koder"
+        xmlns:kodens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"
+        xmlns:matrikkelenhetkoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet/koder"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:import schemaLocation="kodeliste.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"/>
+
+    <xs:complexType name="AdministrativGrenseKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode">
+                <xs:sequence>
+                    <xs:element name="kodeverdiSosi45" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AdministrativGrenseKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggstypeKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggstypeKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnnenMatrikkelenhetsKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnnenMatrikkelenhetsKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ArealkildeKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ArealkildeKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ArealmerknadKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ArealmerknadKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ArealmerknadKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="matrikkelenhetkoderns:ArealmerknadKodeId" minOccurs="0"
+                        maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ArsakTilFeilrettingKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ArsakTilFeilrettingKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ArsakTilFeilrettingKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="matrikkelenhetkoderns:ArsakTilFeilrettingKodeId" minOccurs="0"
+                        maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="EierforholdKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="EierforholdKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FormalSeksjonKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FormalSeksjonKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ForretningsklasseKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode">
+                <xs:sequence>
+                    <xs:element name="lovligeForretningstypeIds" type="matrikkelenhetkoderns:ForretningstypeKodeIdList" minOccurs="0"/>
+                    <xs:element name="utgatteForretningstypeIds" type="matrikkelenhetkoderns:ForretningstypeKodeIdList" minOccurs="0"/>
+                    <xs:element name="muligeArsakerTilFeilrettingIds" type="matrikkelenhetkoderns:ArsakTilFeilrettingKodeIdList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ForretningsklasseKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ForretningstypeKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ForretningstypeKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ForretningstypeKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="matrikkelenhetkoderns:ForretningstypeKodeId" minOccurs="0"
+                        maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="GrensemerkeNedsattIKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode">
+                <xs:sequence>
+                    <xs:element name="kodeverdiSosi45" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="GrensemerkeNedsattIKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="GrensepunkttypeKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode">
+                <xs:sequence>
+                    <xs:element name="sosiKode" type="xs:int" minOccurs="0" />
+                    <xs:element name="kodeverdiSosi45" type="xs:string" minOccurs="0" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="GrensepunkttypeKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="HjelpelinjetypeKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode">
+                <xs:sequence>
+                    <xs:element name="sosiKode" type="xs:string" minOccurs="0" />
+                    <xs:element name="objType" type="xs:string" minOccurs="0" />
+                    <xs:element name="kodeverdiSosi45" type="xs:string" minOccurs="0" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="HjelpelinjetypeKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetstypeKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetstypeKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Medium">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MediumId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="RolleIForretningKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="RolleIForretningKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TerrengdetaljKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode">
+                <xs:sequence>
+                    <xs:element name="sosi34" type="xs:string" minOccurs="0"/>
+                    <xs:element name="kodeverdiSosi45" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TerrengdetaljKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TinglysingsstatusKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TinglysingsstatusKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TinglysingsstatusKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="matrikkelenhetkoderns:TinglysingsstatusKodeId" minOccurs="0"
+                        maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

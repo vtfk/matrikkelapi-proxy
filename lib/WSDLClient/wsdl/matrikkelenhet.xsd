@@ -1,0 +1,2466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    version="1.0"
+    targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"
+    xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"
+    xmlns:basistyperns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"
+    xmlns:geometrins="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri"
+    xmlns:geometrikoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder"
+    xmlns:forretningns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/forretning"
+    xmlns:kommunetilleggns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommunetillegg"
+    xmlns:kommunetilleggkoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommunetillegg/koder"
+    xmlns:matrikkelenhetns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"
+    xmlns:matrikkelenhetkoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet/koder"
+    xmlns:kommunens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune"
+    xmlns:personns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person"
+    xmlns:adressens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse"
+    xmlns:bygningns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning"
+    xmlns:grunnforurensingns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/grunnforurensing"
+    xmlns:kulturminnens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kulturminne"
+    xmlns:utilns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/util"
+    xmlns:pantebok="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/pantebok"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified">
+
+    <xs:import schemaLocation="basistyper.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"/>
+    <xs:import schemaLocation="geometri.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri"/>
+    <xs:import schemaLocation="geometriKoder.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder"/>
+    <xs:import schemaLocation="forretning.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/forretning"/>
+    <xs:import schemaLocation="person.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person"/>
+    <xs:import schemaLocation="matrikkelenhetKoder.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet/koder"/>
+    <xs:import schemaLocation="brukerKoder.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bruker/koder"/>
+    <xs:import schemaLocation="kommune.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune"/>
+    <xs:import schemaLocation="kommunetillegg.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommunetillegg"/>
+    <xs:import schemaLocation="kommunetilleggKoder.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommunetillegg/koder"/>
+    <xs:import schemaLocation="adresse.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse"/>
+    <xs:import schemaLocation="bygning.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning"/>
+    <xs:import schemaLocation="grunnforurensing.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/grunnforurensing"/>
+    <xs:import schemaLocation="kulturminne.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kulturminne"/>
+    <xs:import schemaLocation="util.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/util"/>
+    <xs:import schemaLocation="pantebok.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/pantebok"/>
+
+
+    <xs:complexType name="Anleggseiendom">
+        <xs:complexContent>
+            <xs:extension base="matrikkelenhetns:Matrikkelenhet">
+                <xs:sequence>
+                    <xs:element name="anleggstypeId" type="matrikkelenhetkoderns:AnleggstypeKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="anleggsprojeksjonsflaterForMatrikkelenhet"
+                                type="matrikkelenhetns:AnleggsprojeksjonsflateForMatrikkelenhetList"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggseiendomId">
+        <xs:complexContent>
+            <xs:extension base="matrikkelenhetns:MatrikkelenhetId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggseiendomIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="matrikkelenhetns:AnleggseiendomId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetBokInfoList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="matrikkelenhetns:MatrikkelenhetBokInfo"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Anleggsprojeksjonsflate">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="lagretBeregnetAreal" type="xs:double" minOccurs="0"/>
+                    <xs:element name="datafangstdato" type="basistyperns:LocalDate" minOccurs="0"/>
+                    <xs:element name="kommentar" type="xs:string" minOccurs="0"/>
+                    <xs:element name="mediumId" type="matrikkelenhetkoderns:MediumId"
+                                minOccurs="0"/>
+                    <xs:element name="flate" type="geometrins:AnleggsprojeksjonsComplexSurface"
+                                minOccurs="0"/>
+                    <xs:element name="kommunalTilleggsdel"
+                                type="kommunetilleggns:AnleggsprojeksjonsflateTillegg"
+                                minOccurs="0"/>
+                    <xs:element name="representasjonspunkt" type="geometrins:Representasjonspunkt"
+                                minOccurs="0"/>
+                    <xs:element name="oppgittVolum" type="xs:double" minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggsprojeksjonsflateId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggsprojeksjonsflateIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="matrikkelenhetns:AnleggsprojeksjonsflateId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggsprojeksjonsflateForMatrikkelenhet">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="hovedflate" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="anleggsprojeksjonsflateId"
+                                type="matrikkelenhetns:AnleggsprojeksjonsflateId" minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggsprojeksjonsflateForMatrikkelenhetList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="matrikkelenhetns:AnleggsprojeksjonsflateForMatrikkelenhet"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Anleggsprojeksjonsgrense">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="kvalitet" type="geometrins:Posisjonskvalitet" minOccurs="0"/>
+                    <xs:element name="datafangstdato" type="basistyperns:LocalDate" minOccurs="0"/>
+                    <xs:element name="kommunalTilleggsdel"
+                                type="kommunetilleggns:AnleggsprojeksjonsgrenseTillegg"
+                                minOccurs="0"/>
+                    <xs:element name="signed" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="kurve" type="geometrins:AnleggsprojeksjonsCurveSegment"
+                                minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggsprojeksjonsgrenseId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggsprojeksjonsgrenseIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="matrikkelenhetns:AnleggsprojeksjonsgrenseId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="Anleggsprojeksjonspunkt">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="posisjon" type="geometrins:Position" minOccurs="0"/>
+                    <xs:element name="kvalitet" type="geometrins:Posisjonskvalitet" minOccurs="0"/>
+                    <xs:element name="grensepunkttypeId"
+                                type="matrikkelenhetkoderns:GrensepunkttypeKodeId" minOccurs="0"/>
+                    <xs:element name="datafangstdato" type="basistyperns:LocalDate" minOccurs="0"/>
+                    <xs:element name="grensemerkeNedsattIId"
+                                type="matrikkelenhetkoderns:GrensemerkeNedsattIKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="koordinatsystemKodeId"
+                                type="geometrikoderns:KoordinatsystemKodeId" minOccurs="0"/>
+                    <xs:element name="originalKoordinatsystemKodeId"
+                                type="geometrikoderns:KoordinatsystemKodeId" minOccurs="0"/>
+                    <xs:element name="kommunalTilleggsdel"
+                                type="kommunetilleggns:AnleggsprojeksjonspunktTillegg"
+                                minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggsprojeksjonspunktId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggsprojeksjonspunktIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="matrikkelenhetns:AnleggsprojeksjonspunktId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="AnnenMatrikkelenhet">
+        <xs:complexContent>
+            <xs:extension base="matrikkelenhetns:Matrikkelenhet">
+                <xs:sequence>
+                    <xs:element name="annenMatrikkelenhetsKodeId"
+                                type="matrikkelenhetkoderns:AnnenMatrikkelenhetsKodeId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnnenMatrikkelenhetId">
+        <xs:complexContent>
+            <xs:extension base="matrikkelenhetns:MatrikkelenhetId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnnenMatrikkelenhetIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="matrikkelenhetns:AnnenMatrikkelenhetId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="Eierforhold">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="kommuneId" type="kommunens:KommuneId" minOccurs="0"/>
+                    <xs:element name="eierforholdKodeId"
+                                type="matrikkelenhetkoderns:EierforholdKodeId" minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="EierforholdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="matrikkelenhetns:Eierforhold"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="EnkelNaboSokModel">
+        <xs:sequence>
+            <xs:element name="matrikkelenhetId" type="matrikkelenhetns:MatrikkelenhetId"
+                        minOccurs="0"/>
+            <xs:element name="maxAvstand" type="xs:int" minOccurs="0"/>
+            <xs:element name="medFestetPa" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="medFester" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="medSeksjoner" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="medAnleggsprojeksjonsflater" type="xs:boolean" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Festegrunn">
+        <xs:complexContent>
+            <xs:extension base="matrikkelenhetns:Matrikkelenhet">
+                <xs:sequence>
+                    <xs:element name="festetMatrikkelenhetIds"
+                                type="matrikkelenhetns:MatrikkelenhetIdList"
+                                minOccurs="0"/>
+                    <xs:element name="punktfeste" type="xs:boolean" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FestegrunnId">
+        <xs:complexContent>
+            <xs:extension base="matrikkelenhetns:MatrikkelenhetId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FestegrunnIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="matrikkelenhetns:FestegrunnId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="Grunneiendom">
+        <xs:complexContent>
+            <xs:extension base="matrikkelenhetns:Matrikkelenhet">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="GrunneiendomId">
+        <xs:complexContent>
+            <xs:extension base="matrikkelenhetns:MatrikkelenhetId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="GrunneiendomIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="matrikkelenhetns:GrunneiendomId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Grunnerverv">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="grunnervervFortDato" type="basistyperns:Timestamp"
+                                minOccurs="0"/>
+                    <xs:element name="grunnervervReferanse" type="xs:string" minOccurs="0"/>
+                    <xs:element name="matrikkelenhetIds"
+                                type="matrikkelenhetns:MatrikkelenhetIdList" minOccurs="0"/>
+                    <xs:element name="erververId" type="personns:JuridiskPersonId" minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="GrunnervervId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="GrunnervervIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="matrikkelenhetns:GrunnervervId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AvtaleGrensePunktfeste">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="avtaleGrensePunktfesteFortDato" type="basistyperns:Timestamp" minOccurs="0"/>
+                    <xs:element name="avtaleGrensePunktfesteReferanse" type="xs:string" minOccurs="0"/>
+                    <xs:element name="avtaleGrensePunktfesteUrl" type="xs:string" minOccurs="0"/>
+                    <xs:element name="matrikkelenhetIds" type="matrikkelenhetns:MatrikkelenhetIdList" minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AvtaleGrensePunktfesteId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AvtaleGrensePunktfesteIdList">
+        <xs:sequence>
+            <xs:element name="item" type="matrikkelenhetns:AvtaleGrensePunktfesteId" minOccurs="0"
+                        maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="IkkeTinglystEierforhold">
+        <xs:complexContent>
+            <xs:extension base="matrikkelenhetns:Eierforhold">
+                <xs:sequence>
+                    <xs:element name="andel" type="utilns:Andel" minOccurs="0"/>
+                    <xs:element name="datoFra" type="basistyperns:LocalDate" minOccurs="0"/>
+                    <xs:element name="datoTil" type="basistyperns:LocalDate" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="IkkeTinglystEierforholdList">
+        <xs:sequence>
+            <xs:element name="item" type="matrikkelenhetns:IkkeTinglystEierforhold" minOccurs="0"
+                        maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AvtaleStedbundenRettighet">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="avtaleFortDato" type="basistyperns:Timestamp" minOccurs="0"/>
+                    <xs:element name="dokumentnr" type="xs:string" minOccurs="0"/>
+                    <xs:element name="referanse" type="xs:string" minOccurs="0"/>
+                    <xs:element name="nettadresseUrl" type="xs:string" minOccurs="0"/>
+                    <xs:element name="rettsstiftelser" type="RettsstiftelseForStedbundenRettighetList" minOccurs="0"/>
+                    <xs:element name="matrikkelenhetIds" type="matrikkelenhetns:MatrikkelenhetIdList" minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AvtaleStedbundenRettighetId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AvtaleStedbundenRettighetIdList">
+        <xs:sequence>
+            <xs:element name="item" type="matrikkelenhetns:AvtaleStedbundenRettighetId" minOccurs="0"
+                        maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RettsstiftelseForStedbundenRettighet">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="rettsstiftelseId" type="xs:long" minOccurs="0"/>
+                    <xs:element name="matrikkelenhetIds" type="matrikkelenhetns:MatrikkelenhetIdList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="RettsstiftelseForStedbundenRettighetList">
+        <xs:sequence>
+            <xs:element name="item" type="RettsstiftelseForStedbundenRettighet" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Jordsameie">
+        <xs:complexContent>
+            <xs:extension base="matrikkelenhetns:Matrikkelenhet">
+                <xs:sequence>
+                    <xs:element name="avklartEiere" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="avklartAndeler" type="xs:boolean" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="JordsameieId">
+        <xs:complexContent>
+            <xs:extension base="matrikkelenhetns:MatrikkelenhetId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="JordsameieIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="matrikkelenhetns:AnnenMatrikkelenhetId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="JordskifteKrevd">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="jordskifteKrevdFortDato" type="basistyperns:Timestamp"
+                                minOccurs="0"/>
+                    <xs:element name="jordskifteReferanse" type="xs:string" minOccurs="0"/>
+                    <xs:element name="matrikkelenhetIds"
+                                type="matrikkelenhetns:MatrikkelenhetIdList" minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="JordskifteKrevdId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="JordskifteKrevdIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="matrikkelenhetns:JordskifteKrevdId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="JuridiskPersonTinglystEierforhold">
+        <xs:complexContent>
+            <xs:extension base="matrikkelenhetns:PersonTinglystEierforhold"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="JuridiskPersonTinglystEierforholdList">
+        <xs:sequence>
+            <xs:element name="item" type="matrikkelenhetns:JuridiskPersonTinglystEierforhold"
+                        minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="JuridiskPersonIkkeTinglystEierforhold">
+        <xs:complexContent>
+            <xs:extension base="matrikkelenhetns:PersonIkkeTinglystEierforhold"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="JuridiskPersonIkkeTinglystEierforholdList">
+        <xs:sequence>
+            <xs:element name="item" type="matrikkelenhetns:JuridiskPersonIkkeTinglystEierforhold"
+                        minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="Klage">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="klageFortDato" type="basistyperns:Timestamp" minOccurs="0"/>
+                    <xs:element name="klageReferanse" type="xs:string" minOccurs="0"/>
+                    <xs:element name="hvaKlagenGjelder" type="xs:string" minOccurs="0"/>
+                    <xs:element name="matrikkelenhetIds"
+                                type="matrikkelenhetns:MatrikkelenhetIdList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KlageId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FestegrunnIdent">
+        <xs:complexContent>
+            <xs:extension base="MatrikkelenhetIdent"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KlageIdList">
+        <xs:sequence>
+            <xs:element name="item" type="matrikkelenhetns:KlageId" minOccurs="0"
+                        maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Kontaktinstans">
+        <xs:complexContent>
+            <xs:extension base="matrikkelenhetns:Eierforhold">
+                <xs:sequence>
+                    <xs:element name="eierId" type="personns:PersonId" minOccurs="0"/>
+                    <xs:element name="datoFra" type="basistyperns:LocalDate" minOccurs="0"/>
+                    <xs:element name="datoTil" type="basistyperns:LocalDate" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KontaktinstansList">
+        <xs:sequence>
+            <xs:element name="item" type="matrikkelenhetns:Kontaktinstans" minOccurs="0"
+                        maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrenhForSamlaFastEdmList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="matrikkelenhetns:MatrenhForSamlaFastEdm"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrenhForSamlaFastEdm">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="matrikkelenhetId" type="matrikkelenhetns:MatrikkelenhetId"
+                                minOccurs="0"/>
+                    <xs:element name="hovedmatrikkelenhet" type="xs:boolean" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Matrikkelenhet">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="matrikkelnummer" type="matrikkelenhetns:Matrikkelnummer"
+                                minOccurs="0"/>
+                    <xs:element name="etableringsdato" type="basistyperns:LocalDate" minOccurs="0"/>
+                    <xs:element name="historiskOppgittAreal" type="xs:double" minOccurs="0"/>
+                    <xs:element name="historiskArealkildeId"
+                                type="matrikkelenhetkoderns:ArealkildeKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="tinglyst" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="skyld" type="xs:double" minOccurs="0"/>
+                    <xs:element name="bruksnavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="teigerForMatrikkelenhet"
+                                type="matrikkelenhetns:TeigForMatrikkelenhetList"
+                                minOccurs="0"/>
+                    <xs:element name="eierforhold" type="matrikkelenhetns:EierforholdList"
+                                minOccurs="0"/>
+                    <xs:element name="erSeksjonert" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="harAktiveFestegrunner" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="harAnmerketKlage" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="harRegistrertGrunnerverv" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="harRegistrertJordskifteKrevd" type="xs:boolean"
+                                minOccurs="0"/>
+                    <xs:element name="inngarISamlaFastEiendom" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="harGrunnforurensing" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="harKulturminne" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="harAvtaleGrensePunktfeste" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="harAvtaleStedbundenRettighet" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="utgatt" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="underSammenslaingBestar" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="underSammenslaingUtgar" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="oppmalingIkkeFullfort" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="grensepunktmerkingMangler" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="mangelMatrikkelforingskrav" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="nymatrikulert" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="fristOppmaling" type="basistyperns:LocalDate" minOccurs="0"/>
+                    <xs:element name="fristGrensepunktmerking" type="basistyperns:LocalDate"
+                                minOccurs="0"/>
+                    <xs:element name="fristMatrikkelforingskrav" type="basistyperns:LocalDate"
+                                minOccurs="0"/>
+                    <xs:element name="etterML9BTilH" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="kommunalTilleggsdel"
+                                type="kommunetilleggns:MatrikkelenhetTillegg" minOccurs="0"/>
+                    <xs:element name="stedsnummer" type="xs:string" minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="matrikkelenhetns:MatrikkelenhetId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Matrikkelnummer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="kommuneId" type="kommunens:KommuneId" minOccurs="0"/>
+                    <xs:element name="gardsnummer" type="xs:int" minOccurs="0"/>
+                    <xs:element name="bruksnummer" type="xs:int" minOccurs="0"/>
+                    <xs:element name="festenummer" type="xs:int" minOccurs="0"/>
+                    <xs:element name="seksjonsnummer" type="xs:int" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetIdent">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:Ident">
+                <xs:sequence>
+                    <xs:element name="kommuneIdent" type="kommunens:KommuneIdent" minOccurs="0"/>
+                    <xs:element name="gardsnummer" type="xs:int" minOccurs="0"/>
+                    <xs:element name="bruksnummer" type="xs:int" minOccurs="0"/>
+                    <xs:element name="festenummer" type="xs:int" minOccurs="0"/>
+                    <xs:element name="seksjonsnummer" type="xs:int" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetIdentList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="matrikkelenhetns:MatrikkelenhetIdent"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetIdentTilMatrikkelenhetIdMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetIdent"/>
+                        <xs:element name="value" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetId"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetIdentTilMatrikkelenhetIdentMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetIdent"/>
+                        <xs:element name="value" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetIdent"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="MatrikkelenhetIdentTilMatrikkelenhetIdentsMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetIdent"/>
+                        <xs:element name="value" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetIdentList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="MatrikkelenhetIkkeTinglystEierforhold">
+        <xs:complexContent>
+            <xs:extension base="matrikkelenhetns:IkkeTinglystEierforhold">
+                <xs:sequence>
+                    <xs:element name="eiendeMatrikkelenhetId"
+                                type="matrikkelenhetns:MatrikkelenhetId"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetIkkeTinglystEierforholdList">
+        <xs:sequence>
+            <xs:element name="item" type="matrikkelenhetns:MatrikkelenhetIkkeTinglystEierforhold"
+                        minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetTinglystEierforhold">
+        <xs:complexContent>
+            <xs:extension base="matrikkelenhetns:TinglystEierforhold">
+                <xs:sequence>
+                    <xs:element name="eiendeMatrikkelenhetId"
+                                type="matrikkelenhetns:MatrikkelenhetId"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetTinglystEierforholdList">
+        <xs:sequence>
+            <xs:element name="item" type="matrikkelenhetns:MatrikkelenhetTinglystEierforhold"
+                        minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PersonIkkeTinglystEierforhold">
+        <xs:complexContent>
+            <xs:extension base="matrikkelenhetns:IkkeTinglystEierforhold">
+                <xs:sequence>
+                    <xs:element name="eierId" type="personns:PersonId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="PersonIkkeTinglystEierforholdList">
+        <xs:sequence>
+            <xs:element name="item" type="matrikkelenhetns:PersonIkkeTinglystEierforhold"
+                        minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PersonTinglystEierforhold">
+        <xs:complexContent>
+            <xs:extension base="matrikkelenhetns:TinglystEierforhold">
+                <xs:sequence>
+                    <xs:element name="eierId" type="personns:PersonId" minOccurs="0"/>
+                    <xs:element name="andelsnummer" type="xs:int" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="PersonTinglystEierforholdList">
+        <xs:sequence>
+            <xs:element name="item" type="matrikkelenhetns:PersonTinglystEierforhold" minOccurs="0"
+                        maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SamlaFastEiendom">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="samlaFastEiendomFortDato" type="basistyperns:LocalDate"
+                                minOccurs="0"/>
+                    <xs:element name="samlaFastEiendomReferanse" type="xs:string" minOccurs="0"/>
+                    <xs:element name="samlaFastEdmMatrikkelenheter"
+                                type="matrikkelenhetns:MatrenhForSamlaFastEdmList"
+                                minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="SamlaFastEiendomId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="SamlaFastEiendomIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="matrikkelenhetns:SamlaFastEiendomId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Seksjon">
+        <xs:complexContent>
+            <xs:extension base="matrikkelenhetns:Matrikkelenhet">
+                <xs:sequence>
+                    <xs:element name="sameiebrok" type="utilns:Andel" minOccurs="0"/>
+                    <xs:element name="formalSeksjonKodeId"
+                                type="matrikkelenhetkoderns:FormalSeksjonKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="seksjonertMatrikkelenhetIds"
+                                type="matrikkelenhetns:MatrikkelenhetIdList"
+                                minOccurs="0"/>
+                    <xs:element name="tilleggsareal" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="anleggsprojeksjonsflaterForMatrikkelenhet"
+                                type="matrikkelenhetns:AnleggsprojeksjonsflateForMatrikkelenhetList"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="SeksjonId">
+        <xs:complexContent>
+            <xs:extension base="matrikkelenhetns:MatrikkelenhetId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="SeksjonIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="matrikkelenhetns:SeksjonId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="Teig">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="uregistrertJordsameie" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="avklartEiere" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="teigMedFlereMatrikkelenheter" type="xs:boolean"
+                                minOccurs="0"/>
+                    <xs:element name="tvist" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="teigarealmerknadIds"
+                                type="matrikkelenhetkoderns:ArealmerknadKodeIdList"
+                                minOccurs="0"/>
+                    <xs:element name="lagretBeregnetAreal" type="xs:double" minOccurs="0"/>
+                    <xs:element name="flate" type="geometrins:ComplexSurface" minOccurs="0"/>
+                    <xs:element name="representasjonspunkt" type="geometrins:Representasjonspunkt"
+                                minOccurs="0"/>
+                    <xs:element name="kommunalTilleggsdel" type="kommunetilleggns:TeigTillegg"
+                                minOccurs="0"/>
+                    <xs:element name="datafangstdato" type="basistyperns:LocalDate" minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TeigId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TeigIdent">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:Ident"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TeigIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="matrikkelenhetns:TeigId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TeigIdTilMatrikkelenhetIdsMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="matrikkelenhetns:TeigId"/>
+                        <xs:element name="value" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TeigIdTilTeiggrenseIdsMap">
+        <!--<xs:annotation>-->
+        <!--<xs:appinfo>-->
+        <!--<IsDictionary-->
+        <!--xmlns="http://schemas.microsoft.com/2003/10/Serialization/">-->
+        <!--true-->
+        <!--</IsDictionary>-->
+        <!--</xs:appinfo>-->
+        <!--</xs:annotation>-->
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="matrikkelenhetns:TeigId"/>
+                        <xs:element name="value" nillable="true" type="matrikkelenhetns:TeiggrenseIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TeigIdTilRepresentasjonspunktMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="matrikkelenhetns:TeigId"/>
+                        <xs:element name="value" nillable="true"
+                                    type="geometrins:Representasjonspunkt"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetIdTilRepresentasjonspunkterMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="matrikkelenhetns:MatrikkelenhetId"/>
+                        <xs:element name="value" nillable="true"
+                                    type="geometrins:RepresentasjonspunktList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TeiggrenseIdTilTeigIdsMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="matrikkelenhetns:TeiggrenseId"/>
+                        <xs:element name="value" nillable="true" type="matrikkelenhetns:TeigIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="KommuneIdTilMatrikkelenhetIdsMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="matrikkelenhetns:TeigId"/>
+                        <xs:element name="value" nillable="true" type="kommunens:KommuneIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggsprojeksjonsflateIdTilMatrikkelenhetIdsMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true"
+                                    type="matrikkelenhetns:AnleggsprojeksjonsflateId"/>
+                        <xs:element name="value" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggsprojeksjonsflateIdTilTeigIdsMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="matrikkelenhetns:AnleggsprojeksjonsflateId"/>
+                        <xs:element name="value" nillable="true" type="matrikkelenhetns:TeigIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggsprojeksjonsFlateIdTilPolygonMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="matrikkelenhetns:AnleggsprojeksjonsflateId"/>
+                        <xs:element name="value" nillable="true" type="geometrins:Polygon"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AdresseIdTilMatrikkelenhetIdsMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="adressens:AdresseId"/>
+                        <xs:element name="value" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VegIdTilMatrikkelenhetIdsMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="adressens:VegId"/>
+                        <xs:element name="value" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ByggIdTilMatrikkelenhetIdsMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="bygningns:ByggId"/>
+                        <xs:element name="value" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetIdTilSamlaFastEiendomIdsMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetId"/>
+                        <xs:element name="value" nillable="true"
+                                    type="matrikkelenhetns:SamlaFastEiendomIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetIdTilKlageIdsMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetId"/>
+                        <xs:element name="value" nillable="true"
+                                    type="matrikkelenhetns:KlageIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetIdTilAvtaleStedbundenRettighetIdsMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetId"/>
+                        <xs:element name="value" nillable="true"
+                                    type="matrikkelenhetns:AvtaleStedbundenRettighetIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetIdsForRettsstiftelseIdMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                    xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true"
+                                    type="xs:string"/>
+                        <xs:element name="value" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetIdTilAvtaleGrensePunktfesteIdsMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetId"/>
+                        <xs:element name="value" nillable="true"
+                                    type="matrikkelenhetns:AvtaleGrensePunktfesteIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="MatrikkelenhetIdTilGrunnervervIdsMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetId"/>
+                        <xs:element name="value" nillable="true"
+                                    type="matrikkelenhetns:GrunnervervIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetIdTilJordskifteKrevdIdsMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetId"/>
+                        <xs:element name="value" nillable="true"
+                                    type="matrikkelenhetns:JordskifteKrevdIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetIdTilGrunnforurensingIdsMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetId"/>
+                        <xs:element name="value" nillable="true"
+                                    type="grunnforurensingns:GrunnforurensingIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetIdTilKulturminneIdsMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetId"/>
+                        <xs:element name="value" nillable="true"
+                                    type="kulturminnens:KulturminneIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetIdTilSeksjonIdsMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetId"/>
+                        <xs:element name="value" nillable="true"
+                                    type="matrikkelenhetns:SeksjonIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetIdTilFestegrunnIdsMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetId"/>
+                        <xs:element name="value" nillable="true"
+                                    type="matrikkelenhetns:FestegrunnIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PersonIdTilEideMatrikkelenhetIdsMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="personns:PersonId"/>
+                        <xs:element name="value" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetIdTilEideMatrikkelenhetIdsMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetId"/>
+                        <xs:element name="value" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TeigForMatrikkelenhet">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="hovedteig" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="teigId" type="matrikkelenhetns:TeigId" minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TeigForMatrikkelenhetList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="matrikkelenhetns:TeigForMatrikkelenhet"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="Teiggrense">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="kurve" type="geometrins:CurveSegment" minOccurs="0"/>
+                    <xs:element name="hjelpelinjetypeId"
+                                type="matrikkelenhetkoderns:HjelpelinjetypeKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="omtvistet" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="folgerTerrengdetaljId"
+                                type="matrikkelenhetkoderns:TerrengdetaljKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="administrativGrenseKodeId"
+                                type="matrikkelenhetkoderns:AdministrativGrenseKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="kvalitet" type="geometrins:Posisjonskvalitet" minOccurs="0"/>
+                    <xs:element name="kommunalTilleggsdel" type="kommunetilleggns:TeiggrenseTillegg"
+                                minOccurs="0"/>
+                    <xs:element name="datafangstdato" type="basistyperns:LocalDate" minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TeiggrenseId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TeiggrenseIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="matrikkelenhetns:TeiggrenseId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="Teiggrensepunkt">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="koordinatsystemKodeId"
+                                type="geometrikoderns:KoordinatsystemKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="originalKoordinatsystemKodeId"
+                                type="geometrikoderns:KoordinatsystemKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="posisjon" type="geometrins:Position" minOccurs="0"/>
+                    <xs:element name="grensemerkeNedsattIId"
+                                type="matrikkelenhetkoderns:GrensemerkeNedsattIKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="grensepunkttypeId"
+                                type="matrikkelenhetkoderns:GrensepunkttypeKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="kvalitet" type="geometrins:Posisjonskvalitet" minOccurs="0"/>
+                    <xs:element name="kommunalTilleggsdel"
+                                type="kommunetilleggns:TeiggrensepunktTillegg" minOccurs="0"/>
+                    <xs:element name="datafangstdato" type="basistyperns:LocalDate" minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TeiggrensepunktId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TeiggrensepunktIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="matrikkelenhetns:TeiggrensepunktId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="TinglystEierforhold">
+        <xs:complexContent>
+            <xs:extension base="matrikkelenhetns:Eierforhold">
+                <xs:sequence>
+                    <xs:element name="andel" type="utilns:Andel" minOccurs="0"/>
+                    <xs:element name="datoFra" type="basistyperns:LocalDate" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TinglystEierforholdList">
+        <xs:sequence>
+            <xs:element name="item" type="matrikkelenhetns:TinglystEierforhold" minOccurs="0"
+                        maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetsokModel">
+        <xs:sequence>
+            <xs:element name="kommunenummer" type="xs:string" minOccurs="0"/>
+            <xs:element name="status" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="utilns:Status"/>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="gardsnummer" type="utilns:Interval" minOccurs="0"/>
+            <xs:element name="bruksnummer" type="utilns:Interval" minOccurs="0"/>
+            <xs:element name="festenummer" type="xs:int" minOccurs="0"/>
+            <xs:element name="seksjonsnummer" type="xs:int" minOccurs="0"/>
+            <xs:element name="adressekode" type="utilns:Interval" minOccurs="0"/>
+            <xs:element name="adressenavn" type="xs:string" minOccurs="0"/>
+            <xs:element name="husnummer" type="xs:int" minOccurs="0"/>
+            <xs:element name="bokstav" type="xs:string" minOccurs="0"/>
+            <xs:element name="adressetilleggsnavn" type="xs:string" minOccurs="0"/>
+            <xs:element name="nummerForPerson" type="xs:string" minOccurs="0"/>
+            <xs:element name="fornavn" type="xs:string" minOccurs="0"/>
+            <xs:element name="etternavn" type="xs:string" minOccurs="0"/>
+            <xs:element name="adressenavnFonetisk" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="adressetilleggsnavnFonetisk" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="navnFonetisk" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="bygningsnummer" type="xs:long" minOccurs="0"/>
+            <xs:element name="lopenummer" type="xs:int" minOccurs="0"/>
+            <xs:element name="selectionPolygon" type="geometrins:SelectionPolygon" minOccurs="0"/>
+            <xs:element name="etableringsdatoFra" type="basistyperns:LocalDate" minOccurs="0"/>
+            <xs:element name="etableringsdatoTil" type="basistyperns:LocalDate" minOccurs="0"/>
+            <xs:element name="inngarISamlaFastEiendom" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="jordskifteKrevd" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="grunnerverv" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="anmerketKlage" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="avtaleGrensePunktfeste" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="avtaleStedbundenRettighet" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="harGrunnforurensing" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="harKulturminne" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="utenBokstav" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="bruksenhetsnummer" type="xs:string" minOccurs="0"/>
+            <xs:element name="bruksnavn" type="xs:string" minOccurs="0"/>
+
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetForForretningsokModel">
+        <xs:sequence>
+            <xs:element name="kommuneId" type="kommunens:KommuneId" minOccurs="0"/>
+            <xs:element name="matrikkelNrSortering" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="datoSortering" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="dato" type="basistyperns:LocalDate" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="LockedObjectsForForretningTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:BubbleTransfer">
+                <xs:sequence>
+                    <xs:element name="matrikkelenhetIds" type="MatrikkelenhetIdList" minOccurs="0"/>
+                    <xs:element name="adresseIds" type="adressens:AdresseIdList" minOccurs="0"/>
+                    <xs:element name="bygningIds" type="bygningns:ByggIdList" minOccurs="0"/>
+                    <xs:element name="klageIds" type="KlageIdList" minOccurs="0"/>
+                    <xs:element name="avtaleGrensePunktfesteIds" type="AvtaleGrensePunktfesteIdList" minOccurs="0"/>
+                    <xs:element name="avtaleStedbundenRettighetIds" type="AvtaleStedbundenRettighetIdList" minOccurs="0"/>
+                    <xs:element name="jordskifteKrevdIds" type="JordskifteKrevdIdList"
+                                minOccurs="0"/>
+                    <xs:element name="grunnervervIds" type="GrunnervervIdList" minOccurs="0"/>
+                    <xs:element name="samlaFastEiendomIds" type="SamlaFastEiendomIdList"
+                                minOccurs="0"/>
+                    <xs:element name="grunnforurensingIds"
+                                type="grunnforurensingns:GrunnforurensingIdList" minOccurs="0"/>
+                    <xs:element name="kulturminneIds" type="kulturminnens:KulturminneIdList"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ForretningMedNaboerTransfer">
+        <xs:complexContent>
+            <xs:extension base="LockedObjectsForForretningTransfer">
+                <xs:sequence>
+                    <xs:element name="naboMatrikkelenheter" type="MatrikkelenhetIdList"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ForretningMedFestegrunnerTransfer">
+        <xs:complexContent>
+            <xs:extension base="LockedObjectsForForretningTransfer">
+                <xs:sequence>
+                    <xs:element name="festegrunnIds" type="MatrikkelenhetIdList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ForretningMedSeksjonerTransfer">
+        <xs:complexContent>
+            <xs:extension base="LockedObjectsForForretningTransfer">
+                <xs:sequence>
+                    <xs:element name="seksjonerteIds" type="MatrikkelenhetIdList" minOccurs="0"/>
+                    <xs:element name="seksjonIds" type="MatrikkelenhetIdList" minOccurs="0"/>
+                    <xs:element name="naboIds" type="MatrikkelenhetIdList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ArealoverforingUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="referanser"
+                                type="kommunetilleggns:MatrikkelenhetReferanseList" minOccurs="0"/>
+                    <xs:element name="kommentarer" type="kommunetilleggns:KommentarList"
+                                minOccurs="0"/>
+                    <xs:element name="forretningId" type="forretningns:ArealoverforingForretningId"
+                                minOccurs="0"/>
+                    <xs:element name="festegrunnerTilOmnummerering"
+                                type="forretningns:SammenslaOmmatrikuleringFestegrunnList"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ArealoverforingMellomFestegrunnOgFestetPaUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="referanser"
+                                type="kommunetilleggns:MatrikkelenhetReferanseList" minOccurs="0"/>
+                    <xs:element name="kommentarer" type="kommunetilleggns:KommentarList"
+                                minOccurs="0"/>
+                    <xs:element name="forretningId"
+                                type="forretningns:ArealoverforingMellomFestegrunnOgFestetPaForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ArealoverforingMellomFestegrunnerUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="referanser"
+                                type="kommunetilleggns:MatrikkelenhetReferanseList" minOccurs="0"/>
+                    <xs:element name="kommentarer" type="kommunetilleggns:KommentarList"
+                                minOccurs="0"/>
+                    <xs:element name="forretningId" type="forretningns:ArealoverforingMellomFestegrunnerForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="OmgjoringAvPunktfesteTilArealfesteUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="referanser"
+                                type="kommunetilleggns:MatrikkelenhetReferanseList" minOccurs="0"/>
+                    <xs:element name="kommentarer" type="kommunetilleggns:KommentarList"
+                                minOccurs="0"/>
+                    <xs:element name="forretningId"
+                                type="forretningns:OmgjoringAvPunktfesteTilArealfesteForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AktiverUtgattMatrikkelenhetUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:AktiverUtgattMatrikkelenhetForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="EndreEgenskapUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId" type="forretningns:EndreEgenskapForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetTilknyttingTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:BubbleTransfer">
+                <xs:sequence>
+                    <xs:element name="matrikkelenhetIds" type="MatrikkelenhetIdList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="EndreMatrikkelenhetstypeUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:EndreMatrikkelenhetstypeForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FradelAnleggseiendomUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:FradelAnleggseiendomForretningId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="GrensejusteringUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="referanser"
+                                type="kommunetilleggns:MatrikkelenhetReferanseList" minOccurs="0"/>
+                    <xs:element name="kommentarer" type="kommunetilleggns:KommentarList"
+                                minOccurs="0"/>
+                    <xs:element name="forretningId" type="forretningns:GrensejusteringForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KvalitetshevingForEksisterendeMatrikkelenhetUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:KvalitetshevingForEksisterendeMatrikkelenhetForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetUtgarUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:MatrikkelenhetUtgarForretningId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="NymatrikulerAnleggseiendomUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:NymatrikulerAnleggseiendomForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="NymatrikulerFraMatrikulertGrunnUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:NymatrikulerFraMatrikulertGrunnForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="OpplosRegistrertJordsameieUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:OpplosRegistrertJordsameieForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="NyFestegrunnUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId" type="forretningns:EtablereFesteForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="SplittingAvFesteUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:SplittingAvFesteForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="RegistrerAktuellEierUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:RegistrerAktuellEierForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TrinnIFullforingAvOppmalingsforretningUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:TrinnIFullforingAvOppmalingsforretningForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="SamlaFastEiendomUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="samlaFastEiendomId" type="SamlaFastEiendomId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="RettingAvForretningUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:RettingAvForretningForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FullforingAvMidlertidigForretningDLUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:FullforingAvMidlertidigForretningDLForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FullforingAvIkkeFullfortOppmalingsForretningMLUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:FullforingAvIkkeFullfortOppmalingsForretningMLForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="SammenslaMatrikkelenheterUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId" type="forretningns:SammenslaingForretningId"
+                                minOccurs="0"/>
+                    <xs:element name="brukAvGrunnKodeId"
+                                type="kommunetilleggkoderns:BrukAvGrunnKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="referanser"
+                                type="kommunetilleggns:MatrikkelenhetReferanseList" minOccurs="0"/>
+                    <xs:element name="kommentarer" type="kommunetilleggns:KommentarList"
+                                minOccurs="0"/>
+                    <xs:element name="kartblader" type="basistyperns:StringList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="NyGrunneiendomUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:FradelingForretningId"
+                                minOccurs="0"/>
+                    <xs:element name="festegrunnerTilOmnummerering"
+                                type="forretningns:SammenslaOmmatrikuleringFestegrunnList"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ForretningUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:ForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="NyGrunneiendomFraFesterUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:GrunneiendomFraFesteForretningId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="OmregistrerGrunneiendomTilAnleggseiendomUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:OmregistrerGrunneiendomTilAnleggseiendomForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="OpprettNyttJordsameieUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:OpprettNyttJordsameieForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="RegistrerUregistrertJordsameieUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:RegistrerUregistrertJordsameieForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="SeksjonerMatrikkelenhetUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:SeksjoneringAvGrunnForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FeilrettingAvSeksjonerUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:FeilrettingAvSeksjonerForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ReseksjonerUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:ReseksjoneringForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="SlettSeksjoneringUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:SlettSeksjoneringForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="OmnummereringUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId"
+                                type="forretningns:OmnummereringForretningId"
+                                minOccurs="0"/>
+                    <xs:element name="matrikkelenhetReferanser"
+                                type="kommunetilleggns:MatrikkelenhetReferanseList" minOccurs="0"/>
+                    <xs:element name="kommentarer" type="kommunetilleggns:KommentarList"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="OmnummereringKommuneendringUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="matrikkelenhetReferanser"
+                                type="kommunetilleggns:MatrikkelenhetReferanseList" minOccurs="0"/>
+                    <xs:element name="kommentarer" type="kommunetilleggns:KommentarList"
+                                minOccurs="0"/>
+                    <xs:element name="forretningId"
+                                type="forretningns:OmnummereringKommuneendringForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="VegadresseIdTilKommuneendringOmadresseringerMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="adressens:VegadresseId"/>
+                        <xs:element name="value" nillable="true"
+                                    type="forretningns:KommuneendringOmadressering"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ReverserOmnummereringUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="matrikkelenhetReferanser"
+                                type="kommunetilleggns:MatrikkelenhetReferanseList" minOccurs="0"/>
+                    <xs:element name="kommentarer" type="kommunetilleggns:KommentarList"
+                                minOccurs="0"/>
+                    <xs:element name="forretningId"
+                                type="forretningns:ReverserOmnummereringForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AvtaleStedbundenRettighetUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="avtaleStedbundenRettighetId" type="matrikkelenhetns:AvtaleStedbundenRettighetId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KlageUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="klageId" type="KlageId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="JordskifteKrevdUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="jordskifteKrevdId" type="JordskifteKrevdId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="GrunnervervUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="grunnervervId" type="GrunnervervId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AvtaleGrensePunktfesteUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="avtaleId" type="matrikkelenhetns:AvtaleGrensePunktfesteId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="OpphevSlettetSeksjoneringUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId" type="forretningns:OpphevSlettetSeksjoneringForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetMedTeigerTransfer">
+        <xs:sequence>
+            <xs:element name="matrikkelenhetId" type="MatrikkelenhetId" minOccurs="0"/>
+            <xs:element name="bubbleObjects" type="basistyperns:MatrikkelBubbleObjectList" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenheterTransfer">
+        <xs:sequence>
+            <xs:element name="matrikkelenhetIds" type="MatrikkelenhetIdList" minOccurs="0"/>
+            <xs:element name="bubbleObjects" type="basistyperns:MatrikkelBubbleObjectList" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetInfoTransfer">
+        <xs:sequence>
+            <xs:element name="matrikkelenhetId" type="MatrikkelenhetId" minOccurs="0"/>
+            <xs:element name="bygningIds" type="bygningns:ByggIdList" minOccurs="0"/>
+            <xs:element name="adresseIds" type="adressens:AdresseIdList" minOccurs="0"/>
+            <xs:element name="forretningIds" type="forretningns:MatrikkelenhetForretningIdList" minOccurs="0"/>
+            <xs:element name="grunnervervIds" type="GrunnervervIdList" minOccurs="0"/>
+            <xs:element name="jordskifteKrevdIds" type="JordskifteKrevdIdList" minOccurs="0"/>
+            <xs:element name="klageIds" type="KlageIdList" minOccurs="0"/>
+            <xs:element name="avtaleGrensePunktfesteIds" type="AvtaleGrensePunktfesteIdList" minOccurs="0"/>
+            <xs:element name="avtaleStedbundenRettighetIds" type="AvtaleStedbundenRettighetIdList" minOccurs="0"/>
+            <xs:element name="samlaFastEiendomIds" type="SamlaFastEiendomIdList" minOccurs="0"/>
+            <xs:element name="grunnforurensingIds" type="grunnforurensingns:GrunnforurensingIdList" minOccurs="0"/>
+            <xs:element name="kulturminneIds" type="kulturminnens:KulturminneIdList" minOccurs="0"/>
+            <xs:element name="bygningForKulturminneIds" type="bygningns:BygningIdList" minOccurs="0"/>
+            <xs:element name="bubbleObjects" type="basistyperns:MatrikkelBubbleObjectList" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TeigInfoTransfer">
+        <xs:sequence>
+            <xs:element name="teigId" type="TeigId" minOccurs="0"/>
+            <xs:element name="matrikkelenhetIds" type="MatrikkelenhetIdList" minOccurs="0"/>
+            <xs:element name="forretningIds" type="forretningns:MatrikkelenhetForretningIdList" minOccurs="0"/>
+            <xs:element name="grunnervervIds" type="GrunnervervIdList" minOccurs="0"/>
+            <xs:element name="jordskifteKrevdIds" type="JordskifteKrevdIdList" minOccurs="0"/>
+            <xs:element name="klageIds" type="KlageIdList" minOccurs="0"/>
+            <xs:element name="avtaleGrensePunktfesteIds" type="AvtaleGrensePunktfesteIdList" minOccurs="0"/>
+            <xs:element name="avtaleStedbundenRettighetIds" type="AvtaleStedbundenRettighetIdList" minOccurs="0"/>
+            <xs:element name="samlaFastEiendomIds" type="SamlaFastEiendomIdList" minOccurs="0"/>
+            <xs:element name="grunnforurensingIds" type="grunnforurensingns:GrunnforurensingIdList" minOccurs="0"/>
+            <xs:element name="kulturminneIds" type="kulturminnens:KulturminneIdList" minOccurs="0"/>
+            <xs:element name="bygningForKulturminneIds" type="bygningns:BygningIdList" minOccurs="0"/>
+
+            <xs:element name="adresser" type="adressens:MatrikkelenhetIdTilAdresseIdsMap" minOccurs="0"/>
+            <xs:element name="bygninger" type="bygningns:MatrikkelenhetIdTilByggIdsMap" minOccurs="0"/>
+            <xs:element name="forretninger" type="forretningns:MatrikkelenhetIdTilForretningIdsMap" minOccurs="0"/>
+            <xs:element name="grunnerverv" type="MatrikkelenhetIdTilGrunnervervIdsMap" minOccurs="0"/>
+            <xs:element name="jordskifteKrevd" type="MatrikkelenhetIdTilJordskifteKrevdIdsMap" minOccurs="0"/>
+            <xs:element name="klager" type="MatrikkelenhetIdTilKlageIdsMap" minOccurs="0"/>
+            <xs:element name="avtalerGrensePunktfeste" type="MatrikkelenhetIdTilAvtaleGrensePunktfesteIdsMap" minOccurs="0"/>
+            <xs:element name="avtalerStedbundenRettighet" type="MatrikkelenhetIdTilAvtaleStedbundenRettighetIdsMap" minOccurs="0"/>
+            <xs:element name="samlaFastEiendommer" type="MatrikkelenhetIdTilSamlaFastEiendomIdsMap" minOccurs="0"/>
+            <xs:element name="grunnforurensinger" type="MatrikkelenhetIdTilGrunnforurensingIdsMap" minOccurs="0"/>
+            <xs:element name="kulturminner" type="MatrikkelenhetIdTilKulturminneIdsMap" minOccurs="0"/>
+            <xs:element name="bubbleObjects" type="basistyperns:MatrikkelBubbleObjectList" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggsprojeksjonsflateInfoTransfer">
+        <xs:sequence>
+            <xs:element name="flateId" type="AnleggsprojeksjonsflateId" minOccurs="0"/>
+            <xs:element name="matrikkelenhetIds" type="MatrikkelenhetIdList" minOccurs="0"/>
+            <xs:element name="forretningIds" type="forretningns:MatrikkelenhetForretningIdList" minOccurs="0"/>
+            <xs:element name="grunnervervIds" type="GrunnervervIdList" minOccurs="0"/>
+            <xs:element name="jordskifteKrevdIds" type="JordskifteKrevdIdList" minOccurs="0"/>
+            <xs:element name="klageIds" type="KlageIdList" minOccurs="0"/>
+            <xs:element name="avtaleGrensePunktfesteIds" type="AvtaleGrensePunktfesteIdList" minOccurs="0"/>
+            <xs:element name="avtaleStedbundenRettighetIds" type="AvtaleStedbundenRettighetIdList" minOccurs="0"/>
+            <xs:element name="samlaFastEiendomIds" type="SamlaFastEiendomIdList" minOccurs="0"/>
+
+            <xs:element name="adresser" type="adressens:MatrikkelenhetIdTilAdresseIdsMap" minOccurs="0"/>
+            <xs:element name="bygninger" type="bygningns:MatrikkelenhetIdTilByggIdsMap" minOccurs="0"/>
+            <xs:element name="forretninger" type="forretningns:MatrikkelenhetIdTilForretningIdsMap" minOccurs="0"/>
+            <xs:element name="grunnerverv" type="MatrikkelenhetIdTilGrunnervervIdsMap" minOccurs="0"/>
+            <xs:element name="jordskifteKrevd" type="MatrikkelenhetIdTilJordskifteKrevdIdsMap" minOccurs="0"/>
+            <xs:element name="klager" type="MatrikkelenhetIdTilKlageIdsMap" minOccurs="0"/>
+            <xs:element name="avtalerGrensePunktfeste" type="MatrikkelenhetIdTilAvtaleGrensePunktfesteIdsMap" minOccurs="0"/>
+            <xs:element name="avtalerStedbundenRettighet" type="MatrikkelenhetIdTilAvtaleStedbundenRettighetIdsMap" minOccurs="0"/>
+            <xs:element name="samlaFastEiendommer" type="MatrikkelenhetIdTilSamlaFastEiendomIdsMap" minOccurs="0"/>
+            <xs:element name="bubbleObjects" type="basistyperns:MatrikkelBubbleObjectList" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetFraGrunnbokDTO">
+        <xs:sequence>
+            <xs:element name="oppdateringsdato" type="basistyperns:Timestamp" minOccurs="0"/>
+            <xs:element name="kommunenummer" type="xs:string" minOccurs="0"/>
+            <xs:element name="kommunenavn" type="xs:string" minOccurs="0"/>
+            <xs:element name="gaardsnummer" type="xs:int" minOccurs="0"/>
+            <xs:element name="bruksnummer" type="xs:int" minOccurs="0"/>
+            <xs:element name="festenummer" type="xs:int" minOccurs="0"/>
+            <xs:element name="seksjonsnummer" type="xs:int" minOccurs="0"/>
+            <xs:element name="tinglyst" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="beregnetErSeksjonert" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="beregnetHarAktiveFestegrunner" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="utgaatt" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="omnummerertTilIdClass" type="xs:string" minOccurs="0"/>
+            <xs:element name="omnummerertTilId" type="xs:string" minOccurs="0"/>
+            <xs:element name="sluttdato" type="basistyperns:Timestamp" minOccurs="0"/>
+            <xs:element name="oppdateringsBruker" type="xs:string" minOccurs="0"/>
+            <xs:element name="idClass" type="xs:string" minOccurs="0"/>
+            <xs:element name="id" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="JordskifteForretningUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="MatrikkelUnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId" type="forretningns:JordskifteForretningId" minOccurs="0"/>
+                    <xs:element name="skalMellomlagre" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="matrikkelenheterSomSkalFjernesFraJordskifteKrevd"
+                                type="matrikkelenhetns:MatrikkelenhetIdList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="VedlikeholdGrenseISjoUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="MatrikkelUnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="forretningId" type="forretningns:VedlikeholdGrenseISjoForretningId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetDTO">
+        <xs:sequence>
+            <xs:element name="matrikkelenhetId" type="matrikkelenhetns:MatrikkelenhetId" minOccurs="0"/>
+            <xs:element name="matrikkelenhetIdent" type="matrikkelenhetns:MatrikkelenhetIdent" minOccurs="0"/>
+            <xs:element name="kommuneId" type="kommunens:KommuneId" minOccurs="0"/>
+            <xs:element name="kommunenavn" type="xs:string" minOccurs="0"/>
+            <xs:element name="kommunenr" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetDTOList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="matrikkelenhetns:MatrikkelenhetDTO"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ArealavgivereTilMatrikkelenhetDTO">
+        <xs:sequence>
+            <xs:element name="arealavgivere" type="MatrikkelenhetIdentTilMatrikkelenhetIdMap" minOccurs="0"/>
+            <xs:element name="tidligereArealavgivere" type="MatrikkelenhetIdentTilMatrikkelenhetIdMap" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="EierforholdDTO">
+        <xs:sequence>
+            <xs:element name="eiersNavn" type="xs:string" minOccurs="0"/>
+            <xs:element name="eierforholdKodeId" type="matrikkelenhetkoderns:EierforholdKodeId"
+                        minOccurs="0"/>
+            <xs:element name="eierandel" type="utilns:Andel" minOccurs="0"/>
+            <xs:element name="matrikkelenhetIdent" type="matrikkelenhetns:MatrikkelenhetIdent" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="EierforholdDTOList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="matrikkelenhetns:EierforholdDTO"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetBokInfo">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:BokInfo">
+                <xs:sequence>
+                    <xs:element name="matrikkelenhetId" type="matrikkelenhetns:MatrikkelenhetId"
+                                minOccurs="0"/>
+                    <xs:element name="matrikkelenhetIdent" type="matrikkelenhetns:MatrikkelenhetIdent" minOccurs="0"/>
+                    <xs:element name="etableringsdato" type="basistyperns:LocalDate" minOccurs="0"/>
+                    <xs:element name="teigareal" type="xs:double" minOccurs="0"/>
+                    <xs:element name="anleggsprojeksjonsareal" type="xs:double" minOccurs="0"/>
+                    <xs:element name="teigarealmerknader"
+                                type="matrikkelenhetkoderns:ArealmerknadKodeIdList" minOccurs="0"/>
+                    <xs:element name="historiskArealkildeId"
+                                type="matrikkelenhetkoderns:ArealkildeKodeId" minOccurs="0"/>
+                    <xs:element name="beregnetAreal" type="xs:double" minOccurs="0"/>
+                    <xs:element name="bruksnavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="utgatt" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="typenavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="erSeksjonert" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="harAktivefestegrunner" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="antallTeiger" type="xs:int" minOccurs="0"/>
+                    <xs:element name="skyld" type="xs:double" minOccurs="0"/>
+                    <xs:element name="tinglyst" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="harRegistrertGrunnerverv" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="harRegistrertJordskifteKrevd" type="xs:boolean"
+                                minOccurs="0"/>
+                    <xs:element name="harAnmerketKlage" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="harAvtaleGrensePunktfeste" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="harAvtaleStedbundenRettighet" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="inngarISamlaFastEiendom" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="harGrunnforurensing" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="harKulturminne" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="punktfeste" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="kommunenr" type="xs:string" minOccurs="0"/>
+                    <xs:element name="kommunenavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="formalSeksjonKodeId"
+                                type="matrikkelenhetkoderns:FormalSeksjonKodeId" minOccurs="0"/>
+                    <xs:element name="tilleggsareal" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="anleggstypeId"
+                                type="matrikkelenhetkoderns:AnleggstypeKodeId" minOccurs="0"/>
+                    <xs:element name="avklartEiere" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="avklartAndeler" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="eiere" type="matrikkelenhetns:EierforholdDTOList" minOccurs="0"/>
+                    <xs:element name="utvalgtEier" type="matrikkelenhetns:EierforholdDTO" minOccurs="0"/>
+                    <xs:element name="etterML9BTilH" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="punkt" type="geometrins:Point" minOccurs="0"/>
+                    <xs:element name="selectionPolygon" type="geometrins:SelectionPolygon"
+                                minOccurs="0"/>
+                    <xs:element name="eierseksjonsbrok" type="utilns:Andel" minOccurs="0"/>
+                    <xs:element name="underSammenslaingBestar" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="underSammenslaingUtgar" type="xs:boolean" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetIdTilJuridiskPersonIdMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key"
+                                    type="matrikkelenhetns:MatrikkelenhetId"/>
+                        <xs:element name="value" nillable="true"
+                                    type="personns:JuridiskPersonIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RettsstiftelseDTOTilMatrikkelenhetIdListMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key"
+                                    type="matrikkelenhetns:RettsstiftelseDTO"/>
+                        <xs:element name="value" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RettsstiftelseDTO">
+        <xs:sequence>
+            <xs:element name="rettsstiftelsesId" type="xs:string" minOccurs="0"/>
+            <xs:element name="rettsstiftelsesnr" type="xs:int" minOccurs="0"/>
+            <xs:element name="kodeverdi" type="xs:string" minOccurs="0"/>
+            <xs:element name="navn" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

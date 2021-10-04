@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" xmlns:ns2="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" xmlns:tns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/store" elementFormDefault="qualified" targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/store" version="1.0">
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" schemaLocation="basistyper.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" schemaLocation="geometriKoder.xsd"/>
+
+  <xs:element name="getObject" type="tns:getObject"/>
+
+  <xs:element name="getObjectResponse" type="tns:getObjectResponse"/>
+
+  <xs:element name="getObjects" type="tns:getObjects"/>
+
+  <xs:element name="getObjectsIgnoreMissing" type="tns:getObjectsIgnoreMissing"/>
+
+  <xs:element name="getObjectsIgnoreMissingResponse" type="tns:getObjectsIgnoreMissingResponse"/>
+
+  <xs:element name="getObjectsResponse" type="tns:getObjectsResponse"/>
+
+  <xs:element name="getVersions" type="tns:getVersions"/>
+
+  <xs:element name="getVersionsForList" type="tns:getVersionsForList"/>
+
+  <xs:element name="getVersionsForListResponse" type="tns:getVersionsForListResponse"/>
+
+  <xs:element name="getVersionsResponse" type="tns:getVersionsResponse"/>
+
+  <xs:complexType name="getObjectsIgnoreMissing">
+    <xs:sequence>
+      <xs:element name="ids" type="ns1:MatrikkelBubbleIdList"/>
+      <xs:element name="matrikkelContext" type="ns1:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getObjectsIgnoreMissingResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelBubbleObjectList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getVersions">
+    <xs:sequence>
+      <xs:element name="id" type="ns1:MatrikkelBubbleId"/>
+      <xs:element name="start" type="ns1:Timestamp"/>
+      <xs:element name="end" type="ns1:Timestamp"/>
+      <xs:element name="matrikkelContext" type="ns1:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getVersionsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:SnapshotVersionToMatrikkelBubbleIdMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getVersionsForList">
+    <xs:sequence>
+      <xs:element name="ids" type="ns1:MatrikkelBubbleIdList"/>
+      <xs:element name="start" type="ns1:Timestamp"/>
+      <xs:element name="end" type="ns1:Timestamp"/>
+      <xs:element name="matrikkelContext" type="ns1:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getVersionsForListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelBubbleIdToSnapshotBubbleIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getObjects">
+    <xs:sequence>
+      <xs:element name="ids" type="ns1:MatrikkelBubbleIdList"/>
+      <xs:element name="matrikkelContext" type="ns1:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getObjectsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelBubbleObjectList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getObject">
+    <xs:sequence>
+      <xs:element name="id" type="ns1:MatrikkelBubbleId"/>
+      <xs:element name="matrikkelContext" type="ns1:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getObjectResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelBubbleObject"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

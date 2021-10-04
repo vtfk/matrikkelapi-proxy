@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+      version="1.0"
+      targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person/koder"
+      xmlns:personkoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person/koder"
+      xmlns:kodens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"
+      xmlns:xs="http://www.w3.org/2001/XMLSchema"
+      elementFormDefault="qualified">
+
+    <xs:import schemaLocation="kodeliste.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"/>
+
+   <xs:complexType name="LandKodeId">
+      <xs:complexContent>
+         <xs:extension base="kodens:MatrikkelDbKodeId"/>
+      </xs:complexContent>
+   </xs:complexType>
+
+   <xs:complexType name="LandKodeIdList">
+      <xs:sequence>
+         <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="personkoderns:LandKodeId"/>
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:complexType name="LandKode">
+      <xs:complexContent>
+         <xs:extension base="kodens:MatrikkelDbKode"/>
+      </xs:complexContent>
+   </xs:complexType>
+
+    <xs:complexType name="SpesifisertRegTypeKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="SpesifisertRegTypeKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="PersonIdKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId" />
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="PersonIdKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="PersonStatusKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId" />
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="PersonStatusKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="OrganisasjonsformKode">
+            <xs:sequence>
+                <xs:element name="orgformNavn" type="xs:string" minOccurs="0" />
+                <xs:element name="orgformKode" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PersonKategoriKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="PersonKategoriKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId" />
+        </xs:complexContent>
+    </xs:complexType>
+
+</xs:schema>

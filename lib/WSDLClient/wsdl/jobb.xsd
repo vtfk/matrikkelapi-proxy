@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        version="1.0"
+        targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/jobb"
+        xmlns:basistyperns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"
+        xmlns:brukerns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bruker"
+        xmlns:jobbkoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/jobb/koder"
+        xmlns:kodens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"
+        xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/jobb"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:import schemaLocation="basistyper.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"/>
+    <xs:import schemaLocation="bruker.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bruker"/>
+    <xs:import schemaLocation="jobbKoder.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/jobb/koder"/>
+    <xs:import schemaLocation="kodeliste.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"/>
+
+    <xs:complexType name="Jobb">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObject">
+                <xs:sequence>
+                    <xs:element name="brukerId" type="brukerns:BrukerId" minOccurs="0" />
+                    <xs:element name="typeId" type="JobbtypeKodeId" minOccurs="0" />
+                    <xs:element name="konavn" type="xs:string" minOccurs="0" />
+                    <xs:element name="beskrivelse" type="xs:string" minOccurs="0" />
+                    <xs:element name="utvalg" type="xs:string" minOccurs="0" />
+                    <xs:element name="opprettet" type="basistyperns:Timestamp" minOccurs="0" />
+                    <xs:element name="statusId" type="jobbkoderns:JobbStatusKodeId" minOccurs="0" />
+                    <xs:element name="feilmelding" type="xs:string" minOccurs="0" />
+                    <xs:element name="sistEndret" type="basistyperns:Timestamp" minOccurs="0" />
+                    <xs:element name="prosessnavn" type="xs:string" minOccurs="0" />
+                    <xs:element name="servernavn" type="xs:string" minOccurs="0" />
+                    <!--<xs:element name="nummerIKo" type="xs:int" minOccurs="0" />-->
+                    <xs:element name="oppgaveId" type="JobbOppgaveId" minOccurs="0" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="JobbId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId" />
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="JobbIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="JobbId" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="JobbIdIntMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="JobbId" />
+                        <xs:element name="value" nillable="true" type="xs:int"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="JobbOppgave">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObject">
+                <xs:sequence>
+                    <xs:element name="oppgave" type="xs:string" minOccurs="0" />
+                    <xs:element name="resultat" type="xs:string" minOccurs="0" />
+                    <xs:element name="exception" type="xs:string" minOccurs="0" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="JobbOppgaveId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId" />
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="JobbOppgaveIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="JobbOppgaveId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="JobbtypeKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode" />
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="JobbtypeKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId" />
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="JobbtypeKodeIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="JobbtypeKodeId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    version="1.0"
+    targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/landmalerregister"
+    xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/landmalerregister"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified">
+
+    <xs:complexType name="LandmalerDTO">
+        <xs:sequence>
+            <xs:element name="landmalernummer" type="xs:string" minOccurs="0"/>
+            <xs:element name="navn" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="LandmalerDTOList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="LandmalerDTO"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/konsesjon" xmlns:ns2="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" xmlns:ns3="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" xmlns:ns4="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" xmlns:tns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/konsesjon/oppdatering" targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/konsesjon/oppdatering" version="1.0">
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/konsesjon" schemaLocation="konsesjon.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" schemaLocation="kommune.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" schemaLocation="geometriKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" schemaLocation="basistyper.xsd"/>
+
+  <xs:element name="insertKonsesjonsforholdUtskrift" type="tns:insertKonsesjonsforholdUtskrift"/>
+
+  <xs:element name="insertKonsesjonsforholdUtskriftResponse" type="tns:insertKonsesjonsforholdUtskriftResponse"/>
+
+  <xs:element name="removeKonsesjonsforholdUtskrift" type="tns:removeKonsesjonsforholdUtskrift"/>
+
+  <xs:element name="removeKonsesjonsforholdUtskriftResponse" type="tns:removeKonsesjonsforholdUtskriftResponse"/>
+
+  <xs:complexType name="insertKonsesjonsforholdUtskrift">
+    <xs:sequence>
+      <xs:element form="qualified" name="transfer" type="ns1:OpprettKonsesjonsforholdUtskriftUnitOfWorkTransfer"/>
+      <xs:element form="qualified" name="matrikkelContext" type="ns4:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="insertKonsesjonsforholdUtskriftResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="removeKonsesjonsforholdUtskrift">
+    <xs:sequence>
+      <xs:element form="qualified" name="konsesjonsforholdUtskriftId" type="ns1:KonsesjonsforholdUtskriftId"/>
+      <xs:element form="qualified" name="matrikkelContext" type="ns4:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="removeKonsesjonsforholdUtskriftResponse">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>
