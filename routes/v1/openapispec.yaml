@@ -50,7 +50,7 @@ paths:
                   $ref: '#/components/schemas/MatrikkelenhetSoek'
         '500':
           description: Error
-  /storeservice:
+  /store:
     post:
       operationId: storeGetObjects
       summary: Henter ut data fra ett array av IDer
@@ -158,13 +158,16 @@ components:
       items:
         type: object
         properties:
-          id:
+          namespace:
             type: string
           type:
             type: string
+          value:
+            oneOf:
+              - type: string
+              - type: integer
   securitySchemes:
     APIKeyAuth:
       type: apiKey
       in: header
       name: X-API-KEY
-    

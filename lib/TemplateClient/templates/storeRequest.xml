@@ -1,0 +1,13 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:stor="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/store" xmlns:dom="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <stor:getObjects>
+         <stor:ids {{NAMESPACESTRING}}>
+            {{ITEMS}}
+         </stor:ids>
+         <stor:matrikkelContext>
+            {{CONTEXT}}
+         </stor:matrikkelContext>
+      </stor:getObjects>
+   </soapenv:Body>
+</soapenv:Envelope>

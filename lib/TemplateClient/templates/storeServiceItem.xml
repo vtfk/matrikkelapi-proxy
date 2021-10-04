@@ -1,0 +1,3 @@
+<dom:item xsi:type="{{NAMESPACEID}}:{{TYPE}}">
+    <dom:value>{{VALUE}}</dom:value>
+</dom:item>

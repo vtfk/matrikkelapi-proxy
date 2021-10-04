@@ -96,7 +96,7 @@ app.all('*',
 // v1 routes
 app.use('/api/v1/*', require('./routes/v1/beforeRouteMiddleware'));
 app.use('/api/v1/matrikkelenheter', require('./routes/v1/matrikkelenheter'));
-app.use('/api/v1/teig', require('./routes/v1/teig'));
+app.use('/api/v1/store', require('./routes/v1/store'));
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Send response
