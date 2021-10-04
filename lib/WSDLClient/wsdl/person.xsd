@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+      version="1.0"
+      targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person"
+      xmlns:adressens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse"
+      xmlns:basistyperns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"
+      xmlns:personns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person"
+      xmlns:personkoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person/koder"
+      xmlns:xs="http://www.w3.org/2001/XMLSchema"
+      elementFormDefault="qualified">
+
+   <xs:import schemaLocation="adresse.xsd" namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse"/>
+   <xs:import schemaLocation="basistyper.xsd" namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"/>
+   <xs:import schemaLocation="personKoder.xsd" namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person/koder"/>
+
+    <xs:complexType name="PersonIdent" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:Ident">
+                <xs:sequence>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FysiskPersonIdent">
+        <xs:complexContent>
+            <xs:extension base="personns:PersonIdent">
+                <xs:sequence>
+                    <xs:element name="fodselsnummer" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnnenPersonIdent">
+        <xs:complexContent>
+            <xs:extension base="personns:PersonIdent">
+                <xs:sequence>
+                    <xs:element name="nummer" type="xs:string" minOccurs="0"/>
+                    <xs:element name="personIdKodeIdent" type="personns:PersonIdKodeIdent" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="JuridiskPersonIdent">
+        <xs:complexContent>
+            <xs:extension base="personns:PersonIdent">
+                <xs:sequence>
+                    <xs:element name="organisasjonsnummer" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="PersonIdentList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="personns:PersonIdent"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PersonIdentTilPersonIdMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="personns:PersonIdent"/>
+                        <xs:element name="value" nillable="true" type="personns:PersonId"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="StringTilFysiskPersonIdMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="xs:string"/>
+                        <xs:element name="value" nillable="true" type="personns:FysiskPersonId"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="StringTilJuridiskPersonIdMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="xs:string"/>
+                        <xs:element name="value" nillable="true" type="personns:JuridiskPersonId"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AnnenPersonId">
+        <xs:complexContent>
+            <xs:extension base="personns:PersonId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnnenPersonIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="personns:AnnenPersonId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AnnenPerson">
+        <xs:complexContent>
+            <xs:extension base="personns:Person">
+                <xs:sequence>
+                    <xs:element name="personKategoriKodeId" type="personkoderns:PersonKategoriKodeId" minOccurs="0" />
+                    <xs:element name="personIdKodeId" type="personkoderns:PersonIdKodeId" minOccurs="0" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+   <xs:complexType name="PersonId">
+      <xs:complexContent>
+         <xs:extension base="basistyperns:MatrikkelBubbleId">
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+
+   <xs:complexType name="PersonIdList">
+      <xs:sequence>
+         <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="personns:PersonId"/>
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:complexType name="Person">
+      <xs:complexContent>
+         <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+            <xs:sequence>
+                <xs:element name="nummer" type="xs:string" minOccurs="0" />
+                <xs:element name="navn" type="xs:string" minOccurs="0" />
+                <xs:element name="postadresse" type="personns:MottakerAdresse" minOccurs="0" />
+                <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                    <xs:annotation>
+                        <xs:documentation>
+                            Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                            returneres ikke dette elementet.
+                            @since 3.17
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+
+   <xs:complexType name="JuridiskPersonId">
+      <xs:complexContent>
+         <xs:extension base="personns:PersonId">
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+
+   <xs:complexType name="JuridiskPersonIdList">
+      <xs:sequence>
+         <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="personns:JuridiskPersonId"/>
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:complexType name="JuridiskPerson">
+      <xs:complexContent>
+         <xs:extension base="personns:Person">
+            <xs:sequence>
+                <xs:element name="forretningsadresse" type="personns:MottakerAdresse" minOccurs="0" />
+                <xs:element name="organisasjonsformKode" type="personkoderns:OrganisasjonsformKode" minOccurs="0" />
+                <xs:element name="slettetDato" type="basistyperns:LocalDate" minOccurs="0" />
+            </xs:sequence>
+         </xs:extension>
+      </xs:complexContent>
+   </xs:complexType>
+
+    <xs:complexType name="FysiskPersonId">
+        <xs:complexContent>
+            <xs:extension base="personns:PersonId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FysiskPersonIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="personns:FysiskPersonId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="FysiskPerson">
+        <xs:complexContent>
+            <xs:extension base="personns:Person">
+                <xs:sequence>
+                    <xs:element name="etternavn" type="xs:string" minOccurs="0" />
+                    <xs:element name="fornavn" type="xs:string" minOccurs="0" />
+                    <xs:element name="spesifisertRegTypeKodeId" type="personkoderns:SpesifisertRegTypeKodeId" minOccurs="0" />
+                    <xs:element name="bostedsadresse" type="personns:Bostedsadresse" minOccurs="0" />
+                    <xs:element name="personStatusKodeId" type="personkoderns:PersonStatusKodeId" minOccurs="0" />
+                    <xs:element name="hjemlandsadresse" type="personns:Hjemlandsadresse" minOccurs="0" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Hjemlandsadresse">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="hjemlandsadresselinje1" type="xs:string" minOccurs="0" />
+                    <xs:element name="hjemlandsadresselinje2" type="xs:string" minOccurs="0" />
+                    <xs:element name="hjemlandsadresselinje3" type="xs:string" minOccurs="0" />
+                    <xs:element name="hjemlandsLandKodeId" type="personkoderns:LandKodeId" minOccurs="0" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Bostedsadresse">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="kommunenummer" type="xs:string" minOccurs="0" />
+                    <xs:element name="adressekode" type="xs:long" minOccurs="0" />
+                    <xs:element name="husnummer" type="xs:int" minOccurs="0" />
+                    <xs:element name="husbokstav" type="xs:string" minOccurs="0" />
+                    <xs:element name="gardsnummer" type="xs:long" minOccurs="0" />
+                    <xs:element name="bruksnummer" type="xs:long" minOccurs="0" />
+                    <xs:element name="festenummer" type="xs:long" minOccurs="0" />
+                    <xs:element name="undernummer" type="xs:int" minOccurs="0" />
+                    <xs:element name="bruksenhetsnummer" type="xs:string" minOccurs="0" />
+                    <xs:element name="postnummer" type="xs:string" minOccurs="0" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+   <xs:complexType name="MottakerAdresse">
+       <xs:complexContent>
+           <xs:extension base="basistyperns:MatrikkelComponent">
+               <xs:sequence>
+                   <xs:element name="adresselinje1" type="xs:string" minOccurs="0" />
+                   <xs:element name="adresselinje2" type="xs:string" minOccurs="0" />
+                   <xs:element name="adresselinje3" type="xs:string" minOccurs="0" />
+                   <xs:element name="postnummeromradeId" type="adressens:PostnummeromradeId" minOccurs="0" />
+                   <xs:element name="landKodeId" type="personkoderns:LandKodeId" minOccurs="0" />
+               </xs:sequence>
+           </xs:extension>
+       </xs:complexContent>
+   </xs:complexType>
+
+    <xs:complexType name="PersonIdKodeIdent">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:KodeIdent">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="LandKodeIdent">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:KodeIdent">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="PersonsokModel">
+        <xs:sequence>
+            <xs:element name="nummer" type="xs:string" minOccurs="0"/>
+            <xs:element name="personIdKode" type="xs:string" minOccurs="0"/>
+            <xs:element name="navn" type="xs:string" minOccurs="0"/>
+            <xs:element name="navnFonetisk" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="adresse" type="xs:string" minOccurs="0"/>
+            <xs:element name="postnummer" type="xs:int" minOccurs="0"/>
+            <xs:element name="poststed" type="xs:string" minOccurs="0"/>
+            <xs:element name="landKode" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PersonUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="fortrolighetsBytteIds" type="personns:PersonIdList" minOccurs="0"/>
+                    <xs:element name="skyggePersonerSomSkalBliVanlige" minOccurs="0">
+                        <xs:complexType>
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <IsDictionary xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsDictionary>
+                                </xs:appinfo>
+                            </xs:annotation>
+                            <xs:sequence>
+                                <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                                    <xs:complexType>
+                                        <xs:sequence>
+                                            <xs:element name="key" nillable="true" type="personns:AnnenPersonId" />
+                                            <xs:element name="value" nillable="true" type="personns:FysiskPerson"/>
+                                        </xs:sequence>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:sequence>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

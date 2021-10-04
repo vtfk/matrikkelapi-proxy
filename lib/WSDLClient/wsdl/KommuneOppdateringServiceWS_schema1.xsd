@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" xmlns:ns2="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" xmlns:ns3="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" xmlns:ns4="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri" xmlns:ns5="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person" xmlns:ns6="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bruker/koder" xmlns:tns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/kommune/oppdatering" elementFormDefault="qualified" targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/kommune/oppdatering" version="1.0">
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" schemaLocation="geometriKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" schemaLocation="basistyper.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" schemaLocation="kommune.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri" schemaLocation="geometri.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person" schemaLocation="person.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bruker/koder" schemaLocation="brukerKoder.xsd"/>
+
+  <xs:element name="createKommune" type="tns:createKommune"/>
+
+  <xs:element name="createKommuneResponse" type="tns:createKommuneResponse"/>
+
+  <xs:element name="updateKommune" type="tns:updateKommune"/>
+
+  <xs:element name="updateKommuneResponse" type="tns:updateKommuneResponse"/>
+
+  <xs:element name="vedlikeholdKommunevapen" type="tns:vedlikeholdKommunevapen"/>
+
+  <xs:element name="vedlikeholdKommunevapenResponse" type="tns:vedlikeholdKommunevapenResponse"/>
+
+  <xs:complexType name="createKommune">
+    <xs:sequence>
+      <xs:element name="kommunenr" type="xs:string"/>
+      <xs:element name="kommunenavn" type="xs:string"/>
+      <xs:element name="koordinatsystemKodeId" type="ns1:KoordinatsystemKodeId"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createKommuneResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="updateKommune">
+    <xs:sequence>
+      <xs:element name="kommune" type="ns3:Kommune"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updateKommuneResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="vedlikeholdKommunevapen">
+    <xs:sequence>
+      <xs:element name="kommunevapen" type="ns3:Kommunevapen"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="vedlikeholdKommunevapenResponse">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>

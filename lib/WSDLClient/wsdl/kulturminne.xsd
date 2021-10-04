@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        version="1.0"
+        targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kulturminne"
+        xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kulturminne"
+        xmlns:basistyperns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"
+        xmlns:matrikkelenhetns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"
+        xmlns:bygningns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning"
+        xmlns:kulturminnekoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kulturminne/koder"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified">
+
+
+    <xs:import schemaLocation="basistyper.xsd" namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"/>
+    <xs:import schemaLocation="bygning.xsd" namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning"/>
+    <xs:import schemaLocation="matrikkelenhet.xsd" namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"/>
+    <xs:import schemaLocation="kommune.xsd" namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune"/>
+    <xs:import schemaLocation="kodeliste.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"/>
+    <xs:import schemaLocation="kulturminneKoder.xsd" namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kulturminne/koder"/>
+
+    <xs:complexType name="FredetBygning">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0" />
+                    <xs:element name="enkeltminnenummer" type="xs:string" minOccurs="0" />
+                    <xs:element name="enkeltminneArtKodeId" type="kulturminnekoderns:EnkeltminneArtKodeId" minOccurs="0" />
+                    <xs:element name="vernetypeKodeId" type="kulturminnekoderns:VernetypeKodeId" minOccurs="0" />
+                    <xs:element name="kategoriKodeId" type="kulturminnekoderns:KulturminnekategoriKodeId" minOccurs="0" />
+                    <xs:element name="bygningId" type="bygningns:BygningId" minOccurs="0" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FredetBygningList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="FredetBygning"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="FredetBygningId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId" />
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FredetBygningIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="FredetBygningId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Kulturminne">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="lokalitetsnummer" type="xs:string" minOccurs="0" />
+                    <xs:element name="kulturminneArtKodeId" type="kulturminnekoderns:KulturminneArtKodeId" minOccurs="0" />
+                    <xs:element name="vernetypeKodeId" type="kulturminnekoderns:VernetypeKodeId" minOccurs="0" />
+                    <xs:element name="kulturminnekategoriId" type="kulturminnekoderns:KulturminnekategoriKodeId" minOccurs="0" />
+                    <xs:element name="matrikkelforingsdato" type="basistyperns:LocalDate" minOccurs="0" />
+                    <xs:element name="sistOppdatertDato" type="basistyperns:LocalDate" minOccurs="0" />
+                    <xs:element name="matrikkelenhetIds" type="matrikkelenhetns:MatrikkelenhetIdList" minOccurs="0" />
+                    <xs:element name="enkeltminner" type="FredetBygningList" minOccurs="0" />
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KulturminneId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KulturminneIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="KulturminneId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BygningIdTilKulturminneIdsMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="bygningns:ByggId"/>
+                        <xs:element name="value" nillable="true" type="KulturminneIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

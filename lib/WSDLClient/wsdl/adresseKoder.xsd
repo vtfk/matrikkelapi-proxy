@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        version="1.0"
+        targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse/koder"
+        xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse/koder"
+        xmlns:kodens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"
+        xmlns:basistyperns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"
+        xmlns:kommunens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:import schemaLocation="kodeliste.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"/>
+    <xs:import schemaLocation="basistyper.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"/>
+    <xs:import schemaLocation="kommune.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune"/>
+
+    <xs:complexType name="AdressetilleggsnavnKildeKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AdressetilleggsnavnKildeKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AdressetilleggsnavnKildeKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="AdressetilleggsnavnKildeKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ArsakEndringStedsnavnKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ArsakEndringStedsnavnKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ArsakEndringStedsnavnKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="ArsakEndringStedsnavnKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="GenerellKretstypeKode">
+        <xs:complexContent>
+            <xs:extension base="KretstypeKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="GenerellKretstypeKodeId">
+        <xs:complexContent>
+            <xs:extension base="KretstypeKodeId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="GenerellKretstypeKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="GenerellKretstypeKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="GenerellKretstypeKodeIdent">
+        <xs:complexContent>
+            <xs:extension base="KretstypeKodeIdent">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="KommunalKretstypeKode">
+        <xs:complexContent>
+            <xs:extension base="KretstypeKode">
+                <xs:sequence>
+                    <xs:element name="kommuneId" type="kommunens:KommuneId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KommunalKretstypeKodeId">
+        <xs:complexContent>
+            <xs:extension base="KretstypeKodeId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KommunalKretstypeKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="KommunalKretstypeKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="KommunalKretstypeKodeIdent">
+        <xs:complexContent>
+            <xs:extension base="KretstypeKodeIdent">
+                <xs:sequence>
+                    <xs:element name="kommuneIdent" type="kommunens:KommuneIdent" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="KretstypeKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelDbKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KretstypeKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelDbKodeId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KretstypeKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="KretstypeKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="KretstypeKodeIdent" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:KodeIdent">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="OpphavKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="OpphavKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="OpphavKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="OpphavKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AtkomsttypeKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AtkomsttypeKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AtkomsttypeKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="AtkomsttypeKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

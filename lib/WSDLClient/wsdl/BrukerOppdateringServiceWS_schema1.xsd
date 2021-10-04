@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" xmlns:ns2="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" xmlns:ns3="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bruker/koder" xmlns:ns4="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" xmlns:ns5="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bruker" xmlns:tns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/bruker/oppdatering" elementFormDefault="qualified" targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/bruker/oppdatering" version="1.0">
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" schemaLocation="geometriKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" schemaLocation="basistyper.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bruker/koder" schemaLocation="brukerKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" schemaLocation="kommune.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bruker" schemaLocation="bruker.xsd"/>
+
+  <xs:element name="updatePaloggetBruker" type="tns:updatePaloggetBruker"/>
+
+  <xs:element name="updatePaloggetBrukerResponse" type="tns:updatePaloggetBrukerResponse"/>
+
+  <xs:element name="updatePassord" type="tns:updatePassord"/>
+
+  <xs:element name="updatePassordResponse" type="tns:updatePassordResponse"/>
+
+  <xs:complexType name="updatePassord">
+    <xs:sequence>
+      <xs:element name="gammeltPassord" type="xs:string"/>
+      <xs:element name="nyttPassord" type="xs:string"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updatePassordResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="updatePaloggetBruker">
+    <xs:sequence>
+      <xs:element name="bruker" type="ns5:Bruker"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updatePaloggetBrukerResponse">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>

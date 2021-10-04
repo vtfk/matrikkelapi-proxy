@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+      version="1.0"
+      targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/util"
+      xmlns:utilns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/util"
+      xmlns:xs="http://www.w3.org/2001/XMLSchema"
+      elementFormDefault="qualified">
+
+   <xs:complexType name="Andel">
+      <xs:sequence>
+         <xs:element name="teller" type="xs:long" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="nevner" type="xs:long" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:simpleType name="Interval" >
+      <xs:restriction base="xs:string">
+         <xs:pattern value="\s*\d+\s*(-\s*\d+)?\s*(,\s*\d+\s*(-\s*\d+)?)*"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+   <xs:simpleType name="Status">
+      <xs:restriction base="xs:string">
+         <xs:enumeration value="BESTAENDE"/>
+         <xs:enumeration value="UTGATTE"/>
+      </xs:restriction>
+   </xs:simpleType>
+
+</xs:schema>

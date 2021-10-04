@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" xmlns:ns2="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" xmlns:tns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/matrikkelsok" elementFormDefault="qualified" targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/matrikkelsok" version="1.0">
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" schemaLocation="basistyper.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" schemaLocation="geometriKoder.xsd"/>
+
+  <xs:element name="findTekstelementerForAutoutfylling" type="tns:findTekstelementerForAutoutfylling"/>
+
+  <xs:element name="findTekstelementerForAutoutfyllingResponse" type="tns:findTekstelementerForAutoutfyllingResponse"/>
+
+  <xs:complexType name="findTekstelementerForAutoutfylling">
+    <xs:sequence>
+      <xs:element name="sokeStreng" type="xs:string"/>
+      <xs:element name="parametre" type="xs:string"/>
+      <xs:element name="returFelter" type="ns1:StringList"/>
+      <xs:element name="startPosisjon" type="xs:int"/>
+      <xs:element name="matrikkelContext" type="ns1:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTekstelementerForAutoutfyllingResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:StringList"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

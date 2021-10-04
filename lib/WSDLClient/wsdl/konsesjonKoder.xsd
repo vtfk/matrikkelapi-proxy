@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+      version="1.0"
+      targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/konsesjon/koder"
+      xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/konsesjon/koder"
+      xmlns:kodens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"
+      xmlns:xs="http://www.w3.org/2001/XMLSchema"
+      elementFormDefault="qualified">
+
+    <xs:import schemaLocation="kodeliste.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"/>
+
+    <xs:complexType name="KonsesjonsfrihetEgenerklaringKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelDbKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KonsesjonsfrihetEgenerklaringKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelDbKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KonsesjonsfrihetEgenerklaringKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="KonsesjonsfrihetEgenerklaringKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TinglysingFeilKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TinglysingFeilKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TinglysingFeilKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="TinglysingFeilKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+
+</xs:schema>

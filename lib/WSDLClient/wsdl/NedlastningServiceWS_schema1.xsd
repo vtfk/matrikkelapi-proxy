@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" xmlns:ns2="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/endringslogg" xmlns:ns3="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" xmlns:tns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/nedlastning" elementFormDefault="qualified" targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/nedlastning" version="1.0">
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" schemaLocation="basistyper.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/endringslogg" schemaLocation="endringslogg.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" schemaLocation="geometriKoder.xsd"/>
+
+  <xs:element name="findIdsEtterId" type="tns:findIdsEtterId"/>
+
+  <xs:element name="findIdsEtterIdResponse" type="tns:findIdsEtterIdResponse"/>
+
+  <xs:element name="findObjekterEtterId" type="tns:findObjekterEtterId"/>
+
+  <xs:element name="findObjekterEtterIdResponse" type="tns:findObjekterEtterIdResponse"/>
+
+  <xs:complexType name="findIdsEtterId">
+    <xs:sequence>
+      <xs:element name="matrikkelBubbleId" nillable="true" type="ns1:MatrikkelBubbleId"/>
+      <xs:element name="domainklasse" type="ns2:Domainklasse"/>
+      <xs:element name="filter" nillable="true" type="xs:string"/>
+      <xs:element name="maksAntall" type="xs:int"/>
+      <xs:element name="matrikkelContext" type="ns1:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findIdsEtterIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelBubbleIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findObjekterEtterId">
+    <xs:sequence>
+      <xs:element name="matrikkelBubbleId" nillable="true" type="ns1:MatrikkelBubbleId"/>
+      <xs:element name="domainklasse" type="ns2:Domainklasse"/>
+      <xs:element name="filter" nillable="true" type="xs:string"/>
+      <xs:element name="maksAntall" type="xs:int"/>
+      <xs:element name="matrikkelContext" type="ns1:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findObjekterEtterIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelBubbleObjectList"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

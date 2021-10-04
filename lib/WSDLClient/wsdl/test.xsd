@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        version="1.0"
+        targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/test"
+        xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/test"
+        xmlns:basistyperns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"
+        xmlns:matrikkelenhetns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified">
+
+    <xs:import schemaLocation="basistyper.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"/>
+
+    <xs:complexType name="TestNumber">
+        <xs:sequence>
+            <xs:element name="offset" type="xs:int"/>
+            <xs:element name="number" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelnummerList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="MatrikkelnummerDTO"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelnummerDTO">
+        <xs:sequence>
+            <xs:element name="matrikkelenhetid" type="xs:long" minOccurs="0"/>
+            <xs:element name="kommuneid" type="xs:long" minOccurs="0"/>
+            <xs:element name="gardsnr" type="xs:int" minOccurs="0"/>
+            <xs:element name="bruksnr" type="xs:int" minOccurs="0"/>
+            <xs:element name="festenr" type="xs:int" minOccurs="0"/>
+            <xs:element name="seksjonsnr" type="xs:int" minOccurs="0"/>
+            <xs:element name="utgattmatrikkelnummer" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="versjonid" type="xs:int" minOccurs="0"/>
+            <xs:element name="oppdateringsdato" type="basistyperns:Timestamp" minOccurs="0"/>
+            <xs:element name="sluttdato" type="basistyperns:Timestamp" minOccurs="0"/>
+            <xs:element name="oppdatertAv" type="xs:string" minOccurs="0"/>
+            <xs:element name="avsluttetAv" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MockupTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="testNumber" type="TestNumber"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MockupSnapshotMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="basistyperns:Timestamp"/>
+                        <xs:element name="value" type="MockupTransfer"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

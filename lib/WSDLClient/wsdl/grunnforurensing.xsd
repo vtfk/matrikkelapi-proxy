@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        version="1.0"
+        targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/grunnforurensing"
+        xmlns:basistyperns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"
+        xmlns:grunnforurensingkoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/grunnforurensing/koder"
+        xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/grunnforurensing"
+        xmlns:matrikkelenhetns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:import schemaLocation="basistyper.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"/>
+    <xs:import schemaLocation="grunnforurensingKoder.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/grunnforurensing/koder"/>
+    <xs:import schemaLocation="matrikkelenhet.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"/>
+
+    <xs:complexType name="Grunnforurensing">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="lokalitetsnummer" type="xs:string" minOccurs="0"/>
+                    <xs:element name="lokalitetsnavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="pavirkningsgradKodeId" type="grunnforurensingkoderns:PavirkningsgradKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="myndighetKodeId" type="grunnforurensingkoderns:MyndighetKodeId" minOccurs="0"/>
+                    <xs:element name="matrikkelforingsdato" type="basistyperns:LocalDate" minOccurs="0"/>
+                    <xs:element name="sistOppdatertDato" type="basistyperns:LocalDate" minOccurs="0"/>
+                    <xs:element name="forsvarsbygg" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="vedtak" type="VedtakList" minOccurs="0"/>
+                    <xs:element name="matrikkelenhetIds" type="matrikkelenhetns:MatrikkelenhetIdList" minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="GrunnforurensingId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="GrunnforurensingIdList">
+        <xs:sequence>
+            <xs:element name="item" type="GrunnforurensingId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="Vedtak">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="vedtaksdato" type="basistyperns:LocalDate" minOccurs="0"/>
+                    <xs:element name="vedtakstypeKodeId" type="grunnforurensingkoderns:VedtakstypeKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="matrikkelenhetIds" type="matrikkelenhetns:MatrikkelenhetIdList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="VedtakList">
+        <xs:sequence>
+            <xs:element name="item" type="Vedtak" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

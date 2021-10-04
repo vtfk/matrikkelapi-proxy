@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    version="1.0"
+    targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/aktivitetsliste"
+    xmlns:basistyperns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"
+    xmlns:aktivitetslistekoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/aktivitetsliste/koder"
+    xmlns:elektronisktinglysing="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/elektronisktinglysing"
+    xmlns:forretningns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/forretning"
+    xmlns:kommunens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune"
+    xmlns:matrikkelenhetns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"
+    xmlns:bygningns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning/koder"
+    xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/aktivitetsliste"
+    xmlns:personns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person"
+    xmlns:matrikkelenhetkoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet/koder"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:import schemaLocation="basistyper.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"/>
+    <xs:import schemaLocation="aktivitetslisteKoder.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/aktivitetsliste/koder"/>
+    <xs:import schemaLocation="elektronisktinglysing.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/elektronisktinglysing"/>
+    <xs:import schemaLocation="forretning.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/forretning"/>
+    <xs:import schemaLocation="kodeliste.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"/>
+    <xs:import schemaLocation="kommune.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune"/>
+    <xs:import schemaLocation="matrikkelenhet.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"/>
+    <xs:import schemaLocation="kart.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kart"/>
+    <xs:import schemaLocation="matrikkelenhetKoder.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet/koder"/>
+    <xs:import schemaLocation="bygningKoder.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning/koder"/>
+    <xs:import schemaLocation="person.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person"/>
+    <xs:import schemaLocation="adresse.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse"/>
+
+
+    <xs:complexType name="MatrikkelenhetMelding">
+        <xs:complexContent>
+            <xs:extension base="Melding">
+                <xs:sequence>
+                    <xs:element name="rolleMatrikkelenhetMeldinger" type="RolleMatrikkelenhetMeldingList"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetMeldingId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetMeldingIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="MatrikkelenhetMeldingId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="Melding">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObject">
+                <xs:sequence>
+                    <xs:element name="navn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="meldingstypeId" type="aktivitetslistekoderns:MeldingstypeId" minOccurs="0"/>
+                    <xs:element name="dato" type="basistyperns:LocalDate" minOccurs="0"/>
+                    <xs:element name="reservertAv" type="xs:string" minOccurs="0"/>
+                    <xs:element name="meldingStatusId" type="aktivitetslistekoderns:MeldingStatusId" minOccurs="0"/>
+                    <xs:element name="meldingsDetalj" type="xs:string" minOccurs="0"/>
+                    <xs:element name="feil" type="xs:string" minOccurs="0"/>
+                    <xs:element name="kommuneIds" type="kommunens:KommuneIdList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MeldingList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="Melding"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MeldingId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MeldingIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="MeldingId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RolleMatrikkelenhetMelding">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="matrikkelenhetId" type="matrikkelenhetns:MatrikkelenhetId" minOccurs="0"/>
+                    <xs:element name="rolleIMeldingId" type="aktivitetslistekoderns:RolleIMeldingId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="RolleMatrikkelenhetMeldingList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="RolleMatrikkelenhetMelding"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="TinglysingMelding">
+        <xs:complexContent>
+            <xs:extension base="MatrikkelenhetMelding">
+                <xs:sequence>
+                    <xs:element name="dokumentDato" type="basistyperns:LocalDate" minOccurs="0"/>
+                    <xs:element name="tinglystDokumentIdent" type="forretningns:TinglystDokumentIdent" minOccurs="0"/>
+                    <xs:element name="merknader" type="basistyperns:StringList" minOccurs="0"/>
+                    <xs:element name="ufullstendigMelding" type="xs:boolean" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TinglysingMeldingId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TinglysingMeldingIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="TinglysingMeldingId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ForretningMelding">
+        <xs:complexContent>
+            <xs:extension base="Melding">
+                <xs:sequence>
+                    <xs:element name="tinglysningsInnsendingId" type="xs:string" minOccurs="0"/>
+                    <xs:element name="tinglysningsUtfall" type="xs:string" minOccurs="0"/>
+                    <xs:element name="referanseElektroniskTinglysing" type="xs:string" minOccurs="0"/>
+                    <xs:element name="matrikkelenhetForretningId" type="forretningns:MatrikkelenhetForretningId"
+                                minOccurs="0"/>
+                    <xs:element name="tinglysingsUtfallBegrunnelser" type="TinglysingsUtfallBegrunnelseList"/>
+                    <xs:element name="tinglysingsstatusKodeId" type="matrikkelenhetkoderns:TinglysingsstatusKodeId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ForretningMeldingId">
+        <xs:complexContent>
+            <xs:extension base="MeldingId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ForretningMeldingIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="ForretningMeldingId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TinglysingsUtfallBegrunnelse">
+        <xs:complexContent>
+            <xs:extension base="elektronisktinglysing:IkkeElektroniskTinglysningGrunn">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="kontrollkode" type="xs:string" minOccurs="0"/>
+                    <xs:element name="kontrollnavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="kontrollutfall" type="xs:string" minOccurs="0"/>
+                    <xs:element name="begrunnelsekode" type="xs:string" minOccurs="0"/>
+                    <xs:element name="begrunnelsetekst" type="xs:string" minOccurs="0"/>
+                    <xs:element name="begrunnelseelementnavn" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TinglysingsUtfallBegrunnelseList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="TinglysingsUtfallBegrunnelse"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ForretningSearchResultDtoToForretningMeldingIdMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                    xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="ForretningSearchResultDto"/>
+                        <xs:element name="value" nillable="true" type="ForretningMeldingIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ForretningSearchResultDto">
+        <xs:sequence>
+            <xs:element name="matrikkelenhetForretningId" type="forretningns:MatrikkelenhetForretningId" minOccurs="0"/>
+            <xs:element name="forretningClass" type="xs:string" minOccurs="0"/>
+            <xs:element name="mottakere" type="matrikkelenhetns:MatrikkelenhetDTOList" minOccurs="0"/>
+            <xs:element name="avgivere" type="matrikkelenhetns:MatrikkelenhetDTOList" minOccurs="0"/>
+            <xs:element name="forretningstypeKodeId" type="matrikkelenhetkoderns:ForretningstypeKodeId" minOccurs="0"/>
+            <xs:element name="forretningsdokumentDato" type="basistyperns:LocalDate" minOccurs="0"/>
+            <xs:element name="matrikkelforingsDato" type="basistyperns:LocalDate" minOccurs="0"/>
+            <xs:element name="tinglysingsstatusEndretDato" type="basistyperns:LocalDate" minOccurs="0"/>
+            <xs:element name="sumArealEndringForMottakere" type="xs:double" minOccurs="0"/>
+            <xs:element name="tinglysingsstatusKodeId" type="matrikkelenhetkoderns:TinglysingsstatusKodeId"
+                        minOccurs="0"/>
+            <xs:element name="meldingTilTinglysingsId" type="xs:string" minOccurs="0"/>
+            <xs:element name="referanseElektroniskTinglysing" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Byggesakmelding">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObject">
+                <xs:sequence>
+                    <xs:element name="forsendelseId" type="xs:string"/>
+                    <xs:element name="info" type="xs:string" minOccurs="0"/>
+                    <xs:element name="brukstilfelleKodeId" type="aktivitetslistekoderns:ByggBrukstilfelleKodeId"/>
+                    <xs:element name="kommuneId" type="kommunens:KommuneId"/>
+                    <xs:element name="createdAt" type="basistyperns:Timestamp"/>
+                    <xs:element name="meldingStatus"
+                                type="aktivitetslistekoderns:ByggesakmeldingStatus"/>
+                    <xs:element name="byggesakdata" type="Byggesakdata"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ByggesakmeldingId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ByggesakmeldingIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="ByggesakmeldingId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ByggesakmeldingStatusList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="aktivitetslistekoderns:ByggesakmeldingStatus"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Byggesakdata">
+        <xs:sequence>
+            <xs:element name="tittel" type="xs:string" nillable="true"/>
+            <xs:element name="ansvarligSokerId" type="personns:PersonId" nillable="true"/>
+            <xs:element name="tiltakshaverId" type="personns:PersonId" nillable="true"/>
+            <xs:element name="bygningsnummer" type="xs:long" nillable="true"/>
+            <xs:element name="bebygdAreal" type="xs:double" nillable="true"/>
+            <xs:element name="harHeis" type="xs:boolean" nillable="true"/>
+            <xs:element name="avlopsKodeId" type="bygningns:AvlopsKodeId" nillable="true"/>
+            <xs:element name="bygningstypeKodeId" type="bygningns:BygningstypeKodeId" nillable="true"/>
+            <xs:element name="naringsgruppeKodeId" type="bygningns:NaringsgruppeKodeId" nillable="true"/>
+            <xs:element name="vannforsyningsKodeId" type="bygningns:VannforsyningsKodeId" nillable="true"/>
+            <xs:element name="energikildeKodeIds" type="bygningns:EnergikildeKodeIdList" nillable="true"/>
+            <xs:element name="oppvarmingsKodeIds" type="bygningns:OppvarmingsKodeIdList" nillable="true"/>
+            <xs:element name="bruksenheter" type="ByggesakBruksenhetdataList" nillable="true"/>
+            <xs:element name="etasjer" type="ByggesakEtasjedataList" nillable="true"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ByggesakEtasjedataList">
+        <xs:sequence>
+            <xs:element name="item" type="ByggesakEtasjedata" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ByggesakEtasjedata">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long" minOccurs="0"/>
+            <xs:element name="bruksArealTilBolig" type="xs:double" nillable="true"/>
+            <xs:element name="bruksarealTilAnnet" type="xs:double" nillable="true"/>
+            <xs:element name="bruksarealTotalt" type="xs:double" nillable="true"/>
+            <xs:element name="bruttoarealTilBolig" type="xs:double" nillable="true"/>
+            <xs:element name="bruttoarealTilAnnet" type="xs:double" nillable="true"/>
+            <xs:element name="bruttoarealTotalt" type="xs:double" nillable="true"/>
+            <xs:element name="antallboenheter" type="xs:int" nillable="true"/>
+            <xs:element name="etasjeplanKodeId" type="bygningns:EtasjeplanKodeId" nillable="true"/>
+            <xs:element name="etasjenummer" type="xs:int" nillable="true"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ByggesakBruksenhetdataList">
+        <xs:sequence>
+            <xs:element name="item" type="ByggesakBruksenhetdata" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ByggesakBruksenhetdata">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long" minOccurs="0"/>
+            <xs:element name="kommunenummer" type="xs:string"/>
+            <xs:element name="gardsnummer" type="xs:int" nillable="true"/>
+            <xs:element name="bruksnummer" type="xs:int" nillable="true"/>
+            <xs:element name="festenummer" type="xs:int" nillable="true"/>
+            <xs:element name="seksjonsnummer" type="xs:int" nillable="true"/>
+            <xs:element name="adresseKode" type="xs:int" nillable="true"/>
+            <xs:element name="husnummer" type="xs:int" nillable="true"/>
+            <xs:element name="adresseBokstav" type="xs:string" nillable="true"/>
+            <xs:element name="etasjenummer" type="xs:int" nillable="true"/>
+            <xs:element name="lopenummer" type="xs:int" nillable="true"/>
+            <xs:element name="bruksareal" type="xs:double" nillable="true"/>
+            <xs:element name="antallRom" type="xs:int" nillable="true"/>
+            <xs:element name="antallBad" type="xs:int" nillable="true"/>
+            <xs:element name="antallWC" type="xs:int" nillable="true"/>
+            <xs:element name="etasjeplanKodeId" type="bygningns:EtasjeplanKodeId" nillable="true"/>
+            <xs:element name="bruksenhetstypeKodeId" type="bygningns:BruksenhetstypeKodeId" nillable="true"/>
+            <xs:element name="kjokkentilgangKodeId" type="bygningns:KjokkentilgangKodeId" nillable="true"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AvtaleStedbundenRettighetMeldingId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AvtaleStedbundenRettighetMeldingIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="AvtaleStedbundenRettighetMeldingId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AvtaleStedbundenRettighetMeldingList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="AvtaleStedbundenRettighetMelding"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AvtaleStedbundenRettighetMelding">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObject">
+                <xs:sequence>
+                    <xs:element name="dato" type="basistyperns:LocalDate" minOccurs="0"/>
+                    <xs:element name="endringstype" type="xs:string" minOccurs="0"/>
+                    <xs:element name="informasjon" type="xs:string" minOccurs="0"/>
+                    <xs:element name="feil" type="xs:string" minOccurs="0"/>
+                    <xs:element name="avtaleFortDato" type="basistyperns:Timestamp" minOccurs="0"/>
+                    <xs:element name="dokumentnr" type="xs:string" minOccurs="0"/>
+                    <xs:element name="referanse" type="xs:string" minOccurs="0"/>
+                    <xs:element name="nettadresseUrl" type="xs:string" minOccurs="0"/>
+                    <xs:element name="kommuneIds" type="kommunens:KommuneIdList" minOccurs="0"/>
+                    <xs:element name="matrikkelenhetIds" type="matrikkelenhetns:MatrikkelenhetIdList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+</xs:schema>

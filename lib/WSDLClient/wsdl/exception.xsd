@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        version="1.0"
+        elementFormDefault="qualified"
+        targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/exception"
+        xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/exception"
+        xmlns:basistyperns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"
+        xmlns:geometrins="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri"
+        xmlns:elektronisktinglysning="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/elektronisktinglysing"
+        xmlns:geometrikoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+        jaxb:version="2.1"
+>
+
+    <xs:import schemaLocation="basistyper.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"/>
+    <xs:import schemaLocation="geometri.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri"/>
+    <xs:import schemaLocation="elektronisktinglysing.xsd" namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/elektronisktinglysing"/>
+    <xs:import schemaLocation="geometriKoder.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder"/>
+
+    <!-- ========================================================= -->
+    <!-- Exception:                                                -->
+    <!-- Skjema for å mappe exception inkl stacktrace              -->
+    <!-- ========================================================= -->
+
+    <xs:annotation>
+        <xs:appinfo>
+            <jaxb:schemaBindings>
+                <jaxb:package>
+                    <jaxb:javadoc><![CDATA[
+                        <body>Denne pakken inneholder navn og typer for feil og feiltyper som kan oppstå i API-et.</body>
+                    ]]></jaxb:javadoc>
+                </jaxb:package>
+            </jaxb:schemaBindings>
+        </xs:appinfo>
+    </xs:annotation>
+
+    <!-- .NET fix -->
+    <!-- Elements definition must be hand written and introduced here in order for .NET datacontract generating to work... -->
+    <xs:element name="ServiceException" nillable="true" type="ServiceFaultInfo"/>
+    <!-- .NET end -->
+
+
+    <xs:complexType name="ServiceFaultInfo">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:class>
+                    <jaxb:javadoc><![CDATA[
+                        Generell feilmelding for alle hånterte feil ifra systemet.
+
+                        Alle feil har en utfyllt feilkode og feilkodebeskrivelse.
+
+                        For klassifisering av feil, se {@link #category} feltet.
+                    ]]></jaxb:javadoc>
+                </jaxb:class>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="category" type="xs:string">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:property>
+                            <jaxb:javadoc>
+                                <![CDATA[
+                                Kategorisering av feil. Her blir hver supertype av exceptionklasser lagt til i en kolon sepparert liste.
+                                Det siste leddet annoterer da konkret subtype av exception.
+
+                                <br>
+                                En eksempelimplementasjon kan ønske å skille systemfeil ifra applikasjonsfeil. Dette gjøres enkelt ved å matche {@link #category}-streng mot ":SystemException:" osv..
+
+                                <p>
+                                Kategorisering av feil skjer etter følgende struktur:
+                                <ul>
+                                  <li type="circle">
+                                    <h3>ServiceException</h3>
+                                    verdi = {@code ":ServiceException:"}
+                                    <ul>
+                                      <li type="circle">
+                                        <h4>SystemException</h4>
+                                        verdi = {@code ":ServiceException:SystemException:"}
+                                        <br>
+                                            Felles klasse for alle typer systemfeil. <br />
+                                            Systemfeil skiller seg ifra applikasjonsfeil på den måte da dette er feil som oppstår i og ved kjøring av miljøet som applikasjonen kjører i.
+                                            Eksempler er implementasjonsfeil og feil som kan oppstå når deler av det fysiske miljøet rundt ikke er tigjengelig.
+                                        <ul>
+                                          <li type="circle">
+                                            <h5>ImplementationException</h5>
+                                            verdi = {@code ":ServiceException:SystemException:ImplementationException:"}
+                                            <br>
+                                                Feil som oppstår i kode enten på server, eller på bagrunn av feil i kall fra klient.
+                                          </li>
+                                          <li type="circle">
+                                            <h5>OperationalException</h5>
+                                            verdi = {@code ":ServiceException:SystemException:OperationalException:"}
+                                            <br>
+                                                Operasjonelle feil har feilkilder som stammer utelukkende ifra det utenpåliggende miljøet systemet kjører i.
+                                                Typiske eksempler er at serveren går tom for diskplass, eller at forbindelsen med databasen blir borte.
+                                          </li>
+                                        </ul>
+                                      </li>
+                                      <li type="circle">
+                                        <h4>ApplicationException</h4>
+                                        verdi = {@code ":ServiceException:ApplicationException:"}
+                                        <br>
+                                            Felles type for alle applikasjonsfeil.
+                                            Applikasjonsfeil skiller seg ifra systemfeil på den måte da dette er feil som direkte skyldes applikasjons-spesifik logikk og validering.
+                                            Med dette forstås brukerfeil så vel som domeneregler applikasjonen definerer.
+                                        <ul>
+                                          <li type="circle">
+                                            <h5>FinderException</h5>
+                                            verdi = {@code ":ServiceException:ApplicationException:FinderException:"}
+                                            <br>
+                                                Felles klasse for feil ved oppslag der datagrunnlag ikke finnes i henhold til gitte kriterier.
+                                          </li>
+                                          <li type="circle">
+                                            <h5>ValidationException</h5>
+                                            verdi = {@code ":ServiceException:ApplicationException:ValidationException:"}
+                                            <br>
+                                                Felles klasse for feil ved validering der datagrunnlag ikke er i henhold til spesifiserte regler.
+                                          </li>
+                                        </ul>
+                                      </li>
+                                    </ul>
+                                  </li>
+                                </ul>
+                            ]]></jaxb:javadoc>
+                        </jaxb:property>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="stackTraceText" type="xs:string">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:property>
+                            <jaxb:javadoc><![CDATA[Formatert, komplett, stacktrace som kan innrapporteres. Denne er kun brukt ved {@link SystemException systemfeil}.]]></jaxb:javadoc>
+                        </jaxb:property>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="exceptionDetail" type="ExceptionDetail">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:property>
+                            <jaxb:javadoc><![CDATA[Maskinlesbar informasjon om exception.]]></jaxb:javadoc>
+                        </jaxb:property>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ExceptionDetail">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:class>
+                    <jaxb:javadoc><![CDATA[Informasjon om exception oppstått på server med hirarki, stacktrace mm.]]></jaxb:javadoc>
+                </jaxb:class>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="className" type="xs:string">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:property>
+                            <jaxb:javadoc><![CDATA[Klassenavn for exception.]]></jaxb:javadoc>
+                        </jaxb:property>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="message" type="xs:string">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:property>
+                            <jaxb:javadoc><![CDATA[Teknisk underliggende feilmeldingstekst.]]></jaxb:javadoc>
+                        </jaxb:property>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="cause" type="ExceptionDetail" nillable="true">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:property>
+                            <jaxb:javadoc><![CDATA[Evt nøstet exception kan komme her.]]></jaxb:javadoc>
+                        </jaxb:property>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="stackTraceElements" type="StackTraceElementList">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jaxb:property>
+                            <jaxb:javadoc><![CDATA[Stacktrace generert ifra system. Denne er kun brukt ved {@link SystemException systemfeil}.]]></jaxb:javadoc>
+                        </jaxb:property>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="StackTraceElementList">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:class>
+                    <jaxb:javadoc><![CDATA[ ]]></jaxb:javadoc>
+                </jaxb:class>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="item" type="StackTraceElement" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="StackTraceElement">
+        <xs:annotation>
+            <xs:appinfo>
+                <jaxb:class>
+                    <jaxb:javadoc><![CDATA[ ]]></jaxb:javadoc>
+                </jaxb:class>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="declaringClass" type="xs:string"/>
+            <xs:element name="methodName" type="xs:string"/>
+            <xs:element name="fileName" type="xs:string" nillable="true"/>
+            <xs:element name="lineNumber" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="LockedFaultInfo">
+        <xs:complexContent>
+            <xs:extension base="ServiceFaultInfo">
+                <xs:sequence>
+                    <xs:element name="locksNotAquired" type="LockNotAquiredList"/>
+                    <xs:element name="owner" type="xs:string"/>
+                    <xs:element name="exceptionTime" type="basistyperns:Timestamp"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="LockNotAquired">
+        <xs:sequence>
+            <xs:element name="lockKey">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="discriminator" type="xs:string"/>
+                        <xs:element name="keyValue" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="owner" type="xs:string"/>
+            <xs:element name="expires" type="basistyperns:Timestamp"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="LockNotAquiredList">
+        <xs:sequence>
+            <xs:element name="item" type="LockNotAquired" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ObjectsNotFoundFaultInfo">
+        <xs:complexContent>
+            <xs:extension base="ServiceFaultInfo">
+                <xs:sequence>
+                    <xs:element name="idsNotFound" type="basistyperns:MatrikkelBubbleIdList"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="GeometriValidationFaultInfo">
+        <xs:complexContent>
+            <xs:extension base="ServiceFaultInfo">
+                <xs:sequence>
+                    <xs:element name="feilPosisjon" type="geometrins:Position"/>
+                    <xs:element name="idForElement" type="basistyperns:MatrikkelBubbleId"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ElektroniskTinglysingFaultInfo">
+        <xs:complexContent>
+            <xs:extension base="ServiceFaultInfo">
+                <xs:sequence>
+                    <xs:element name="grunner" type="elektronisktinglysning:IkkeElektroniskTinglysningGrunnList"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="OutsideCoordinateSystemFaultInfo">
+        <xs:complexContent>
+            <xs:extension base="ServiceFaultInfo">
+                <xs:sequence>
+                    <xs:element name="fraKoordinatsystem" type="geometrikoderns:KoordinatsystemKodeId"/>
+                    <xs:element name="tilKoordinatsystem" type="geometrikoderns:KoordinatsystemKodeId"/>
+                    <xs:element name="x" type="xs:double"/>
+                    <xs:element name="y" type="xs:double"/>
+                    <xs:element name="z" type="xs:double"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+
+</xs:schema>
+

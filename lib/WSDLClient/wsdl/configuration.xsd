@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        version="1.0"
+        targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/configuration"
+        xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/configuration"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:complexType name="MatrikkelServerKonfigurasjon">
+        <xs:sequence>
+            <xs:element name="tjenerversjon" type="xs:string" minOccurs="0"/>
+            <xs:element name="productionDeployment" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="stagingDeployment" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="testVersion" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="landbruksregisterKontrollEnablet" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="splittfesteEnabled" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="kommuneendringRunning" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="wmsTicketServerProtocol" type="xs:string" minOccurs="0"/>
+            <xs:element name="wmsTicketServerHost" type="xs:string" minOccurs="0"/>
+            <xs:element name="wmsTicketServerPath" type="xs:string" minOccurs="0"/>
+            <xs:element name="wmsTicketServerConnectTimeout" type="xs:int" minOccurs="0"/>
+            <xs:element name="wmsTicketServerTimeout" type="xs:int" minOccurs="0"/>
+            <xs:element name="statusURL" type="xs:string" minOccurs="0"/>
+            <xs:element name="proxyUrl" type="xs:string" minOccurs="0"/>
+            <xs:element name="matrikkelSystemnavn" type="xs:string" minOccurs="0"/>
+            <xs:element name="loadTestFilesDir" type="xs:string" minOccurs="0"/>
+            <xs:element name="grunnforurensningURLTemplate" type="xs:string" minOccurs="0"/>
+            <xs:element name="kulturminneURLTemplate" type="xs:string" minOccurs="0"/>
+            <xs:element name="faktaarkURLTemplate" type="xs:string" minOccurs="0"/>
+            <xs:element name="versionNumberWithoutTestVersion" type="xs:string" minOccurs="0"/>
+            <xs:element name="matrikkelServerIP" type="xs:string" minOccurs="0"/>
+            <xs:element name="matrikkelServerHttpPort" type="xs:string" minOccurs="0"/>
+            <xs:element name="matrikkelRapportOutputPathDirectory" type="xs:string" minOccurs="0"/>
+            <xs:element name="matrikkelRapportServerUrl" type="xs:string" minOccurs="0"/>
+            <xs:element name="matrikkelRapportServerIP" type="xs:string" minOccurs="0"/>
+            <xs:element name="matrikkelRapportServerPort" type="xs:string" minOccurs="0"/>
+            <xs:element name="matrikkelRapportServerProtocol" type="xs:string" minOccurs="0"/>
+            <xs:element name="jiraUrl" type="xs:string" minOccurs="0"/>
+            <xs:element name="startupKommune" type="xs:string" minOccurs="0"/>
+            <xs:element name="launcherVersion" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

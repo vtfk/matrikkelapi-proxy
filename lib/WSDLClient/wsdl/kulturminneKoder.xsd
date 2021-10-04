@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        version="1.0"
+        targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kulturminne/koder"
+        xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kulturminne/koder"
+        xmlns:kodens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:import schemaLocation="kodeliste.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"/>
+
+    <xs:complexType name="EnkeltminneArtKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelDbKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="EnkeltminneArtKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelDbKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="EnkeltminneArtKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="EnkeltminneArtKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="KulturminneArtKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelDbKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KulturminneArtKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelDbKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KulturminneArtKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="KulturminneArtKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="KulturminnekategoriKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelDbKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KulturminnekategoriKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelDbKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KulturminnekategoriKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="KulturminnekategoriKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VernetypeKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelDbKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="VernetypeKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelDbKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="VernetypeKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="VernetypeKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

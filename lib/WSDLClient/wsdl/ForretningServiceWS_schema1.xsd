@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet" xmlns:ns2="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" xmlns:ns3="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" xmlns:ns4="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/forretning" xmlns:tns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/forretning" elementFormDefault="qualified" targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/forretning" version="1.0">
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet" schemaLocation="matrikkelenhet.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" schemaLocation="geometriKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" schemaLocation="basistyper.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/forretning" schemaLocation="forretning.xsd"/>
+
+  <xs:element name="erForretningInnsendtElektroniskTinglystIGrunnboken" type="tns:erForretningInnsendtElektroniskTinglystIGrunnboken"/>
+
+  <xs:element name="erForretningInnsendtElektroniskTinglystIGrunnbokenResponse" type="tns:erForretningInnsendtElektroniskTinglystIGrunnbokenResponse"/>
+
+  <xs:element name="findForretningIdForIdent" type="tns:findForretningIdForIdent"/>
+
+  <xs:element name="findForretningIdForIdentResponse" type="tns:findForretningIdForIdentResponse"/>
+
+  <xs:element name="findForretningerForAnleggsprojeksjonsgrense" type="tns:findForretningerForAnleggsprojeksjonsgrense"/>
+
+  <xs:element name="findForretningerForAnleggsprojeksjonsgrenseResponse" type="tns:findForretningerForAnleggsprojeksjonsgrenseResponse"/>
+
+  <xs:element name="findForretningerForAnleggsprojeksjonspunkt" type="tns:findForretningerForAnleggsprojeksjonspunkt"/>
+
+  <xs:element name="findForretningerForAnleggsprojeksjonspunktResponse" type="tns:findForretningerForAnleggsprojeksjonspunktResponse"/>
+
+  <xs:element name="findForretningerForForretningSomGrunnlag" type="tns:findForretningerForForretningSomGrunnlag"/>
+
+  <xs:element name="findForretningerForForretningSomGrunnlagResponse" type="tns:findForretningerForForretningSomGrunnlagResponse"/>
+
+  <xs:element name="findForretningerForMatrikkelenhet" type="tns:findForretningerForMatrikkelenhet"/>
+
+  <xs:element name="findForretningerForMatrikkelenhetResponse" type="tns:findForretningerForMatrikkelenhetResponse"/>
+
+  <xs:element name="findForretningerForMatrikkelenheter" type="tns:findForretningerForMatrikkelenheter"/>
+
+  <xs:element name="findForretningerForMatrikkelenheterResponse" type="tns:findForretningerForMatrikkelenheterResponse"/>
+
+  <xs:element name="findForretningerForTeig" type="tns:findForretningerForTeig"/>
+
+  <xs:element name="findForretningerForTeigResponse" type="tns:findForretningerForTeigResponse"/>
+
+  <xs:element name="findForretningerForTeiggrense" type="tns:findForretningerForTeiggrense"/>
+
+  <xs:element name="findForretningerForTeiggrenseResponse" type="tns:findForretningerForTeiggrenseResponse"/>
+
+  <xs:element name="findForretningerForTeiggrensepunkt" type="tns:findForretningerForTeiggrensepunkt"/>
+
+  <xs:element name="findForretningerForTeiggrensepunktResponse" type="tns:findForretningerForTeiggrensepunktResponse"/>
+
+  <xs:element name="findForretningerSomSkalTinglysesForMatrikkelenhet" type="tns:findForretningerSomSkalTinglysesForMatrikkelenhet"/>
+
+  <xs:element name="findForretningerSomSkalTinglysesForMatrikkelenhetResponse" type="tns:findForretningerSomSkalTinglysesForMatrikkelenhetResponse"/>
+
+  <xs:element name="findJordskifteForretningForJordskifteKrevd" type="tns:findJordskifteForretningForJordskifteKrevd"/>
+
+  <xs:element name="findJordskifteForretningForJordskifteKrevdResponse" type="tns:findJordskifteForretningForJordskifteKrevdResponse"/>
+
+  <xs:element name="findRettingAvForretningsdataForretningerForForretning" type="tns:findRettingAvForretningsdataForretningerForForretning"/>
+
+  <xs:element name="findRettingAvForretningsdataForretningerForForretningResponse" type="tns:findRettingAvForretningsdataForretningerForForretningResponse"/>
+
+  <xs:element name="findSammenslaing" type="tns:findSammenslaing"/>
+
+  <xs:element name="findSammenslaingResponse" type="tns:findSammenslaingResponse"/>
+
+  <xs:complexType name="findForretningerForTeiggrense">
+    <xs:sequence>
+      <xs:element name="teiggrenseId" type="ns1:TeiggrenseId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findForretningerForTeiggrenseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:MatrikkelenhetGeometriForretningIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findForretningerForAnleggsprojeksjonsgrense">
+    <xs:sequence>
+      <xs:element name="grenseId" type="ns1:AnleggsprojeksjonsgrenseId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findForretningerForAnleggsprojeksjonsgrenseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:MatrikkelenhetGeometriForretningIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="erForretningInnsendtElektroniskTinglystIGrunnboken">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetForretningId" type="ns4:MatrikkelenhetForretningId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="erForretningInnsendtElektroniskTinglystIGrunnbokenResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findForretningerForMatrikkelenheter">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" name="matrikkelenhetIds" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findForretningerForMatrikkelenheterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:MatrikkelenhetIdTilForretningIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findRettingAvForretningsdataForretningerForForretning">
+    <xs:sequence>
+      <xs:element name="forretningId" type="ns4:ForretningId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findRettingAvForretningsdataForretningerForForretningResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:ForretningIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findForretningerForForretningSomGrunnlag">
+    <xs:sequence>
+      <xs:element name="forretningId" type="ns4:ForretningId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findForretningerForForretningSomGrunnlagResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:ForretningIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findForretningerForTeiggrensepunkt">
+    <xs:sequence>
+      <xs:element name="teiggrensepunktId" type="ns1:TeiggrensepunktId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findForretningerForTeiggrensepunktResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:MatrikkelenhetGeometriForretningIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findJordskifteForretningForJordskifteKrevd">
+    <xs:sequence>
+      <xs:element name="jordskifteKrevdId" type="ns1:JordskifteKrevdId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findJordskifteForretningForJordskifteKrevdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:JordskifteForretningId"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSammenslaing">
+    <xs:sequence>
+      <xs:element name="tinglystDokumentIdent" type="ns4:TinglystDokumentIdent"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSammenslaingResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:SammenslaingForretningId"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findForretningIdForIdent">
+    <xs:sequence>
+      <xs:element name="forretningIdent" type="ns4:ForretningIdent"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findForretningIdForIdentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:ForretningId"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findForretningerForAnleggsprojeksjonspunkt">
+    <xs:sequence>
+      <xs:element name="anleggsprojeksjonspunktId" type="ns1:AnleggsprojeksjonspunktId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findForretningerForAnleggsprojeksjonspunktResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:MatrikkelenhetGeometriForretningIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findForretningerForTeig">
+    <xs:sequence>
+      <xs:element name="teigId" type="ns1:TeigId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findForretningerForTeigResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:MatrikkelenhetGeometriForretningIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findForretningerSomSkalTinglysesForMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findForretningerSomSkalTinglysesForMatrikkelenhetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:MatrikkelenhetForretningIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findForretningerForMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findForretningerForMatrikkelenhetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:ForretningIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

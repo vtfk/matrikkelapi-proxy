@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        version="1.0"
+        targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri"
+        xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri"
+        xmlns:basistyperns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"
+        xmlns:geometrikoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder"
+        xmlns:matrikkelenhetns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified">
+
+    <xs:import schemaLocation="basistyper.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"/>
+    <xs:import schemaLocation="basistyper.xsd" namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"/>
+    <xs:import schemaLocation="geometriKoder.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder"/>
+    <xs:import schemaLocation="matrikkelenhet.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"/>
+
+
+    <xs:complexType name="AnleggsprojeksjonsArc">
+        <xs:complexContent>
+            <xs:extension base="AnleggsprojeksjonsCurveSegment">
+                <xs:sequence>
+                    <xs:element name="buepunkt" type="Position" minOccurs="1"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="AnleggsprojeksjonsBoundary">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="grenseIds" type="matrikkelenhetns:AnleggsprojeksjonsgrenseIdList" minOccurs="1"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggsprojeksjonsBoundaryList">
+        <xs:sequence>
+            <xs:element name="item" type="AnleggsprojeksjonsBoundary" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="AnleggsprojeksjonsComplexSurface">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="exterior" type="AnleggsprojeksjonsBoundary" minOccurs="0"/>
+                    <xs:element name="interiors" type="AnleggsprojeksjonsBoundaryList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="AnleggsprojeksjonsCurveSegment">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="koordinatsystemKodeId"
+                                type="geometrikoderns:KoordinatsystemKodeId" minOccurs="0"/>
+                    <xs:element name="originalKoordinatsystemKodeId"
+                                type="geometrikoderns:KoordinatsystemKodeId" minOccurs="0"/>
+                    <xs:element name="startpunktId" type="matrikkelenhetns:AnleggsprojeksjonspunktId" minOccurs="0"/>
+                    <xs:element name="endpunktId" type="matrikkelenhetns:AnleggsprojeksjonspunktId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="AnleggsprojeksjonsPolyline">
+        <xs:complexContent>
+            <xs:extension base="AnleggsprojeksjonsCurveSegment">
+                <xs:sequence>
+                    <xs:element name="kurvepunkter" type="PositionList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="Arc">
+        <xs:complexContent>
+            <xs:extension base="CurveSegment">
+                <xs:sequence>
+                    <xs:element name="buepunkt" type="Position" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="Boundary">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="curveDirections" type="CurveDirectionList" minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BoundaryList">
+        <xs:sequence>
+            <xs:element name="item" type="Boundary" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Ring">
+        <xs:sequence>
+            <xs:element name="positions" type="PointList"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RingList">
+        <xs:sequence>
+            <xs:element name="item" type="Ring" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ComplexSurface">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="exterior" type="Boundary" minOccurs="0"/>
+                    <xs:element name="interior" type="BoundaryList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="CurveDirection">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="signed" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="grenselinjeId" type="matrikkelenhetns:TeiggrenseId" minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="CurveDirectionList">
+        <xs:sequence>
+            <xs:element name="item" type="CurveDirection" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CurveSegment">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="startpunktId" type="matrikkelenhetns:TeiggrensepunktId" minOccurs="0"/>
+                    <xs:element name="endpunktId" type="matrikkelenhetns:TeiggrensepunktId" minOccurs="0"/>
+                    <xs:element name="koordinatsystemKodeId" type="geometrikoderns:KoordinatsystemKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="originalKoordinatsystemKodeId" type="geometrikoderns:KoordinatsystemKodeId"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Polyline">
+        <xs:complexContent>
+            <xs:extension base="CurveSegment">
+                <xs:sequence>
+                    <xs:element name="kurvepunkter" type="PositionList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="Posisjonskvalitet">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="malemetodeId" type="geometrikoderns:MalemetodeKodeId" minOccurs="0"/>
+                    <xs:element name="noyaktighet" type="xs:int" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="Position">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="x" type="xs:double" minOccurs="0"/>
+                    <xs:element name="y" type="xs:double" minOccurs="0"/>
+                    <xs:element name="z" type="xs:double" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="PositionList">
+        <xs:sequence>
+            <xs:element name="item" type="Position" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelBubbleIdTilPointsMap">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" type="basistyperns:MatrikkelBubbleId"/>
+                        <xs:element name="value" type="PointList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Point">
+        <xs:sequence>
+            <xs:element name="x" type="xs:double" minOccurs="0"/>
+            <xs:element name="y" type="xs:double" minOccurs="0"/>
+            <xs:element name="z" type="xs:double" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PointList">
+        <xs:sequence>
+            <xs:element name="item" type="Point" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Representasjonspunkt">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="koordinatsystemKodeId" type="geometrikoderns:KoordinatsystemKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="originalKoordinatsystemKodeId" type="geometrikoderns:KoordinatsystemKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="position" type="Position" minOccurs="0"/>
+                    <xs:element name="kvalitet" type="Posisjonskvalitet" minOccurs="0"/>
+                    <xs:element name="koordinatkvalitetKodeId" type="geometrikoderns:KoordinatkvalitetKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="stedfestingVerifisert" type="xs:boolean" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="RepresentasjonspunktList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="Representasjonspunkt"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="Geometri">
+        <xs:sequence>
+            <xs:element name="koordinatsystemKodeId" type="geometrikoderns:KoordinatsystemKodeId"
+                        minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Multipolygon">
+        <xs:complexContent>
+            <xs:extension base="Geometri">
+                <xs:sequence>
+                    <xs:element name="polygoner" type="PolygonList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="Polygon">
+        <xs:complexContent>
+            <xs:extension base="Geometri">
+                <xs:sequence>
+                    <xs:element name="indreAvgrensning" type="RingList" minOccurs="0"/>
+                    <xs:element name="ytreAvgrensning" type="Ring" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="PolygonList">
+        <xs:sequence>
+            <xs:element name="item" type="Polygon" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SelectionPolygon">
+        <xs:sequence>
+            <xs:element name="polygon" type="Polygon" minOccurs="0"/>
+            <xs:element name="koordinatsystemKodeId" type="geometrikoderns:KoordinatsystemKodeId" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SelectionRectangle">
+        <xs:sequence>
+            <xs:element form="unqualified" minOccurs="0" name="lowerLeft" type="Point"/>
+            <xs:element form="unqualified" minOccurs="0" name="upperRight" type="Point"/>
+            <xs:element name="koordinatsystemKodeId" type="geometrikoderns:KoordinatsystemKodeId" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Envelope">
+        <xs:sequence>
+            <xs:element name="minx" type="xs:double" minOccurs="0"/>
+            <xs:element name="maxx" type="xs:double" minOccurs="0"/>
+            <xs:element name="miny" type="xs:double" minOccurs="0"/>
+            <xs:element name="maxy" type="xs:double" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="EnvelopeList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="Envelope"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!--
+        <xs:complexType name="HistoriskSelectionPolygon">
+            <xs:complexContent>
+                <xs:extension base="SelectionPolygon">
+                    <xs:sequence>
+                        <xs:element name="polygon" type="Polygon" minOccurs="0"/>
+                        <xs:element name="koordinatsystemKodeId" type="geometrikoderns:KoordinatsystemKodeId" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    -->
+
+</xs:schema>
