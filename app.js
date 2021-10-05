@@ -47,7 +47,9 @@ app.use('/assets/', express.static(path.join(__dirname, '/assets')))
 const swaggerUIOptions = {
   deepLinking: false,
   displayOperationId: true,
-  customCss: '.topbar { background-color: #B2DCDA!important; } .topbar-wrapper img { content:url(\'/assets/images/vtfk-logo.svg\'); height: 100px; }'
+  customCss: '.topbar { background-color: #B2DCDA!important; } .topbar-wrapper img { content:url(\'/assets/images/vtfk-logo.svg\'); height: 100px; }',
+  customfavIcon: '/assets/images/favicon.ico',
+  customSiteTitle: 'Matrikkel API Dokumentasjon'
 }
 
 const oasDocumentationEndpoints = [];
