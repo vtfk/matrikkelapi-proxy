@@ -25,7 +25,6 @@ module.exports = new HeaderAPIKeyStrategy(
     let isKeyFound = false;
     // Input valdidation
     if (!apikey) {
-      console.log('No API key is provided');
       return done(null, false);
     }
 
