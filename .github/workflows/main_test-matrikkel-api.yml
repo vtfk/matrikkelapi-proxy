@@ -28,7 +28,7 @@ env:
   NODE_VERSION: '14.x'                      # set this to the node version to use
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
