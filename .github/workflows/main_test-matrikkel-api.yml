@@ -33,6 +33,7 @@ jobs:
         npm run test --if-present
 
   deploy:
+    steps:
     - name: 'Deploy to Azure WebApp'
       uses: azure/webapps-deploy@v2
       with:
