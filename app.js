@@ -43,9 +43,11 @@ app.use(cors(corsOptions));
 // Documentation & Validation
 // Host SwaggerUI and validate incoming requests based on OpenAPI 3.0 spesification files
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+app.use('/assets/', express.static(path.join(__dirname, '/assets')))
 const swaggerUIOptions = {
   deepLinking: false,
-  displayOperationId: true
+  displayOperationId: true,
+  customCss: '.topbar { background-color: #B2DCDA!important; } .topbar-wrapper img { content:url(\'/assets/images/vtfk-logo.svg\'); height: 100px; }'
 }
 
 const oasDocumentationEndpoints = [];

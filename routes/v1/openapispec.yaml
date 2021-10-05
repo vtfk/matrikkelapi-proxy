@@ -209,34 +209,34 @@ components:
                     namespace: http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet
                   - id: ns4
                     namespace: http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/exception
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                    namespace:
-                      type: string
-                    values:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          type:
-                            type: string
-                            description: Hvilken datatype verdien er av. Dette er viktig å ha når man benytter StoreService
-                            example: MatrikkelenhetId
-                          namespace:
-                            type: string
-                            description: Namespacet datatypen tilhører
-                            example: http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet
-                          value:
-                            description: Verdien
-                            example: "00000000"
-                            oneOf:
-                              - type: string
-                              - type: number
-                              - type: boolean
-                              - type: object
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  namespace:
+                    type: string
+                  values:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          description: Hvilken datatype verdien er av. Dette er viktig å ha når man benytter StoreService
+                          example: MatrikkelenhetId
+                        namespace:
+                          type: string
+                          description: Namespacet datatypen tilhører
+                          example: http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet
+                        value:
+                          description: Verdien
+                          example: "00000000"
+                          oneOf:
+                            - type: string
+                            - type: number
+                            - type: boolean
+                            - type: object
     Error:
       type: object
       properties:
