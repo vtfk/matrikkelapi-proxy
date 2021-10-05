@@ -104,15 +104,13 @@ app.use('/api/v1/store', require('./routes/v1/store'));
 // All routes sets the req.response object so that it can be sent to the requestor by a common function
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 app.use('/*', (req, res, next) => {
-  let response = {
+  const response = {
     __metadata: {
       uri: req.protocol + '://' + req.get('host') + req.baseUrl,
-      durationMS: (new Date().getMilliseconds()) - req.timestamp.getMilliseconds(),
+      operationId: req.openapi.schema.operationId || '',
+      durationMS: (new Date().getMilliseconds()) - req.timestamp.getMilliseconds()
     },
     data: req.response
-  }
-  if(req.openapi && req.openapi.schema) {
-    response.__metadata.operationId = req.openapi.schema.operationId
   }
 
   res.type('json').send(JSON.stringify(response, null, 2));
