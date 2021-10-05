@@ -23,7 +23,6 @@ tags:
     description: Endepunkter som omhandler matrikkeleneheter
 paths:
   /matrikkelenheter:
-    
     post:
       operationId: findMatrikkelenheter
       summary: Finner matrikkelenheter
@@ -40,16 +39,12 @@ paths:
             schema:
               $ref: '#/components/schemas/MatrikkelenhetSoek'
       responses:
-        '200':
-          description: search results matching criteria
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/MatrikkelenhetSoek'
-        '500':
-          description: Error
+        200:
+          $ref: '#/components/responses/200-default'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
   /store:
     post:
       operationId: storeGetObjects
@@ -65,7 +60,11 @@ paths:
               $ref: '#/components/schemas/StoreRequest'
       responses:
         200:
-          description: ok
+          $ref: '#/components/responses/200-default'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
 components:
   schemas:
     KoordinatSystemId:
@@ -157,6 +156,10 @@ components:
       type: array
       items:
         type: object
+        required:
+          - namespace
+          - type
+          - value
         properties:
           namespace:
             type: string
@@ -166,8 +169,123 @@ components:
             oneOf:
               - type: string
               - type: integer
+    CommonResponse:
+      type: object
+      properties:
+        __metadata:
+          type: object
+          description: Metadata for API-kallet, innholdet kan variere ut i fra hvilket endepunkt som påkalles
+          properties:
+            uri:
+              type: string
+              description: URLen som ble påkallet for å motta responsen
+              example: https://[APIURL]/api/v1/matrikkelenheter
+            operationId:
+              type: string
+              description: OpenAPI operation-iden for endepunktet som er påkalet
+              example: findMatrikkelenheter
+            durationMS:
+              type: number
+              description: Hvor mange millisekunder APIet benyttet på å håndtere forespørslen
+              example: 123
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                description: Responstypen sendt tilbake fra Matrikkel APIet
+                example: findMatrikkelenheterResponse
+              namespace:
+                type: string
+                description: Namespacet som responstypen hører til
+                example: http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/matrikkelenhet
+              namespaces:
+                type: array
+                description: En liste over alle namespacer og tilhørende ider brukt i dataene
+                example:
+                  - id: ns3
+                    namespace: http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet
+                  - id: ns4
+                    namespace: http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/exception
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  namespace:
+                    type: string
+                  values:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          description: Hvilken datatype verdien er av. Dette er viktig å ha når man benytter StoreService
+                          example: MatrikkelenhetId
+                        namespace:
+                          type: string
+                          description: Namespacet datatypen tilhører
+                          example: http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet
+                        value:
+                          description: Verdien
+                          example: "00000000"
+                          oneOf:
+                            - type: string
+                            - type: number
+                            - type: boolean
+                            - type: object
+    Error:
+      type: object
+      properties:
+        stack:
+          type: string
+          description: Stack informasjon om hvor i koden problemet oppsto
+        message:
+          type: string
+          description: En melding som beskriver feilen
+        name:
+          type: string
+          description: Navnet på feilen hvis noen finnes
+        status:
+          type: number
+          description: HTTP status-kode for feilen
+        path:
+          type: string
+          description: Endepunktet problemet oppsto i
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              path:
+                type: string
+                description: Hvor i input-JSON objektet problemet ble oppdaget i
+              message:
+                type: string
+                description: En beskrivelse av problemet
+              errorCode:
+                type: string
+                description: Kode for feilen hvis det finnes
   securitySchemes:
     APIKeyAuth:
       type: apiKey
       in: header
       name: X-API-KEY
+  responses:
+    200-default:
+      description: Ok
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CommonResponse'
+    400:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    401:
+      description: Unauthorized

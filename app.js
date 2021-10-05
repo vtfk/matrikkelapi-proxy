@@ -43,9 +43,13 @@ app.use(cors(corsOptions));
 // Documentation & Validation
 // Host SwaggerUI and validate incoming requests based on OpenAPI 3.0 spesification files
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+app.use('/assets/', express.static(path.join(__dirname, '/assets')))
 const swaggerUIOptions = {
   deepLinking: false,
-  displayOperationId: true
+  displayOperationId: true,
+  customCss: '.topbar { background-color: #B2DCDA!important; } .topbar-wrapper img { content:url(\'/assets/images/vtfk-logo.svg\'); height: 100px; }',
+  customfavIcon: '/assets/images/favicon.ico',
+  customSiteTitle: 'Matrikkel API Dokumentasjon'
 }
 
 const oasDocumentationEndpoints = [];
@@ -86,6 +90,7 @@ app.all('*',
   passport.authenticate(['headerapikey'], { session: false }),
   (req, res, next) => {
     // This function triggers when a request has been successfully authenticated
+    req.timestamp = new Date();
     next();
   }
 );
@@ -103,7 +108,16 @@ app.use('/api/v1/store', require('./routes/v1/store'));
 // All routes sets the req.response object so that it can be sent to the requestor by a common function
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 app.use('/*', (req, res, next) => {
-  res.type('json').send(JSON.stringify(req.response, null, 2));
+  const response = {
+    __metadata: {
+      uri: req.protocol + '://' + req.get('host') + req.baseUrl,
+      operationId: req.openapi.schema.operationId || '',
+      durationMS: (new Date().getMilliseconds()) - req.timestamp.getMilliseconds()
+    },
+    data: req.response
+  }
+
+  res.type('json').send(JSON.stringify(response, null, 2));
 })
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
