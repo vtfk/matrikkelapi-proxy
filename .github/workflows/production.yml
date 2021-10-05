@@ -15,7 +15,7 @@
 #
 # For more information on GitHub Actions for Azure, refer to https://github.com/Azure/Actions
 # For more samples to get started with GitHub Action workflows to deploy to Azure, refer to https://github.com/Azure/actions-workflow-samples
-name: Build and deploy Node.js app to Azure Web App - test-matrikkel-api
+name: "Production: Build and deploy Node.js app to Azure Web App"
 
 on:
   release:
@@ -49,5 +49,5 @@ jobs:
       uses: azure/webapps-deploy@v2
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_9538be2569894c05bc45cac9fa231b7c }}
+        publish-profile: ${{ secrets.AZURE_PUBLISHINGPROFILE_PRODUCTION }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
