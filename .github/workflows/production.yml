@@ -15,7 +15,7 @@
 #
 # For more information on GitHub Actions for Azure, refer to https://github.com/Azure/Actions
 # For more samples to get started with GitHub Action workflows to deploy to Azure, refer to https://github.com/Azure/actions-workflow-samples
-name: "Production: Build and deploy Node.js app to Azure Web App"
+name: "Production: Build and deploy to Azure"
 
 on:
   release:
