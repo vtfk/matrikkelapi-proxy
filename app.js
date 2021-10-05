@@ -86,6 +86,7 @@ app.all('*',
   passport.authenticate(['headerapikey'], { session: false }),
   (req, res, next) => {
     // This function triggers when a request has been successfully authenticated
+    req.timestamp = new Date();
     next();
   }
 );
@@ -103,7 +104,18 @@ app.use('/api/v1/store', require('./routes/v1/store'));
 // All routes sets the req.response object so that it can be sent to the requestor by a common function
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 app.use('/*', (req, res, next) => {
-  res.type('json').send(JSON.stringify(req.response, null, 2));
+  let response = {
+    __metadata: {
+      uri: req.protocol + '://' + req.get('host') + req.baseUrl,
+      durationMS: (new Date().getMilliseconds()) - req.timestamp.getMilliseconds(),
+    },
+    data: req.response
+  }
+  if(req.openapi && req.openapi.schema) {
+    response.__metadata.operationId = req.openapi.schema.operationId
+  }
+
+  res.type('json').send(JSON.stringify(response, null, 2));
 })
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
