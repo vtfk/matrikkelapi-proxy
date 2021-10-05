@@ -21,6 +21,7 @@ on:
   push:
     branches-ignore:
       - main
+    workflow_dispatch:
 
 env:
   AZURE_WEBAPP_NAME: test-matrikkel-api     # set this to your application's name
