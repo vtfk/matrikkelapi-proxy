@@ -1,10 +1,10 @@
 
 Aktivt:
 * Gjøre så typesjekker i resolve henter ut undertyper også
-    * Må resolve alle typer fullt ut
-    * Hvis den finner nye elementer med xsi-type så skal den returnere det som ett eget objekt. (DISSE KAN VÆRE DYPT NEDE I STRUKTUREN)
-* Skjema generator
-    * Generere skjemaer basert på funnede typer
+    * Finn alle xsi-typer i datasettet
+    * Finn root-xsi typen
+    * Arbeid ned fra roten å bygg skjema for typen
+        * Når den støter på ett element med egendefinert xsi-type, benytt denne til å arbeide videre med skjemaet
 
 TODO:
 Lage en parser som fikser alle responser fra APIet - ✅
