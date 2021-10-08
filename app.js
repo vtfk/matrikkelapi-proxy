@@ -12,6 +12,8 @@ const swaggerUi = require('swagger-ui-express');                      // For hos
 const OpenApiValidator = require('express-openapi-validator');        // Validates all routes based on the requested resource
 require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` })    // Load different .env files based on NODE_ENV
 const config = require('./config');                                   // Loads the config
+const WSDLClient = require('./lib/WSDLClient/WSDLClient');            // WSDLClient is initialized here for pre-loading all WSDL-files into memory
+WSDLClient.loadAllFiles();                                            // Load all files into memory
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Determine variables and constants

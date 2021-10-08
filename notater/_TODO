@@ -1,0 +1,22 @@
+
+Aktivt:
+* Gjøre så typesjekker i resolve henter ut undertyper også
+    * Finn alle xsi-typer i datasettet
+    * Finn root-xsi typen
+    * Arbeid ned fra roten å bygg skjema for typen
+        * Når den støter på ett element med egendefinert xsi-type, benytt denne til å arbeide videre med skjemaet
+
+TODO:
+Lage en parser som fikser alle responser fra APIet - ✅
+Hente ut returntype basert på WSDL filer - ✅
+Lag forskjellige GitHub actions for test og prod - ✅
+Implementere Azure AD authentisering - 
+Lage ferdig requester for å hente ut alt vi trenger - ⏳ - Utviklere er kontaktet
+
+FINISH:
+Optimalisere WSDL uthenting av typer
+Implementere sentry
+Implementere paper trail
+
+NICE TO HAVE:
+Implementere autorisering

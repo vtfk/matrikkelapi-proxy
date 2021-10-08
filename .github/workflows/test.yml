@@ -19,8 +19,8 @@ name: "Test: Build and deploy to Azure"
 
 on:
   push:
-    branches-ignore:
-      - main
+    branches:
+      - test
     workflow_dispatch:
 
 env:
