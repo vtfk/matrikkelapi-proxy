@@ -91,8 +91,11 @@ passport.use(headerAPIKeyStrategy);
 app.all('*',
   passport.authenticate(['headerapikey'], { session: false }),
   (req, res, next) => {
+    // Setup some custom properties that should be usable in the routes and middleware
+    req.custom = {};
+    req.__metadata = {};
     // This function triggers when a request has been successfully authenticated
-    req.timestamp = new Date();
+    req.custom.timestamp = new Date();
     next();
   }
 );
@@ -106,17 +109,59 @@ app.use('/api/v1/matrikkelenheter', require('./routes/v1/matrikkelenheter'));
 app.use('/api/v1/store', require('./routes/v1/store'));
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Common functions
+// Commin functionality for the send response and send error middleware
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function determineDocumentationLinks (req) {
+  const requestedHost = req.protocol + '://' + req.get('host');
+
+  let documentation;
+
+  // Attempt to determine what documentation is correct for the failed request
+  if (req.openapi && req.openapi.expressRoute) {
+    // Attempt to match the express route with the API version
+    let route = req.openapi.expressRoute;
+    if (req.openapi.expressRoute.startsWith('/')) {
+      route = route.substring(1);
+    }
+    const split = route.split('/');
+    if (split.length >= 2) {
+      const reconstructedRoute = '/' + split[0] + '/' + split[1] + '/docs';
+      if (oasDocumentationEndpoints.includes(reconstructedRoute)) {
+        documentation = {
+          full: encodeURI(requestedHost + reconstructedRoute)
+        }
+
+        if (req.openapi.schema && req.openapi.schema.operationId && req.openapi.schema.tags) {
+          documentation.method = encodeURI(requestedHost + reconstructedRoute + '/#/' + req.openapi.schema.tags[0] + '/' + req.openapi.schema.operationId)
+        }
+      }
+    }
+  }
+
+  return documentation
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Send response
 // All routes sets the req.response object so that it can be sent to the requestor by a common function
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 app.use('/*', (req, res, next) => {
-  const response = {
-    __metadata: {
-      uri: req.protocol + '://' + req.get('host') + req.baseUrl,
-      operationId: req.openapi.schema.operationId || '',
-      durationMS: (new Date().getMilliseconds()) - req.timestamp.getMilliseconds()
-    },
-    data: req.response
+  let response;
+  if (req.query.metadata) {
+    response = {
+      __metadata: {
+        uri: req.protocol + '://' + req.get('host') + req.baseUrl,
+        operationId: req.openapi.schema.operationId || '',
+        durationMS: (new Date().getMilliseconds()) - req.custom.timestamp.getMilliseconds(),
+        ...req.__metadata
+      },
+      data: req.response
+    }
+    const documentation = determineDocumentationLinks(req);
+    if (documentation) { response.__metadata.documentation = documentation; }
+  } else {
+    response = req.response;
   }
 
   res.type('json').send(JSON.stringify(response, null, 2));
@@ -128,8 +173,6 @@ app.use('/*', (req, res, next) => {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 app.use((err, req, res, next) => {
   console.log('❌ Error occured ❌');
-  const requestedHost = req.protocol + '://' + req.get('host');
-
   // Construct an error object
   let error = {}
   // Setup the error object based on type
@@ -143,27 +186,9 @@ app.use((err, req, res, next) => {
   } else {
     error = err;
   }
-  // Attempt to determine what documentation is correct for the failed request
-  if (req.openapi && req.openapi.expressRoute) {
-    // Attempt to match the express route with the API version
-    let route = req.openapi.expressRoute;
-    if (req.openapi.expressRoute.startsWith('/')) {
-      route = route.substring(1);
-    }
-    const split = route.split('/');
-    if (split.length >= 2) {
-      const reconstructedRoute = '/' + split[0] + '/' + split[1] + '/docs';
-      if (oasDocumentationEndpoints.includes(reconstructedRoute)) {
-        error.documentation = {
-          full: requestedHost + reconstructedRoute
-        }
-
-        if (req.openapi.schema && req.openapi.schema.operationId && req.openapi.schema.tags) {
-          error.documentation.method = requestedHost + reconstructedRoute + '/#/' + req.openapi.schema.tags[0] + '/' + req.openapi.schema.operationId
-        }
-      }
-    }
-  }
+  // Attempt to link to documentation
+  const documentation = determineDocumentationLinks(req);
+  if (documentation) { error.documentation = documentation; }
 
   // Output the error
   console.error(error);

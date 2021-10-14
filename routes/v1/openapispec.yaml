@@ -33,6 +33,9 @@ paths:
       description: |
         Finner matrikkelenheter basert på spesifisert input.
         Må være POST for å sende med body
+      parameters:
+        - $ref: "#/components/parameters/resolve"
+        - $ref: "#/components/parameters/metadata"
       requestBody:
         content:
           application/json:
@@ -53,6 +56,9 @@ paths:
         - APIKeyAuth: []
       tags:
         - Store service
+      parameters:
+        - $ref: "#/components/parameters/resolve"
+        - $ref: "#/components/parameters/metadata"
       requestBody:
         content:
           application/json:
@@ -61,6 +67,34 @@ paths:
       responses:
         200:
           $ref: '#/components/responses/200-default'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+  /utils/resolveType:
+    post:
+      tags:
+        - Verktøy
+      summary: Finner typer og namespacer for alle elementer for en hovedtype
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              minItems: 1
+              items:
+                type: object
+                required:
+                  - typename
+                  - namespace
+                properties:
+                  typename:
+                    type: string
+                    example: PersonTinglystEierforhold
+                  namespace:
+                    type: string
+                    example: http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet
+      responses:
         400:
           $ref: '#/components/responses/400'
         401:
@@ -155,20 +189,37 @@ components:
     StoreRequest:
       type: array
       items:
-        type: object
-        required:
-          - namespace
-          - type
-          - value
-        properties:
-          namespace:
-            type: string
-          type:
-            type: string
-          value:
-            oneOf:
-              - type: string
-              - type: integer
+        oneOf:
+          - type: object
+            required:
+              - namespace
+              - type
+              - value
+            properties:
+              type:
+                type: string
+              namespace:
+                type: string
+              value:
+                oneOf:
+                  - type: string
+                  - type: integer
+                  - type: boolean
+          - type: object
+            required:
+              - $namespace
+              - $type
+              - value
+            properties:
+              $type:
+                type: string
+              $namespace:
+                type: string
+              value:
+                oneOf:
+                  - type: string
+                  - type: integer
+                  - type: boolean
     CommonResponse:
       type: object
       properties:
@@ -209,34 +260,34 @@ components:
                     namespace: http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet
                   - id: ns4
                     namespace: http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/exception
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                  namespace:
-                    type: string
-                  values:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        type:
-                          type: string
-                          description: Hvilken datatype verdien er av. Dette er viktig å ha når man benytter StoreService
-                          example: MatrikkelenhetId
-                        namespace:
-                          type: string
-                          description: Namespacet datatypen tilhører
-                          example: http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet
-                        value:
-                          description: Verdien
-                          example: "00000000"
-                          oneOf:
-                            - type: string
-                            - type: number
-                            - type: boolean
-                            - type: object
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    namespace:
+                      type: string
+                    values:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            description: Hvilken datatype verdien er av. Dette er viktig å ha når man benytter StoreService
+                            example: MatrikkelenhetId
+                          namespace:
+                            type: string
+                            description: Namespacet datatypen tilhører
+                            example: http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet
+                          value:
+                            description: Verdien
+                            example: "00000000"
+                            oneOf:
+                              - type: string
+                              - type: number
+                              - type: boolean
+                              - type: object
     Error:
       type: object
       properties:
@@ -269,6 +320,21 @@ components:
               errorCode:
                 type: string
                 description: Kode for feilen hvis det finnes
+  parameters:
+    resolve:
+      in: query
+      name: resolve
+      description: Should type information be resolved for the data?
+      schema:
+        type: boolean
+        default: false
+    metadata:
+      in: query
+      name: metadata
+      description: Should the response include metadata?
+      schema:
+        type: boolean
+        default: true
   securitySchemes:
     APIKeyAuth:
       type: apiKey
