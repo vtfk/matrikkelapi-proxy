@@ -36,6 +36,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/resolve"
         - $ref: "#/components/parameters/metadata"
+        - $ref: "#/components/parameters/flatten"
       requestBody:
         content:
           application/json:
@@ -59,6 +60,7 @@ paths:
       parameters:
         - $ref: "#/components/parameters/resolve"
         - $ref: "#/components/parameters/metadata"
+        - $ref: "#/components/parameters/flatten"
       requestBody:
         content:
           application/json:
@@ -332,6 +334,13 @@ components:
       in: query
       name: metadata
       description: Should the response include metadata?
+      schema:
+        type: boolean
+        default: true
+    flatten:
+      in: query
+      name: flatten
+      description: Should it only return one array containing only the items?
       schema:
         type: boolean
         default: true
