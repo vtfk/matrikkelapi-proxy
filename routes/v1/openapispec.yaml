@@ -336,11 +336,11 @@ components:
       description: Should the response include metadata?
       schema:
         type: boolean
-        default: true
+        default: false
     flatten:
       in: query
       name: flatten
-      description: Should it only return one array containing only the items?
+      description: Should the result be flattened? (Making the data easier to work with)
       schema:
         type: boolean
         default: true

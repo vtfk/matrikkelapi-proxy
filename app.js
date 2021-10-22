@@ -149,11 +149,16 @@ function determineDocumentationLinks (req) {
 app.use('/*', (req, res, next) => {
   let response;
   if (req.query.metadata) {
+    let itemCount = 0;
+    if (req.response && Array.isArray(req.response)) {
+      itemCount = req.response.length;
+    }
     response = {
       __metadata: {
         uri: req.protocol + '://' + req.get('host') + req.baseUrl,
         operationId: req.openapi.schema.operationId || '',
         durationMS: (new Date().getMilliseconds()) - req.custom.timestamp.getMilliseconds(),
+        items: itemCount,
         ...req.__metadata
       },
       data: req.response
