@@ -2,11 +2,11 @@
    <soapenv:Header/>
    <soapenv:Body>
       <stor:getObjects>
-         <stor:ids {{NAMESPACESTRING}}>
-            {{ITEMS}}
+         <stor:ids {{{namespaceString}}}>
+            {{{items}}}
          </stor:ids>
          <stor:matrikkelContext>
-            {{CONTEXT}}
+            {{{matrikkelContext}}}
          </stor:matrikkelContext>
       </stor:getObjects>
    </soapenv:Body>

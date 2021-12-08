@@ -189,39 +189,47 @@ components:
         polygon:
           $ref: '#/components/schemas/Polygon'
     StoreRequest:
-      type: array
-      items:
-        oneOf:
-          - type: object
-            required:
-              - namespace
-              - type
-              - value
-            properties:
-              type:
-                type: string
-              namespace:
-                type: string
-              value:
-                oneOf:
-                  - type: string
-                  - type: integer
-                  - type: boolean
-          - type: object
-            required:
-              - $namespace
-              - $type
-              - value
-            properties:
-              $type:
-                type: string
-              $namespace:
-                type: string
-              value:
-                oneOf:
-                  - type: string
-                  - type: integer
-                  - type: boolean
+      type: object
+      required:
+        - items
+        - matrikkelContext
+      properties:
+        items:
+          type: array
+          items:
+            oneOf:
+              - type: object
+                required:
+                  - namespace
+                  - type
+                  - value
+                properties:
+                  type:
+                    type: string
+                  namespace:
+                    type: string
+                  value:
+                    oneOf:
+                      - type: string
+                      - type: integer
+                      - type: boolean
+              - type: object
+                required:
+                  - $namespace
+                  - $type
+                  - value
+                properties:
+                  $type:
+                    type: string
+                  $namespace:
+                    type: string
+                  value:
+                    oneOf:
+                      - type: string
+                      - type: integer
+                      - type: boolean
+        matrikkelContext:
+          $ref: '#/components/schemas/MatrikkelContext'
     CommonResponse:
       type: object
       properties:

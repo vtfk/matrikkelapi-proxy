@@ -5,7 +5,7 @@ const HeaderAPIKeyStrategy = require('passport-headerapikey').HeaderAPIKeyStrate
 
 function getEnvironmentAPIKeys () {
   const APIKeys = [];
-  let currentKey = 'initial';
+  let currentKey = 'start';
   let counter = 1;
   while (currentKey !== undefined) {
     currentKey = process.env['APIKEY' + counter];

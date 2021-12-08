@@ -6,21 +6,21 @@
                 <mat1:selectionPolygon>
                 <geom:polygon>
                     <geom:koordinatsystemKodeId>
-                        <dom:value>{{KOORDINATSYSTEMID}}</dom:value>
+                        <dom:value>{{{koordinatsystemKodeId}}}</dom:value>
                     </geom:koordinatsystemKodeId>
                     <geom:ytreAvgrensning>
                         <geom:positions>
-                            {{COORDINATES}}
+                            {{{positions}}}
                         </geom:positions>
                     </geom:ytreAvgrensning>
                 </geom:polygon>
                 <geom:koordinatsystemKodeId>
-                    <dom:value>{{KOORDINATSYSTEMID}}</dom:value>
+                    <dom:value>{{{koordinatsystemKodeId}}}</dom:value>
                 </geom:koordinatsystemKodeId>
                 </mat1:selectionPolygon>
             </mat:matrikkelenhetsokModel>
             <mat:matrikkelContext>
-                {{CONTEXT}}
+                {{{matrikkelContext}}}
             </mat:matrikkelContext>
         </mat:findMatrikkelenheter>
     </soapenv:Body>
