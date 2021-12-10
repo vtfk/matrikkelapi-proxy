@@ -215,13 +215,13 @@ components:
                       - type: boolean
               - type: object
                 required:
-                  - $namespace
-                  - $type
+                  - _namespace
+                  - _type
                   - value
                 properties:
-                  $type:
+                  _type:
                     type: string
-                  $namespace:
+                  _namespace:
                     type: string
                   value:
                     oneOf:
