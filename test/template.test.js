@@ -2,6 +2,7 @@
     Import dependencies
 */
 const TemplateClient = require('../lib/TemplateClient/TemplateClient');
+const Sjablong = require('sjablong');
 
 /*
     Tests
@@ -30,9 +31,6 @@ describe('Load all templates', () => {
 
 describe('Replace all default values in templates', () => {
   test.each(TemplateClient.listTemplates())('Default values %p can be resolved', (template) => {
-    let t = TemplateClient.getTemplate(template);
-    t = TemplateClient.fillDefaultValues(t);
-    const result = TemplateClient.hasDefaultValues(t);
-    expect(result).not.toBeTruthy();
+    expect(() => Sjablong.replacePlaceholders(template, {})).not.toThrow();
   })
 })

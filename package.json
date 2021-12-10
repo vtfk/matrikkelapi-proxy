@@ -46,7 +46,7 @@
     "passport": "^0.4.1",
     "passport-headerapikey": "^1.2.2",
     "prettify-xml": "^1.2.0",
-    "sjablong": "^1.0.29",
+    "sjablong": "^1.0.30",
     "swagger-ui-express": "^4.1.6",
     "xml-query": "^1.5.0",
     "xml-reader": "^2.4.3",
