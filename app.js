@@ -156,7 +156,7 @@ app.use('/*', (req, res, next) => {
     response = {
       __metadata: {
         uri: req.protocol + '://' + req.get('host') + req.baseUrl,
-        operationId: req.openapi.schema.operationId || '',
+        operationId: req.openapi ? req.openapi.schema.operationId : '',
         durationMS: (new Date().getMilliseconds()) - req.custom.timestamp.getMilliseconds(),
         items: itemCount,
         ...req.__metadata
