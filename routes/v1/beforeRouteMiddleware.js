@@ -9,6 +9,8 @@ const Sjablong = require('sjablong');
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 async function f (req, res, next) {
   let matrikkelContext = TemplateClient.getTemplate('matrikkelContext.xml');
+  if (!req.body.matrikkelContext) { req.body.matrikkelContext = {} }
+  if (req.body.koordinatsystemKodeId) req.body.matrikkelContext.koordinatsystemKodeId = req.body.koordinatsystemKodeId;
   matrikkelContext = Sjablong.replacePlaceholders(matrikkelContext, req.body.matrikkelContext);
   req.matrikkelContext = matrikkelContext;
 

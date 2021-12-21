@@ -5,10 +5,10 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "standardx && cross-env NODE_ENV=development nodemon app.js",
+    "dev": "standardx --fix && cross-env NODE_ENV=development nodemon app.js",
     "debug": "cross-env NODE_ENV=development nodemon test.js",
-    "standard": "standardx",
-    "test": "standardx && jest",
+    "standard": "standardx --fix",
+    "test": "standardx --fix && jest",
     "refresh": "rm -rf node_modules && rm package-lock.json && npm i"
   },
   "repository": {

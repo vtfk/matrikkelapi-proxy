@@ -103,7 +103,7 @@ paths:
           $ref: '#/components/responses/401'
 components:
   schemas:
-    KoordinatSystemId:
+    koordinatsystemKodeId:
       type: number
       default: 24
       minimum: 0
@@ -141,21 +141,9 @@ components:
       type: array
       minItems: 4
       items:
-        type: object
-        required:
-          - x
-          - y
-        properties:
-          x:
-            type: number
-            description: Longitude or Easting
-          y:
-            type: number
-            description: Latitude or Northing
-          z:
-            type: number
-            description: Height
-            default: 0
+        type: array
+        description: Coordinates in format [ Easting, Northing, <Height>]
+        minItems: 2
     MatrikkelContext:
       type: object
       required:
@@ -167,9 +155,9 @@ components:
         brukOriginaleKoordinater:
           type: boolean
           default: false
-        koordinatSystemId:
+        koordinatsystemKodeId:
           allOf:
-            - $ref: "#/components/schemas/KoordinatSystemId"
+            - $ref: "#/components/schemas/koordinatsystemKodeId"
           default: 24
         systemVersion:
           type: string
@@ -184,8 +172,8 @@ components:
       properties:
         matrikkelContext:
           $ref: '#/components/schemas/MatrikkelContext'
-        koordinatSystemId:
-          $ref: '#/components/schemas/KoordinatSystemId'
+        koordinatsystemKodeId:
+          $ref: '#/components/schemas/koordinatsystemKodeId'
         polygon:
           $ref: '#/components/schemas/Polygon'
     StoreRequest:
