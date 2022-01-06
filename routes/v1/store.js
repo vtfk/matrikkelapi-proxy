@@ -13,7 +13,7 @@ router.post('/', async (req, res, next) => {
   try {
     // Construct the client
     res.setHeader('Content-Type', 'application/json');
-    const client = new MatrikkelClient(config.matrikkelAPIUsername, config.matrikkelAPIPassword, 'https://prodtest.matrikkel.no/matrikkelapi/wsapi/v1/StoreServiceWS');
+    const client = new MatrikkelClient(config.MATRIKKELAPI_USERNAME, config.MATRIKKELAPI_PASSWORD, 'matrikkelapi/wsapi/v1/StoreServiceWS');
     // Get the matrikkel polygon
     req.response = await client.callStoreService(req, req.body);
     // Pass to next function
