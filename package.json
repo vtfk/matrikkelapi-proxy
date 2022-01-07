@@ -29,7 +29,7 @@
   "devDependencies": {
     "audit": "^0.0.6",
     "cross-env": "^7.0.3",
-    "jest": "27.4.5",
+    "jest": "27.4.7",
     "morgan": "^1.10.0",
     "nodemon": "2.0.15",
     "standardx": "^7.0.0"
