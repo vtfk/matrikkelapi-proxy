@@ -20,6 +20,7 @@ name: "Test: Build and deploy to Azure"
 on:
   push:
     branches:
+      - main
       - test
     workflow_dispatch:
 
