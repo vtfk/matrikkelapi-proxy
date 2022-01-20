@@ -29,9 +29,10 @@
   "devDependencies": {
     "audit": "^0.0.6",
     "cross-env": "^7.0.3",
-    "jest": "27.4.7",
+    "jest": "^27.2.1",
     "morgan": "^1.10.0",
-    "nodemon": "2.0.15",
+    "nodemon": "^2.0.12",
+    "snyk": "^1.833.0",
     "standardx": "^7.0.0"
   },
   "dependencies": {
@@ -43,11 +44,11 @@
     "express-openapi-validator": "^4.13.1",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
-    "node-fetch": "^2.6.4",
+    "node-fetch": "^2.6.7",
     "passport": "^0.4.1",
     "passport-headerapikey": "^1.2.2",
     "prettify-xml": "^1.2.0",
-    "sjablong": "^1.0.30",
+    "sjablong": "^1.0.33",
     "swagger-ui-express": "^4.1.6",
     "xml-query": "^1.5.0",
     "xml-reader": "^2.4.3",
