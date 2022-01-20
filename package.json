@@ -27,13 +27,13 @@
   },
   "homepage": "https://github.com/karleinarb/kartverket-matrikkel-api#readme",
   "devDependencies": {
-    "audit": "^0.0.6",
-    "cross-env": "^7.0.3",
-    "jest": "^27.2.1",
-    "morgan": "^1.10.0",
-    "nodemon": "^2.0.12",
-    "snyk": "^1.833.0",
-    "standardx": "^7.0.0"
+    "audit": "0.0.6",
+    "cross-env": "7.0.3",
+    "jest": "27.2.1",
+    "morgan": "1.10.0",
+    "nodemon": "2.0.12",
+    "snyk": "1.833.0",
+    "standardx": "7.0.0"
   },
   "dependencies": {
     "@vtfk/utilities": "^1.0.0",
