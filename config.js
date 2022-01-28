@@ -4,6 +4,6 @@ module.exports = {
   MATRIKKELAPI_BASEURL: process.env.MATRIKKELAPI_BASEURL,
   MATRIKKELAPI_USERNAME: process.env.MATRIKKELAPI_USERNAME,
   MATRIKKELAPI_PASSWORD: process.env.MATRIKKELAPI_PASSWORD,
-  dsfAPIEndpoint: process.env.DSFAPIENDPOINT,
-  jwtSecret: process.env.DSFSECRET
+  dsfAPIEndpoint: process.env.VTFK_DFSAPI_ENDPOINT,
+  jwtSecret: process.env.VTFK_DSFAPI_SECRET
 }
