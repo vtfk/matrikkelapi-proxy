@@ -18,10 +18,13 @@
 name: "Production: Build and deploy to Azure"
 
 on:
-  release:
+  push:
     branches:
       - main
     workflow_dispatch:
+  release:
+    branches:
+      - main
 
 env:
   AZURE_WEBAPP_NAME: prod-app-matrikkelproxy-api   # set this to your application's name
