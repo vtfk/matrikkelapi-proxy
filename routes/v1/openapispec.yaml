@@ -73,30 +73,29 @@ paths:
           $ref: '#/components/responses/400'
         401:
           $ref: '#/components/responses/401'
-  /utils/resolveType:
+  /raw:
     post:
+      operationId: rawRequest
+      summary: Videreformidler ett XML request til Matrikkelenheter
+      security:
+        - APIKeyAuth: []
       tags:
-        - Verktøy
-      summary: Finner typer og namespacer for alle elementer for en hovedtype
+        - Matrikkel
+      parameters:
+        - in: query
+          name: service
+          description: What matrikkel service is the request for?
+          required: true
+          schema:
+            type: string
       requestBody:
         content:
-          application/json:
+          application/xml:
             schema:
-              type: array
-              minItems: 1
-              items:
-                type: object
-                required:
-                  - typename
-                  - namespace
-                properties:
-                  typename:
-                    type: string
-                    example: PersonTinglystEierforhold
-                  namespace:
-                    type: string
-                    example: http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet
+              type: object
       responses:
+        200:
+          $ref: '#/components/responses/200-default'
         400:
           $ref: '#/components/responses/400'
         401:

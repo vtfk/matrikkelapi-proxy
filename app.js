@@ -109,6 +109,7 @@ app.all('*',
 app.use('/api/v1/*', require('./routes/v1/beforeRouteMiddleware'));
 app.use('/api/v1/matrikkelenheter', require('./routes/v1/matrikkelenheter'));
 app.use('/api/v1/store', require('./routes/v1/store'));
+app.use('/api/v1/raw', require('./routes/v1/raw'));
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Common functions
