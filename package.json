@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "standardx --fix && cross-env NODE_ENV=development nodemon app.js",
+    "dev": "cross-env NODE_ENV=development nodemon app.js",
     "debug": "cross-env NODE_ENV=development nodemon test.js",
     "standard": "standardx --fix",
     "test": "standardx --fix && jest",
