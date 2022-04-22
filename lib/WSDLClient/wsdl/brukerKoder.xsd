@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        version="1.0"
+        targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bruker/koder"
+        xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bruker/koder"
+        xmlns:kodens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified">
+
+    <xs:import schemaLocation="kodeliste.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"/>
+
+    <xs:complexType name="BrukerAktiveringsstatusKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BrukerAktiveringsstatusKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BrukerAktiveringsstatusKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="BrukerAktiveringsstatusKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="BrukergruppeKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BrukergruppeKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BrukergruppeKodeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="BrukergruppeKodeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="Sprakform">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="SprakformId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="SprakformIdList">
+        <xs:sequence>
+            <xs:element name="item" type="SprakformId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Rolle">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode">
+                <xs:sequence>
+                    <xs:element name="aksessRettigheter" type="AksessRettighetList" minOccurs="0"/>
+                    <xs:element name="lesFodselsnummerRettighet" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="lesEierforholdRettighet" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="lesKommunaleTilleggsdataRettighet" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="lesBygningsdataRettighet" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="lesSkjermingsverdigeBygningstyperRettighet" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="webLogicGruppenavn" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="RolleId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="RolleIdList">
+        <xs:sequence>
+            <xs:element name="item" type="RolleId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AksessRettighet">
+        <xs:sequence>
+            <xs:element name="aksessTypeId" type="AksessTypeId" minOccurs="0"/>
+            <xs:element name="domeneAvgrensningId" type="DomeneAvgrensningId" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AksessRettighetList">
+        <xs:sequence>
+            <xs:element name="item" type="AksessRettighet" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="AksessType">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AksessTypeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AksessTypeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="AksessTypeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="DomeneAvgrensning">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="DomeneAvgrensningId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="DomeneAvgrensningIdList">
+        <xs:sequence>
+            <xs:element name="item" type="DomeneAvgrensningId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

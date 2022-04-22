@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" xmlns:ns2="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" xmlns:ns3="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste" xmlns:tns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/kodeliste" elementFormDefault="qualified" targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/kodeliste" version="1.0">
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" schemaLocation="geometriKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" schemaLocation="basistyper.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste" schemaLocation="kodeliste.xsd"/>
+
+  <xs:element name="getKodelister" type="tns:getKodelister"/>
+
+  <xs:element name="getKodelisterEnkel" type="tns:getKodelisterEnkel"/>
+
+  <xs:element name="getKodelisterEnkelResponse" type="tns:getKodelisterEnkelResponse"/>
+
+  <xs:element name="getKodelisterResponse" type="tns:getKodelisterResponse"/>
+
+  <xs:complexType name="getKodelisterEnkel">
+    <xs:sequence>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getKodelisterEnkelResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns3:KodelisteTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getKodelister">
+    <xs:sequence>
+      <xs:element name="snapshotVersion" type="ns2:Timestamp"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getKodelisterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns3:KodelisteTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

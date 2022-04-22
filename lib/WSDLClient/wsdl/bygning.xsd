@@ -1,0 +1,793 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        xmlns:bygningkoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning/koder"
+        xmlns:basistyperns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"
+        xmlns:kommunens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune"
+        xmlns:geometrins="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri"
+        xmlns:adressens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse"
+        xmlns:personns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person"
+        xmlns:matrikkelenhetns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"
+        xmlns:kommunetilleggns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommunetillegg"
+        xmlns:utilns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/util"
+        xmlns:sefrak="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/sefrak"
+        xmlns:kulturminne="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kulturminne"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        version="1.0"
+        targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning"
+        xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning"
+        elementFormDefault="qualified">
+
+    <xs:import schemaLocation="basistyper.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"/>
+    <xs:import schemaLocation="geometri.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri"/>
+    <xs:import schemaLocation="adresse.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse"/>
+    <xs:import schemaLocation="matrikkelenhet.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"/>
+    <xs:import schemaLocation="kommune.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune"/>
+    <xs:import schemaLocation="person.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person"/>
+    <xs:import schemaLocation="bygningKoder.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning/koder"/>
+    <xs:import schemaLocation="kommunetillegg.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommunetillegg"/>
+    <xs:import schemaLocation="util.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/util"/>
+    <xs:import schemaLocation="sefrak.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/sefrak"/>
+    <xs:import schemaLocation="kulturminne.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kulturminne"/>
+
+
+    <xs:complexType name="Bygg">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="bygningsnummer" type="xs:long" minOccurs="0"/>
+                    <xs:element name="lopenummer" type="xs:int" minOccurs="0"/>
+                    <xs:element name="kommuneId" type="kommunens:KommuneId" minOccurs="0"/>
+                    <xs:element name="representasjonspunkt" type="geometrins:Representasjonspunkt"
+                                minOccurs="0"/>
+                    <xs:element name="harSefrakminne" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="harKulturminne" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="harHeis" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="skjermingsverdig" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="bebygdAreal" type="xs:double" minOccurs="0"/>
+                    <xs:element name="utenBebygdAreal" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="tidligereByggId" type="ByggId" minOccurs="0"/>
+                    <xs:element name="etasjer" type="EtasjeList" minOccurs="0"/>
+                    <xs:element name="bruksenhetIds" type="BruksenhetIdList" minOccurs="0"/>
+                    <xs:element name="bygningsstatusHistorikker" type="BygningsstatusHistorikkList"
+                                minOccurs="0"/>
+                    <xs:element name="kontaktpersoner" type="KontaktpersonList" minOccurs="0"/>
+                    <xs:element name="oppvarmingsKodeIds"
+                                type="bygningkoderns:OppvarmingsKodeIdList" minOccurs="0"/>
+                    <xs:element name="energikildeKodeIds"
+                                type="bygningkoderns:EnergikildeKodeIdList" minOccurs="0"/>
+                    <xs:element name="bygningsstatusKodeId"
+                                type="bygningkoderns:BygningsstatusKodeId" minOccurs="0"/>
+                    <xs:element name="avlopsKodeId" type="bygningkoderns:AvlopsKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="vannforsyningsKodeId"
+                                type="bygningkoderns:VannforsyningsKodeId" minOccurs="0"/>
+                    <xs:element name="naringsgruppeKodeId" type="bygningkoderns:NaringsgruppeKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="opprinnelsesKodeId" type="bygningkoderns:OpprinnelsesKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="etasjedata" type="Etasjedata" minOccurs="0"/>
+                    <xs:element name="kommunalTilleggsdel" type="kommunetilleggns:BygningTillegg"
+                                minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Bygning">
+        <xs:complexContent>
+            <xs:extension base="Bygg">
+                <xs:sequence>
+                    <xs:element name="bygningstypeKodeId" type="bygningkoderns:BygningstypeKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="ufullstendigAreal" type="xs:boolean" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Bygningsendring">
+        <xs:complexContent>
+            <xs:extension base="Bygg">
+                <xs:sequence>
+                    <xs:element name="bygningId" type="BygningId" minOccurs="0"/>
+                    <xs:element name="bygningsendringsKodeId"
+                                type="bygningkoderns:BygningsendringsKodeId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ByggId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BygningId">
+        <xs:complexContent>
+            <xs:extension base="ByggId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BygningsendringId">
+        <xs:complexContent>
+            <xs:extension base="ByggId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ByggIdent">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:Ident">
+                <xs:sequence>
+                    <xs:element name="bygningsnummer" type="xs:long"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ByggIdentList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="ByggIdent"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ByggIdentTilByggIdMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="ByggIdent"/>
+                        <xs:element name="value" nillable="true" type="ByggId"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BygningIdent">
+        <xs:complexContent>
+            <xs:extension base="ByggIdent">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BygningsendringIdent">
+        <xs:complexContent>
+            <xs:extension base="ByggIdent">
+                <xs:sequence>
+                    <xs:element name="lopenummer" type="xs:int"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ByggIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="ByggId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AdresseIdTilByggIdsMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="adressens:AdresseId"/>
+                        <xs:element name="value" nillable="true" type="ByggIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetIdTilByggIdsMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetId"/>
+                        <xs:element name="value" nillable="true" type="ByggIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Bruksenhet">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="byggId" type="ByggId" minOccurs="0"/>
+                    <xs:element name="etasjeplanKodeId" type="bygningkoderns:EtasjeplanKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="etasjenummer" type="xs:int" minOccurs="0"/>
+                    <xs:element name="lopenummer" type="xs:int" minOccurs="0"/>
+                    <xs:element name="adresseId" type="adressens:AdresseId" minOccurs="0"/>
+                    <xs:element name="matrikkelenhetId" type="matrikkelenhetns:MatrikkelenhetId"
+                                minOccurs="0"/>
+                    <xs:element name="bruksenhetstypeKodeId"
+                                type="bygningkoderns:BruksenhetstypeKodeId" minOccurs="0"/>
+                    <xs:element name="antallRom" type="xs:int" minOccurs="0"/>
+                    <xs:element name="antallBad" type="xs:int" minOccurs="0"/>
+                    <xs:element name="antallWC" type="xs:int" minOccurs="0"/>
+                    <xs:element name="bruksareal" type="xs:double" minOccurs="0"/>
+                    <xs:element name="kjokkentilgangId" type="bygningkoderns:KjokkentilgangKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="skalUtga" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="byggSkjermingsverdig" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BruksenhetId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BruksenhetIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="BruksenhetId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BruksenhetList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="Bruksenhet"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Etasje">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="etasjeplanKodeId" type="bygningkoderns:EtasjeplanKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="etasjenummer" type="xs:int" minOccurs="0"/>
+                    <xs:element name="antallBoenheter" type="xs:int" minOccurs="0"/>
+                    <xs:element name="bruksarealTilBolig" type="xs:double" minOccurs="0"/>
+                    <xs:element name="bruksarealTilAnnet" type="xs:double" minOccurs="0"/>
+                    <xs:element name="bruksarealTotalt" type="xs:double" minOccurs="0"/>
+                    <xs:element name="alternativtAreal" type="xs:double" minOccurs="0"/>
+                    <xs:element name="alternativtAreal2" type="xs:double" minOccurs="0"/>
+                    <xs:element name="bruttoarealTilBolig" type="xs:double" minOccurs="0"/>
+                    <xs:element name="bruttoarealTilAnnet" type="xs:double" minOccurs="0"/>
+                    <xs:element name="bruttoarealTotalt" type="xs:double" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="EtasjeList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="Etasje"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BygningsstatusHistorikk">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="bygningsstatusKodeId"
+                                type="bygningkoderns:BygningsstatusKodeId" minOccurs="0"/>
+                    <xs:element name="arsakTilForingKodeId"
+                                type="bygningkoderns:ArsakTilForingKodeId" minOccurs="0"/>
+                    <xs:element name="signatur" type="xs:string" minOccurs="0"/>
+                    <xs:element name="referanse" type="xs:string" minOccurs="0"/>
+                    <xs:element name="dato" type="basistyperns:LocalDate" minOccurs="0"/>
+                    <xs:element name="registrertDato" type="basistyperns:Timestamp" minOccurs="0"/>
+                    <xs:element name="slettetDato" type="basistyperns:Timestamp" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BygningsstatusHistorikkList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="BygningsstatusHistorikk"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Kontaktperson">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="personId" type="personns:PersonId" minOccurs="0"/>
+                    <xs:element name="kontaktpersonKodeId" type="bygningkoderns:KontaktpersonKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="datoFra" type="basistyperns:LocalDate" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="JuridiskKontaktperson">
+        <xs:complexContent>
+            <xs:extension base="Kontaktperson"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KontaktpersonList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="Kontaktperson"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Etasjedata">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="antallBoenheter" type="xs:int" minOccurs="0"/>
+                    <xs:element name="bruksarealTilBolig" type="xs:double" minOccurs="0"/>
+                    <xs:element name="bruksarealTilAnnet" type="xs:double" minOccurs="0"/>
+                    <xs:element name="bruksarealTotalt" type="xs:double" minOccurs="0"/>
+                    <xs:element name="alternativtAreal" type="xs:double" minOccurs="0"/>
+                    <xs:element name="alternativtAreal2" type="xs:double" minOccurs="0"/>
+                    <xs:element name="bruttoarealTilBolig" type="xs:double" minOccurs="0"/>
+                    <xs:element name="bruttoarealTilAnnet" type="xs:double" minOccurs="0"/>
+                    <xs:element name="bruttoarealTotalt" type="xs:double" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BygningIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="BygningId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="EnkelByggSokModel">
+        <xs:sequence>
+            <xs:element name="bygningsnummer" type="xs:long" minOccurs="0"/>
+            <xs:element name="lopenummer" type="xs:int" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="EnkelByggSokModelList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="EnkelByggSokModel"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="BygningsstatusKompositt">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="BESTAENDE_BYGG"/>
+            <xs:enumeration value="UTGATTE_BYGG"/>
+            <xs:enumeration value="BYGG_I_ARBEID"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="ByggsokModel">
+        <xs:complexContent>
+            <xs:extension base="AbstractByggsokModel">
+                <xs:sequence>
+                    <xs:element name="bygningsnummer" type="xs:long" minOccurs="0"/>
+                    <xs:element name="lopenummer" type="xs:int" minOccurs="0"/>
+                    <!--<xs:element name="kommunenummer" type="xs:string" minOccurs="0"/>-->
+                    <xs:element name="gardsnummer" type="utilns:Interval" minOccurs="0"/>
+                    <xs:element name="bruksnummer" type="utilns:Interval" minOccurs="0"/>
+                    <xs:element name="festenummer" type="xs:int" minOccurs="0"/>
+                    <xs:element name="seksjonsnummer" type="xs:int" minOccurs="0"/>
+                    <xs:element name="adressekode" type="utilns:Interval" minOccurs="0"/>
+                    <xs:element name="adressenavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="adressetilleggsnavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="husnummer" type="xs:int" minOccurs="0"/>
+                    <xs:element name="bokstav" type="xs:string" minOccurs="0"/>
+                    <xs:element name="nummerForPerson" type="xs:string" minOccurs="0"/>
+                    <xs:element name="fornavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="etternavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="selectionPolygon" type="geometrins:SelectionPolygon" minOccurs="0"/>
+                    <xs:element name="tidligereStatusListe" type="basistyperns:StringList" minOccurs="0"/>
+                    <xs:element name="tidligereStatusFra" type="basistyperns:LocalDate" minOccurs="0"/>
+                    <xs:element name="tidligereStatusTil" type="basistyperns:LocalDate" minOccurs="0"/>
+                    <xs:element name="adressenavnFonetisk" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="adressetilleggsnavnFonetisk" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="navnFonetisk" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="harSefrakminne" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="harKulturminne" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="utenBokstav" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="bygningstypeListe" type="basistyperns:StringList" minOccurs="0"/>
+                    <xs:element name="bruksenhetsnummer" type="xs:string" minOccurs="0"/>
+                    <xs:element name="bygningsstatusListe" type="basistyperns:StringList" minOccurs="0"/>
+                    <xs:element name="gardsnummerForAdresse" type="utilns:Interval" minOccurs="0"/>
+                    <xs:element name="bruksnummerForAdresse" type="utilns:Interval" minOccurs="0"/>
+                    <xs:element name="undernummer" type="xs:int" minOccurs="0"/>
+                    <xs:element name="bygningsstatusKompositt" minOccurs="0">
+                        <xs:simpleType>
+                            <xs:restriction base="BygningsstatusKompositt"/>
+                        </xs:simpleType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BoligbyggingsokModel">
+        <xs:sequence>
+            <xs:element name="datoFra" type="basistyperns:LocalDate" minOccurs="0"/>
+            <xs:element name="datoTil" type="basistyperns:LocalDate" minOccurs="0"/>
+            <xs:element name="fylkesnummer" type="xs:string" minOccurs="0"/>
+            <xs:element name="kommunenummerListe" type="basistyperns:StringList" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AbstractByggsokModel" abstract="true">
+        <xs:sequence>
+            <xs:element name="kommunenummer" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SingleByggsokModel">
+        <xs:complexContent>
+            <xs:extension base="AbstractByggsokModel">
+                <xs:sequence>
+                    <xs:element name="bygningsnr" type="xs:long" minOccurs="0"/>
+                    <xs:element name="endringer" type="xs:boolean" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="SefrakstatussokModel">
+        <xs:sequence>
+            <xs:element name="kommuner" type="kommunens:KommuneIdList" minOccurs="0"/>
+            <xs:element name="fraDato" type="basistyperns:LocalDate" minOccurs="0"/>
+            <xs:element name="tilDato" type="basistyperns:LocalDate" minOccurs="0"/>
+            <xs:element name="tidligereStatusListe" type="basistyperns:StringList" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BygningBubbleTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:BubbleTransfer">
+                <xs:sequence>
+                    <xs:element name="result" type="ByggId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BygningUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="EndreBygningsdataUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="BygningUnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="oppdatertByggId" type="ByggId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FlyttBygningUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="BygningUnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="nyBygningId" type="BygningId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TilbyggSomBygningUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="BygningUnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="bygningsendringId" type="BygningsendringId" minOccurs="0"/>
+                    <xs:element name="nyBygningId" type="BygningId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ByggSomBygningsendringForAnnenBygningUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="BygningUnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="utskiltId" type="ByggId" minOccurs="0"/>
+                    <xs:element name="overtakerId" type="BygningId" minOccurs="0"/>
+                    <xs:element name="nyBygningsendringId" type="BygningsendringId" minOccurs="0"/>
+                    <xs:element name="avgiverId" type="BygningId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="EndreBygningstatusUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="BygningUnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="oppdatertByggId" type="ByggId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="NyttByggUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="BygningUnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="nyByggId" type="ByggId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="SplittBygningUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="BygningUnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="opprinneligBygningId" type="BygningId" minOccurs="0"/>
+                    <xs:element name="nyeBygningIds" type="BygningIdList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="EndreByggUnntattSoknadspliktUnitOfWorkTransfer">
+        <xs:annotation>
+            <xs:documentation>
+                Denne klassen er kun tilgjengelig for klientversjon 3.16 eller senere. For eldre klienter vil det ikke være mulig
+                å endre på et bygg som er unntatt søknadsplikt.
+                @since 3.16
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="BygningUnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="oppdatertByggId" type="ByggId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AdresseIdTilBruksenhetIdsMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="adressens:AdresseId"/>
+                        <xs:element name="value" nillable="true" type="BruksenhetIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ByggIdTilBruksenhetIdsMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="ByggId"/>
+                        <xs:element name="value" nillable="true" type="BruksenhetIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetIdTilBruksenhetIdsMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetId"/>
+                        <xs:element name="value" nillable="true" type="BruksenhetIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BruksenhetIdTilStringMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="BruksenhetId"/>
+                        <xs:element name="value" nillable="true" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BygningBokInfo">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:BokInfo">
+                <xs:sequence>
+                    <xs:element name="byggId" type="ByggId" minOccurs="0"/>
+                    <xs:element name="kommuneId" type="kommunens:KommuneId" minOccurs="0"/>
+                    <xs:element name="kommunenavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="bygningsnr" type="xs:long" minOccurs="0"/>
+                    <xs:element name="lopenr" type="xs:int" minOccurs="0"/>
+                    <xs:element name="antboliger" type="xs:int" minOccurs="0"/>
+                    <xs:element name="bygningsstatusKodeId"
+                                type="bygningkoderns:BygningsstatusKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="naringsgruppeKodeId" type="bygningkoderns:NaringsgruppeKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="boligareal" type="xs:double" minOccurs="0"/>
+                    <xs:element name="bygningstypeKodeId" type="bygningkoderns:BygningstypeKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="bygningId" type="BygningId" minOccurs="0"/>
+                    <xs:element name="adresser" type="adressens:AdresseDTOList" minOccurs="0"/>
+                    <xs:element name="matrikkelenheter" type="matrikkelenhetns:MatrikkelenhetDTOList"
+                                minOccurs="0"/>
+                    <xs:element name="harSefrakminne" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="harKulturminne" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="antallBygningsendringer" type="xs:int" minOccurs="0"/>
+                    <xs:element name="tidligereByggId" type="ByggId" minOccurs="0"/>
+                    <xs:element name="bebygdAreal" type="xs:double" minOccurs="0"/>
+                    <xs:element name="opprinnelsesKodeId" type="bygningkoderns:OpprinnelsesKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="vannforsyningsKodeId"
+                                type="bygningkoderns:VannforsyningsKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="avlopsKodeId" type="bygningkoderns:AvlopsKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="bygningsendringsKodeId"
+                                type="bygningkoderns:BygningsendringsKodeId" minOccurs="0"/>
+                    <xs:element name="byggType" type="xs:string" minOccurs="0"/>
+                    <xs:element name="kommunenr" type="xs:string" minOccurs="0"/>
+                    <xs:element name="harHeis" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="harUfullstendigAreal" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="utenBebygdAreal" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="skjermingsverdig" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="punkt" type="geometrins:Point" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BruksenhetMedBygningInfo">
+        <xs:sequence>
+            <xs:element name="id" type="BruksenhetId" minOccurs="0"/>
+            <xs:element name="bygningsnr" type="xs:long" minOccurs="0"/>
+            <xs:element name="bygningsendringsnr" type="xs:int" minOccurs="0"/>
+            <xs:element name="etasjeplanKodeId" type="bygningkoderns:EtasjeplanKodeId"
+                        minOccurs="0"/>
+            <xs:element name="etasjenr" type="xs:int" minOccurs="0"/>
+            <xs:element name="lopenr" type="xs:int" minOccurs="0"/>
+            <xs:element name="bruksenhetstypeKodeId" type="bygningkoderns:BruksenhetstypeKodeId"
+                        minOccurs="0"/>
+            <xs:element name="bygningsstatusKodeId" type="bygningkoderns:BygningsstatusKodeId"
+                        minOccurs="0"/>
+            <xs:element name="bygningstypeKodeId" type="bygningkoderns:BygningstypeKodeId"
+                        minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BruksenhetMedBygningInfoList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="BruksenhetMedBygningInfo"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BygningBokInfoList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="BygningBokInfo"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BygningsendringIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="BygningsendringId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ByggrelatertInfoTransfer">
+        <xs:sequence>
+            <xs:element name="bygningId" type="BygningId" minOccurs="0"/>
+            <xs:element name="bygningsendringIds" type="BygningsendringIdList" minOccurs="0"/>
+            <xs:element name="sefrakMinnerForBygning" type="sefrak:ByggIdTilSefrakMinneIdsMap" minOccurs="0"/>
+            <xs:element name="kulturminnerForBygning" type="kulturminne:BygningIdTilKulturminneIdsMap" minOccurs="0"/>
+            <xs:element name="bubbleObjects" type="basistyperns:MatrikkelBubbleObjectList" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

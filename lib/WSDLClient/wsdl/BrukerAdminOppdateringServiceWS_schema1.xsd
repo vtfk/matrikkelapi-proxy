@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bruker/koder" xmlns:ns2="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" xmlns:ns3="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bruker" xmlns:ns4="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" xmlns:ns5="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" xmlns:ns6="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse" xmlns:tns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/admin/oppdatering" elementFormDefault="qualified" targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/admin/oppdatering" version="1.0">
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bruker/koder" schemaLocation="brukerKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" schemaLocation="kommune.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bruker" schemaLocation="bruker.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" schemaLocation="basistyper.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" schemaLocation="geometriKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse" schemaLocation="adresse.xsd"/>
+
+  <xs:element name="gjenopprettAdgangForBruker" type="tns:gjenopprettAdgangForBruker"/>
+
+  <xs:element name="gjenopprettAdgangForBrukerResponse" type="tns:gjenopprettAdgangForBrukerResponse"/>
+
+  <xs:element name="insertBruker" type="tns:insertBruker"/>
+
+  <xs:element name="insertBrukerResponse" type="tns:insertBrukerResponse"/>
+
+  <xs:element name="insertBrukerReuseAppUser" type="tns:insertBrukerReuseAppUser"/>
+
+  <xs:element name="insertBrukerReuseAppUserResponse" type="tns:insertBrukerReuseAppUserResponse"/>
+
+  <xs:element name="insertKurs" type="tns:insertKurs"/>
+
+  <xs:element name="insertKursResponse" type="tns:insertKursResponse"/>
+
+  <xs:element name="removeAdgangForBruker" type="tns:removeAdgangForBruker"/>
+
+  <xs:element name="removeAdgangForBrukerResponse" type="tns:removeAdgangForBrukerResponse"/>
+
+  <xs:element name="removeBruker" type="tns:removeBruker"/>
+
+  <xs:element name="removeBrukerResponse" type="tns:removeBrukerResponse"/>
+
+  <xs:element name="removeKurs" type="tns:removeKurs"/>
+
+  <xs:element name="removeKursResponse" type="tns:removeKursResponse"/>
+
+  <xs:element name="updateAdressemerkeBestillingerMedSendtTilProduksjon" type="tns:updateAdressemerkeBestillingerMedSendtTilProduksjon"/>
+
+  <xs:element name="updateAdressemerkeBestillingerMedSendtTilProduksjonResponse" type="tns:updateAdressemerkeBestillingerMedSendtTilProduksjonResponse"/>
+
+  <xs:element name="updateBruker" type="tns:updateBruker"/>
+
+  <xs:element name="updateBrukerResponse" type="tns:updateBrukerResponse"/>
+
+  <xs:element name="updateKommunelister" type="tns:updateKommunelister"/>
+
+  <xs:element name="updateKommunelisterResponse" type="tns:updateKommunelisterResponse"/>
+
+  <xs:element name="updateKurs" type="tns:updateKurs"/>
+
+  <xs:element name="updateKursResponse" type="tns:updateKursResponse"/>
+
+  <xs:complexType name="removeBruker">
+    <xs:sequence>
+      <xs:element name="bruker" type="ns3:Bruker"/>
+      <xs:element name="baatAdministrator" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns4:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="removeBrukerResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="insertKurs">
+    <xs:sequence>
+      <xs:element name="kurs" type="ns3:Kurs"/>
+      <xs:element name="matrikkelContext" type="ns4:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="insertKursResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="insertBruker">
+    <xs:sequence>
+      <xs:element name="nyBruker" type="ns3:Bruker"/>
+      <xs:element name="brukerRettighetListe" type="ns3:BrukerRettighetListe"/>
+      <xs:element name="passord" nillable="true" type="xs:string"/>
+      <xs:element name="aktiveringsdata" type="ns3:BrukerAktiveringsdata"/>
+      <xs:element name="matrikkelContext" type="ns4:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="insertBrukerResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="updateKommunelister">
+    <xs:sequence>
+      <xs:element name="nyeKommunelister" type="ns3:KommunelisteList"/>
+      <xs:element name="oppdaterteKommunelister" type="ns3:KommunelisteList"/>
+      <xs:element name="fjernedeKommunelister" type="ns3:KommunelisteList"/>
+      <xs:element name="matrikkelContext" type="ns4:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updateKommunelisterResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="updateAdressemerkeBestillingerMedSendtTilProduksjon">
+    <xs:sequence>
+      <xs:element name="adressemerkeBestillinger" type="ns6:AdressemerkeBestillingList"/>
+      <xs:element name="matrikkelContext" type="ns4:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updateAdressemerkeBestillingerMedSendtTilProduksjonResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="removeKurs">
+    <xs:sequence>
+      <xs:element name="kurs" type="ns3:Kurs"/>
+      <xs:element name="matrikkelContext" type="ns4:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="removeKursResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="insertBrukerReuseAppUser">
+    <xs:sequence>
+      <xs:element name="nyBruker" type="ns3:Bruker"/>
+      <xs:element name="brukerRettighetListe" type="ns3:BrukerRettighetListe"/>
+      <xs:element name="passord" nillable="true" type="xs:string"/>
+      <xs:element name="matrikkelContext" type="ns4:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="insertBrukerReuseAppUserResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="removeAdgangForBruker">
+    <xs:sequence>
+      <xs:element name="bruker" type="ns3:Bruker"/>
+      <xs:element name="baatAdministrator" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns4:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="removeAdgangForBrukerResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="updateBruker">
+    <xs:sequence>
+      <xs:element name="bruker" type="ns3:Bruker"/>
+      <xs:element name="brukerRettighetList" type="ns3:BrukerRettighetListe"/>
+      <xs:element name="erstattPassord" type="xs:boolean"/>
+      <xs:element name="nyttPassord" nillable="true" type="xs:string"/>
+      <xs:element name="aktiveringsdata" type="ns3:BrukerAktiveringsdata"/>
+      <xs:element name="baatAdministrator" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns4:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updateBrukerResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updateKurs">
+    <xs:sequence>
+      <xs:element name="kurs" type="ns3:Kurs"/>
+      <xs:element name="matrikkelContext" type="ns4:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updateKursResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="gjenopprettAdgangForBruker">
+    <xs:sequence>
+      <xs:element name="bruker" type="ns3:Bruker"/>
+      <xs:element name="brukerRettighetList" type="ns3:BrukerRettighetListe"/>
+      <xs:element name="nyttPassord" nillable="true" type="xs:string"/>
+      <xs:element name="brukerAktiveringsdata" type="ns3:BrukerAktiveringsdata"/>
+      <xs:element name="baatAdministrator" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns4:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="gjenopprettAdgangForBrukerResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

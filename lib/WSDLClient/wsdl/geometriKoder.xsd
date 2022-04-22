@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+      version="1.0"
+      targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder"
+      xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder"
+      xmlns:kodens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"
+      xmlns:xs="http://www.w3.org/2001/XMLSchema"
+      elementFormDefault="qualified">
+
+   <xs:import schemaLocation="kodeliste.xsd"
+              namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"/>
+
+
+    <xs:complexType name="KoordinatkvalitetKode">
+       <xs:complexContent>
+          <xs:extension base="kodens:MatrikkelEnumKode"/>
+       </xs:complexContent>
+    </xs:complexType>
+
+   <xs:complexType name="KoordinatkvalitetKodeId">
+      <xs:complexContent>
+         <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+      </xs:complexContent>
+   </xs:complexType>
+
+   <xs:complexType name="KoordinatkvalitetKodeIdList">
+      <xs:sequence>
+         <xs:element name="item" type="KoordinatkvalitetKodeId" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+
+
+    <xs:complexType name="KoordinatsystemKode">
+       <xs:complexContent>
+          <xs:extension base="kodens:MatrikkelEnumKode">
+             <xs:sequence>
+                <xs:element name="sosiKode" type="xs:int" minOccurs="0" />
+                <xs:element name="epsgKode" type="xs:int" minOccurs="0" />
+             </xs:sequence>
+          </xs:extension>
+       </xs:complexContent>
+    </xs:complexType>
+
+   <xs:complexType name="KoordinatsystemKodeId">
+      <xs:complexContent>
+         <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+      </xs:complexContent>
+   </xs:complexType>
+
+   <xs:complexType name="KoordinatsystemKodeIdList">
+      <xs:sequence>
+         <xs:element name="item" type="KoordinatsystemKodeId" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+
+
+    <xs:complexType name="MalemetodeKode">
+       <xs:complexContent>
+          <xs:extension base="kodens:MatrikkelEnumKode">
+             <xs:sequence>
+                <xs:element name="sosiKode" type="xs:int" minOccurs="0"/>
+             </xs:sequence>
+          </xs:extension>
+       </xs:complexContent>
+    </xs:complexType>
+
+   <xs:complexType name="MalemetodeKodeId">
+      <xs:complexContent>
+         <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+      </xs:complexContent>
+   </xs:complexType>
+
+   <xs:complexType name="MalemetodeKodeIdList">
+      <xs:sequence>
+         <xs:element name="item" type="MalemetodeKodeId" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+
+
+    <xs:complexType name="NoyaktighetsklasseKode">
+       <xs:complexContent>
+          <xs:extension base="kodens:MatrikkelEnumKode">
+             <xs:sequence>
+                <xs:element name="sosiNavn" type="xs:string" minOccurs="0" />
+             </xs:sequence>
+          </xs:extension>
+       </xs:complexContent>
+    </xs:complexType>
+
+   <xs:complexType name="NoyaktighetsklasseKodeId">
+      <xs:complexContent>
+         <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+      </xs:complexContent>
+   </xs:complexType>
+
+   <xs:complexType name="NoyaktighetsklasseKodeIdList">
+      <xs:sequence>
+         <xs:element name="item" type="NoyaktighetsklasseKodeId" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/test" xmlns:ns2="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" xmlns:ns3="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" xmlns:ns4="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet" xmlns:ns5="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" xmlns:ns6="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse/koder" xmlns:ns7="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse" xmlns:tns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/test" elementFormDefault="qualified" targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/test" version="1.0">
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/test" schemaLocation="test.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" schemaLocation="geometriKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" schemaLocation="basistyper.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet" schemaLocation="matrikkelenhet.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" schemaLocation="kommune.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse/koder" schemaLocation="adresseKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse" schemaLocation="adresse.xsd"/>
+
+  <xs:element name="findKrets" type="tns:findKrets"/>
+
+  <xs:element name="findKretsResponse" type="tns:findKretsResponse"/>
+
+  <xs:element name="findLastChangeNumberFraGammelEndringslogg" type="tns:findLastChangeNumberFraGammelEndringslogg"/>
+
+  <xs:element name="findLastChangeNumberFraGammelEndringsloggResponse" type="tns:findLastChangeNumberFraGammelEndringsloggResponse"/>
+
+  <xs:element name="finnMatrikkelnummerForId" type="tns:finnMatrikkelnummerForId"/>
+
+  <xs:element name="finnMatrikkelnummerForIdResponse" type="tns:finnMatrikkelnummerForIdResponse"/>
+
+  <xs:element name="getNextTestNumber" type="tns:getNextTestNumber"/>
+
+  <xs:element name="getNextTestNumberResponse" type="tns:getNextTestNumberResponse"/>
+
+  <xs:element name="getTestNumber0" type="tns:getTestNumber0"/>
+
+  <xs:element name="getTestNumber0Response" type="tns:getTestNumber0Response"/>
+
+  <xs:element name="objectExists" type="tns:objectExists"/>
+
+  <xs:element name="objectExistsResponse" type="tns:objectExistsResponse"/>
+
+  <xs:element name="saveAll" type="tns:saveAll"/>
+
+  <xs:element name="saveAllResponse" type="tns:saveAllResponse"/>
+
+  <xs:element name="saveAllWithAdressemerkeBestilling" type="tns:saveAllWithAdressemerkeBestilling"/>
+
+  <xs:element name="saveAllWithAdressemerkeBestillingResponse" type="tns:saveAllWithAdressemerkeBestillingResponse"/>
+
+  <xs:element name="saveSnapshotTransfer" type="tns:saveSnapshotTransfer"/>
+
+  <xs:element name="saveSnapshotTransferResponse" type="tns:saveSnapshotTransferResponse"/>
+
+  <xs:element name="saveSnapshotTransferWithAdressemerkeBestilling" type="tns:saveSnapshotTransferWithAdressemerkeBestilling"/>
+
+  <xs:element name="saveSnapshotTransferWithAdressemerkeBestillingResponse" type="tns:saveSnapshotTransferWithAdressemerkeBestillingResponse"/>
+
+  <xs:complexType name="saveAll">
+    <xs:sequence>
+      <xs:element name="snapshotTransfers" type="ns1:MockupSnapshotMap"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="saveAllResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="findLastChangeNumberFraGammelEndringslogg">
+    <xs:sequence>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findLastChangeNumberFraGammelEndringsloggResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:long"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="objectExists">
+    <xs:sequence>
+      <xs:element name="id" type="ns3:MatrikkelBubbleId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="objectExistsResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="saveAllWithAdressemerkeBestilling">
+    <xs:sequence>
+      <xs:element name="snapshotTransfers" type="ns1:MockupSnapshotMap"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="saveAllWithAdressemerkeBestillingResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="finnMatrikkelnummerForId">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns4:MatrikkelenhetId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="finnMatrikkelnummerForIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelnummerList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findKrets">
+    <xs:sequence>
+      <xs:element name="kommuneId" type="ns5:KommuneId"/>
+      <xs:element name="kretstypeKodeId" type="ns6:KretstypeKodeId"/>
+      <xs:element name="kretsnr" type="xs:int"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findKretsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns7:KretsId"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getTestNumber0">
+    <xs:sequence>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getTestNumber0Response">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:TestNumber"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getNextTestNumber">
+    <xs:sequence>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getNextTestNumberResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:TestNumber"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="saveSnapshotTransfer">
+    <xs:sequence>
+      <xs:element name="snapshotVersion" type="ns3:Timestamp"/>
+      <xs:element name="mockupTransfer" type="ns1:MockupTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="saveSnapshotTransferResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="saveSnapshotTransferWithAdressemerkeBestilling">
+    <xs:sequence>
+      <xs:element name="snapshotVersion" type="ns3:Timestamp"/>
+      <xs:element name="mockupTransfer" type="ns1:MockupTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="saveSnapshotTransferWithAdressemerkeBestillingResponse">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>

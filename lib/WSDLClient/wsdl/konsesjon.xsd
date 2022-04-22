@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        version="1.0"
+        targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/konsesjon"
+        xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/konsesjon"
+        xmlns:konsesjonns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/konsesjon"
+        xmlns:konsesjonkoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/konsesjon/koder"
+        xmlns:matrikkelenhetns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"
+        xmlns:basistyperns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"
+        xmlns:personns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person"
+        xmlns:kommunens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune"
+        xmlns:utilns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/util"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:import schemaLocation="basistyper.xsd" namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"/>
+    <xs:import schemaLocation="konsesjonKoder.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/konsesjon/koder"/>
+    <xs:import schemaLocation="matrikkelenhet.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"/>
+    <xs:import schemaLocation="person.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person"/>
+    <xs:import schemaLocation="person.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person"/>
+    <xs:import schemaLocation="util.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/util"/>
+    <xs:import schemaLocation="kommune.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune"/>
+
+    <xs:complexType name="Konsesjonsforhold">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="gyldigTil" type="basistyperns:LocalDate" minOccurs="0"/>
+                    <xs:element name="matrikkelenhetIds" type="matrikkelenhetns:MatrikkelenhetIdList" minOccurs="0"/>
+                    <xs:element name="personerMedAndelForKonsesjonsforhold"
+                                type="konsesjonns:PersonMedAndelForKonsesjonsforholdList" minOccurs="0"/>
+                    <xs:element name="konsesjonsforholdUtskriftId"
+                                type="konsesjonns:KonsesjonsforholdUtskriftId" minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KonsesjonsforholdUtskrift">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="konsesjonsforholdIds" type="KonsesjonsforholdIdList" minOccurs="0"/>
+                    <xs:element name="registreringsdato" type="basistyperns:Timestamp" minOccurs="0"/>
+                    <xs:element name="signatur" type="xs:string" minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KonsesjonsforholdUtskriftList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="konsesjonns:KonsesjonsforholdUtskrift"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="KonsesjonsforholdId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KonsesjonsforholdIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="konsesjonns:KonsesjonsforholdId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetIdTilKonsesjonsforholdIdsMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="matrikkelenhetns:MatrikkelenhetId"/>
+                        <xs:element name="value" nillable="true" type="KonsesjonsforholdIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="PersonMedAndelForKonsesjonsforhold">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="personId" type="personns:PersonId" minOccurs="0"/>
+                    <xs:element name="andel" type="utilns:Andel" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KonsesjonsforholdUtskriftId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KonsesjonsforholdUtskriftIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="konsesjonns:KonsesjonsforholdUtskriftId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Overdragelse">
+        <xs:sequence>
+            <xs:element name="matrikkelenhetId" type="matrikkelenhetns:MatrikkelenhetId" minOccurs="0"/>
+            <xs:element name="personId" type="personns:PersonId" minOccurs="0"/>
+            <xs:element name="andel" type="utilns:Andel" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="OverdragelseList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="konsesjonns:Overdragelse"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="OverdragelseFeil">
+        <xs:sequence>
+            <xs:element name="tinglysingFeilKodeId" type="konsesjonkoderns:TinglysingFeilKodeId" minOccurs="0"/>
+            <xs:element name="feilmelding" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="OverdragelseFeilList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="konsesjonns:OverdragelseFeil"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PersonMedAndelForKonsesjonsforholdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="konsesjonns:PersonMedAndelForKonsesjonsforhold"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Konsesjonsvedtak">
+        <xs:complexContent>
+            <xs:extension base="Konsesjonsforhold">
+                <xs:sequence>
+                    <xs:element name="kjopesum" type="xs:decimal" minOccurs="0"/>
+                    <xs:element name="kommunalSaksreferanse" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KonsesjonsvedtakId">
+        <xs:complexContent>
+            <xs:extension base="KonsesjonsforholdId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KonsesjonsfrihetFraEgenerklaring">
+        <xs:complexContent>
+            <xs:extension base="Konsesjonsforhold">
+                <xs:sequence>
+                    <xs:element name="konsesjonsfrihetEgenerklaringKodeId"
+                                type="konsesjonkoderns:KonsesjonsfrihetEgenerklaringKodeId" minOccurs="0"/>
+                    <xs:element name="konsesjonsfrihetLedetekstId" type="KonsesjonsfrihetLedetekstId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KonsesjonsfrihetFraEgenerklaringId">
+        <xs:complexContent>
+            <xs:extension base="KonsesjonsforholdId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KonsesjonsfrihetBekreftelseId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KonsesjonsfrihetBekreftelseIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="konsesjonns:KonsesjonsfrihetBekreftelseId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="KonsesjonsfrihetBekreftelse">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObject">
+                <xs:sequence>
+                    <xs:element name="tekst" type="xs:string" minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KonsesjonsfrihetBekreftelseList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="konsesjonns:KonsesjonsfrihetBekreftelse"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="OpprettKonsesjonsforholdUtskriftUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="konsesjonsforholdUtskriftId" type="KonsesjonsforholdUtskriftId" />
+                    <xs:element name="kommuneId" type="kommunens:KommuneId" minOccurs="0"/>
+                    <xs:element name="kommunenHarBekreftet" type="KonsesjonsforholdIdTilKonsesjonsfrihetBekreftelseIdsMap" minOccurs="0"/>
+                    <xs:element name="iOmradeMedVanligKonsesjonsgrense" type="xs:boolean" minOccurs="0" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KonsesjonsforholdIdTilKonsesjonsfrihetBekreftelseIdsMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="KonsesjonsforholdId"/>
+                        <xs:element name="value" nillable="true" type="KonsesjonsfrihetBekreftelseIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="KonsesjonsfrihetLedetekstId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KonsesjonsfrihetLedetekst">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObject">
+                <xs:sequence>
+                    <xs:element name="tekst" type="xs:string" minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="localizedTekst" type="basistyperns:LocalizedString" minOccurs="0">
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="BekreftelseLogikk">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="OG"/>
+            <xs:enumeration value="ELLER"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="KonsesjonsfrihetBekreftelseDTO">
+        <xs:sequence>
+            <xs:element name="konsesjonsfrihetBekreftelser" type="KonsesjonsfrihetBekreftelseList" minOccurs="0" />
+            <xs:element name="bekreftelseLogikk" type="BekreftelseLogikk" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

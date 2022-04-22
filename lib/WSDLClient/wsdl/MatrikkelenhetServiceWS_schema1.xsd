@@ -1,0 +1,1256 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet" xmlns:ns10="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/pantebok" xmlns:ns11="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/forretning" xmlns:ns12="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/grunnforurensing" xmlns:ns13="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kulturminne" xmlns:ns2="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" xmlns:ns3="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" xmlns:ns4="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/util" xmlns:ns5="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri" xmlns:ns6="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" xmlns:ns7="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person" xmlns:ns8="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse" xmlns:ns9="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning" xmlns:tns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/matrikkelenhet" elementFormDefault="qualified" targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/matrikkelenhet" version="1.0">
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet" schemaLocation="matrikkelenhet.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" schemaLocation="geometriKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" schemaLocation="basistyper.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/util" schemaLocation="util.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri" schemaLocation="geometri.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" schemaLocation="kommune.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person" schemaLocation="person.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse" schemaLocation="adresse.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning" schemaLocation="bygning.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/pantebok" schemaLocation="pantebok.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/forretning" schemaLocation="forretning.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/grunnforurensing" schemaLocation="grunnforurensing.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kulturminne" schemaLocation="kulturminne.xsd"/>
+
+  <xs:element name="erMatrikkelenhetOmnummerert" type="tns:erMatrikkelenhetOmnummerert"/>
+
+  <xs:element name="erMatrikkelenhetOmnummerertResponse" type="tns:erMatrikkelenhetOmnummerertResponse"/>
+
+  <xs:element name="findAvtalerGrensePunktfesteForMatrikkelenhet" type="tns:findAvtalerGrensePunktfesteForMatrikkelenhet"/>
+
+  <xs:element name="findAvtalerGrensePunktfesteForMatrikkelenhetResponse" type="tns:findAvtalerGrensePunktfesteForMatrikkelenhetResponse"/>
+
+  <xs:element name="findAvtalerGrensePunktfesteForMatrikkelenheter" type="tns:findAvtalerGrensePunktfesteForMatrikkelenheter"/>
+
+  <xs:element name="findAvtalerGrensePunktfesteForMatrikkelenheterResponse" type="tns:findAvtalerGrensePunktfesteForMatrikkelenheterResponse"/>
+
+  <xs:element name="findAvtalerGrensePunktfesteForReferanse" type="tns:findAvtalerGrensePunktfesteForReferanse"/>
+
+  <xs:element name="findAvtalerGrensePunktfesteForReferanseResponse" type="tns:findAvtalerGrensePunktfesteForReferanseResponse"/>
+
+  <xs:element name="findAvtalerStedbundenRettighetForMatrikkelenhet" type="tns:findAvtalerStedbundenRettighetForMatrikkelenhet"/>
+
+  <xs:element name="findAvtalerStedbundenRettighetForMatrikkelenhetResponse" type="tns:findAvtalerStedbundenRettighetForMatrikkelenhetResponse"/>
+
+  <xs:element name="findAvtalerStedbundenRettighetForMatrikkelenheter" type="tns:findAvtalerStedbundenRettighetForMatrikkelenheter"/>
+
+  <xs:element name="findAvtalerStedbundenRettighetForMatrikkelenheterResponse" type="tns:findAvtalerStedbundenRettighetForMatrikkelenheterResponse"/>
+
+  <xs:element name="findAvtalerStedbundenRettighetForReferanse" type="tns:findAvtalerStedbundenRettighetForReferanse"/>
+
+  <xs:element name="findAvtalerStedbundenRettighetForReferanseResponse" type="tns:findAvtalerStedbundenRettighetForReferanseResponse"/>
+
+  <xs:element name="findBeregnetArealForMatrikkelenhet" type="tns:findBeregnetArealForMatrikkelenhet"/>
+
+  <xs:element name="findBeregnetArealForMatrikkelenhetResponse" type="tns:findBeregnetArealForMatrikkelenhetResponse"/>
+
+  <xs:element name="findEideMatrikkelenheterForMatrikkelenhet" type="tns:findEideMatrikkelenheterForMatrikkelenhet"/>
+
+  <xs:element name="findEideMatrikkelenheterForMatrikkelenhetResponse" type="tns:findEideMatrikkelenheterForMatrikkelenhetResponse"/>
+
+  <xs:element name="findEideMatrikkelenheterForMatrikkelenheter" type="tns:findEideMatrikkelenheterForMatrikkelenheter"/>
+
+  <xs:element name="findEideMatrikkelenheterForMatrikkelenheterResponse" type="tns:findEideMatrikkelenheterForMatrikkelenheterResponse"/>
+
+  <xs:element name="findEideMatrikkelenheterForPerson" type="tns:findEideMatrikkelenheterForPerson"/>
+
+  <xs:element name="findEideMatrikkelenheterForPersonResponse" type="tns:findEideMatrikkelenheterForPersonResponse"/>
+
+  <xs:element name="findEideMatrikkelenheterForPersoner" type="tns:findEideMatrikkelenheterForPersoner"/>
+
+  <xs:element name="findEideMatrikkelenheterForPersonerResponse" type="tns:findEideMatrikkelenheterForPersonerResponse"/>
+
+  <xs:element name="findFellesarealOgJordsameierForMatrikkelenhet" type="tns:findFellesarealOgJordsameierForMatrikkelenhet"/>
+
+  <xs:element name="findFellesarealOgJordsameierForMatrikkelenhetResponse" type="tns:findFellesarealOgJordsameierForMatrikkelenhetResponse"/>
+
+  <xs:element name="findFestegrunnerForMatrikkelenhet" type="tns:findFestegrunnerForMatrikkelenhet"/>
+
+  <xs:element name="findFestegrunnerForMatrikkelenhetResponse" type="tns:findFestegrunnerForMatrikkelenhetResponse"/>
+
+  <xs:element name="findFestegrunnerForMatrikkelenheter" type="tns:findFestegrunnerForMatrikkelenheter"/>
+
+  <xs:element name="findFestegrunnerForMatrikkelenheterResponse" type="tns:findFestegrunnerForMatrikkelenheterResponse"/>
+
+  <xs:element name="findGamleMatrikkelenhetIdentForMatrikkelenhetIdent" type="tns:findGamleMatrikkelenhetIdentForMatrikkelenhetIdent"/>
+
+  <xs:element name="findGamleMatrikkelenhetIdentForMatrikkelenhetIdentResponse" type="tns:findGamleMatrikkelenhetIdentForMatrikkelenhetIdentResponse"/>
+
+  <xs:element name="findGamleMatrikkelenhetIdenterForMatrikkelenhetIdenter" type="tns:findGamleMatrikkelenhetIdenterForMatrikkelenhetIdenter"/>
+
+  <xs:element name="findGamleMatrikkelenhetIdenterForMatrikkelenhetIdenterResponse" type="tns:findGamleMatrikkelenhetIdenterForMatrikkelenhetIdenterResponse"/>
+
+  <xs:element name="findGrunnervervForMatrikkelenhet" type="tns:findGrunnervervForMatrikkelenhet"/>
+
+  <xs:element name="findGrunnervervForMatrikkelenhetResponse" type="tns:findGrunnervervForMatrikkelenhetResponse"/>
+
+  <xs:element name="findGrunnervervForMatrikkelenheter" type="tns:findGrunnervervForMatrikkelenheter"/>
+
+  <xs:element name="findGrunnervervForMatrikkelenheterResponse" type="tns:findGrunnervervForMatrikkelenheterResponse"/>
+
+  <xs:element name="findGrunnervervForReferanse" type="tns:findGrunnervervForReferanse"/>
+
+  <xs:element name="findGrunnervervForReferanseResponse" type="tns:findGrunnervervForReferanseResponse"/>
+
+  <xs:element name="findIGrunnbokRettsstiftelserOgMatrikkelenheterForDokNr" type="tns:findIGrunnbokRettsstiftelserOgMatrikkelenheterForDokNr"/>
+
+  <xs:element name="findIGrunnbokRettsstiftelserOgMatrikkelenheterForDokNrResponse" type="tns:findIGrunnbokRettsstiftelserOgMatrikkelenheterForDokNrResponse"/>
+
+  <xs:element name="findJordskifteKrevdForMatrikkelenhet" type="tns:findJordskifteKrevdForMatrikkelenhet"/>
+
+  <xs:element name="findJordskifteKrevdForMatrikkelenhetResponse" type="tns:findJordskifteKrevdForMatrikkelenhetResponse"/>
+
+  <xs:element name="findJordskifteKrevdForMatrikkelenheter" type="tns:findJordskifteKrevdForMatrikkelenheter"/>
+
+  <xs:element name="findJordskifteKrevdForMatrikkelenheterResponse" type="tns:findJordskifteKrevdForMatrikkelenheterResponse"/>
+
+  <xs:element name="findJordskifteKrevdForReferanse" type="tns:findJordskifteKrevdForReferanse"/>
+
+  <xs:element name="findJordskifteKrevdForReferanseResponse" type="tns:findJordskifteKrevdForReferanseResponse"/>
+
+  <xs:element name="findKlageForReferanse" type="tns:findKlageForReferanse"/>
+
+  <xs:element name="findKlageForReferanseResponse" type="tns:findKlageForReferanseResponse"/>
+
+  <xs:element name="findKlagerForMatrikkelenhet" type="tns:findKlagerForMatrikkelenhet"/>
+
+  <xs:element name="findKlagerForMatrikkelenhetResponse" type="tns:findKlagerForMatrikkelenhetResponse"/>
+
+  <xs:element name="findKlagerForMatrikkelenheter" type="tns:findKlagerForMatrikkelenheter"/>
+
+  <xs:element name="findKlagerForMatrikkelenheterResponse" type="tns:findKlagerForMatrikkelenheterResponse"/>
+
+  <xs:element name="findKontaktForSeksjonssameie" type="tns:findKontaktForSeksjonssameie"/>
+
+  <xs:element name="findKontaktForSeksjonssameieResponse" type="tns:findKontaktForSeksjonssameieResponse"/>
+
+  <xs:element name="findKontaktForSeksjonssameier" type="tns:findKontaktForSeksjonssameier"/>
+
+  <xs:element name="findKontaktForSeksjonssameierResponse" type="tns:findKontaktForSeksjonssameierResponse"/>
+
+  <xs:element name="findMatrikkelenhet" type="tns:findMatrikkelenhet"/>
+
+  <xs:element name="findMatrikkelenhetIGrunnbok" type="tns:findMatrikkelenhetIGrunnbok"/>
+
+  <xs:element name="findMatrikkelenhetIGrunnbokResponse" type="tns:findMatrikkelenhetIGrunnbokResponse"/>
+
+  <xs:element name="findMatrikkelenhetIdForIdent" type="tns:findMatrikkelenhetIdForIdent"/>
+
+  <xs:element name="findMatrikkelenhetIdForIdentResponse" type="tns:findMatrikkelenhetIdForIdentResponse"/>
+
+  <xs:element name="findMatrikkelenhetIdentForDato" type="tns:findMatrikkelenhetIdentForDato"/>
+
+  <xs:element name="findMatrikkelenhetIdentForDatoResponse" type="tns:findMatrikkelenhetIdentForDatoResponse"/>
+
+  <xs:element name="findMatrikkelenhetIdsForIdents" type="tns:findMatrikkelenhetIdsForIdents"/>
+
+  <xs:element name="findMatrikkelenhetIdsForIdentsResponse" type="tns:findMatrikkelenhetIdsForIdentsResponse"/>
+
+  <xs:element name="findMatrikkelenhetInfoObjekter" type="tns:findMatrikkelenhetInfoObjekter"/>
+
+  <xs:element name="findMatrikkelenhetInfoObjekterResponse" type="tns:findMatrikkelenhetInfoObjekterResponse"/>
+
+  <xs:element name="findMatrikkelenhetMedTeiger" type="tns:findMatrikkelenhetMedTeiger"/>
+
+  <xs:element name="findMatrikkelenhetMedTeigerResponse" type="tns:findMatrikkelenhetMedTeigerResponse"/>
+
+  <xs:element name="findMatrikkelenhetResponse" type="tns:findMatrikkelenhetResponse"/>
+
+  <xs:element name="findMatrikkelenheter" type="tns:findMatrikkelenheter"/>
+
+  <xs:element name="findMatrikkelenheterForAdresse" type="tns:findMatrikkelenheterForAdresse"/>
+
+  <xs:element name="findMatrikkelenheterForAdresseResponse" type="tns:findMatrikkelenheterForAdresseResponse"/>
+
+  <xs:element name="findMatrikkelenheterForAdresser" type="tns:findMatrikkelenheterForAdresser"/>
+
+  <xs:element name="findMatrikkelenheterForAdresserResponse" type="tns:findMatrikkelenheterForAdresserResponse"/>
+
+  <xs:element name="findMatrikkelenheterForAnleggsprojeksjonsflate" type="tns:findMatrikkelenheterForAnleggsprojeksjonsflate"/>
+
+  <xs:element name="findMatrikkelenheterForAnleggsprojeksjonsflateResponse" type="tns:findMatrikkelenheterForAnleggsprojeksjonsflateResponse"/>
+
+  <xs:element name="findMatrikkelenheterForAnleggsprojeksjonsflater" type="tns:findMatrikkelenheterForAnleggsprojeksjonsflater"/>
+
+  <xs:element name="findMatrikkelenheterForAnleggsprojeksjonsflaterResponse" type="tns:findMatrikkelenheterForAnleggsprojeksjonsflaterResponse"/>
+
+  <xs:element name="findMatrikkelenheterForBygg" type="tns:findMatrikkelenheterForBygg"/>
+
+  <xs:element name="findMatrikkelenheterForByggList" type="tns:findMatrikkelenheterForByggList"/>
+
+  <xs:element name="findMatrikkelenheterForByggListResponse" type="tns:findMatrikkelenheterForByggListResponse"/>
+
+  <xs:element name="findMatrikkelenheterForByggResponse" type="tns:findMatrikkelenheterForByggResponse"/>
+
+  <xs:element name="findMatrikkelenheterForTeig" type="tns:findMatrikkelenheterForTeig"/>
+
+  <xs:element name="findMatrikkelenheterForTeigResponse" type="tns:findMatrikkelenheterForTeigResponse"/>
+
+  <xs:element name="findMatrikkelenheterForTeiger" type="tns:findMatrikkelenheterForTeiger"/>
+
+  <xs:element name="findMatrikkelenheterForTeigerResponse" type="tns:findMatrikkelenheterForTeigerResponse"/>
+
+  <xs:element name="findMatrikkelenheterForTeiggrense" type="tns:findMatrikkelenheterForTeiggrense"/>
+
+  <xs:element name="findMatrikkelenheterForTeiggrenseResponse" type="tns:findMatrikkelenheterForTeiggrenseResponse"/>
+
+  <xs:element name="findMatrikkelenheterForTeiggrensepunkt" type="tns:findMatrikkelenheterForTeiggrensepunkt"/>
+
+  <xs:element name="findMatrikkelenheterForTeiggrensepunktResponse" type="tns:findMatrikkelenheterForTeiggrensepunktResponse"/>
+
+  <xs:element name="findMatrikkelenheterForVeg" type="tns:findMatrikkelenheterForVeg"/>
+
+  <xs:element name="findMatrikkelenheterForVegResponse" type="tns:findMatrikkelenheterForVegResponse"/>
+
+  <xs:element name="findMatrikkelenheterForVeger" type="tns:findMatrikkelenheterForVeger"/>
+
+  <xs:element name="findMatrikkelenheterForVegerResponse" type="tns:findMatrikkelenheterForVegerResponse"/>
+
+  <xs:element name="findMatrikkelenheterResponse" type="tns:findMatrikkelenheterResponse"/>
+
+  <xs:element name="findMatrikkelenheterTransfer" type="tns:findMatrikkelenheterTransfer"/>
+
+  <xs:element name="findMatrikkelenheterTransferResponse" type="tns:findMatrikkelenheterTransferResponse"/>
+
+  <xs:element name="findNaboer" type="tns:findNaboer"/>
+
+  <xs:element name="findNaboerResponse" type="tns:findNaboerResponse"/>
+
+  <xs:element name="findNavarendeMatrikkelenhetIdentForMatrikkelenhetIdent" type="tns:findNavarendeMatrikkelenhetIdentForMatrikkelenhetIdent"/>
+
+  <xs:element name="findNavarendeMatrikkelenhetIdentForMatrikkelenhetIdentResponse" type="tns:findNavarendeMatrikkelenhetIdentForMatrikkelenhetIdentResponse"/>
+
+  <xs:element name="findNavarendeMatrikkelenhetIdentForMatrikkelenhetIdenter" type="tns:findNavarendeMatrikkelenhetIdentForMatrikkelenhetIdenter"/>
+
+  <xs:element name="findNavarendeMatrikkelenhetIdentForMatrikkelenhetIdenterResponse" type="tns:findNavarendeMatrikkelenhetIdentForMatrikkelenhetIdenterResponse"/>
+
+  <xs:element name="findNesteLedigeBruksnummer" type="tns:findNesteLedigeBruksnummer"/>
+
+  <xs:element name="findNesteLedigeBruksnummerResponse" type="tns:findNesteLedigeBruksnummerResponse"/>
+
+  <xs:element name="findNesteLedigeFestenr" type="tns:findNesteLedigeFestenr"/>
+
+  <xs:element name="findNesteLedigeFestenrResponse" type="tns:findNesteLedigeFestenrResponse"/>
+
+  <xs:element name="findNesteLedigeSeksjonsnr" type="tns:findNesteLedigeSeksjonsnr"/>
+
+  <xs:element name="findNesteLedigeSeksjonsnrResponse" type="tns:findNesteLedigeSeksjonsnrResponse"/>
+
+  <xs:element name="findObjekterForMatrikkelenhet" type="tns:findObjekterForMatrikkelenhet"/>
+
+  <xs:element name="findObjekterForMatrikkelenhetResponse" type="tns:findObjekterForMatrikkelenhetResponse"/>
+
+  <xs:element name="findOverenhetForMatrikkelenhet" type="tns:findOverenhetForMatrikkelenhet"/>
+
+  <xs:element name="findOverenhetForMatrikkelenhetResponse" type="tns:findOverenhetForMatrikkelenhetResponse"/>
+
+  <xs:element name="findRepresentasjonspunkterForMatrikkelenheter" type="tns:findRepresentasjonspunkterForMatrikkelenheter"/>
+
+  <xs:element name="findRepresentasjonspunkterForMatrikkelenheterResponse" type="tns:findRepresentasjonspunkterForMatrikkelenheterResponse"/>
+
+  <xs:element name="findRepresentasjonspunkterForTeiger" type="tns:findRepresentasjonspunkterForTeiger"/>
+
+  <xs:element name="findRepresentasjonspunkterForTeigerResponse" type="tns:findRepresentasjonspunkterForTeigerResponse"/>
+
+  <xs:element name="findSamlaFastEiendomForMatrikkelenhet" type="tns:findSamlaFastEiendomForMatrikkelenhet"/>
+
+  <xs:element name="findSamlaFastEiendomForMatrikkelenhetResponse" type="tns:findSamlaFastEiendomForMatrikkelenhetResponse"/>
+
+  <xs:element name="findSamlaFastEiendomForMatrikkelenheter" type="tns:findSamlaFastEiendomForMatrikkelenheter"/>
+
+  <xs:element name="findSamlaFastEiendomForMatrikkelenheterResponse" type="tns:findSamlaFastEiendomForMatrikkelenheterResponse"/>
+
+  <xs:element name="findSamlaFastEiendomForReferanse" type="tns:findSamlaFastEiendomForReferanse"/>
+
+  <xs:element name="findSamlaFastEiendomForReferanseResponse" type="tns:findSamlaFastEiendomForReferanseResponse"/>
+
+  <xs:element name="findSeksjonerForMatrikkelenhet" type="tns:findSeksjonerForMatrikkelenhet"/>
+
+  <xs:element name="findSeksjonerForMatrikkelenhetResponse" type="tns:findSeksjonerForMatrikkelenhetResponse"/>
+
+  <xs:element name="findSeksjonerForMatrikkelenheter" type="tns:findSeksjonerForMatrikkelenheter"/>
+
+  <xs:element name="findSeksjonerForMatrikkelenheterResponse" type="tns:findSeksjonerForMatrikkelenheterResponse"/>
+
+  <xs:element name="findTinglysteArealavgivereForMatrikkelenhet" type="tns:findTinglysteArealavgivereForMatrikkelenhet"/>
+
+  <xs:element name="findTinglysteArealavgivereForMatrikkelenhetResponse" type="tns:findTinglysteArealavgivereForMatrikkelenhetResponse"/>
+
+  <xs:element name="finnesAnnenMatrikkelenhetMedSammeMatrikkelNr" type="tns:finnesAnnenMatrikkelenhetMedSammeMatrikkelNr"/>
+
+  <xs:element name="finnesAnnenMatrikkelenhetMedSammeMatrikkelNrResponse" type="tns:finnesAnnenMatrikkelenhetMedSammeMatrikkelNrResponse"/>
+
+  <xs:element name="gardsnrIBruk" type="tns:gardsnrIBruk"/>
+
+  <xs:element name="gardsnrIBrukResponse" type="tns:gardsnrIBrukResponse"/>
+
+  <xs:element name="hentGrunnboksutskrift" type="tns:hentGrunnboksutskrift"/>
+
+  <xs:element name="hentGrunnboksutskriftIntern" type="tns:hentGrunnboksutskriftIntern"/>
+
+  <xs:element name="hentGrunnboksutskriftInternResponse" type="tns:hentGrunnboksutskriftInternResponse"/>
+
+  <xs:element name="hentGrunnboksutskriftResponse" type="tns:hentGrunnboksutskriftResponse"/>
+
+  <xs:complexType name="findMatrikkelenheterForTeig">
+    <xs:sequence>
+      <xs:element name="teigId" type="ns1:TeigId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterForTeigResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheter">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetsokModel" type="ns1:MatrikkelenhetsokModel"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSamlaFastEiendomForReferanse">
+    <xs:sequence>
+      <xs:element name="referanse" type="xs:string"/>
+      <xs:element name="kommuneId" type="ns6:KommuneId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSamlaFastEiendomForReferanseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:SamlaFastEiendomIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findJordskifteKrevdForMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findJordskifteKrevdForMatrikkelenhetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:JordskifteKrevdIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenhetIdentForDato">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="forretningsdokumentDato" type="ns3:LocalDate"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenhetIdentForDatoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdent"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findOverenhetForMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="utgatte" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findOverenhetForMatrikkelenhetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findNaboer">
+    <xs:sequence>
+      <xs:element name="enkelNaboSokModel" type="ns1:EnkelNaboSokModel"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findNaboerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findRepresentasjonspunkterForTeiger">
+    <xs:sequence>
+      <xs:element name="teigIds" type="ns1:TeigIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findRepresentasjonspunkterForTeigerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:TeigIdTilRepresentasjonspunktMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findNesteLedigeBruksnummer">
+    <xs:sequence>
+      <xs:element name="kommuneId" type="ns6:KommuneId"/>
+      <xs:element name="gardsnummer" type="xs:int"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findNesteLedigeBruksnummerResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findGrunnervervForMatrikkelenheter">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIds" type="ns1:MatrikkelenhetIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findGrunnervervForMatrikkelenheterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdTilGrunnervervIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterForTeiggrense">
+    <xs:sequence>
+      <xs:element name="teiggrenseId" type="ns1:TeiggrenseId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterForTeiggrenseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="erMatrikkelenhetOmnummerert">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="erMatrikkelenhetOmnummerertResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenhetMedTeiger">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIdent" type="ns1:MatrikkelenhetIdent"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenhetMedTeigerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetMedTeigerTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenhetIdForIdent">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIdent" type="ns1:MatrikkelenhetIdent"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenhetIdForIdentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetId"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="hentGrunnboksutskrift">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIdent" type="ns1:MatrikkelenhetIdent"/>
+      <xs:element name="historisk" type="xs:boolean"/>
+      <xs:element name="medFodselsnr" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="hentGrunnboksutskriftResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSamlaFastEiendomForMatrikkelenheter">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIds" type="ns1:MatrikkelenhetIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSamlaFastEiendomForMatrikkelenheterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdTilSamlaFastEiendomIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findEideMatrikkelenheterForPerson">
+    <xs:sequence>
+      <xs:element name="personId" type="ns7:PersonId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findEideMatrikkelenheterForPersonResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="finnesAnnenMatrikkelenhetMedSammeMatrikkelNr">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIdent" type="ns1:MatrikkelenhetIdent"/>
+      <xs:element name="matrikkelenhetId" nillable="true" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="finnesAnnenMatrikkelenhetMedSammeMatrikkelNrResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findGrunnervervForReferanse">
+    <xs:sequence>
+      <xs:element name="referanse" type="xs:string"/>
+      <xs:element name="kommuneId" type="ns6:KommuneId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findGrunnervervForReferanseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:GrunnervervIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterForTeiggrensepunkt">
+    <xs:sequence>
+      <xs:element name="grensepunktId" type="ns1:TeiggrensepunktId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterForTeiggrensepunktResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterForAdresser">
+    <xs:sequence>
+      <xs:element name="adresseIds" type="ns8:AdresseIdList"/>
+      <xs:element name="taMedUtgatte" type="xs:boolean"/>
+      <xs:element name="viaBruksenhet" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterForAdresserResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:AdresseIdTilMatrikkelenhetIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAvtalerStedbundenRettighetForMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAvtalerStedbundenRettighetForMatrikkelenhetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:AvtaleStedbundenRettighetIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findJordskifteKrevdForMatrikkelenheter">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIds" type="ns1:MatrikkelenhetIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findJordskifteKrevdForMatrikkelenheterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdTilJordskifteKrevdIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findKlagerForMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findKlagerForMatrikkelenhetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:KlageIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenhetInfoObjekter">
+    <xs:sequence>
+      <xs:element name="model" type="ns1:MatrikkelenhetsokModel"/>
+      <xs:element name="sokEtterEierforholdSeksjonerOgFestetPa" type="xs:boolean"/>
+      <xs:element name="finnAlleEierforhold" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenhetInfoObjekterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetBokInfoList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findGamleMatrikkelenhetIdenterForMatrikkelenhetIdenter">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIdentList" type="ns1:MatrikkelenhetIdentList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findGamleMatrikkelenhetIdenterForMatrikkelenhetIdenterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdentTilMatrikkelenhetIdentsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIdent" type="ns1:MatrikkelenhetIdent"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenhetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetId"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTinglysteArealavgivereForMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIdent" type="ns1:MatrikkelenhetIdent"/>
+      <xs:element name="historisk" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTinglysteArealavgivereForMatrikkelenhetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:ArealavgivereTilMatrikkelenhetDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findBeregnetArealForMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findBeregnetArealForMatrikkelenhetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:double"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAvtalerGrensePunktfesteForMatrikkelenheter">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIds" type="ns1:MatrikkelenhetIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAvtalerGrensePunktfesteForMatrikkelenheterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdTilAvtaleGrensePunktfesteIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="gardsnrIBruk">
+    <xs:sequence>
+      <xs:element name="kommuneId" type="ns6:KommuneId"/>
+      <xs:element name="gnr" type="xs:int"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="gardsnrIBrukResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSeksjonerForMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="taMedUtgatte" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSeksjonerForMatrikkelenhetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:SeksjonIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findNesteLedigeFestenr">
+    <xs:sequence>
+      <xs:element name="kommuneId" type="ns6:KommuneId"/>
+      <xs:element name="gardsnr" type="xs:int"/>
+      <xs:element name="bruksnr" type="xs:int"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findNesteLedigeFestenrResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findFestegrunnerForMatrikkelenheter">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIds" type="ns1:MatrikkelenhetIdList"/>
+      <xs:element name="taMedUtgatte" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findFestegrunnerForMatrikkelenheterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdTilFestegrunnIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterForVeger">
+    <xs:sequence>
+      <xs:element name="vegIds" type="ns8:VegIdList"/>
+      <xs:element name="taMedUtgatte" type="xs:boolean"/>
+      <xs:element name="viaBruksenhet" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterForVegerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:VegIdTilMatrikkelenhetIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findKontaktForSeksjonssameier">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIds" type="ns1:MatrikkelenhetIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findKontaktForSeksjonssameierResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdTilJuridiskPersonIdMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findJordskifteKrevdForReferanse">
+    <xs:sequence>
+      <xs:element name="referanse" type="xs:string"/>
+      <xs:element name="kommuneId" type="ns6:KommuneId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findJordskifteKrevdForReferanseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:JordskifteKrevdIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findGamleMatrikkelenhetIdentForMatrikkelenhetIdent">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIdent" type="ns1:MatrikkelenhetIdent"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findGamleMatrikkelenhetIdentForMatrikkelenhetIdentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdentList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="hentGrunnboksutskriftIntern">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIdent" type="ns1:MatrikkelenhetIdent"/>
+      <xs:element name="historisk" type="xs:boolean"/>
+      <xs:element name="utskriftsDel" type="xs:int"/>
+      <xs:element name="medFodselsnr" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="hentGrunnboksutskriftInternResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findKontaktForSeksjonssameie">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findKontaktForSeksjonssameieResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns7:JuridiskPersonIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenhetIdsForIdents">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIdentList" type="ns1:MatrikkelenhetIdentList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenhetIdsForIdentsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdentTilMatrikkelenhetIdMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findKlageForReferanse">
+    <xs:sequence>
+      <xs:element name="referanse" type="xs:string"/>
+      <xs:element name="kommuneId" type="ns6:KommuneId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findKlageForReferanseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:KlageIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterForAnleggsprojeksjonsflater">
+    <xs:sequence>
+      <xs:element name="flateIds" type="ns1:AnleggsprojeksjonsflateIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterForAnleggsprojeksjonsflaterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:AnleggsprojeksjonsflateIdTilMatrikkelenhetIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findNavarendeMatrikkelenhetIdentForMatrikkelenhetIdenter">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIdentList" type="ns1:MatrikkelenhetIdentList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findNavarendeMatrikkelenhetIdentForMatrikkelenhetIdenterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdentTilMatrikkelenhetIdentMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findNesteLedigeSeksjonsnr">
+    <xs:sequence>
+      <xs:element name="kommuneId" type="ns6:KommuneId"/>
+      <xs:element name="gardsnr" type="xs:int"/>
+      <xs:element name="bruksnr" type="xs:int"/>
+      <xs:element name="festenr" type="xs:int"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findNesteLedigeSeksjonsnrResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterForByggList">
+    <xs:sequence>
+      <xs:element name="byggIds" type="ns9:ByggIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterForByggListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:ByggIdTilMatrikkelenhetIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterForVeg">
+    <xs:sequence>
+      <xs:element name="vegId" type="ns8:VegId"/>
+      <xs:element name="taMedUtgatte" type="xs:boolean"/>
+      <xs:element name="viaBruksenhet" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterForVegResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findKlagerForMatrikkelenheter">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIds" type="ns1:MatrikkelenhetIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findKlagerForMatrikkelenheterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdTilKlageIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenhetIGrunnbok">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIdent" type="ns1:MatrikkelenhetIdent"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenhetIGrunnbokResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetFraGrunnbokDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterForBygg">
+    <xs:sequence>
+      <xs:element name="byggId" type="ns9:ByggId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterForByggResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterForTeiger">
+    <xs:sequence>
+      <xs:element name="teigIds" type="ns1:TeigIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterForTeigerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:TeigIdTilMatrikkelenhetIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterForAnleggsprojeksjonsflate">
+    <xs:sequence>
+      <xs:element name="flateId" type="ns1:AnleggsprojeksjonsflateId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterForAnleggsprojeksjonsflateResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findIGrunnbokRettsstiftelserOgMatrikkelenheterForDokNr">
+    <xs:sequence>
+      <xs:element name="dokumentIdent" type="ns10:PantebokDokumentIdent"/>
+      <xs:element name="rettsstiftelsenr" type="xs:int"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findIGrunnbokRettsstiftelserOgMatrikkelenheterForDokNrResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:RettsstiftelseDTOTilMatrikkelenhetIdListMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAvtalerStedbundenRettighetForReferanse">
+    <xs:sequence>
+      <xs:element name="referanse" type="xs:string"/>
+      <xs:element name="kommuneId" type="ns6:KommuneId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAvtalerStedbundenRettighetForReferanseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:AvtaleStedbundenRettighetIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSamlaFastEiendomForMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSamlaFastEiendomForMatrikkelenhetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:SamlaFastEiendomIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findObjekterForMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findObjekterForMatrikkelenhetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetInfoTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAvtalerGrensePunktfesteForReferanse">
+    <xs:sequence>
+      <xs:element name="referanse" type="xs:string"/>
+      <xs:element name="kommuneId" type="ns6:KommuneId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAvtalerGrensePunktfesteForReferanseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:AvtaleGrensePunktfesteIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAvtalerGrensePunktfesteForMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAvtalerGrensePunktfesteForMatrikkelenhetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:AvtaleGrensePunktfesteIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findFellesarealOgJordsameierForMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="utgatte" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findFellesarealOgJordsameierForMatrikkelenhetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findFestegrunnerForMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="taMedUtgatte" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findFestegrunnerForMatrikkelenhetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:FestegrunnIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSeksjonerForMatrikkelenheter">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIds" type="ns1:MatrikkelenhetIdList"/>
+      <xs:element name="taMedUtgatte" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findSeksjonerForMatrikkelenheterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdTilSeksjonIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findEideMatrikkelenheterForMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findEideMatrikkelenheterForMatrikkelenhetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findEideMatrikkelenheterForMatrikkelenheter">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIds" type="ns1:MatrikkelenhetIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findEideMatrikkelenheterForMatrikkelenheterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdTilEideMatrikkelenhetIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findEideMatrikkelenheterForPersoner">
+    <xs:sequence>
+      <xs:element name="personIds" type="ns7:PersonIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findEideMatrikkelenheterForPersonerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:PersonIdTilEideMatrikkelenhetIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findGrunnervervForMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findGrunnervervForMatrikkelenhetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:GrunnervervIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findNavarendeMatrikkelenhetIdentForMatrikkelenhetIdent">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIdent" type="ns1:MatrikkelenhetIdent"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findNavarendeMatrikkelenhetIdentForMatrikkelenhetIdentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdent"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterForAdresse">
+    <xs:sequence>
+      <xs:element name="adresseId" type="ns8:AdresseId"/>
+      <xs:element name="taMedUtgatte" type="xs:boolean"/>
+      <xs:element name="viaBruksenhet" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterForAdresseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAvtalerStedbundenRettighetForMatrikkelenheter">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIds" type="ns1:MatrikkelenhetIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAvtalerStedbundenRettighetForMatrikkelenheterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdTilAvtaleStedbundenRettighetIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findRepresentasjonspunkterForMatrikkelenheter">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIds" type="ns1:MatrikkelenhetIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findRepresentasjonspunkterForMatrikkelenheterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetIdTilRepresentasjonspunkterMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterTransfer">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIdent" type="ns1:MatrikkelenhetIdent"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelenheterTransferResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenheterTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

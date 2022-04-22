@@ -1,0 +1,7 @@
+<dom:locale>[[path="locale":default="no_NB"]]</dom:locale>
+<dom:brukOriginaleKoordinater>[[path="brukOriginaleKoordinater":default="false"]]</dom:brukOriginaleKoordinater>
+<dom:koordinatsystemKodeId>
+    <dom:value>[[path="koordinatsystemKodeId":default="24]]</dom:value>
+</dom:koordinatsystemKodeId>
+<dom:systemVersion>[[path="systemVersion":default="trunk"]]</dom:systemVersion>
+<dom:klientIdentifikasjon>[[path="klientIdentifikasjon"]]</dom:klientIdentifikasjon>

@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        version="1.0"
+        targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bruker"
+        xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bruker"
+        xmlns:brukerkoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bruker/koder"
+        xmlns:basistyperns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"
+        xmlns:kommunens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:import schemaLocation="brukerKoder.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bruker/koder"/>
+    <xs:import schemaLocation="basistyper.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"/>
+    <xs:import schemaLocation="kodeliste.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"/>
+    <xs:import schemaLocation="kommune.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune"/>
+
+    <xs:complexType name="Bruker">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="brukernavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="navn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="adresse" type="xs:string" minOccurs="0"/>
+                    <xs:element name="postadresse" type="xs:string" minOccurs="0"/>
+                    <xs:element name="epost" type="xs:string" minOccurs="0"/>
+                    <xs:element name="telefonnummer" type="xs:string" minOccurs="0"/>
+                    <xs:element name="endrePassordVedInnlogging" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="sprakformId" type="brukerkoderns:SprakformId" minOccurs="0"/>
+                    <xs:element name="standardMalestokk" type="xs:int" minOccurs="0"/>
+                    <xs:element name="pekeRadius" type="xs:double" minOccurs="0"/>
+                    <xs:element name="snappetoleranse" type="xs:double" minOccurs="0"/>
+                    <xs:element name="standardStiForBakgrunnskart" type="xs:string" minOccurs="0"/>
+                    <xs:element name="aktuellKommuneId" type="kommunens:KommuneId" minOccurs="0"/>
+                    <xs:element name="brukStoreKnapper" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="dataForWMSer" type="DataForWMSList" minOccurs="0"/>
+                    <xs:element name="ndBruker" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="baatBruker" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="opprettetAvId" type="BrukerId" minOccurs="0"/>
+                    <xs:element name="opprettetDato" type="basistyperns:Timestamp" minOccurs="0"/>
+                    <xs:element name="adgangSlettetAvId" type="BrukerId" minOccurs="0"/>
+                    <xs:element name="adgangSlettetDato" type="basistyperns:Timestamp" minOccurs="0"/>
+                    <xs:element name="sistOppdatertAvId" type="BrukerId" minOccurs="0"/>
+                    <xs:element name="sistOppdatertDato" type="basistyperns:Timestamp" minOccurs="0"/>
+                    <xs:element name="merknad" type="xs:string" minOccurs="0"/>
+                    <xs:element name="programvareBruker" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="brukergruppeId" type="brukerkoderns:BrukergruppeKodeId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BrukerList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="Bruker"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BrukerId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BrukerIdList">
+        <xs:sequence>
+            <xs:element name="item" type="BrukerId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BrukerIdent">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:Ident">
+                <xs:sequence>
+                    <xs:element name="brukernavn" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BrukerIdentList">
+        <xs:sequence>
+            <xs:element name="item" type="BrukerIdent" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BrukerIdentTilBrukerIdMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="BrukerIdent"/>
+                        <xs:element name="value" nillable="true" type="BrukerId"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BrukerAktiveringsdata">
+        <xs:sequence>
+            <xs:element name="midlertidigBruker" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="stengingAktiv" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="periodiskStengingAktiv" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="stengingstidspunkt" type="basistyperns:Timestamp" minOccurs="0"/>
+            <xs:element name="periodiskPassordbytteAktiv" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="dager" type="xs:int" minOccurs="0"/>
+            <xs:element name="aktiveringsstatusId" type="brukerkoderns:BrukerAktiveringsstatusKodeId" minOccurs="0"/>
+            <xs:element name="varselSendtTidspunkt" type="basistyperns:Timestamp" minOccurs="0"/>
+            <xs:element name="ndBruker" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="baatBruker" type="xs:boolean" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="BrukerHistorikk">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="brukernavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="navn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="epost" type="xs:string" minOccurs="0"/>
+                    <xs:element name="opprettetAvId" type="BrukerId" minOccurs="0"/>
+                    <xs:element name="opprettetDato" type="basistyperns:Timestamp" minOccurs="0"/>
+                    <xs:element name="adgangSlettetAvId" type="BrukerId" minOccurs="0"/>
+                    <xs:element name="adgangSlettetDato" type="basistyperns:Timestamp" minOccurs="0"/>
+                    <xs:element name="sistOppdatertAvId" type="BrukerId" minOccurs="0"/>
+                    <xs:element name="sistOppdatertDato" type="basistyperns:Timestamp" minOccurs="0"/>
+                    <xs:element name="sattHistoriskAvId" type="BrukerId" minOccurs="0"/>
+                    <xs:element name="sattHistoriskDato" type="basistyperns:Timestamp" minOccurs="0"/>
+                    <xs:element name="merknad" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BrukerHistorikkListe">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="historikker" type="BrukerHistorikkList" minOccurs="0"/>
+                    <xs:element name="brukerId" type="BrukerId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BrukerHistorikkList">
+        <xs:sequence>
+            <xs:element name="item" type="BrukerHistorikk" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BrukerHistorikkListeId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BrukerHistorikkListeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="BrukerHistorikkListeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BrukerIdTilBrukerHistorikkListeIdMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="BrukerId"/>
+                        <xs:element name="value" nillable="true" type="BrukerHistorikkListeId"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BrukerRettighet">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="rolleId" type="brukerkoderns:RolleId" minOccurs="0"/>
+                    <xs:element name="forvaltningsomrade" type="Forvaltningsomrade" minOccurs="0"/>
+                    <xs:element name="tildeltAvId" type="BrukerId" minOccurs="0"/>
+                    <xs:element name="tildeltDato" type="basistyperns:Timestamp" minOccurs="0"/>
+                    <xs:element name="fjernetAvId" type="BrukerId" minOccurs="0"/>
+                    <xs:element name="fjernetDato" type="basistyperns:Timestamp" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BrukerRettighetList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="BrukerRettighet"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BrukerRettighetListe">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="rettigheter" type="BrukerRettighetList" minOccurs="0"/>
+                    <xs:element name="brukerId" type="BrukerId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BrukerRettighetListeId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BrukerRettighetListeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="BrukerRettighetListeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BrukerIdTilBrukerRettighetListeIdMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="BrukerId"/>
+                        <xs:element name="value" nillable="true" type="BrukerRettighetListeId"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="DataForWMS">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="adresseTilURL" type="xs:string" minOccurs="0"/>
+                    <xs:element name="anonymTilkobling" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="kreverTicket" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="visesVedOppstart" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="lag" type="LagForWMSList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="DataForWMSList">
+        <xs:sequence>
+            <xs:element name="item" type="DataForWMS" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Forvaltningsomrade">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KommuneForvaltningsomrade">
+        <xs:complexContent>
+            <xs:extension base="Forvaltningsomrade">
+                <xs:sequence>
+                    <xs:element name="kommuneIds" type="kommunens:KommuneIdList" minOccurs="0"/>
+                    <xs:element name="kommunelisteId" type="KommunelisteId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KommuneForvaltningsomradeList">
+        <xs:sequence>
+            <xs:element name="item" type="KommuneForvaltningsomrade" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Kommuneliste">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="kommuneIds" type="kommunens:KommuneIdList" minOccurs="0"/>
+                    <xs:element name="navn" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KommunelisteId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KommunelisteIdList">
+        <xs:sequence>
+            <xs:element name="item" type="KommunelisteId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="KommunelisteList">
+        <xs:sequence>
+            <xs:element name="item" type="Kommuneliste" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Kurs">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="kursnavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="kursdato" type="basistyperns:LocalDate" minOccurs="0"/>
+                    <xs:element name="kursvarighet" type="xs:int" minOccurs="0"/>
+                    <xs:element name="kurssted" type="xs:string" minOccurs="0"/>
+                    <xs:element name="kursansvarligId" type="BrukerId" minOccurs="0"/>
+                    <xs:element name="kursmerknad" type="xs:string" minOccurs="0"/>
+                    <xs:element name="kursdeltakere" type="KursForBrukerList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KursId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KursIdList">
+        <xs:sequence>
+            <xs:element name="item" type="KursId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="KursForBruker">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="brukerId" type="BrukerId" minOccurs="0"/>
+                    <xs:element name="registrertAvId" type="BrukerId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KursForBrukerList">
+        <xs:sequence>
+            <xs:element name="item" type="KursForBruker" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="LagForWMS">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="navn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="style" type="xs:string" minOccurs="0"/>
+                    <xs:element name="vises" type="xs:boolean" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="LagForWMSList">
+        <xs:sequence>
+            <xs:element name="item" type="LagForWMS" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="LandForvaltningsomrade">
+        <xs:complexContent>
+            <xs:extension base="Forvaltningsomrade">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+</xs:schema>

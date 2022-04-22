@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/forretning" xmlns:ns2="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person" xmlns:ns3="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/elektronisktinglysing" xmlns:ns4="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" xmlns:ns5="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" xmlns:tns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/elektronisktinglysing" elementFormDefault="qualified" targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/elektronisktinglysing" version="1.0">
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/forretning" schemaLocation="forretning.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person" schemaLocation="person.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/elektronisktinglysing" schemaLocation="elektronisktinglysing.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" schemaLocation="geometriKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" schemaLocation="basistyper.xsd"/>
+
+  <xs:element name="hentKvitteringForTinglystForretning" type="tns:hentKvitteringForTinglystForretning"/>
+
+  <xs:element name="hentKvitteringForTinglystForretningResponse" type="tns:hentKvitteringForTinglystForretningResponse"/>
+
+  <xs:element name="kanTinglysesElektronisk" type="tns:kanTinglysesElektronisk"/>
+
+  <xs:element name="kanTinglysesElektroniskResponse" type="tns:kanTinglysesElektroniskResponse"/>
+
+  <xs:complexType name="kanTinglysesElektronisk">
+    <xs:sequence>
+      <xs:element name="meldingTilTinglysingRequest" type="ns3:MeldingTilTinglysingRequest"/>
+      <xs:element name="matrikkelContext" type="ns5:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="kanTinglysesElektroniskResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="hentKvitteringForTinglystForretning">
+    <xs:sequence>
+      <xs:element name="forretningId" type="ns1:MatrikkelenhetForretningId"/>
+      <xs:element name="matrikkelContext" type="ns5:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="hentKvitteringForTinglystForretningResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns3:GrunnboksutskriftList"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

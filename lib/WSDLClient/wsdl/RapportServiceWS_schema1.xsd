@@ -1,0 +1,1077 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" xmlns:ns10="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse" xmlns:ns11="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/pantebok" xmlns:ns12="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/endringslogg/koder" xmlns:ns13="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/konsesjon" xmlns:ns14="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/jobb" xmlns:ns15="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/forretning" xmlns:ns16="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bruker" xmlns:ns17="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/jobb/koder" xmlns:ns18="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person" xmlns:ns2="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" xmlns:ns3="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning" xmlns:ns4="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/rapport/koder" xmlns:ns5="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" xmlns:ns6="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/rapport" xmlns:ns7="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/util" xmlns:ns8="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri" xmlns:ns9="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet" xmlns:tns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/rapport" elementFormDefault="qualified" targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/rapport" version="1.0">
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" schemaLocation="kommune.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" schemaLocation="basistyper.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning" schemaLocation="bygning.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/rapport/koder" schemaLocation="rapportKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" schemaLocation="geometriKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/rapport" schemaLocation="rapport.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/util" schemaLocation="util.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri" schemaLocation="geometri.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet" schemaLocation="matrikkelenhet.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse" schemaLocation="adresse.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/pantebok" schemaLocation="pantebok.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/endringslogg/koder" schemaLocation="endringsloggKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/konsesjon" schemaLocation="konsesjon.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/jobb" schemaLocation="jobb.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/forretning" schemaLocation="forretning.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bruker" schemaLocation="bruker.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/jobb/koder" schemaLocation="jobbKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person" schemaLocation="person.xsd"/>
+
+  <xs:element name="createAdresseKontrollRapport" type="tns:createAdresseKontrollRapport"/>
+
+  <xs:element name="createAdresseKontrollRapportResponse" type="tns:createAdresseKontrollRapportResponse"/>
+
+  <xs:element name="createAdresseRapport" type="tns:createAdresseRapport"/>
+
+  <xs:element name="createAdresseRapportForKommuneutvalg" type="tns:createAdresseRapportForKommuneutvalg"/>
+
+  <xs:element name="createAdresseRapportForKommuneutvalgResponse" type="tns:createAdresseRapportForKommuneutvalgResponse"/>
+
+  <xs:element name="createAdresseRapportResponse" type="tns:createAdresseRapportResponse"/>
+
+  <xs:element name="createAdresseendringerForFlereKommunerRapport" type="tns:createAdresseendringerForFlereKommunerRapport"/>
+
+  <xs:element name="createAdresseendringerForFlereKommunerRapportResponse" type="tns:createAdresseendringerForFlereKommunerRapportResponse"/>
+
+  <xs:element name="createAdresseendringsRapport" type="tns:createAdresseendringsRapport"/>
+
+  <xs:element name="createAdresseendringsRapportResponse" type="tns:createAdresseendringsRapportResponse"/>
+
+  <xs:element name="createAdressemerkebestillingsRapportForAdressemerkeBestillinger" type="tns:createAdressemerkebestillingsRapportForAdressemerkeBestillinger"/>
+
+  <xs:element name="createAdressemerkebestillingsRapportForAdressemerkeBestillingerResponse" type="tns:createAdressemerkebestillingsRapportForAdressemerkeBestillingerResponse"/>
+
+  <xs:element name="createBoligbyggingRapport" type="tns:createBoligbyggingRapport"/>
+
+  <xs:element name="createBoligbyggingRapportResponse" type="tns:createBoligbyggingRapportResponse"/>
+
+  <xs:element name="createByggForingshistorikkRapport" type="tns:createByggForingshistorikkRapport"/>
+
+  <xs:element name="createByggForingshistorikkRapportResponse" type="tns:createByggForingshistorikkRapportResponse"/>
+
+  <xs:element name="createByggKontrollRapport" type="tns:createByggKontrollRapport"/>
+
+  <xs:element name="createByggKontrollRapportResponse" type="tns:createByggKontrollRapportResponse"/>
+
+  <xs:element name="createByggRapport" type="tns:createByggRapport"/>
+
+  <xs:element name="createByggRapportResponse" type="tns:createByggRapportResponse"/>
+
+  <xs:element name="createBygningMedBygningssendringRapport" type="tns:createBygningMedBygningssendringRapport"/>
+
+  <xs:element name="createBygningMedBygningssendringRapportResponse" type="tns:createBygningMedBygningssendringRapportResponse"/>
+
+  <xs:element name="createBygningstypeJasperRapport" type="tns:createBygningstypeJasperRapport"/>
+
+  <xs:element name="createBygningstypeJasperRapportResponse" type="tns:createBygningstypeJasperRapportResponse"/>
+
+  <xs:element name="createForingskontrollRapport" type="tns:createForingskontrollRapport"/>
+
+  <xs:element name="createForingskontrollRapportResponse" type="tns:createForingskontrollRapportResponse"/>
+
+  <xs:element name="createGeovekstRapport" type="tns:createGeovekstRapport"/>
+
+  <xs:element name="createGeovekstRapportResponse" type="tns:createGeovekstRapportResponse"/>
+
+  <xs:element name="createGrenselinjerMedMPIDRapport" type="tns:createGrenselinjerMedMPIDRapport"/>
+
+  <xs:element name="createGrenselinjerMedMPIDRapportResponse" type="tns:createGrenselinjerMedMPIDRapportResponse"/>
+
+  <xs:element name="createGrensepunktmerkingManglerRapport" type="tns:createGrensepunktmerkingManglerRapport"/>
+
+  <xs:element name="createGrensepunktmerkingManglerRapportResponse" type="tns:createGrensepunktmerkingManglerRapportResponse"/>
+
+  <xs:element name="createGrunnbokOgPantebokHoveddokumentutskrifter" type="tns:createGrunnbokOgPantebokHoveddokumentutskrifter"/>
+
+  <xs:element name="createGrunnbokOgPantebokHoveddokumentutskrifterResponse" type="tns:createGrunnbokOgPantebokHoveddokumentutskrifterResponse"/>
+
+  <xs:element name="createGrunnboksutskriftNy" type="tns:createGrunnboksutskriftNy"/>
+
+  <xs:element name="createGrunnboksutskriftNyResponse" type="tns:createGrunnboksutskriftNyResponse"/>
+
+  <xs:element name="createGrunnboksutskrifter" type="tns:createGrunnboksutskrifter"/>
+
+  <xs:element name="createGrunnboksutskrifterResponse" type="tns:createGrunnboksutskrifterResponse"/>
+
+  <xs:element name="createIkkeFullfortOppmalingsforretningRapport" type="tns:createIkkeFullfortOppmalingsforretningRapport"/>
+
+  <xs:element name="createIkkeFullfortOppmalingsforretningRapportResponse" type="tns:createIkkeFullfortOppmalingsforretningRapportResponse"/>
+
+  <xs:element name="createKommunalTilleggsdelForMatrikkelenhet" type="tns:createKommunalTilleggsdelForMatrikkelenhet"/>
+
+  <xs:element name="createKommunalTilleggsdelForMatrikkelenhetResponse" type="tns:createKommunalTilleggsdelForMatrikkelenhetResponse"/>
+
+  <xs:element name="createKommuneendringKommunegrenseRapport" type="tns:createKommuneendringKommunegrenseRapport"/>
+
+  <xs:element name="createKommuneendringKommunegrenseRapportResponse" type="tns:createKommuneendringKommunegrenseRapportResponse"/>
+
+  <xs:element name="createKommunegrenseRapport" type="tns:createKommunegrenseRapport"/>
+
+  <xs:element name="createKommunegrenseRapportResponse" type="tns:createKommunegrenseRapportResponse"/>
+
+  <xs:element name="createKonsesjonsforholdKvittering" type="tns:createKonsesjonsforholdKvittering"/>
+
+  <xs:element name="createKonsesjonsforholdKvitteringResponse" type="tns:createKonsesjonsforholdKvitteringResponse"/>
+
+  <xs:element name="createKretserRapport" type="tns:createKretserRapport"/>
+
+  <xs:element name="createKretserRapportResponse" type="tns:createKretserRapportResponse"/>
+
+  <xs:element name="createManglerVedMatrikkelforingskravRapport" type="tns:createManglerVedMatrikkelforingskravRapport"/>
+
+  <xs:element name="createManglerVedMatrikkelforingskravRapportResponse" type="tns:createManglerVedMatrikkelforingskravRapportResponse"/>
+
+  <xs:element name="createMassivuttrekkFylkeRapport" type="tns:createMassivuttrekkFylkeRapport"/>
+
+  <xs:element name="createMassivuttrekkFylkeRapportResponse" type="tns:createMassivuttrekkFylkeRapportResponse"/>
+
+  <xs:element name="createMassivuttrekkRapport" type="tns:createMassivuttrekkRapport"/>
+
+  <xs:element name="createMassivuttrekkRapportResponse" type="tns:createMassivuttrekkRapportResponse"/>
+
+  <xs:element name="createMatrikkelbrev" type="tns:createMatrikkelbrev"/>
+
+  <xs:element name="createMatrikkelbrevHistorisk" type="tns:createMatrikkelbrevHistorisk"/>
+
+  <xs:element name="createMatrikkelbrevHistoriskResponse" type="tns:createMatrikkelbrevHistoriskResponse"/>
+
+  <xs:element name="createMatrikkelbrevResponse" type="tns:createMatrikkelbrevResponse"/>
+
+  <xs:element name="createMatrikkelenUtdrag" type="tns:createMatrikkelenUtdrag"/>
+
+  <xs:element name="createMatrikkelenUtdragResponse" type="tns:createMatrikkelenUtdragResponse"/>
+
+  <xs:element name="createMatrikkelenhetKontrollRapport" type="tns:createMatrikkelenhetKontrollRapport"/>
+
+  <xs:element name="createMatrikkelenhetKontrollRapportResponse" type="tns:createMatrikkelenhetKontrollRapportResponse"/>
+
+  <xs:element name="createMatrikkelenhetMedUfullstendingGeometriRapport" type="tns:createMatrikkelenhetMedUfullstendingGeometriRapport"/>
+
+  <xs:element name="createMatrikkelenhetMedUfullstendingGeometriRapportResponse" type="tns:createMatrikkelenhetMedUfullstendingGeometriRapportResponse"/>
+
+  <xs:element name="createMatrikkelenhetRapport" type="tns:createMatrikkelenhetRapport"/>
+
+  <xs:element name="createMatrikkelenhetRapportResponse" type="tns:createMatrikkelenhetRapportResponse"/>
+
+  <xs:element name="createMeldingTilTinglysing" type="tns:createMeldingTilTinglysing"/>
+
+  <xs:element name="createMeldingTilTinglysingResponse" type="tns:createMeldingTilTinglysingResponse"/>
+
+  <xs:element name="createMidlertidigForretningRapport" type="tns:createMidlertidigForretningRapport"/>
+
+  <xs:element name="createMidlertidigForretningRapportResponse" type="tns:createMidlertidigForretningRapportResponse"/>
+
+  <xs:element name="createNaboliste" type="tns:createNaboliste"/>
+
+  <xs:element name="createNabolisteResponse" type="tns:createNabolisteResponse"/>
+
+  <xs:element name="createNyeMatrikkelenheterOgHendelserRapport" type="tns:createNyeMatrikkelenheterOgHendelserRapport"/>
+
+  <xs:element name="createNyeMatrikkelenheterOgHendelserRapportResponse" type="tns:createNyeMatrikkelenheterOgHendelserRapportResponse"/>
+
+  <xs:element name="createPantebokHoveddokumentutskrifter" type="tns:createPantebokHoveddokumentutskrifter"/>
+
+  <xs:element name="createPantebokHoveddokumentutskrifterResponse" type="tns:createPantebokHoveddokumentutskrifterResponse"/>
+
+  <xs:element name="createSamletRapportForMatrikkelenhet" type="tns:createSamletRapportForMatrikkelenhet"/>
+
+  <xs:element name="createSamletRapportForMatrikkelenhetResponse" type="tns:createSamletRapportForMatrikkelenhetResponse"/>
+
+  <xs:element name="createSamletRapportForMatrikkelenhetUtenKart" type="tns:createSamletRapportForMatrikkelenhetUtenKart"/>
+
+  <xs:element name="createSamletRapportForMatrikkelenhetUtenKartResponse" type="tns:createSamletRapportForMatrikkelenhetUtenKartResponse"/>
+
+  <xs:element name="createSamletRapportRestanserOppmaling" type="tns:createSamletRapportRestanserOppmaling"/>
+
+  <xs:element name="createSamletRapportRestanserOppmalingResponse" type="tns:createSamletRapportRestanserOppmalingResponse"/>
+
+  <xs:element name="createSefrakRapport" type="tns:createSefrakRapport"/>
+
+  <xs:element name="createSefrakRapportResponse" type="tns:createSefrakRapportResponse"/>
+
+  <xs:element name="createSefrakstatusRapport" type="tns:createSefrakstatusRapport"/>
+
+  <xs:element name="createSefrakstatusRapportResponse" type="tns:createSefrakstatusRapportResponse"/>
+
+  <xs:element name="createTeigerUtenMatrikkelnummerRapport" type="tns:createTeigerUtenMatrikkelnummerRapport"/>
+
+  <xs:element name="createTeigerUtenMatrikkelnummerRapportResponse" type="tns:createTeigerUtenMatrikkelnummerRapportResponse"/>
+
+  <xs:element name="createVegListeRapportForKommuner" type="tns:createVegListeRapportForKommuner"/>
+
+  <xs:element name="createVegListeRapportForKommunerResponse" type="tns:createVegListeRapportForKommunerResponse"/>
+
+  <xs:element name="createVegendringsRapport" type="tns:createVegendringsRapport"/>
+
+  <xs:element name="createVegendringsRapportResponse" type="tns:createVegendringsRapportResponse"/>
+
+  <xs:element name="createVeghistorikkRapport" type="tns:createVeghistorikkRapport"/>
+
+  <xs:element name="createVeghistorikkRapportResponse" type="tns:createVeghistorikkRapportResponse"/>
+
+  <xs:element name="findRapportJobberForBruker" type="tns:findRapportJobberForBruker"/>
+
+  <xs:element name="findRapportJobberForBrukerResponse" type="tns:findRapportJobberForBrukerResponse"/>
+
+  <xs:element name="findRapportJobberForPaloggetBruker" type="tns:findRapportJobberForPaloggetBruker"/>
+
+  <xs:element name="findRapportJobberForPaloggetBrukerResponse" type="tns:findRapportJobberForPaloggetBrukerResponse"/>
+
+  <xs:element name="hentRapport" type="tns:hentRapport"/>
+
+  <xs:element name="hentRapportResponse" type="tns:hentRapportResponse"/>
+
+  <xs:element name="slettRapportJobber" type="tns:slettRapportJobber"/>
+
+  <xs:element name="slettRapportJobberResponse" type="tns:slettRapportJobberResponse"/>
+
+  <xs:complexType name="createSefrakstatusRapport">
+    <xs:sequence>
+      <xs:element name="sefrakstatussokModel" type="ns3:SefrakstatussokModel"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createSefrakstatusRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createMatrikkelenhetRapport">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetsokModel" type="ns9:MatrikkelenhetsokModel"/>
+      <xs:element name="rapportTypeId" type="ns4:MatrikkelenhetRapportTypeId"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createMatrikkelenhetRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createVegListeRapportForKommuner">
+    <xs:sequence>
+      <xs:element name="kommuneUtvalg" type="ns1:StringTilKommuneIdListMap"/>
+      <xs:element name="vegRapportTypeId" type="ns4:VegRapportTypeId"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="adressenavn" type="xs:boolean"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createVegListeRapportForKommunerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createMatrikkelbrev">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns9:MatrikkelenhetId"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createMatrikkelbrevResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createAdresseRapport">
+    <xs:sequence>
+      <xs:element name="adresseSokModel" type="ns10:AdressesokModel"/>
+      <xs:element name="adresseRapportTypeId" type="ns4:AdresseRapportTypeId"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createAdresseRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createVeghistorikkRapport">
+    <xs:sequence>
+      <xs:element name="sokemodell" type="ns10:VegHistorikksokModel"/>
+      <xs:element name="rapportTypeId" type="ns4:VegRapportTypeId"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createVeghistorikkRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createSamletRapportForMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns9:MatrikkelenhetId"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createSamletRapportForMatrikkelenhetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createPantebokHoveddokumentutskrifter">
+    <xs:sequence>
+      <xs:element name="pantebokDokumentIdenter" type="ns11:PantebokDokumentIdentList"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createPantebokHoveddokumentutskrifterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createBoligbyggingRapport">
+    <xs:sequence>
+      <xs:element name="boligbyggingsokModel" type="ns3:BoligbyggingsokModel"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createBoligbyggingRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createGrunnboksutskriftNy">
+    <xs:sequence>
+      <xs:element name="utvalg" type="ns6:GrunnboksutskriftNyUtvalg"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createGrunnboksutskriftNyResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createMatrikkelbrevHistorisk">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns9:MatrikkelenhetId"/>
+      <xs:element name="tidspunkt" type="ns2:Timestamp"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createMatrikkelbrevHistoriskResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createBygningMedBygningssendringRapport">
+    <xs:sequence>
+      <xs:element name="byggsokModel" type="ns3:AbstractByggsokModel"/>
+      <xs:element name="byggKlasser" type="ns6:ByggklasseList"/>
+      <xs:element minOccurs="0" name="subrapporter" type="ns2:StringList"/>
+      <xs:element name="hjemmelshavere" type="xs:boolean"/>
+      <xs:element name="tiltakshavere" type="xs:boolean"/>
+      <xs:element name="kontaktpersoner" type="xs:boolean"/>
+      <xs:element name="bruksenheter" type="xs:boolean"/>
+      <xs:element name="rapportTypeId" type="ns4:BygningRapportTypeId"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createBygningMedBygningssendringRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createMassivuttrekkRapport">
+    <xs:sequence>
+      <xs:element name="kommuneIds" type="ns1:KommuneIdList"/>
+      <xs:element name="rapportTypeId" type="ns4:MassivRapportTypeId"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createMassivuttrekkRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createByggRapport">
+    <xs:sequence>
+      <xs:element name="byggsokModel" type="ns3:ByggsokModel"/>
+      <xs:element name="byggKlasser" type="ns6:ByggklasseList"/>
+      <xs:element name="subrapporter" type="ns2:StringList"/>
+      <xs:element name="bygningRapportTypeId" type="ns4:BygningRapportTypeId"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createByggRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createMatrikkelenhetMedUfullstendingGeometriRapport">
+    <xs:sequence>
+      <xs:element name="kommuneId" type="ns1:KommuneId"/>
+      <xs:element name="utenTeigUtenBygg" type="xs:boolean"/>
+      <xs:element name="utenTeigMedBygg" type="xs:boolean"/>
+      <xs:element name="attekant" type="xs:boolean"/>
+      <xs:element name="medFiktivExterior" type="xs:boolean"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createMatrikkelenhetMedUfullstendingGeometriRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createGrensepunktmerkingManglerRapport">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetForForretningsokModel" type="ns9:MatrikkelenhetForForretningsokModel"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createGrensepunktmerkingManglerRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createMidlertidigForretningRapport">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetForForretningsokModel" type="ns9:MatrikkelenhetForForretningsokModel"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createMidlertidigForretningRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createNaboliste">
+    <xs:sequence>
+      <xs:element name="kommuneId" type="ns1:KommuneId"/>
+      <xs:element name="matrikkelenhetId" type="ns9:MatrikkelenhetId"/>
+      <xs:element name="matrikkelenhetIds" type="ns9:MatrikkelenhetIdList"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element minOccurs="0" name="medKontaktinformasjon" type="xs:boolean"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createNabolisteResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createForingskontrollRapport">
+    <xs:sequence>
+      <xs:element name="foringskontrollsokModel" type="ns6:ForingskontrollsokModel"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createForingskontrollRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createAdresseendringsRapport">
+    <xs:sequence>
+      <xs:element name="kommuneId" type="ns1:KommuneId"/>
+      <xs:element name="fra" type="ns2:LocalDate"/>
+      <xs:element name="til" type="ns2:LocalDate"/>
+      <xs:element name="endringskilder" type="ns12:EndringsKildeKodeIdList"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createAdresseendringsRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createGeovekstRapport">
+    <xs:sequence>
+      <xs:element name="geovekstsokModel" type="ns6:GeovekstsokModel"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createGeovekstRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createVegendringsRapport">
+    <xs:sequence>
+      <xs:element name="kommuneId" type="ns1:KommuneId"/>
+      <xs:element name="fra" type="ns2:LocalDate"/>
+      <xs:element name="til" type="ns2:LocalDate"/>
+      <xs:element name="endringskilder" type="ns12:EndringsKildeKodeIdList"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createVegendringsRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createSefrakRapport">
+    <xs:sequence>
+      <xs:element name="sefraksokModel" type="ns6:SefraksokModel"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createSefrakRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createGrenselinjerMedMPIDRapport">
+    <xs:sequence>
+      <xs:element name="utvalgForRapporter" type="ns1:StringTilKommuneIdMap"/>
+      <xs:element name="kunAdministrativeGrenser" type="xs:boolean"/>
+      <xs:element name="medIds" type="xs:boolean"/>
+      <xs:element name="rapportTypeId" type="ns4:DriftRapportTypeId"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createGrenselinjerMedMPIDRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createAdressemerkebestillingsRapportForAdressemerkeBestillinger">
+    <xs:sequence>
+      <xs:element name="adressemerkebestillinger" type="ns10:AdressemerkeBestillingList"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createAdressemerkebestillingsRapportForAdressemerkeBestillingerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:AdressemerkeBestillingRapportDTO"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createKommunegrenseRapport">
+    <xs:sequence>
+      <xs:element name="kommuneIds" type="ns1:KommuneIdList"/>
+      <xs:element name="rapportTypeId" type="ns4:DriftRapportTypeId"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createKommunegrenseRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createKonsesjonsforholdKvittering">
+    <xs:sequence>
+      <xs:element name="kommuneId" type="ns1:KommuneId"/>
+      <xs:element name="konsesjonsforholdUtskriftId" type="ns13:KonsesjonsforholdUtskriftId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createKonsesjonsforholdKvitteringResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createMassivuttrekkFylkeRapport">
+    <xs:sequence>
+      <xs:element name="fylkeIds" type="ns1:FylkeIdList"/>
+      <xs:element name="rapportTypeId" type="ns4:MassivRapportTypeId"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createMassivuttrekkFylkeRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createBygningstypeJasperRapport">
+    <xs:sequence>
+      <xs:element name="fylkeId" type="ns1:FylkeId"/>
+      <xs:element name="kommuneIds" type="ns1:KommuneIdList"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createBygningstypeJasperRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createKommuneendringKommunegrenseRapport">
+    <xs:sequence>
+      <xs:element name="kommuneIds" type="ns1:KommuneIdList"/>
+      <xs:element name="rapportTypeId" type="ns4:MatrikkelenhetRapportTypeId"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createKommuneendringKommunegrenseRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createByggForingshistorikkRapport">
+    <xs:sequence>
+      <xs:element name="byggsokModel" type="ns3:AbstractByggsokModel"/>
+      <xs:element name="byggKlasser" type="ns6:ByggklasseList"/>
+      <xs:element name="rapportTypeId" type="ns4:BygningRapportTypeId"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createByggForingshistorikkRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createGrunnbokOgPantebokHoveddokumentutskrifter">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIdent" type="ns9:MatrikkelenhetIdent"/>
+      <xs:element name="utelat" type="ns9:MatrikkelenhetIdentList"/>
+      <xs:element name="historisk" type="xs:boolean"/>
+      <xs:element name="fodselsnummer" type="xs:boolean"/>
+      <xs:element name="pantebokDokumentIdenter" type="ns11:PantebokDokumentIdentList"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createGrunnbokOgPantebokHoveddokumentutskrifterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createIkkeFullfortOppmalingsforretningRapport">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetForForretningsokModel" type="ns9:MatrikkelenhetForForretningsokModel"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createIkkeFullfortOppmalingsforretningRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createMatrikkelenhetKontrollRapport">
+    <xs:sequence>
+      <xs:element name="kommuneId" type="ns1:KommuneId"/>
+      <xs:element name="rapportTypeId" type="ns4:MatrikkelenhetRapportTypeId"/>
+      <xs:element name="bestaendeUtgatte" type="ns6:MatrikkelenhetKontrollRapportParameter"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createMatrikkelenhetKontrollRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createSamletRapportRestanserOppmaling">
+    <xs:sequence>
+      <xs:element name="kommuneId" type="ns1:KommuneId"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createSamletRapportRestanserOppmalingResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="slettRapportJobber">
+    <xs:sequence>
+      <xs:element name="jobbIds" type="ns14:JobbIdList"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="slettRapportJobberResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:anyType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createAdresseRapportForKommuneutvalg">
+    <xs:sequence>
+      <xs:element name="kommuneUtvalg" type="ns1:StringTilKommuneIdListMap"/>
+      <xs:element name="adresseRapportTypeId" type="ns4:AdresseRapportTypeId"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createAdresseRapportForKommuneutvalgResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createMatrikkelenUtdrag">
+    <xs:sequence>
+      <xs:element name="forretninger" type="ns15:MatrikkelenhetForretningIdList"/>
+      <xs:element name="parter" type="ns9:MatrikkelenhetIdList"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createMatrikkelenUtdragResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createAdresseendringerForFlereKommunerRapport">
+    <xs:sequence>
+      <xs:element name="kommuneIds" type="ns1:KommuneIdList"/>
+      <xs:element name="fra" type="ns2:LocalDate"/>
+      <xs:element name="til" type="ns2:LocalDate"/>
+      <xs:element name="endringskilder" type="ns12:EndringsKildeKodeIdList"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createAdresseendringerForFlereKommunerRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createSamletRapportForMatrikkelenhetUtenKart">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns9:MatrikkelenhetId"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createSamletRapportForMatrikkelenhetUtenKartResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createManglerVedMatrikkelforingskravRapport">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetForForretningsokModel" type="ns9:MatrikkelenhetForForretningsokModel"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createManglerVedMatrikkelforingskravRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createGrunnboksutskrifter">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIdent" type="ns9:MatrikkelenhetIdent"/>
+      <xs:element name="utelat" type="ns9:MatrikkelenhetIdentList"/>
+      <xs:element name="historisk" type="xs:boolean"/>
+      <xs:element name="fodselsnummer" type="xs:boolean"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createGrunnboksutskrifterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createKretserRapport">
+    <xs:sequence>
+      <xs:element name="kretssokModel" type="ns10:KretssokModel"/>
+      <xs:element name="adresseRapportTypeId" type="ns4:AdresseRapportTypeId"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createKretserRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="hentRapport">
+    <xs:sequence>
+      <xs:element name="jobbId" type="ns14:JobbId"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="hentRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createTeigerUtenMatrikkelnummerRapport">
+    <xs:sequence>
+      <xs:element name="kommuneId" type="ns1:KommuneId"/>
+      <xs:element name="teigerUtenMatrikkelnummer" type="xs:boolean"/>
+      <xs:element name="vannteigerUtenMatrikkelnummer" type="xs:boolean"/>
+      <xs:element name="rapportTypeId" type="ns4:MatrikkelenhetRapportTypeId"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createTeigerUtenMatrikkelnummerRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findRapportJobberForBruker">
+    <xs:sequence>
+      <xs:element name="brukerId" nillable="true" type="ns16:BrukerId"/>
+      <xs:element name="statusListe" type="ns17:JobbStatusKodeIdList"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findRapportJobberForBrukerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns14:JobbIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createAdresseKontrollRapport">
+    <xs:sequence>
+      <xs:element name="kommuneId" type="ns1:KommuneId"/>
+      <xs:element name="rapportTypeId" type="ns4:AdresseRapportTypeId"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createAdresseKontrollRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createKommunalTilleggsdelForMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns9:MatrikkelenhetId"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createKommunalTilleggsdelForMatrikkelenhetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createByggKontrollRapport">
+    <xs:sequence>
+      <xs:element name="kommuneId" type="ns1:KommuneId"/>
+      <xs:element name="rapportTypeId" type="ns4:BygningRapportTypeId"/>
+      <xs:element name="bestaendeUtgatte" type="xs:int"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createByggKontrollRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createMeldingTilTinglysing">
+    <xs:sequence>
+      <xs:element name="forretningId" type="ns15:MatrikkelenhetForretningId"/>
+      <xs:element name="rekvirentTinglysing" type="ns18:JuridiskPersonId"/>
+      <xs:element name="rekvirenterForretning" type="ns18:PersonIdList"/>
+      <xs:element name="harBebygdAral" type="xs:boolean"/>
+      <xs:element name="harVedlegg" type="xs:boolean"/>
+      <xs:element name="exportTypeId" type="ns4:ExportTypeId"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createMeldingTilTinglysingResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findRapportJobberForPaloggetBruker">
+    <xs:sequence>
+      <xs:element name="statusListe" type="ns17:JobbStatusKodeIdList"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findRapportJobberForPaloggetBrukerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns14:JobbIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createNyeMatrikkelenheterOgHendelserRapport">
+    <xs:sequence>
+      <xs:element name="foringskontrollsokModel" type="ns6:ForingskontrollsokModel"/>
+      <xs:element name="offline" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createNyeMatrikkelenheterOgHendelserRapportResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:MatrikkelRapport"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

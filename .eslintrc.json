@@ -1,0 +1,8 @@
+{
+    "rules": {
+        "no-extra-semi": 0,
+        "semi": 0,
+        "spaced-comment": ["error", "always", { "exceptions": ["/"] }],
+        "no-multi-spaces": ["error", { "ignoreEOLComments": true }]
+    }
+}

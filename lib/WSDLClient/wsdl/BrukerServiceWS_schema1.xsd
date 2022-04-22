@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" xmlns:ns2="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" xmlns:ns3="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/configuration" xmlns:ns4="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bruker" xmlns:ns5="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" xmlns:ns6="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri" xmlns:tns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/bruker" elementFormDefault="qualified" targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/bruker" version="1.0">
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" schemaLocation="geometriKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" schemaLocation="basistyper.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/configuration" schemaLocation="configuration.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bruker" schemaLocation="bruker.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" schemaLocation="kommune.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri" schemaLocation="geometri.xsd"/>
+
+  <xs:element name="findAlleKommunelister" type="tns:findAlleKommunelister"/>
+
+  <xs:element name="findAlleKommunelisterResponse" type="tns:findAlleKommunelisterResponse"/>
+
+  <xs:element name="findBrukerIdForIdent" type="tns:findBrukerIdForIdent"/>
+
+  <xs:element name="findBrukerIdForIdentResponse" type="tns:findBrukerIdForIdentResponse"/>
+
+  <xs:element name="findBrukerIdsForIdents" type="tns:findBrukerIdsForIdents"/>
+
+  <xs:element name="findBrukerIdsForIdentsResponse" type="tns:findBrukerIdsForIdentsResponse"/>
+
+  <xs:element name="findBrukerRettigheterForPaaloggetBruker" type="tns:findBrukerRettigheterForPaaloggetBruker"/>
+
+  <xs:element name="findBrukerRettigheterForPaaloggetBrukerResponse" type="tns:findBrukerRettigheterForPaaloggetBrukerResponse"/>
+
+  <xs:element name="getMatrikkelServerKonfigurasjon" type="tns:getMatrikkelServerKonfigurasjon"/>
+
+  <xs:element name="getMatrikkelServerKonfigurasjonResponse" type="tns:getMatrikkelServerKonfigurasjonResponse"/>
+
+  <xs:element name="getMatrikkelTimeZoneId" type="tns:getMatrikkelTimeZoneId"/>
+
+  <xs:element name="getMatrikkelTimeZoneIdResponse" type="tns:getMatrikkelTimeZoneIdResponse"/>
+
+  <xs:element name="getPaloggetBruker" type="tns:getPaloggetBruker"/>
+
+  <xs:element name="getPaloggetBrukerResponse" type="tns:getPaloggetBrukerResponse"/>
+
+  <xs:element name="harGrunnbokinformasjonRettighet" type="tns:harGrunnbokinformasjonRettighet"/>
+
+  <xs:element name="harGrunnbokinformasjonRettighetResponse" type="tns:harGrunnbokinformasjonRettighetResponse"/>
+
+  <xs:element name="harLesEierforholdRettighet" type="tns:harLesEierforholdRettighet"/>
+
+  <xs:element name="harLesEierforholdRettighetResponse" type="tns:harLesEierforholdRettighetResponse"/>
+
+  <xs:element name="harLesFodselsnummerRettighet" type="tns:harLesFodselsnummerRettighet"/>
+
+  <xs:element name="harLesFodselsnummerRettighetResponse" type="tns:harLesFodselsnummerRettighetResponse"/>
+
+  <xs:element name="harLesKommunaleTilleggsdataRettighet" type="tns:harLesKommunaleTilleggsdataRettighet"/>
+
+  <xs:element name="harLesKommunaleTilleggsdataRettighetResponse" type="tns:harLesKommunaleTilleggsdataRettighetResponse"/>
+
+  <xs:element name="harMatrikkelforerRettighet" type="tns:harMatrikkelforerRettighet"/>
+
+  <xs:element name="harMatrikkelforerRettighetResponse" type="tns:harMatrikkelforerRettighetResponse"/>
+
+  <xs:element name="harTaUtRapporterRettighet" type="tns:harTaUtRapporterRettighet"/>
+
+  <xs:element name="harTaUtRapporterRettighetResponse" type="tns:harTaUtRapporterRettighetResponse"/>
+
+  <xs:element name="transformPoint" type="tns:transformPoint"/>
+
+  <xs:element name="transformPointResponse" type="tns:transformPointResponse"/>
+
+  <xs:complexType name="getMatrikkelServerKonfigurasjon">
+    <xs:sequence>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getMatrikkelServerKonfigurasjonResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns3:MatrikkelServerKonfigurasjon"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAlleKommunelister">
+    <xs:sequence>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAlleKommunelisterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:KommunelisteIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getMatrikkelTimeZoneId">
+    <xs:sequence>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getMatrikkelTimeZoneIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="harMatrikkelforerRettighet">
+    <xs:sequence>
+      <xs:element name="brukerId" type="ns4:BrukerId"/>
+      <xs:element name="kommuneId" type="ns5:KommuneId"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="harMatrikkelforerRettighetResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findBrukerRettigheterForPaaloggetBruker">
+    <xs:sequence>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findBrukerRettigheterForPaaloggetBrukerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:BrukerRettighetListeId"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findBrukerIdForIdent">
+    <xs:sequence>
+      <xs:element name="brukerIdent" type="ns4:BrukerIdent"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findBrukerIdForIdentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:BrukerId"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="harLesKommunaleTilleggsdataRettighet">
+    <xs:sequence>
+      <xs:element name="brukerId" type="ns4:BrukerId"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="harLesKommunaleTilleggsdataRettighetResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="harLesEierforholdRettighet">
+    <xs:sequence>
+      <xs:element name="brukerId" type="ns4:BrukerId"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="harLesEierforholdRettighetResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="harGrunnbokinformasjonRettighet">
+    <xs:sequence>
+      <xs:element name="brukerId" type="ns4:BrukerId"/>
+      <xs:element name="kommuneId" type="ns5:KommuneId"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="harGrunnbokinformasjonRettighetResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getPaloggetBruker">
+    <xs:sequence>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="getPaloggetBrukerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:BrukerId"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="transformPoint">
+    <xs:sequence>
+      <xs:element name="point" type="ns6:Point"/>
+      <xs:element name="fraKoordinatsystemKodeId" type="ns1:KoordinatsystemKodeId"/>
+      <xs:element name="tilKoordinatsystemKodeId" type="ns1:KoordinatsystemKodeId"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="transformPointResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:Point"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="harTaUtRapporterRettighet">
+    <xs:sequence>
+      <xs:element name="brukerId" type="ns4:BrukerId"/>
+      <xs:element name="kommuneId" type="ns5:KommuneId"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="harTaUtRapporterRettighetResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="harLesFodselsnummerRettighet">
+    <xs:sequence>
+      <xs:element name="brukerId" type="ns4:BrukerId"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="harLesFodselsnummerRettighetResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findBrukerIdsForIdents">
+    <xs:sequence>
+      <xs:element name="brukerIdents" type="ns4:BrukerIdentList"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findBrukerIdsForIdentsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:BrukerIdentTilBrukerIdMap"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
