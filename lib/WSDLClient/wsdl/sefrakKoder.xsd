@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        version="1.0"
+        targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/sefrak/koder"
+        xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/sefrak/koder"
+        xmlns:kodens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        elementFormDefault="qualified">
+
+    <xs:import schemaLocation="kodeliste.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"/>
+
+    <xs:complexType name="EndringsgradKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="EndringsgradKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="EndringsgradKodeIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="EndringsgradKodeId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="EtasjetallKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="EtasjetallKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="EtasjetallKodeIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="EtasjetallKodeId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="FasadeKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode">
+                <xs:sequence>
+                    <xs:element name="hovedtypeId" type="FasadeKodeId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FasadeKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FasadeKodeIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="FasadeKodeId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ForholdAndreHusKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ForholdAndreHusKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ForholdAndreHusKodeIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="ForholdAndreHusKodeId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="FredningKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FredningKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FredningKodeIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="FredningKodeId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="FunksjonKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode">
+                <xs:sequence>
+                    <xs:element name="hovedtypeId" type="FunksjonKodeId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FunksjonKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FunksjonKodeIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="FunksjonKodeId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="FysiskMiljoKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode">
+                <xs:sequence>
+                    <xs:element name="hovedtypeId" type="FysiskMiljoKodeId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FysiskMiljoKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="FysiskMiljoKodeIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="FysiskMiljoKodeId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="KjellerKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode">
+                <xs:sequence>
+                    <xs:element name="hovedtypeId" type="KjellerKodeId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KjellerKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KjellerKodeIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="KjellerKodeId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="OpprinneligSosialtMiljoKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode">
+                <xs:sequence>
+                    <xs:element name="hovedtypeId" type="OpprinneligSosialtMiljoKodeId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="OpprinneligSosialtMiljoKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="OpprinneligSosialtMiljoKodeIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="OpprinneligSosialtMiljoKodeId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SefrakReferanseKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="SefrakReferanseKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="SefrakReferanseKodeIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="SefrakReferanseKodeId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TakformKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode">
+                <xs:sequence>
+                    <xs:element name="hovedtypeId" type="TakformKodeId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TakformKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TakformKodeIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="TakformKodeId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TaktekkingKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode">
+                <xs:sequence>
+                    <xs:element name="hovedtypeId" type="TaktekkingKodeId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TaktekkingKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TaktekkingKodeIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="TaktekkingKodeId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TidsKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode">
+                <xs:sequence>
+                    <xs:element name="hovedtypeId" type="TidsKodeId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TidsKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TidsKodeIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="TidsKodeId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="UnderbygningKonstrKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode">
+                <xs:sequence>
+                    <xs:element name="hovedtypeId" type="UnderbygningKonstrKodeId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="UnderbygningKonstrKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="UnderbygningKonstrKodeIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="UnderbygningKonstrKodeId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VerdivurderingKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="VerdivurderingKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="VerdivurderingKodeIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="VerdivurderingKodeId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VernevedtakKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="VernevedtakKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="VernevedtakKodeIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="VernevedtakKodeId"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="YtterveggKode">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode">
+                <xs:sequence>
+                    <xs:element name="hovedtypeId" type="YtterveggKodeId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="YtterveggKodeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="YtterveggKodeIdList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="YtterveggKode"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

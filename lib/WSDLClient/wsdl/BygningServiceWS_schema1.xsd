@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" xmlns:ns10="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kulturminne" xmlns:ns2="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" xmlns:ns3="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning" xmlns:ns4="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning/koder" xmlns:ns5="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse" xmlns:ns6="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet" xmlns:ns7="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri" xmlns:ns8="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" xmlns:ns9="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/sefrak" xmlns:tns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/bygning" elementFormDefault="qualified" targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/bygning" version="1.0">
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" schemaLocation="geometriKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" schemaLocation="basistyper.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning" schemaLocation="bygning.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning/koder" schemaLocation="bygningKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse" schemaLocation="adresse.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet" schemaLocation="matrikkelenhet.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri" schemaLocation="geometri.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune" schemaLocation="kommune.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/sefrak" schemaLocation="sefrak.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kulturminne" schemaLocation="kulturminne.xsd"/>
+
+  <xs:element name="existsAktivBruksenhetForMatrikkelenhet" type="tns:existsAktivBruksenhetForMatrikkelenhet"/>
+
+  <xs:element name="existsAktivBruksenhetForMatrikkelenhetResponse" type="tns:existsAktivBruksenhetForMatrikkelenhetResponse"/>
+
+  <xs:element name="findAlleBygningstypeKoder" type="tns:findAlleBygningstypeKoder"/>
+
+  <xs:element name="findAlleBygningstypeKoderResponse" type="tns:findAlleBygningstypeKoderResponse"/>
+
+  <xs:element name="findAntallBygningsendringer" type="tns:findAntallBygningsendringer"/>
+
+  <xs:element name="findAntallBygningsendringerResponse" type="tns:findAntallBygningsendringerResponse"/>
+
+  <xs:element name="findBygg" type="tns:findBygg"/>
+
+  <xs:element name="findByggEnkel" type="tns:findByggEnkel"/>
+
+  <xs:element name="findByggEnkelResponse" type="tns:findByggEnkelResponse"/>
+
+  <xs:element name="findByggForAdresse" type="tns:findByggForAdresse"/>
+
+  <xs:element name="findByggForAdresseResponse" type="tns:findByggForAdresseResponse"/>
+
+  <xs:element name="findByggForAdresser" type="tns:findByggForAdresser"/>
+
+  <xs:element name="findByggForAdresserResponse" type="tns:findByggForAdresserResponse"/>
+
+  <xs:element name="findByggForKommune" type="tns:findByggForKommune"/>
+
+  <xs:element name="findByggForKommuneResponse" type="tns:findByggForKommuneResponse"/>
+
+  <xs:element name="findByggForMatrikkelenhet" type="tns:findByggForMatrikkelenhet"/>
+
+  <xs:element name="findByggForMatrikkelenhetResponse" type="tns:findByggForMatrikkelenhetResponse"/>
+
+  <xs:element name="findByggForMatrikkelenheter" type="tns:findByggForMatrikkelenheter"/>
+
+  <xs:element name="findByggForMatrikkelenheterResponse" type="tns:findByggForMatrikkelenheterResponse"/>
+
+  <xs:element name="findByggForSelectionPolygon" type="tns:findByggForSelectionPolygon"/>
+
+  <xs:element name="findByggForSelectionPolygonResponse" type="tns:findByggForSelectionPolygonResponse"/>
+
+  <xs:element name="findByggIdForIdent" type="tns:findByggIdForIdent"/>
+
+  <xs:element name="findByggIdForIdentResponse" type="tns:findByggIdForIdentResponse"/>
+
+  <xs:element name="findByggIdsForIdents" type="tns:findByggIdsForIdents"/>
+
+  <xs:element name="findByggIdsForIdentsResponse" type="tns:findByggIdsForIdentsResponse"/>
+
+  <xs:element name="findByggResponse" type="tns:findByggResponse"/>
+
+  <xs:element name="findBygning" type="tns:findBygning"/>
+
+  <xs:element name="findBygningFlyttet" type="tns:findBygningFlyttet"/>
+
+  <xs:element name="findBygningFlyttetResponse" type="tns:findBygningFlyttetResponse"/>
+
+  <xs:element name="findBygningInfoObjekter" type="tns:findBygningInfoObjekter"/>
+
+  <xs:element name="findBygningInfoObjekterResponse" type="tns:findBygningInfoObjekterResponse"/>
+
+  <xs:element name="findBygningResponse" type="tns:findBygningResponse"/>
+
+  <xs:element name="findBygningsendring" type="tns:findBygningsendring"/>
+
+  <xs:element name="findBygningsendringResponse" type="tns:findBygningsendringResponse"/>
+
+  <xs:element name="findBygningsendringerForBygning" type="tns:findBygningsendringerForBygning"/>
+
+  <xs:element name="findBygningsendringerForBygningResponse" type="tns:findBygningsendringerForBygningResponse"/>
+
+  <xs:element name="findObjekterForBygg" type="tns:findObjekterForBygg"/>
+
+  <xs:element name="findObjekterForByggResponse" type="tns:findObjekterForByggResponse"/>
+
+  <xs:element name="finnesAnnenBygningMedSammeIdent" type="tns:finnesAnnenBygningMedSammeIdent"/>
+
+  <xs:element name="finnesAnnenBygningMedSammeIdentResponse" type="tns:finnesAnnenBygningMedSammeIdentResponse"/>
+
+  <xs:element name="finnesAnnenBygningsendringMedSammeIdent" type="tns:finnesAnnenBygningsendringMedSammeIdent"/>
+
+  <xs:element name="finnesAnnenBygningsendringMedSammeIdentResponse" type="tns:finnesAnnenBygningsendringMedSammeIdentResponse"/>
+
+  <xs:complexType name="findBygningFlyttet">
+    <xs:sequence>
+      <xs:element name="bygningsnr" type="xs:long"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findBygningFlyttetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns3:BygningId"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAlleBygningstypeKoder">
+    <xs:sequence>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAlleBygningstypeKoderResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:BygningstypeKodeIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findBygningsendringerForBygning">
+    <xs:sequence>
+      <xs:element name="bygningId" type="ns3:BygningId"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findBygningsendringerForBygningResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns3:BygningsendringIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="finnesAnnenBygningsendringMedSammeIdent">
+    <xs:sequence>
+      <xs:element name="bygningsendringId" type="ns3:BygningsendringId"/>
+      <xs:element name="bygningId" type="ns3:BygningId"/>
+      <xs:element name="lopenr" type="xs:int"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="finnesAnnenBygningsendringMedSammeIdentResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findBygning">
+    <xs:sequence>
+      <xs:element name="bygningsnr" type="xs:long"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findBygningResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns3:BygningId"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findByggForAdresser">
+    <xs:sequence>
+      <xs:element name="adresseIdList" type="ns5:AdresseIdList"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findByggForAdresserResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns3:AdresseIdTilByggIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findByggForMatrikkelenheter">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIdList" type="ns6:MatrikkelenhetIdList"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findByggForMatrikkelenheterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns3:MatrikkelenhetIdTilByggIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAntallBygningsendringer">
+    <xs:sequence>
+      <xs:element name="bygningId" type="ns3:BygningId"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAntallBygningsendringerResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findByggForSelectionPolygon">
+    <xs:sequence>
+      <xs:element name="selectionPolygon" type="ns7:SelectionPolygon"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findByggForSelectionPolygonResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns3:ByggIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findByggForKommune">
+    <xs:sequence>
+      <xs:element name="kommuneId" type="ns8:KommuneId"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findByggForKommuneResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns3:ByggIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findObjekterForBygg">
+    <xs:sequence>
+      <xs:element name="byggId" type="ns3:ByggId"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findObjekterForByggResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns3:ByggrelatertInfoTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findByggIdsForIdents">
+    <xs:sequence>
+      <xs:element name="byggIdentList" type="ns3:ByggIdentList"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findByggIdsForIdentsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns3:ByggIdentTilByggIdMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findBygg">
+    <xs:sequence>
+      <xs:element name="byggsokModel" type="ns3:ByggsokModel"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findByggResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns3:ByggIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findBygningsendring">
+    <xs:sequence>
+      <xs:element name="bygningsnr" type="xs:long"/>
+      <xs:element name="lopenr" type="xs:int"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findBygningsendringResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns3:BygningsendringId"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="existsAktivBruksenhetForMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns6:MatrikkelenhetId"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="existsAktivBruksenhetForMatrikkelenhetResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findBygningInfoObjekter">
+    <xs:sequence>
+      <xs:element name="model" type="ns3:ByggsokModel"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findBygningInfoObjekterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns3:BygningBokInfoList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findByggForAdresse">
+    <xs:sequence>
+      <xs:element name="adresseId" type="ns5:AdresseId"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findByggForAdresseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns3:ByggIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findByggEnkel">
+    <xs:sequence>
+      <xs:element name="enkelByggSokModel" type="ns3:EnkelByggSokModel"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findByggEnkelResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns3:ByggIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findByggForMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns6:MatrikkelenhetId"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findByggForMatrikkelenhetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns3:ByggIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findByggIdForIdent">
+    <xs:sequence>
+      <xs:element name="byggIdent" type="ns3:ByggIdent"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findByggIdForIdentResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns3:ByggId"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="finnesAnnenBygningMedSammeIdent">
+    <xs:sequence>
+      <xs:element name="bygningId" type="ns3:BygningId"/>
+      <xs:element name="bygningsnr" type="xs:long"/>
+      <xs:element name="matrikkelContext" type="ns2:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="finnesAnnenBygningMedSammeIdentResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        version="1.0"
+        targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/rapport"
+        xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/rapport"
+        xmlns:rapportkoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/rapport/koder"
+        xmlns:basistyperns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"
+        xmlns:geometrins="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri"
+        xmlns:jobbns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/jobb"
+        xmlns:kommunens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune"
+        xmlns:matrikkelenhetns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"
+        xmlns:utilns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/util"
+        xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:import schemaLocation="rapportKoder.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/rapport/koder"/>
+    <xs:import schemaLocation="basistyper.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"/>
+    <xs:import schemaLocation="geometri.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri"/>
+    <xs:import schemaLocation="jobb.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/jobb"/>
+    <xs:import schemaLocation="kommune.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune"/>
+    <xs:import schemaLocation="matrikkelenhet.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"/>
+    <xs:import schemaLocation="util.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/util"/>
+
+
+    <xs:complexType name="MatrikkelRapport" abstract="true"> <!--Forskjellige datatyper i domene og wsapi som maa mappes-->
+        <xs:sequence>
+            <xs:element name="url" type="xs:anyURI" minOccurs="0"/> <!--URL-->
+            <xs:element name="size" type="xs:long" minOccurs="0"/>
+            <xs:element name="compressedSize" type="xs:long" minOccurs="0"/>
+            <xs:element name="rapportTypeId" type="rapportkoderns:RapportTypeId" minOccurs="0"/>
+            <xs:element name="filnavn" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelArkivRapport">
+        <xs:complexContent>
+            <xs:extension base="MatrikkelRapport">
+                <xs:sequence>
+                    <xs:element name="rapportFiler" type="xs:int" minOccurs="0"/>
+                    <xs:element name="singleZip" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="rapportnavn" type="basistyperns:StringList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelJasperRapport">
+        <xs:complexContent>
+            <xs:extension base="MatrikkelRapport">
+                <xs:sequence>
+                    <xs:element name="pages" type="xs:int" minOccurs="0"/>
+                    <xs:element name="view" type="xs:base64Binary" minOccurs="0"
+                             xmime:expectedContentTypes="*/*"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelPdfRapport">
+        <xs:complexContent>
+            <xs:extension base="MatrikkelRapport">
+                <xs:sequence>
+                    <xs:element name="antallSider" type="xs:int" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelVelocityRapport">
+        <xs:complexContent>
+            <xs:extension base="MatrikkelRapport">
+                <xs:sequence>
+                    <xs:element name="description" type="xs:string" minOccurs="0"/>
+                    <xs:element name="extensions" type="basistyperns:StringList" minOccurs="0"/>
+                    <xs:element name="view" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AdressemerkeBestillingRapportDTO">
+        <xs:sequence>
+            <xs:element name="adressemerkebestillingerVegadresserNynorsk"
+                        type="MatrikkelVelocityRapport"
+                        minOccurs="0"/>
+            <xs:element name="adressemerkebestillingerVegadresserBokmal"
+                        type="MatrikkelVelocityRapport"
+                        minOccurs="0"/>
+            <xs:element name="adressemerkebestillingerMatrikkeladresserNynorsk"
+                        type="MatrikkelVelocityRapport"
+                        minOccurs="0"/>
+            <xs:element name="adressemerkebestillingerMatrikkeladresserBokmal"
+                        type="MatrikkelVelocityRapport"
+                        minOccurs="0"/>
+            <xs:element name="adressemerkebestillingerOsloBarum"
+                        type="MatrikkelVelocityRapport"
+                        minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="OfflineMatrikkelRapport">
+        <xs:complexContent>
+            <xs:extension base="MatrikkelRapport">
+                <xs:sequence>
+                    <xs:element name="jobbId" type="jobbns:JobbId" minOccurs="0"/>
+                    <xs:element name="rapportnavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="offlineBegrunnelse" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="Byggklasse">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Bygning"/>
+            <xs:enumeration value="Bygningsendring"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="ByggklasseList">
+        <xs:sequence>
+            <xs:element name="item" minOccurs="0" maxOccurs="unbounded">
+                <xs:simpleType>
+                    <xs:restriction base="Byggklasse" />
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ForingskontrollsokModel">
+        <xs:sequence>
+            <xs:element name="fylkeKommuneMap" type="basistyperns:StringStringListMap" minOccurs="0"/>
+            <xs:element name="fraDato" type="basistyperns:LocalDate" minOccurs="0"/>
+            <xs:element name="tilDato" type="basistyperns:LocalDate" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="GeovekstsokModel">
+        <xs:sequence>
+            <xs:element name="fylkeKommuneMap" type="basistyperns:StringStringListMap" minOccurs="0"/>
+            <xs:element name="fraDato" type="basistyperns:LocalDate" minOccurs="0"/>
+            <xs:element name="tilDato" type="basistyperns:LocalDate" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SefraksokModel">
+        <xs:sequence>
+            <xs:element name="kommunenummer" type="xs:string" minOccurs="0"/>
+            <xs:element name="selectionPolygon" type="geometrins:SelectionPolygon" minOccurs="0"/>
+            <xs:element name="kretsnummer" type="utilns:Interval" minOccurs="0"/>
+            <xs:element name="lopenummer" type="utilns:Interval" minOccurs="0"/>
+            <xs:element name="bygningsnummer" type="xs:long" minOccurs="0"/>
+            <xs:element name="bygningLopenummer" type="utilns:Interval" minOccurs="0"/>
+            <xs:element name="aktivKommunenummer" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="GrunnboksutskriftNyUtvalg">
+        <xs:sequence>
+            <xs:element name="kommuneIdent" type="kommunens:KommuneIdent" minOccurs="0"/>
+            <xs:element name="gardsnr" type="xs:int" minOccurs="0"/>
+            <xs:element name="bruksnr" type="xs:int" minOccurs="0"/>
+            <xs:element name="festenr" type="xs:int" minOccurs="0"/>
+            <xs:element name="seksjonsnr" type="xs:int" minOccurs="0"/>
+            <xs:element name="historisk" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="medServitutterForAvgivere" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="medFodselsnummer" type="xs:boolean" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="MatrikkelenhetKontrollRapportParameter">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ALLE"/>
+            <xs:enumeration value="BESTAENDE"/>
+            <xs:enumeration value="UTGATTE"/>
+            <xs:enumeration value="KOMMUNESAMMENSLAING_ALLE"/>
+            <xs:enumeration value="KOMMUNESAMMENSLAING_BESTAENDE"/>
+            <xs:enumeration value="KOMMUNESAMMENSLAING_UTGATTE"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

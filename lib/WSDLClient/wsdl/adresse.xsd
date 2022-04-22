@@ -1,0 +1,1033 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        version="1.0"
+        targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse"
+        xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse"
+        xmlns:adressekoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse/koder"
+        xmlns:basistyperns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"
+        xmlns:bygningns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning"
+        xmlns:geometrins="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri"
+        xmlns:kommunens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune"
+        xmlns:kommunetilleggns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommunetillegg"
+        xmlns:matrikkelenhetns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"
+        xmlns:personns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person"
+        xmlns:utilns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/util"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:import schemaLocation="adresseKoder.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse/koder"/>
+    <xs:import schemaLocation="basistyper.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"/>
+    <xs:import schemaLocation="bygning.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning"/>
+    <xs:import schemaLocation="geometri.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri"/>
+    <xs:import schemaLocation="kommune.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune"/>
+    <xs:import schemaLocation="kommunetillegg.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommunetillegg"/>
+    <xs:import schemaLocation="matrikkelenhet.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"/>
+    <xs:import schemaLocation="person.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/person"/>
+    <xs:import schemaLocation="util.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/util"/>
+
+
+    <xs:complexType name="Adresse">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="representasjonspunkt" type="geometrins:Representasjonspunkt"
+                                minOccurs="0"/>
+                    <xs:element name="adressetilleggsnavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="kortnavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="matrikkelenhetId" type="matrikkelenhetns:MatrikkelenhetId"
+                                minOccurs="0"/>
+                    <xs:element name="atkomster" type="AtkomstList" minOccurs="0"/>
+                    <xs:element name="kretsIds" type="KretsIdList" minOccurs="0"/>
+                    <xs:element name="kommunalTilleggsdel" type="kommunetilleggns:AdresseTillegg"
+                                minOccurs="0"/>
+                    <xs:element name="tilleggsnavnKildeKodeId"
+                                type="adressekoderns:AdressetilleggsnavnKildeKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AdresseId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AdresseIdList">
+        <xs:sequence>
+            <xs:element name="item" type="AdresseId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AdresseIdent" abstract="true">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:Ident">
+                <xs:sequence>
+                    <xs:element name="kommuneIdent" type="kommunens:KommuneIdent"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AdresseIdentList">
+        <xs:sequence>
+            <xs:element name="item" type="AdresseIdent" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="Atkomst">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="opphavKodeId" type="adressekoderns:OpphavKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="atkomsttypeKodeId" type="adressekoderns:AtkomsttypeKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="punkt" type="geometrins:Position"
+                                minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 4.1 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 4.1
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AtkomstList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="Atkomst"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="AdressemerkeBestilling">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObject">
+                <xs:sequence>
+                    <xs:element name="bruksenhetId" type="bygningns:BruksenhetId" minOccurs="0"/>
+                    <xs:element name="mottakersNavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="mottakersAdresse" type="personns:MottakerAdresse" minOccurs="0"/>
+                    <xs:element name="utsattTilDato" type="basistyperns:Timestamp" minOccurs="0"/>
+                    <xs:element name="bestiltDato" type="basistyperns:Timestamp" minOccurs="0"/>
+                    <xs:element name="sendtTilProduksjonDato" type="basistyperns:Timestamp" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AdressemerkeBestillingList">
+        <xs:sequence>
+            <xs:element name="item" type="AdressemerkeBestilling" minOccurs="0"
+                        maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AdressemerkeBestillingId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AdressemerkeBestillingIdList">
+        <xs:sequence>
+            <xs:element name="item" type="AdressemerkeBestillingId" minOccurs="0"
+                        maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AdresseIdentTilAdresseIdentMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="AdresseIdent"/>
+                        <xs:element name="value" nillable="true" type="AdresseIdent"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AdresseIdentTilAdresseIdentsMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="AdresseIdent"/>
+                        <xs:element name="value" nillable="true" type="AdresseIdentList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AdresseIdentTilAdresseIdMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="AdresseIdent"/>
+                        <xs:element name="value" nillable="true" type="AdresseId"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VegadresseIdent">
+        <xs:complexContent>
+            <xs:extension base="AdresseIdent">
+                <xs:sequence>
+                    <xs:element name="adressekode" type="xs:int"/>
+                    <xs:element name="nummer" type="xs:int"/>
+                    <xs:element name="bokstav" minOccurs="0" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkeladresseIdent">
+        <xs:complexContent>
+            <xs:extension base="AdresseIdent">
+                <xs:sequence>
+                    <xs:element name="gardsnummer" type="xs:int"/>
+                    <xs:element name="bruksnummer" type="xs:int"/>
+                    <xs:element name="festenummer" type="xs:int"/>
+                    <xs:element name="undernummer" type="xs:int"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="ByggIdTilAdresseIdsMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="bygningns:ByggId"/>
+                        <xs:element name="value" nillable="true" type="AdresseIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="Grunnkrets">
+        <xs:complexContent>
+            <xs:extension base="KretsMedEnKommune">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="GrunnkretsId">
+        <xs:complexContent>
+            <xs:extension base="KretsMedEnKommuneId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="GrunnkretsIdList">
+        <xs:sequence>
+            <xs:element name="item" type="GrunnkretsId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="Kirkesogn">
+        <xs:complexContent>
+            <xs:extension base="KretsMedEnKommune">
+                <xs:sequence>
+                    <xs:element name="bispedomme" type="xs:int" minOccurs="0"/>
+                    <xs:element name="prosti" type="xs:int" minOccurs="0"/>
+                    <xs:element name="prestegjeld" type="xs:int" minOccurs="0"/>
+                    <xs:element name="sogn" type="xs:int" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KirkesognId">
+        <xs:complexContent>
+            <xs:extension base="KretsMedEnKommuneId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KirkesognIdList">
+        <xs:sequence>
+            <xs:element name="item" type="KirkesognId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="KirkesognIdent">
+        <xs:complexContent>
+            <xs:extension base="KretsIdent">
+                <xs:sequence>
+                    <xs:element name="bispedomme" type="xs:int"/>
+                    <xs:element name="prosti" type="xs:int"/>
+                    <xs:element name="prestegjeld" type="xs:int"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KommunalKrets">
+        <xs:complexContent>
+            <xs:extension base="KretsMedEnKommune">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KommunalKretsId">
+        <xs:complexContent>
+            <xs:extension base="KretsMedEnKommuneId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KommunalKretsIdList">
+        <xs:sequence>
+            <xs:element name="item" type="KommunalKretsId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="KommuneIdTilVegIdsMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="kommunens:KommuneId"/>
+                        <xs:element name="value" nillable="true" type="VegIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="Krets">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="geometri" type="geometrins:Multipolygon" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                @deprecated 3.13 Bruk i stedet kretsflateId.
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="kommuneIds" type="kommunens:KommuneIdList" minOccurs="0"/>
+                    <xs:element name="kretsnummer" type="xs:int" minOccurs="0"/>
+                    <xs:element name="kretsnavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="kretstypeKodeId" type="adressekoderns:KretstypeKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="kommunalTilleggsdel" type="kommunetilleggns:KretsTillegg"
+                                minOccurs="0"/>
+                    <xs:element name="kretsflateId" type="KretsflateId" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.13 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.13
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="Kretsflate">
+        <xs:annotation>
+            <xs:documentation>
+                Denne klassen er kun tilgjengelig for klientversjon 3.13 eller senere. For eldre klienter vil geometri
+                ligge på Krets.
+                @since 3.13
+            </xs:documentation>
+        </xs:annotation>
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="geometri" type="geometrins:Multipolygon" minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KretsId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KretsflateId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KretsIdList">
+        <xs:sequence>
+            <xs:element name="item" type="KretsId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="KretsMedEnKommune">
+        <xs:complexContent>
+            <xs:extension base="Krets">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KretsMedEnKommuneId">
+        <xs:complexContent>
+            <xs:extension base="KretsId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KretsMedEnKommuneIdList">
+        <xs:sequence>
+            <xs:element name="item" type="KretsMedEnKommuneId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="KretsMedFlereKommuner">
+        <xs:complexContent>
+            <xs:extension base="Krets">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KretsMedFlereKommunerId">
+        <xs:complexContent>
+            <xs:extension base="KretsId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KretsMedFlereKommunerIdList">
+        <xs:sequence>
+            <xs:element name="item" type="KretsMedFlereKommunerId" minOccurs="0"
+                        maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="Matrikkeladresse">
+        <xs:complexContent>
+            <xs:extension base="Adresse">
+                <xs:sequence>
+                    <xs:element name="undernummer" type="xs:int" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkeladresseId">
+        <xs:complexContent>
+            <xs:extension base="AdresseId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkeladresseIdList">
+        <xs:sequence>
+            <xs:element name="item" type="MatrikkeladresseId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkeladresseList">
+        <xs:sequence>
+            <xs:element name="item" type="Matrikkeladresse" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetIdTilAdresseIdsMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true"
+                                    type="matrikkelenhetns:MatrikkelenhetId"/>
+                        <xs:element name="value" nillable="true" type="AdresseIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="Postnummeromrade">
+        <xs:complexContent>
+            <xs:extension base="KretsMedFlereKommuner">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="PostnummeromradeId">
+        <xs:complexContent>
+            <xs:extension base="KretsMedFlereKommunerId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="PostnummeromradeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="PostnummeromradeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="Tettsted">
+        <xs:complexContent>
+            <xs:extension base="KretsMedFlereKommuner">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TettstedId">
+        <xs:complexContent>
+            <xs:extension base="KretsMedFlereKommunerId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TettstedIdList">
+        <xs:sequence>
+            <xs:element name="item" type="TettstedId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="Valgkrets">
+        <xs:complexContent>
+            <xs:extension base="KretsMedEnKommune">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ValgkretsId">
+        <xs:complexContent>
+            <xs:extension base="KretsMedEnKommuneId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ValgkretsIdList">
+        <xs:sequence>
+            <xs:element name="item" type="ValgkretsId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Svalbardomrade">
+        <xs:complexContent>
+            <xs:extension base="KretsMedEnKommune">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="SvalbardomradeId">
+        <xs:complexContent>
+            <xs:extension base="KretsMedEnKommuneId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="SvalbardomradeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="SvalbardomradeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Veg">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObjectWithHistory">
+                <xs:sequence>
+                    <xs:element name="kommuneId" type="kommunens:KommuneId" minOccurs="0"/>
+                    <xs:element name="adressekode" type="xs:int" minOccurs="0"/>
+                    <xs:element name="adressenavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="kortAdressenavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="kommunalTilleggsdel" type="kommunetilleggns:VegTillegg"
+                                minOccurs="0"/>
+                    <xs:element name="stedsnummer" type="xs:string" minOccurs="0"/>
+                    <xs:element name="uuid" type="basistyperns:UUID" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Dette elementet gis kun ut for klientversjon 3.17 eller senere. For eldre klienter
+                                returneres ikke dette elementet.
+                                @since 3.17
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="VegId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="VegIdList">
+        <xs:sequence>
+            <xs:element name="item" type="VegId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VegIdTilAdresseIdsMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="VegId"/>
+                        <xs:element name="value" nillable="true" type="AdresseIdList"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="VegIdent">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:Ident">
+                <xs:sequence>
+                    <xs:element name="kommuneIdent" type="kommunens:KommuneIdent"/>
+                    <xs:element name="adressekode" type="xs:int"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="KretsIdent">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:Ident">
+                <xs:sequence>
+                    <xs:element name="kommunenr" type="basistyperns:StringList"/>
+                    <xs:element name="kretsnr" type="xs:int"/>
+                    <xs:element name="kretsTypeKodeverdi" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="VegIdentList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="VegIdent"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VegIdentTilVegIdMap">
+        <xs:annotation>
+            <xs:appinfo>
+                <IsDictionary
+                        xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+                    true
+                </IsDictionary>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="entry">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="key" nillable="true" type="VegIdent"/>
+                        <xs:element name="value" nillable="true" type="VegId"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="Vegadresse">
+        <xs:complexContent>
+            <xs:extension base="Adresse">
+                <xs:sequence>
+                    <xs:element name="vegId" type="VegId" minOccurs="0"/>
+                    <xs:element name="nummer" type="xs:int" minOccurs="0"/>
+                    <xs:element name="bokstav" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="VegadresseId">
+        <xs:complexContent>
+            <xs:extension base="AdresseId">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="VegadresseIdList">
+        <xs:sequence>
+            <xs:element name="item" type="VegadresseId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VegadresseList">
+        <xs:sequence>
+            <xs:element name="item" type="Vegadresse" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TettstedInfoObjekt">
+        <xs:sequence>
+            <xs:element name="id" type="TettstedId" minOccurs="0"/>
+            <xs:element name="kretsnr" type="xs:int" minOccurs="0"/>
+            <xs:element name="kretsnavn" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="TettstedInfoObjektList">
+        <xs:sequence>
+            <xs:element name="item" type="TettstedInfoObjekt" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PoststedInfoObjekt">
+        <xs:sequence>
+            <xs:element name="id" type="PostnummeromradeId" minOccurs="0"/>
+            <xs:element name="kretsnr" type="xs:int" minOccurs="0"/>
+            <xs:element name="kretsnavn" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="PoststedInfoObjektList">
+        <xs:sequence>
+            <xs:element name="item" type="PoststedInfoObjekt" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="Husnummertype">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="LIKE_NUMMER"/>
+            <xs:enumeration value="ULIKE_NUMMER"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Adressetype">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="VEGADRESSE"/>
+            <xs:enumeration value="MATRIKKELADRESSE"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="AdressesokModel">
+        <xs:sequence>
+            <xs:element name="kommunenummer" type="xs:string" minOccurs="0"/>
+            <xs:element name="adressetype" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="Adressetype"/>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="husnummertype" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="Husnummertype"/>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="adressekode" type="utilns:Interval" minOccurs="0"/>
+            <xs:element name="husnummer" type="utilns:Interval" minOccurs="0"/>
+            <xs:element name="gardsnummer" type="utilns:Interval" minOccurs="0"/>
+            <xs:element name="bruksnummer" type="utilns:Interval" minOccurs="0"/>
+            <xs:element name="festenummer" type="xs:int" minOccurs="0"/>
+            <xs:element name="seksjonsnummer" type="xs:int" minOccurs="0"/>
+            <xs:element name="undernummer" type="xs:int" minOccurs="0"/>
+            <xs:element name="fornavn" type="xs:string" minOccurs="0"/>
+            <xs:element name="etternavn" type="xs:string" minOccurs="0"/>
+            <xs:element name="nummerForPerson" type="xs:string" minOccurs="0"/>
+            <xs:element name="adressenavn" type="xs:string" minOccurs="0"/>
+            <xs:element name="bokstav" type="xs:string" minOccurs="0"/>
+            <xs:element name="adressetilleggsnavn" type="xs:string" minOccurs="0"/>
+            <xs:element name="selectionPolygon" type="geometrins:SelectionPolygon" minOccurs="0"/>
+            <xs:element name="kretsnummer" type="utilns:Interval" minOccurs="0"/>
+            <xs:element name="kretstypeKode" type="xs:string" minOccurs="0"/>
+            <xs:element name="bygningsnummer" type="xs:long" minOccurs="0"/>
+            <xs:element name="lopenummer" type="xs:int" minOccurs="0"/>
+            <xs:element name="bruksenhetsnummer" type="xs:string" minOccurs="0"/>
+            <xs:element name="adressenavnFonetisk" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="adressetilleggsnavnFonetisk" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="navnFonetisk" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="utenBokstav" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="bygningstilknytning" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="bygningns:BygningsstatusKompositt"/>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="harAtkomst" type="xs:boolean" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="KretssokModel">
+        <xs:sequence>
+            <xs:element name="kommunenummer" type="xs:string" minOccurs="0"/>
+            <xs:element name="selectionPolygon" type="geometrins:SelectionPolygon" minOccurs="0"/>
+            <xs:element name="kretstypeKode" type="xs:string" minOccurs="0"/>
+            <xs:element name="helKommune" type="xs:boolean" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VegHistorikksokModel">
+        <xs:sequence>
+            <xs:element name="kommunenummer" type="xs:string" minOccurs="0"/>
+            <xs:element name="status" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="utilns:Status"/>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="adressekode" type="utilns:Interval" minOccurs="0"/>
+            <xs:element name="adressenavn" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ForskyvVegadresseUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+                <xs:sequence>
+                    <xs:element name="referanser"
+                                type="kommunetilleggns:AdresseReferanseList" minOccurs="0"/>
+                    <xs:element name="kommentarer" type="kommunetilleggns:KommentarList"
+                                minOccurs="0"/>
+                    <xs:element name="forskyvVegadresserIds" type="VegadresseIdList"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AdressemerkeBestillingUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KommunalKretstypeUnitOfWorkTransfer">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:UnitOfWorkTransfer">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AdresseInfoTransfer">
+        <xs:sequence>
+            <xs:element name="adresseId" type="AdresseId" minOccurs="0"/>
+            <xs:element name="bygningIds" type="bygningns:ByggIdList" minOccurs="0"/>
+            <xs:element name="bubbleObjects" type="basistyperns:MatrikkelBubbleObjectList" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AdresseBokInfo">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:BokInfo">
+                <xs:sequence>
+                    <xs:element name="adresseId" type="AdresseId" minOccurs="0"/>
+                    <xs:element name="adressetilleggsnavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="kortnavn" type="xs:string" minOccurs="0"/>
+                    <xs:element name="tilleggsnavnKildeKodeId"
+                                type="adressekoderns:AdressetilleggsnavnKildeKodeId" minOccurs="0"/>
+                    <xs:element name="bruksenheter" type="bygningns:BruksenhetMedBygningInfoList"
+                                minOccurs="0"/>
+                    <xs:element name="vegDTO" type="VegDTO" minOccurs="0"/>
+                    <xs:element name="matrikkelenhetDTO" type="matrikkelenhetns:MatrikkelenhetDTO" minOccurs="0"/>
+                    <xs:element name="nr" type="xs:int" minOccurs="0"/>
+                    <xs:element name="bokstav" type="xs:string" minOccurs="0"/>
+                    <xs:element name="undernr" type="xs:int" minOccurs="0"/>
+                    <xs:element name="punkt" type="geometrins:Point" minOccurs="0"/>
+                    <xs:element name="harAtkomst" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="atkomster" type="AtkomstList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="VegDTO">
+        <xs:sequence>
+            <xs:element name="kommuneId" type="kommunens:KommuneId" minOccurs="0"/>
+            <xs:element name="kommunenavn" type="xs:string" minOccurs="0"/>
+            <xs:element name="adressenavn" type="xs:string" minOccurs="0"/>
+            <xs:element name="kortAdressenavn" type="xs:string" minOccurs="0"/>
+            <xs:element name="adressekode" type="xs:int" minOccurs="0"/>
+            <xs:element name="kommunenr" type="xs:string" minOccurs="0"/>
+            <xs:element name="vegId" type="VegId" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AdresseDTO" abstract="true">
+        <xs:sequence>
+            <xs:element name="matrikkelenhetDTO" type="matrikkelenhetns:MatrikkelenhetDTO" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AdresseDTOList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item"
+                        type="AdresseDTO"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkeladresseDTO">
+        <xs:complexContent>
+            <xs:extension base="AdresseDTO">
+                <xs:sequence>
+                    <xs:element name="matrikkeladresseId" type="MatrikkeladresseId"
+                                minOccurs="0"/>
+                    <xs:element name="undernr" type="xs:int" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="VegadresseDTO">
+        <xs:complexContent>
+            <xs:extension base="AdresseDTO">
+                <xs:sequence>
+                    <xs:element name="vegDTO" type="VegDTO" minOccurs="0"/>
+                    <xs:element name="vegadresseId" type="VegadresseId" minOccurs="0"/>
+                    <xs:element name="nr" type="xs:int" minOccurs="0"/>
+                    <xs:element name="bokstav" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AdresseBokInfoList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="AdresseBokInfo"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VegHistorikkInfo">
+        <xs:sequence>
+            <xs:element name="kommuneId" type="kommunens:KommuneId" minOccurs="0"/>
+            <xs:element name="kommunenavn" type="xs:string" minOccurs="0"/>
+            <xs:element name="vegId" type="VegId" minOccurs="0"/>
+            <xs:element name="adressekode" type="xs:int" minOccurs="0"/>
+            <xs:element name="adressenavn" type="xs:string" minOccurs="0"/>
+            <xs:element name="gyldigTilDato" type="basistyperns:LocalDate" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="VegHistorikkInfoList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="VegHistorikkInfo"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

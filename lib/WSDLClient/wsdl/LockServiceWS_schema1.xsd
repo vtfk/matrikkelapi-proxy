@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" xmlns:ns2="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" xmlns:tns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/lock" elementFormDefault="qualified" targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/lock" version="1.0">
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" schemaLocation="basistyper.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" schemaLocation="geometriKoder.xsd"/>
+
+  <xs:element name="isLocked" type="tns:isLocked"/>
+
+  <xs:element name="isLockedResponse" type="tns:isLockedResponse"/>
+
+  <xs:element name="lock" type="tns:lock"/>
+
+  <xs:element name="lockForList" type="tns:lockForList"/>
+
+  <xs:element name="lockForListResponse" type="tns:lockForListResponse"/>
+
+  <xs:element name="lockResponse" type="tns:lockResponse"/>
+
+  <xs:element name="unlock" type="tns:unlock"/>
+
+  <xs:element name="unlockForList" type="tns:unlockForList"/>
+
+  <xs:element name="unlockForListResponse" type="tns:unlockForListResponse"/>
+
+  <xs:element name="unlockResponse" type="tns:unlockResponse"/>
+
+  <xs:complexType name="unlockForList">
+    <xs:sequence>
+      <xs:element name="ids" type="ns1:MatrikkelBubbleIdList"/>
+      <xs:element name="matrikkelContext" type="ns1:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="unlockForListResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="isLocked">
+    <xs:sequence>
+      <xs:element name="id" type="ns1:MatrikkelBubbleId"/>
+      <xs:element name="matrikkelContext" type="ns1:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="isLockedResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="unlock">
+    <xs:sequence>
+      <xs:element name="id" type="ns1:MatrikkelBubbleId"/>
+      <xs:element name="matrikkelContext" type="ns1:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="unlockResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="lockForList">
+    <xs:sequence>
+      <xs:element name="ids" type="ns1:MatrikkelBubbleIdList"/>
+      <xs:element name="matrikkelContext" type="ns1:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="lockForListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelBubbleObjectList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="lock">
+    <xs:sequence>
+      <xs:element name="id" type="ns1:MatrikkelBubbleId"/>
+      <xs:element name="matrikkelContext" type="ns1:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="lockResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelBubbleObject"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

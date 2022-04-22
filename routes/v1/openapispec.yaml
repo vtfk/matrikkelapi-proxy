@@ -1,0 +1,330 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: Production endpoint
+    url: https://test-matrikkel-api.azurewebsites.net/api/v1
+  - description: Development endpoint
+    url: http://localhost:3000/api/v1/
+info:
+  title: Kartverket Matrikkel API Proxy
+  description: Kartverket Matrikkel
+  version: "1.0.0"
+  contact:
+    email: utvikling@vtfk.no
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags: 
+  - name: Matrikkelenheter
+    description: Endepunkter som omhandler matrikkeleneheter
+paths:
+  /matrikkelenheter:
+    post:
+      operationId: findMatrikkelenheter
+      summary: Finner matrikkelenheter
+      security: 
+        - APIKeyAuth: []
+      tags:
+        - Matrikkelenheter
+      description: |
+        Finner matrikkelenheter basert på spesifisert input.
+        Må være POST for å sende med body
+      parameters:
+        - $ref: "#/components/parameters/resolve"
+        - $ref: "#/components/parameters/metadata"
+        - $ref: "#/components/parameters/flatten"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MatrikkelenhetSoek'
+      responses:
+        200:
+          $ref: '#/components/responses/200-default'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+  /store:
+    post:
+      operationId: storeGetObjects
+      summary: Henter ut data fra ett array av IDer
+      security: 
+        - APIKeyAuth: []
+      tags:
+        - Store service
+      parameters:
+        - $ref: "#/components/parameters/resolve"
+        - $ref: "#/components/parameters/metadata"
+        - $ref: "#/components/parameters/flatten"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StoreRequest'
+      responses:
+        200:
+          $ref: '#/components/responses/200-default'
+        400:
+          $ref: '#/components/responses/400'
+        401:
+          $ref: '#/components/responses/401'
+components:
+  schemas:
+    koordinatsystemKodeId:
+      type: number
+      default: 24
+      minimum: 0
+      maximum: 26
+      description: |
+        Beskriver hvilket koordinatsystem som skal benyttes
+        * 0 - NGO1948 Gauss-K. Akse 1
+        * 1 - NGO1948 Gauss-K. Akse 2
+        * 2 - NGO1948 Gauss-K. Akse 3
+        * 3 - NGO1948 Gauss-K. Akse 4
+        * 4 - NGO1948 Gauss-K. Akse 5
+        * 5 - NGO1948 Gauss-K. Akse 6
+        * 6 - NGO1948 Gauss-K. Akse 7
+        * 7 - NGO1948 Gauss-K. Akse 8
+        * 8 - NGO1948 Geografisk
+        * 9 - EUREF89 UTM Sone 31
+        * 10 - EUREF89 UTM Sone 32
+        * 11 - EUREF89 UTM Sone 33
+        * 12 - EUREF89 UTM Sone 34
+        * 13 - EUREF89 UTM Sone 35
+        * 14 - EUREF89 UTM Sone 36
+        * 15 - EDM UTM Sone 31
+        * 16 - EDM UTM Sone 32
+        * 17 - EDM UTM Sone 33
+        * 18 - EDM UTM Sone 34
+        * 19 - EDM UTM Sone 35
+        * 20 - EDM UTM Sone 36
+        * 21 - ED50 Geografisk
+        * 22 - Møre A
+        * 23 - Møre B
+        * 24 - EUREF89 Geografisk (Long, lat)
+        * 25 - NGO 56A (Møre)
+        * 26 - NGO 56B (Møre)
+    Polygon:
+      type: array
+      minItems: 4
+      items:
+        type: array
+        description: Coordinates in format [ Easting, Northing, <Height>]
+        minItems: 2
+    MatrikkelContext:
+      type: object
+      required:
+        - klientIdentifikasjon
+      properties:
+        locale:
+          type: string
+          default: no_NB
+        brukOriginaleKoordinater:
+          type: boolean
+          default: false
+        koordinatsystemKodeId:
+          allOf:
+            - $ref: "#/components/schemas/koordinatsystemKodeId"
+          default: 24
+        systemVersion:
+          type: string
+          default: trunk
+        klientIdentifikasjon:
+          type: string
+          example: "[Firmanavn]-[Tjenestenavn]"
+    MatrikkelenhetSoek:
+      type: object
+      required:
+        - polygon
+      properties:
+        koordinatsystemKodeId:
+          $ref: '#/components/schemas/koordinatsystemKodeId'
+        polygon:
+          $ref: '#/components/schemas/Polygon'
+        matrikkelContext:
+          $ref: '#/components/schemas/MatrikkelContext'
+    StoreRequest:
+      type: object
+      required:
+        - items
+        - matrikkelContext
+      properties:
+        items:
+          type: array
+          items:
+            oneOf:
+              - type: object
+                required:
+                  - namespace
+                  - type
+                  - value
+                properties:
+                  type:
+                    type: string
+                  namespace:
+                    type: string
+                  value:
+                    oneOf:
+                      - type: string
+                      - type: integer
+                      - type: boolean
+              - type: object
+                required:
+                  - _namespace
+                  - _type
+                  - value
+                properties:
+                  _type:
+                    type: string
+                  _namespace:
+                    type: string
+                  value:
+                    oneOf:
+                      - type: string
+                      - type: integer
+                      - type: boolean
+        matrikkelContext:
+          $ref: '#/components/schemas/MatrikkelContext'
+    CommonResponse:
+      type: object
+      properties:
+        __metadata:
+          type: object
+          description: Metadata for API-kallet, innholdet kan variere ut i fra hvilket endepunkt som påkalles
+          properties:
+            uri:
+              type: string
+              description: URLen som ble påkallet for å motta responsen
+              example: https://[APIURL]/api/v1/matrikkelenheter
+            operationId:
+              type: string
+              description: OpenAPI operation-iden for endepunktet som er påkalet
+              example: findMatrikkelenheter
+            durationMS:
+              type: number
+              description: Hvor mange millisekunder APIet benyttet på å håndtere forespørslen
+              example: 123
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                description: Responstypen sendt tilbake fra Matrikkel APIet
+                example: findMatrikkelenheterResponse
+              namespace:
+                type: string
+                description: Namespacet som responstypen hører til
+                example: http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/matrikkelenhet
+              namespaces:
+                type: array
+                description: En liste over alle namespacer og tilhørende ider brukt i dataene
+                example:
+                  - id: ns3
+                    namespace: http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet
+                  - id: ns4
+                    namespace: http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/exception
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    namespace:
+                      type: string
+                    values:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            description: Hvilken datatype verdien er av. Dette er viktig å ha når man benytter StoreService
+                            example: MatrikkelenhetId
+                          namespace:
+                            type: string
+                            description: Namespacet datatypen tilhører
+                            example: http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet
+                          value:
+                            description: Verdien
+                            example: "00000000"
+                            oneOf:
+                              - type: string
+                              - type: number
+                              - type: boolean
+                              - type: object
+    Error:
+      type: object
+      properties:
+        stack:
+          type: string
+          description: Stack informasjon om hvor i koden problemet oppsto
+        message:
+          type: string
+          description: En melding som beskriver feilen
+        name:
+          type: string
+          description: Navnet på feilen hvis noen finnes
+        status:
+          type: number
+          description: HTTP status-kode for feilen
+        path:
+          type: string
+          description: Endepunktet problemet oppsto i
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              path:
+                type: string
+                description: Hvor i input-JSON objektet problemet ble oppdaget i
+              message:
+                type: string
+                description: En beskrivelse av problemet
+              errorCode:
+                type: string
+                description: Kode for feilen hvis det finnes
+  parameters:
+    resolve:
+      in: query
+      name: resolve
+      description: Should type information be resolved for the data? (Experimental)
+      schema:
+        type: boolean
+        default: false
+    metadata:
+      in: query
+      name: metadata
+      description: Should the response include metadata?
+      schema:
+        type: boolean
+        default: false
+    flatten:
+      in: query
+      name: flatten
+      description: Should the result be flattened? (Making the data easier to work with)
+      schema:
+        type: boolean
+        default: true
+  securitySchemes:
+    APIKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+  responses:
+    200-default:
+      description: Ok
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CommonResponse'
+    400:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    401:
+      description: Unauthorized

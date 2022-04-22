@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        version="1.0"
+        targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/endringslogg"
+        xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/endringslogg"
+        xmlns:basistyperns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"
+        xmlns:kommunens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune"
+        xmlns:koderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/endringslogg/koder"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:import schemaLocation="basistyper.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"/>
+    <xs:import schemaLocation="endringsloggKoder.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/endringslogg/koder"/>
+    <xs:import schemaLocation="kommune.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommune"/>
+
+    <xs:complexType name="MatrikkelEndring">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleObject">
+                <xs:sequence>
+                    <xs:element name="endringstype" type="Endringstype" minOccurs="0"/>
+                    <xs:element name="endretBubbleId" type="basistyperns:MatrikkelBubbleId" minOccurs="0"/>
+                    <xs:element name="endringstidspunkt" type="basistyperns:Timestamp" minOccurs="0"/>
+                    <xs:element name="endringskildeId" type="koderns:EndringsKildeKodeId" minOccurs="0"/>
+                    <xs:element name="kommuneIdsForEndring" type="kommunens:KommuneIdList" minOccurs="0"/>
+                    <xs:element name="utgattForKommunerIds" type="kommunens:KommuneIdList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelEndringList">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="item" type="MatrikkelEndring"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelEndringId">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelBubbleId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelEndringIdList">
+        <xs:sequence>
+            <xs:element name="item" type="MatrikkelEndringId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="Domainklasse">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="MatrikkelBubbleObject"/>
+            <xs:enumeration value="Kommune"/>
+            <xs:enumeration value="Fylke"/>
+            <xs:enumeration value="Adresse"/>
+            <xs:enumeration value="Vegadresse"/>
+            <xs:enumeration value="Veg"/>
+            <xs:enumeration value="Matrikkeladresse"/>
+            <xs:enumeration value="Matrikkelenhet"/>
+            <xs:enumeration value="Grunneiendom"/>
+            <xs:enumeration value="Festegrunn"/>
+            <xs:enumeration value="Seksjon"/>
+            <xs:enumeration value="Anleggseiendom"/>
+            <xs:enumeration value="Jordsameie"/>
+            <xs:enumeration value="AnnenMatrikkelenhet"/>
+            <xs:enumeration value="Bygg"/>
+            <xs:enumeration value="Bygning"/>
+            <xs:enumeration value="Bygningsendring"/>
+            <xs:enumeration value="Bruksenhet"/>
+            <xs:enumeration value="Kulturminne"/>
+            <xs:enumeration value="Teiggrense"/>
+            <xs:enumeration value="SamlaFastEiendom"/>
+            <xs:enumeration value="Grunnerverv"/>
+            <xs:enumeration value="Bruker"/>
+            <xs:enumeration value="Kode"/>
+            <xs:enumeration value="LandKode"/>
+            <xs:enumeration value="KulturminneArtKode"/>
+            <xs:enumeration value="KulturminnekategoriKode"/>
+            <xs:enumeration value="KonsesjonsfrihetEgenerklaringKode"/>
+            <xs:enumeration value="MyndighetKode"/>
+            <xs:enumeration value="VedtakstypeKode"/>
+            <xs:enumeration value="PavirkningsgradKode"/>
+            <xs:enumeration value="KretstypeKode"/>
+            <xs:enumeration value="GenerellKretstypeKode"/>
+            <xs:enumeration value="KommunalKretstypeKode"/>
+            <xs:enumeration value="EnkeltminneArtKode"/>
+            <xs:enumeration value="VernetypeKode"/>
+            <xs:enumeration value="Krets"/>
+            <xs:enumeration value="Kretsflate"/>
+            <xs:enumeration value="KretsMedEnKommune"/>
+            <xs:enumeration value="KommunalKrets"/>
+            <xs:enumeration value="Valgkrets"/>
+            <xs:enumeration value="Kirkesogn"/>
+            <xs:enumeration value="Grunnkrets"/>
+            <xs:enumeration value="Svalbardomrade"/>
+            <xs:enumeration value="KretsMedFlereKommuner"/>
+            <xs:enumeration value="Tettsted"/>
+            <xs:enumeration value="Postnummeromrade"/>
+            <xs:enumeration value="Kurs"/>
+            <xs:enumeration value="Teig"/>
+            <xs:enumeration value="Klage"/>
+            <xs:enumeration value="AvtaleGrensePunktfeste"/>
+            <xs:enumeration value="Konsesjonsforhold"/>
+            <xs:enumeration value="KonsesjonsfrihetFraEgenerklaring"/>
+            <xs:enumeration value="Konsesjonsvedtak"/>
+            <xs:enumeration value="Kommuneliste"/>
+            <xs:enumeration value="Anleggsprojeksjonsgrense"/>
+            <xs:enumeration value="Forretning"/>
+            <xs:enumeration value="MatrikkelenhetForretning"/>
+            <xs:enumeration value="MatrikkelenhetUtgarForretning"/>
+            <xs:enumeration value="OmmatrikuleringForretning"/>
+            <xs:enumeration value="ArealmalingForretning"/>
+            <xs:enumeration value="EndreEgenskapForretning"/>
+            <xs:enumeration value="OmnummereringForretning"/>
+            <xs:enumeration value="RegistrerUregistrertJordsameieForretning"/>
+            <xs:enumeration value="OmmatrikuleringKommunesammenslForretning"/>
+            <xs:enumeration value="MatrikkelenhetGeometriForretning"/>
+            <xs:enumeration value="KonvJordskifteForretning"/>
+            <xs:enumeration value="EksisterendeMatrikkelenhetForretning"/>
+            <xs:enumeration value="VedlikeholdGrenseISjoForretning"/>
+            <xs:enumeration value="TrinnIFullforingAvOppmalingsforretningForretning"/>
+            <xs:enumeration value="FullforingAvIkkeFullfortOppmalingsForretningMLForretning"/>
+            <xs:enumeration value="FullforingAvMidlertidigForretningDLForretning"/>
+            <xs:enumeration value="RettingAvForretningForretning"/>
+            <xs:enumeration value="KvalitetshevingForEksisterendeMatrikkelenhetForretning"/>
+            <xs:enumeration value="EtablereFesteForretning"/>
+            <xs:enumeration value="MatrikulerEksisterendeFesteForretning"/>
+            <xs:enumeration value="FradelingForretning"/>
+            <xs:enumeration value="NymatrikulerFraMatrikulertGrunnForretning"/>
+            <xs:enumeration value="GrunneiendomFraFesteForretning"/>
+            <xs:enumeration value="SammenslaingForretning"/>
+            <xs:enumeration value="ArealoverforingForretning"/>
+            <xs:enumeration value="NymatrikuleringForretning"/>
+            <xs:enumeration value="FradelAnleggseiendomForretning"/>
+            <xs:enumeration value="SkylddelingForretning"/>
+            <xs:enumeration value="NymatrikulerAnleggseiendomForretning"/>
+            <xs:enumeration value="OpprettNyttJordsameieForretning"/>
+            <xs:enumeration value="OpplosRegistrertJordsameieForretning"/>
+            <xs:enumeration value="OmregistrerGrunneiendomTilAnleggseiendomForretning"/>
+            <xs:enumeration value="GrensejusteringForretning"/>
+            <xs:enumeration value="SeksjoneringAvGrunnForretning"/>
+            <xs:enumeration value="ReseksjoneringForretning"/>
+            <xs:enumeration value="FeilrettingAvSeksjonerForretning"/>
+            <xs:enumeration value="OpphevSlettetSeksjoneringForretning"/>
+            <xs:enumeration value="SlettSeksjoneringForretning"/>
+            <xs:enumeration value="SeksjoneringForretning"/>
+            <xs:enumeration value="JordskifteForretning"/>
+            <xs:enumeration value="OmnummereringKommuneendringForretning"/>
+            <xs:enumeration value="PlanlagtFradelingForretning"/>
+            <xs:enumeration value="RettingAvForretningsdataForretning"/>
+            <xs:enumeration value="ReverserOmnummereringForretning"/>
+            <xs:enumeration value="AktiverUtgattMatrikkelenhetForretning"/>
+            <xs:enumeration value="GrensegangUArealendringForretning"/>
+            <xs:enumeration value="ReseksjoneringGABForretning"/>
+            <xs:enumeration value="EndreMatrikkelenhetstypeForretning"/>
+            <xs:enumeration value="KartForretning"/>
+            <xs:enumeration value="RegistrerAktuellEierForretning"/>
+            <xs:enumeration value="GrensejustUmatrGrunnForretning"/>
+            <xs:enumeration value="DigitaliseringAvKoordinatForretning"/>
+            <xs:enumeration value="OmmatrikuleringKommuneendringForretning"/>
+            <xs:enumeration value="Bruksenhet"/>
+            <xs:enumeration value="SefrakMinne"/>
+            <xs:enumeration value="KonsesjonsforholdUtskrift"/>
+            <xs:enumeration value="BrukerRettighetListe"/>
+            <xs:enumeration value="Grunnforurensing"/>
+            <xs:enumeration value="Anleggsprojeksjonspunkt"/>
+            <xs:enumeration value="Teiggrensepunkt"/>
+            <xs:enumeration value="BrukerHistorikkListe"/>
+            <xs:enumeration value="Anleggsprojeksjonsflate"/>
+            <xs:enumeration value="JordskifteKrevd"/>
+            <xs:enumeration value="Person"/>
+            <xs:enumeration value="FysiskPerson"/>
+            <xs:enumeration value="AnnenPerson"/>
+            <xs:enumeration value="JuridiskPerson"/>
+            <xs:enumeration value="Melding"/>
+            <xs:enumeration value="MatrikkelenhetMelding"/>
+            <xs:enumeration value="TinglysingMelding"/>
+            <xs:enumeration value="ForretningMelding"/>
+            <xs:enumeration value="MatrikkelDbKode"/>
+            <xs:enumeration value="EndreFestegrunnForretning"/>
+            <xs:enumeration value="SplittingAvFesteForretning"/>
+            <xs:enumeration value="ArealoverforingMellomFestegrunnOgFestetPaForretning"/>
+            <xs:enumeration value="ArealoverforingMellomFestegrunnerForretning"/>
+            <xs:enumeration value="OmgjoringAvPunktfesteTilArealfesteForretning"/>
+            <xs:enumeration value="AvtaleStedbundenRettighet"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="ReturnerBobler">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Aldri"/>
+            <xs:enumeration value="Alltid"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="Endringstype">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Nyoppretting"/>
+            <xs:enumeration value="Typeendring"/>
+            <xs:enumeration value="Oppdatering"/>
+            <xs:enumeration value="Sletting"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="Endringer">
+        <xs:sequence>
+            <xs:element name="endringList" type="MatrikkelEndringList"/>
+            <xs:element name="alleEndringerFunnet" type="xs:boolean"/>
+            <xs:element name="sisteEndringIdProsessert" type="MatrikkelEndringId" nillable="true"/>
+            <xs:element name="objects" type="basistyperns:MatrikkelBubbleObjectList"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

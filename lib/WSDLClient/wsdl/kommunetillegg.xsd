@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        version="1.0"
+        targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommunetillegg"
+        xmlns:basistyperns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"
+        xmlns:kommunetilleggkoderns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommunetillegg/koder"
+        xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommunetillegg"
+        xmlns:matrikkelenhetns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+
+    <xs:import schemaLocation="basistyper.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"/>
+    <xs:import schemaLocation="kommunetilleggKoder.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommunetillegg/koder"/>
+    <xs:import schemaLocation="matrikkelenhet.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet"/>
+
+
+    <xs:complexType name="AdresseReferanse">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="adresseReferanseKodeId" type="kommunetilleggkoderns:AdresseReferanseKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="referanse" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AdresseReferanseList">
+        <xs:sequence>
+            <xs:element name="item" type="AdresseReferanse" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AdresseTillegg">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="kartblad" type="xs:string" minOccurs="0"/>
+                    <xs:element name="kommentarer" type="KommentarList" minOccurs="0"/>
+                    <xs:element name="adresseReferanser" type="AdresseReferanseList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggsprojeksjonsflateReferanse">
+        <xs:complexContent>
+            <xs:extension base="Referanse">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggsprojeksjonsflateReferanseList">
+        <xs:sequence>
+            <xs:element name="item" type="AnleggsprojeksjonsflateReferanse" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggsprojeksjonsflateTillegg">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="informasjon" type="xs:string" minOccurs="0"/>
+                    <xs:element name="anleggsprojeksjonsflateReferanser" type="AnleggsprojeksjonsflateReferanseList"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="AnleggsprojeksjonsgrenseReferanse">
+        <xs:complexContent>
+            <xs:extension base="Referanse">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggsprojeksjonsgrenseReferanseList">
+        <xs:sequence>
+            <xs:element name="item" type="AnleggsprojeksjonsgrenseReferanse" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggsprojeksjonsgrenseTillegg">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="informasjon" type="xs:string" minOccurs="0"/>
+                    <xs:element name="anleggsprojeksjonsgrenseReferanser" type="AnleggsprojeksjonsgrenseReferanseList"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="AnleggsprojeksjonspunktReferanse">
+        <xs:complexContent>
+            <xs:extension base="Referanse">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggsprojeksjonspunktReferanseList">
+        <xs:sequence>
+            <xs:element name="item" type="AnleggsprojeksjonspunktReferanse" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AnleggsprojeksjonspunktTillegg">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="grensepunktnummer" type="xs:string" minOccurs="0"/>
+                    <xs:element name="anleggsprojeksjonspunktReferanser" type="AnleggsprojeksjonspunktReferanseList"
+                                minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="BygningsReferanse">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="bygningsReferanseKodeId" type="kommunetilleggkoderns:BygningReferanseKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="referanse" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BygningsReferanseList">
+        <xs:sequence>
+            <xs:element name="item" type="BygningsReferanse" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="BygningTillegg">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="alternativtArealBygning" type="xs:double" minOccurs="0"/>
+                    <xs:element name="antallEtasjer" type="xs:int" minOccurs="0"/>
+                    <xs:element name="antallRoklop" type="xs:int" minOccurs="0"/>
+                    <xs:element name="brenseltankNedgravd" type="xs:int" minOccurs="0"/>
+                    <xs:element name="septiktank" type="xs:boolean" minOccurs="0"/>
+                    <xs:element name="kartblad" type="xs:string" minOccurs="0"/>
+                    <xs:element name="kildePrivatVannforsyningKodeId"
+                                type="kommunetilleggkoderns:KildePrivatVannforsyningKodeId" minOccurs="0"/>
+                    <xs:element name="privatKloakkRensingsKodeId"
+                                type="kommunetilleggkoderns:PrivatKloakkRensingsKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="renovasjonsKodeId" type="kommunetilleggkoderns:RenovasjonsKodeId" minOccurs="0"/>
+                    <xs:element name="fundamenteringsKodeId" type="kommunetilleggkoderns:FundamenteringsKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="materialeIYtterveggKoder"
+                                type="kommunetilleggkoderns:MaterialeIYtterveggKodeIdList"
+                                minOccurs="0"/>
+                    <xs:element name="horisontalBarekonstrKoder"
+                                type="kommunetilleggkoderns:HorisontalBarekonstrKodeIdList"
+                                minOccurs="0"/>
+                    <xs:element name="vertikalBarekonstrKoder" type="kommunetilleggkoderns:VertikalBarekonstrKodeIdList"
+                                minOccurs="0"/>
+                    <xs:element name="kommentarer" type="KommentarList" minOccurs="0"/>
+                    <xs:element name="bygningsReferanser" type="BygningsReferanseList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="TeiggrensepunktTillegg">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="grensepunktnummer" type="xs:string" minOccurs="0"/>
+                    <xs:element name="teiggrensepunktReferanser" type="TeiggrensepunktReferanseList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="Kommentar">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="dato" type="basistyperns:LocalDate" minOccurs="0"/>
+                    <xs:element name="tekst" type="xs:string" minOccurs="0"/>
+                    <xs:element name="saksnummer" type="xs:string" minOccurs="0"/>
+                    <xs:element name="kommentartypeKodeId" type="kommunetilleggkoderns:KommentartypeKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="etatsKodeId" type="kommunetilleggkoderns:EtatsKodeId" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KommentarList">
+        <xs:sequence>
+            <xs:element name="item" type="Kommentar" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="KretsReferanse">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="kretsReferanseKodeId" type="kommunetilleggkoderns:KretsReferanseKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="referanse" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KretsReferanseList">
+        <xs:sequence>
+            <xs:element name="item" type="KretsReferanse" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="KretsTillegg">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="kretsReferanser" type="KretsReferanseList" minOccurs="0"/>
+                    <xs:element name="kommentarer" type="KommentarList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="MatrikkelenhetReferanse">
+        <xs:complexContent>
+            <xs:extension base="Referanse">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetReferanseList">
+        <xs:sequence>
+            <xs:element name="item" type="MatrikkelenhetReferanse" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="MatrikkelenhetTillegg">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="kartblader" type="basistyperns:StringList" minOccurs="0"/>
+                    <xs:element name="brukAvGrunnKodeId" type="kommunetilleggkoderns:BrukAvGrunnKodeId" minOccurs="0"/>
+                    <xs:element name="kommentarer" type="KommentarList" minOccurs="0"/>
+                    <xs:element name="matrikkelenhetReferanser" type="MatrikkelenhetReferanseList" minOccurs="0"/>
+                    <xs:element name="undereiendommerIds" type="matrikkelenhetns:MatrikkelenhetIdList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="Referanse">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="matrikkelenhetReferanseKodeId"
+                                type="kommunetilleggkoderns:MatrikkelenhetReferanseKodeId" minOccurs="0"/>
+                    <xs:element name="referanse" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="TeiggrensepunktReferanse">
+        <xs:complexContent>
+            <xs:extension base="Referanse">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TeiggrensepunktReferanseList">
+        <xs:sequence>
+            <xs:element name="item" type="TeiggrensepunktReferanse" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="TeiggrenseReferanse">
+        <xs:complexContent>
+            <xs:extension base="Referanse">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TeiggrenseReferanseList">
+        <xs:sequence>
+            <xs:element name="item" type="TeiggrenseReferanse" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="TeiggrenseTillegg">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="informasjon" type="xs:string" minOccurs="0"/>
+                    <xs:element name="teiggrenseReferanser" type="TeiggrenseReferanseList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="TeigReferanse">
+        <xs:complexContent>
+            <xs:extension base="Referanse">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="TeigReferanseList">
+        <xs:sequence>
+            <xs:element name="item" type="TeigReferanse" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="TeigTillegg">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="informasjon" type="xs:string" minOccurs="0"/>
+                    <xs:element name="teigReferanser" type="TeigReferanseList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="VegReferanse">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponentWithHistory">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long" minOccurs="0"/>
+                    <xs:element name="vegReferanseKodeId" type="kommunetilleggkoderns:VegReferanseKodeId"
+                                minOccurs="0"/>
+                    <xs:element name="referanse" type="xs:string" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="VegReferanseList">
+        <xs:sequence>
+            <xs:element name="item" type="VegReferanse" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="VegTillegg">
+        <xs:complexContent>
+            <xs:extension base="basistyperns:MatrikkelComponent">
+                <xs:sequence>
+                    <xs:element name="vegReferanser" type="VegReferanseList" minOccurs="0"/>
+                    <xs:element name="kommentarer" type="KommentarList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+</xs:schema>

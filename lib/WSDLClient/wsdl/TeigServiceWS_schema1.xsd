@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri" xmlns:ns2="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" xmlns:ns3="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" xmlns:ns4="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet" xmlns:ns5="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/forretning" xmlns:ns6="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse" xmlns:ns7="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning" xmlns:ns8="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/grunnforurensing" xmlns:ns9="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kulturminne" xmlns:tns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/teig" elementFormDefault="qualified" targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/teig" version="1.0">
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri" schemaLocation="geometri.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" schemaLocation="geometriKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" schemaLocation="basistyper.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet" schemaLocation="matrikkelenhet.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/forretning" schemaLocation="forretning.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse" schemaLocation="adresse.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning" schemaLocation="bygning.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/grunnforurensing" schemaLocation="grunnforurensing.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kulturminne" schemaLocation="kulturminne.xsd"/>
+
+  <xs:element name="findAdresserForAnleggsprojeksjonsflater" type="tns:findAdresserForAnleggsprojeksjonsflater"/>
+
+  <xs:element name="findAdresserForAnleggsprojeksjonsflaterResponse" type="tns:findAdresserForAnleggsprojeksjonsflaterResponse"/>
+
+  <xs:element name="findAdresserForTeiger" type="tns:findAdresserForTeiger"/>
+
+  <xs:element name="findAdresserForTeigerResponse" type="tns:findAdresserForTeigerResponse"/>
+
+  <xs:element name="findAnleggsprojeksjonsFlaterUtenforTeigerForMatrikkelenheter" type="tns:findAnleggsprojeksjonsFlaterUtenforTeigerForMatrikkelenheter"/>
+
+  <xs:element name="findAnleggsprojeksjonsFlaterUtenforTeigerForMatrikkelenheterResponse" type="tns:findAnleggsprojeksjonsFlaterUtenforTeigerForMatrikkelenheterResponse"/>
+
+  <xs:element name="findByggForAnleggsprojeksjonsflater" type="tns:findByggForAnleggsprojeksjonsflater"/>
+
+  <xs:element name="findByggForAnleggsprojeksjonsflaterResponse" type="tns:findByggForAnleggsprojeksjonsflaterResponse"/>
+
+  <xs:element name="findByggForTeiger" type="tns:findByggForTeiger"/>
+
+  <xs:element name="findByggForTeigerResponse" type="tns:findByggForTeigerResponse"/>
+
+  <xs:element name="findEnvelopesForMatrikkelenheter" type="tns:findEnvelopesForMatrikkelenheter"/>
+
+  <xs:element name="findEnvelopesForMatrikkelenheterResponse" type="tns:findEnvelopesForMatrikkelenheterResponse"/>
+
+  <xs:element name="findGrensepunkter" type="tns:findGrensepunkter"/>
+
+  <xs:element name="findGrensepunkterResponse" type="tns:findGrensepunkterResponse"/>
+
+  <xs:element name="findObjekterForAnleggsprojeksjonsflate" type="tns:findObjekterForAnleggsprojeksjonsflate"/>
+
+  <xs:element name="findObjekterForAnleggsprojeksjonsflateResponse" type="tns:findObjekterForAnleggsprojeksjonsflateResponse"/>
+
+  <xs:element name="findObjekterForTeig" type="tns:findObjekterForTeig"/>
+
+  <xs:element name="findObjekterForTeigResponse" type="tns:findObjekterForTeigResponse"/>
+
+  <xs:element name="findOrphanedTeiggrenserForSelectionPolygon" type="tns:findOrphanedTeiggrenserForSelectionPolygon"/>
+
+  <xs:element name="findOrphanedTeiggrenserForSelectionPolygonResponse" type="tns:findOrphanedTeiggrenserForSelectionPolygonResponse"/>
+
+  <xs:element name="findTeigerForAnleggsprojeksjonsflater" type="tns:findTeigerForAnleggsprojeksjonsflater"/>
+
+  <xs:element name="findTeigerForAnleggsprojeksjonsflaterResponse" type="tns:findTeigerForAnleggsprojeksjonsflaterResponse"/>
+
+  <xs:element name="findTeigerForEnvelope" type="tns:findTeigerForEnvelope"/>
+
+  <xs:element name="findTeigerForEnvelopeResponse" type="tns:findTeigerForEnvelopeResponse"/>
+
+  <xs:element name="findTeigerForPunkt" type="tns:findTeigerForPunkt"/>
+
+  <xs:element name="findTeigerForPunktResponse" type="tns:findTeigerForPunktResponse"/>
+
+  <xs:element name="findTeigerForSelectionPolygon" type="tns:findTeigerForSelectionPolygon"/>
+
+  <xs:element name="findTeigerForSelectionPolygonResponse" type="tns:findTeigerForSelectionPolygonResponse"/>
+
+  <xs:element name="findTeigerForTeiggrense" type="tns:findTeigerForTeiggrense"/>
+
+  <xs:element name="findTeigerForTeiggrenseResponse" type="tns:findTeigerForTeiggrenseResponse"/>
+
+  <xs:element name="findTeigerForTeiggrensepunkt" type="tns:findTeigerForTeiggrensepunkt"/>
+
+  <xs:element name="findTeigerForTeiggrensepunktResponse" type="tns:findTeigerForTeiggrensepunktResponse"/>
+
+  <xs:element name="findTeigerForTeiggrenser" type="tns:findTeigerForTeiggrenser"/>
+
+  <xs:element name="findTeigerForTeiggrenserResponse" type="tns:findTeigerForTeiggrenserResponse"/>
+
+  <xs:element name="findTeigerOgMatrikkelenheterForTeiggrense" type="tns:findTeigerOgMatrikkelenheterForTeiggrense"/>
+
+  <xs:element name="findTeigerOgMatrikkelenheterForTeiggrenseResponse" type="tns:findTeigerOgMatrikkelenheterForTeiggrenseResponse"/>
+
+  <xs:element name="findTeigerOgMatrikkelenheterForTeiggrensepunkt" type="tns:findTeigerOgMatrikkelenheterForTeiggrensepunkt"/>
+
+  <xs:element name="findTeigerOgMatrikkelenheterForTeiggrensepunktResponse" type="tns:findTeigerOgMatrikkelenheterForTeiggrensepunktResponse"/>
+
+  <xs:element name="findTeigerOgMatrikkelenheterForTeiggrensepunkter" type="tns:findTeigerOgMatrikkelenheterForTeiggrensepunkter"/>
+
+  <xs:element name="findTeigerOgMatrikkelenheterForTeiggrensepunkterResponse" type="tns:findTeigerOgMatrikkelenheterForTeiggrensepunkterResponse"/>
+
+  <xs:element name="findTeigerOgMatrikkelenheterForTeiggrenser" type="tns:findTeigerOgMatrikkelenheterForTeiggrenser"/>
+
+  <xs:element name="findTeigerOgMatrikkelenheterForTeiggrenserResponse" type="tns:findTeigerOgMatrikkelenheterForTeiggrenserResponse"/>
+
+  <xs:element name="findTeiggrensepunkter" type="tns:findTeiggrensepunkter"/>
+
+  <xs:element name="findTeiggrensepunkterResponse" type="tns:findTeiggrensepunkterResponse"/>
+
+  <xs:element name="findTeiggrenser" type="tns:findTeiggrenser"/>
+
+  <xs:element name="findTeiggrenserForGrensepunkt" type="tns:findTeiggrenserForGrensepunkt"/>
+
+  <xs:element name="findTeiggrenserForGrensepunktResponse" type="tns:findTeiggrenserForGrensepunktResponse"/>
+
+  <xs:element name="findTeiggrenserMedTeiger" type="tns:findTeiggrenserMedTeiger"/>
+
+  <xs:element name="findTeiggrenserMedTeigerResponse" type="tns:findTeiggrenserMedTeigerResponse"/>
+
+  <xs:element name="findTeiggrenserResponse" type="tns:findTeiggrenserResponse"/>
+
+  <xs:element name="findTeiggrenserSomKunHorerTilInteriorForTeiger" type="tns:findTeiggrenserSomKunHorerTilInteriorForTeiger"/>
+
+  <xs:element name="findTeiggrenserSomKunHorerTilInteriorForTeigerResponse" type="tns:findTeiggrenserSomKunHorerTilInteriorForTeigerResponse"/>
+
+  <xs:element name="transformerGeometri" type="tns:transformerGeometri"/>
+
+  <xs:element name="transformerGeometriResponse" type="tns:transformerGeometriResponse"/>
+
+  <xs:complexType name="findTeigerForSelectionPolygon">
+    <xs:sequence>
+      <xs:element name="selectionPolygon" type="ns1:SelectionPolygon"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeigerForSelectionPolygonResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:TeigIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findOrphanedTeiggrenserForSelectionPolygon">
+    <xs:sequence>
+      <xs:element name="selectionPolygon" type="ns1:SelectionPolygon"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findOrphanedTeiggrenserForSelectionPolygonResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:TeiggrenseIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeigerForTeiggrense">
+    <xs:sequence>
+      <xs:element name="teiggrenseId" type="ns4:TeiggrenseId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeigerForTeiggrenseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:TeigIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeigerOgMatrikkelenheterForTeiggrensepunkter">
+    <xs:sequence>
+      <xs:element name="teiggrensepunktIds" type="ns4:TeiggrensepunktIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeigerOgMatrikkelenheterForTeiggrensepunkterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:TeigIdTilMatrikkelenhetIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findObjekterForAnleggsprojeksjonsflate">
+    <xs:sequence>
+      <xs:element name="anleggsprojeksjonsflateId" type="ns4:AnleggsprojeksjonsflateId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findObjekterForAnleggsprojeksjonsflateResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:AnleggsprojeksjonsflateInfoTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findObjekterForTeig">
+    <xs:sequence>
+      <xs:element name="teigId" type="ns4:TeigId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findObjekterForTeigResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:TeigInfoTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeigerForAnleggsprojeksjonsflater">
+    <xs:sequence>
+      <xs:element name="flater" type="ns4:AnleggsprojeksjonsFlateIdTilPolygonMap"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeigerForAnleggsprojeksjonsflaterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:AnleggsprojeksjonsflateIdTilTeigIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAdresserForTeiger">
+    <xs:sequence>
+      <xs:element name="teigIds" type="ns4:TeigIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAdresserForTeigerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns6:AdresseIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findByggForAnleggsprojeksjonsflater">
+    <xs:sequence>
+      <xs:element name="flateIds" type="ns4:AnleggsprojeksjonsflateIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findByggForAnleggsprojeksjonsflaterResponse">
+    <xs:sequence>
+      <xs:element form="unqualified" minOccurs="0" name="return" type="ns7:ByggIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeiggrenserMedTeiger">
+    <xs:sequence>
+      <xs:element name="teiggrensepunktId" type="ns4:TeiggrensepunktId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeiggrenserMedTeigerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:TeiggrenseIdTilTeigIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAnleggsprojeksjonsFlaterUtenforTeigerForMatrikkelenheter">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIds" type="ns4:MatrikkelenhetIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAnleggsprojeksjonsFlaterUtenforTeigerForMatrikkelenheterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:AnleggsprojeksjonsflateIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeigerOgMatrikkelenheterForTeiggrensepunkt">
+    <xs:sequence>
+      <xs:element name="teiggrensepunktId" type="ns4:TeiggrensepunktId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeigerOgMatrikkelenheterForTeiggrensepunktResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:TeigIdTilMatrikkelenhetIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeigerOgMatrikkelenheterForTeiggrense">
+    <xs:sequence>
+      <xs:element name="teiggrenseId" type="ns4:TeiggrenseId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeigerOgMatrikkelenheterForTeiggrenseResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:TeigIdTilMatrikkelenhetIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeigerForTeiggrenser">
+    <xs:sequence>
+      <xs:element name="teiggrenseIds" type="ns4:TeiggrenseIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeigerForTeiggrenserResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:TeiggrenseIdTilTeigIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeiggrenser">
+    <xs:sequence>
+      <xs:element name="selectionRectangle" type="ns1:SelectionRectangle"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeiggrenserResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:TeiggrenseIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findEnvelopesForMatrikkelenheter">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIds" type="ns4:MatrikkelenhetIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findEnvelopesForMatrikkelenheterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:EnvelopeList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeigerOgMatrikkelenheterForTeiggrenser">
+    <xs:sequence>
+      <xs:element name="teiggrenseIds" type="ns4:TeiggrenseIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeigerOgMatrikkelenheterForTeiggrenserResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:TeigIdTilMatrikkelenhetIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeiggrenserForGrensepunkt">
+    <xs:sequence>
+      <xs:element name="teiggrensepunktId" type="ns4:TeiggrensepunktId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeiggrenserForGrensepunktResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:TeiggrenseIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findGrensepunkter">
+    <xs:sequence>
+      <xs:element name="selectionRectangle" type="ns1:SelectionRectangle"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findGrensepunkterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:TeiggrensepunktIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="transformerGeometri">
+    <xs:sequence>
+      <xs:element name="geometriForTransformering" type="ns3:MatrikkelBubbleObjectList"/>
+      <xs:element name="koordinatsystemKodeId" type="ns2:KoordinatsystemKodeId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="transformerGeometriResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelBubbleIdTilPointsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeigerForPunkt">
+    <xs:sequence>
+      <xs:element name="punkt" type="ns1:Point"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeigerForPunktResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:TeigIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeigerForTeiggrensepunkt">
+    <xs:sequence>
+      <xs:element name="teiggrensepunktId" type="ns4:TeiggrensepunktId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeigerForTeiggrensepunktResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:TeigIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findByggForTeiger">
+    <xs:sequence>
+      <xs:element name="teigIds" type="ns4:TeigIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findByggForTeigerResponse">
+    <xs:sequence>
+      <xs:element form="unqualified" minOccurs="0" name="return" type="ns7:ByggIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeiggrenserSomKunHorerTilInteriorForTeiger">
+    <xs:sequence>
+      <xs:element name="teigIds" type="ns4:TeigIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeiggrenserSomKunHorerTilInteriorForTeigerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:TeigIdTilTeiggrenseIdsMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAdresserForAnleggsprojeksjonsflater">
+    <xs:sequence>
+      <xs:element name="flateIds" type="ns4:AnleggsprojeksjonsflateIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findAdresserForAnleggsprojeksjonsflaterResponse">
+    <xs:sequence>
+      <xs:element form="unqualified" minOccurs="0" name="return" type="ns6:AdresseIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeiggrensepunkter">
+    <xs:sequence>
+      <xs:element name="multiPolygon" type="ns1:Multipolygon"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeiggrensepunkterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:TeiggrensepunktIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeigerForEnvelope">
+    <xs:sequence>
+      <xs:element name="envelope" type="ns1:Envelope"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findTeigerForEnvelopeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:TeigIdList"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        version="1.0"
+        targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/rapport/koder"
+        xmlns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/rapport/koder"
+        xmlns:kodens="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"
+        xmlns:basistyperns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:import schemaLocation="kodeliste.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kodeliste"/>
+    <xs:import schemaLocation="basistyper.xsd"
+               namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain"/>
+
+    <xs:complexType name="RapportType" abstract="true"> <!--Forskjellige datatyper i domene og wsapi som må mappes-->
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode">
+                <xs:sequence>
+                    <xs:element name="subinfos" type="basistyperns:IntList" minOccurs="0"/> <!--Vector-->
+                    <xs:element name="templateFilename" type="xs:string" minOccurs="0"/>
+                    <xs:element name="rapportversjon" type="xs:string" minOccurs="0"/>
+                    <xs:element name="maxUtvalg" type="xs:int" minOccurs="0"/>
+                    <xs:element name="batchSize" type="xs:int" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="RapportTypeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="RapportTypeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="RapportTypeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="AdresseRapportType">
+        <xs:complexContent>
+            <xs:extension base="RapportType"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AdresseRapportTypeId">
+        <xs:complexContent>
+            <xs:extension base="RapportTypeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="AdresseRapportTypeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="AdresseRapportTypeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="BygningRapportType">
+        <xs:complexContent>
+            <xs:extension base="RapportType"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BygningRapportTypeId">
+        <xs:complexContent>
+            <xs:extension base="RapportTypeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="BygningRapportTypeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="BygningRapportTypeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="DriftRapportType">
+        <xs:complexContent>
+            <xs:extension base="RapportType"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="DriftRapportTypeId">
+        <xs:complexContent>
+            <xs:extension base="RapportTypeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="DriftRapportTypeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="DriftRapportTypeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="EndringRapportType">
+        <xs:complexContent>
+            <xs:extension base="RapportType"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="EndringRapportTypeId">
+        <xs:complexContent>
+            <xs:extension base="RapportTypeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="EndringRapportTypeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="EndringRapportTypeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="MassivRapportType">
+        <xs:complexContent>
+            <xs:extension base="RapportType"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MassivRapportTypeId">
+        <xs:complexContent>
+            <xs:extension base="RapportTypeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MassivRapportTypeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="MassivRapportTypeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="MatrikkelenhetRapportType">
+        <xs:complexContent>
+            <xs:extension base="RapportType"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetRapportTypeId">
+        <xs:complexContent>
+            <xs:extension base="RapportTypeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="MatrikkelenhetRapportTypeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="MatrikkelenhetRapportTypeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="VegRapportType">
+        <xs:complexContent>
+            <xs:extension base="RapportType"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="VegRapportTypeId">
+        <xs:complexContent>
+            <xs:extension base="RapportTypeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="VegRapportTypeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="VegRapportTypeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="KonsesjonRapportType">
+        <xs:complexContent>
+            <xs:extension base="RapportType"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KonsesjonRapportTypeId">
+        <xs:complexContent>
+            <xs:extension base="RapportTypeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="KonsesjonRapportTypeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="KonsesjonRapportTypeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="ExportType">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKode">
+                <xs:sequence>
+                    <xs:element name="extensions" type="basistyperns:StringList" minOccurs="0"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ExportTypeId">
+        <xs:complexContent>
+            <xs:extension base="kodens:MatrikkelEnumKodeId"/>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="ExportTypeIdList">
+        <xs:sequence>
+            <xs:element name="item" type="VegRapportTypeId" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+</xs:schema>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" xmlns:ns2="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri" xmlns:ns3="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" xmlns:ns4="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kart" xmlns:tns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/kart" elementFormDefault="qualified" targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/kart" version="1.0">
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" schemaLocation="basistyper.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri" schemaLocation="geometri.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" schemaLocation="geometriKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kart" schemaLocation="kart.xsd"/>
+
+  <xs:element name="findMatrikkelkartForFeatureTypes" type="tns:findMatrikkelkartForFeatureTypes"/>
+
+  <xs:element name="findMatrikkelkartForFeatureTypesResponse" type="tns:findMatrikkelkartForFeatureTypesResponse"/>
+
+  <xs:element name="findObjekter" type="tns:findObjekter"/>
+
+  <xs:element name="findObjekterResponse" type="tns:findObjekterResponse"/>
+
+  <xs:complexType name="findMatrikkelkartForFeatureTypes">
+    <xs:sequence>
+      <xs:element name="featureTypesForLasting" type="ns1:StringList"/>
+      <xs:element name="bounds" type="ns2:SelectionPolygon"/>
+      <xs:element name="matrikkelContext" type="ns1:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findMatrikkelkartForFeatureTypesResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns4:FeatureTypeTilStringIdTilMatrikkelFeatureMap"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findObjekter">
+    <xs:sequence>
+      <xs:element name="selectionPolygon" type="ns2:SelectionPolygon"/>
+      <xs:element name="malestokkTall" type="xs:double"/>
+      <xs:element name="matrikkelContext" type="ns1:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findObjekterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:BokInfoList"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

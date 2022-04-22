@@ -1,0 +1,1143 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet" xmlns:ns10="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommunetillegg" xmlns:ns2="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" xmlns:ns3="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" xmlns:ns4="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse" xmlns:ns5="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning" xmlns:ns6="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/grunnforurensing" xmlns:ns7="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kulturminne" xmlns:ns8="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/forretning" xmlns:ns9="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommunetillegg/koder" xmlns:tns="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/matrikkelenhet/oppdatering" elementFormDefault="qualified" targetNamespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/service/matrikkelenhet/oppdatering" version="1.0">
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/matrikkelenhet" schemaLocation="matrikkelenhet.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/geometri/koder" schemaLocation="geometriKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain" schemaLocation="basistyper.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/adresse" schemaLocation="adresse.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/bygning" schemaLocation="bygning.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/grunnforurensing" schemaLocation="grunnforurensing.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kulturminne" schemaLocation="kulturminne.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/forretning" schemaLocation="forretning.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommunetillegg/koder" schemaLocation="kommunetilleggKoder.xsd"/>
+
+  <xs:import namespace="http://matrikkel.statkart.no/matrikkelapi/wsapi/v1/domain/kommunetillegg" schemaLocation="kommunetillegg.xsd"/>
+
+  <xs:element name="aktiverUtgattMatrikkelenhet" type="tns:aktiverUtgattMatrikkelenhet"/>
+
+  <xs:element name="aktiverUtgattMatrikkelenhetResponse" type="tns:aktiverUtgattMatrikkelenhetResponse"/>
+
+  <xs:element name="arealoverforing" type="tns:arealoverforing"/>
+
+  <xs:element name="arealoverforingMellomFesteOgFestetPa" type="tns:arealoverforingMellomFesteOgFestetPa"/>
+
+  <xs:element name="arealoverforingMellomFesteOgFestetPaResponse" type="tns:arealoverforingMellomFesteOgFestetPaResponse"/>
+
+  <xs:element name="arealoverforingMellomFestegrunner" type="tns:arealoverforingMellomFestegrunner"/>
+
+  <xs:element name="arealoverforingMellomFestegrunnerResponse" type="tns:arealoverforingMellomFestegrunnerResponse"/>
+
+  <xs:element name="arealoverforingResponse" type="tns:arealoverforingResponse"/>
+
+  <xs:element name="avbrytIgangsattSammenslaing" type="tns:avbrytIgangsattSammenslaing"/>
+
+  <xs:element name="avbrytIgangsattSammenslaingResponse" type="tns:avbrytIgangsattSammenslaingResponse"/>
+
+  <xs:element name="endreEgenskap" type="tns:endreEgenskap"/>
+
+  <xs:element name="endreEgenskapResponse" type="tns:endreEgenskapResponse"/>
+
+  <xs:element name="endreMatrikkelenhetstype" type="tns:endreMatrikkelenhetstype"/>
+
+  <xs:element name="endreMatrikkelenhetstypeResponse" type="tns:endreMatrikkelenhetstypeResponse"/>
+
+  <xs:element name="feilrettingAvSeksjoner" type="tns:feilrettingAvSeksjoner"/>
+
+  <xs:element name="feilrettingAvSeksjonerResponse" type="tns:feilrettingAvSeksjonerResponse"/>
+
+  <xs:element name="forJordskifteForretning" type="tns:forJordskifteForretning"/>
+
+  <xs:element name="forJordskifteForretningResponse" type="tns:forJordskifteForretningResponse"/>
+
+  <xs:element name="fradelNyAnleggseiendom" type="tns:fradelNyAnleggseiendom"/>
+
+  <xs:element name="fradelNyAnleggseiendomResponse" type="tns:fradelNyAnleggseiendomResponse"/>
+
+  <xs:element name="fradelNyGrunneiendom" type="tns:fradelNyGrunneiendom"/>
+
+  <xs:element name="fradelNyGrunneiendomResponse" type="tns:fradelNyGrunneiendomResponse"/>
+
+  <xs:element name="fullforMidlertidigForretningDL" type="tns:fullforMidlertidigForretningDL"/>
+
+  <xs:element name="fullforMidlertidigForretningDLResponse" type="tns:fullforMidlertidigForretningDLResponse"/>
+
+  <xs:element name="grensejustering" type="tns:grensejustering"/>
+
+  <xs:element name="grensejusteringResponse" type="tns:grensejusteringResponse"/>
+
+  <xs:element name="insertAvtaleGrensePunktfeste" type="tns:insertAvtaleGrensePunktfeste"/>
+
+  <xs:element name="insertAvtaleGrensePunktfesteResponse" type="tns:insertAvtaleGrensePunktfesteResponse"/>
+
+  <xs:element name="insertAvtaleStedbundenRettighet" type="tns:insertAvtaleStedbundenRettighet"/>
+
+  <xs:element name="insertAvtaleStedbundenRettighetResponse" type="tns:insertAvtaleStedbundenRettighetResponse"/>
+
+  <xs:element name="insertGrunnerverv" type="tns:insertGrunnerverv"/>
+
+  <xs:element name="insertGrunnervervResponse" type="tns:insertGrunnervervResponse"/>
+
+  <xs:element name="insertJordskifteKrevd" type="tns:insertJordskifteKrevd"/>
+
+  <xs:element name="insertJordskifteKrevdResponse" type="tns:insertJordskifteKrevdResponse"/>
+
+  <xs:element name="insertKlage" type="tns:insertKlage"/>
+
+  <xs:element name="insertKlageResponse" type="tns:insertKlageResponse"/>
+
+  <xs:element name="insertSamlaFastEiendom" type="tns:insertSamlaFastEiendom"/>
+
+  <xs:element name="insertSamlaFastEiendomResponse" type="tns:insertSamlaFastEiendomResponse"/>
+
+  <xs:element name="kvalitetshevingForEksisterendeMatrikkelenhet" type="tns:kvalitetshevingForEksisterendeMatrikkelenhet"/>
+
+  <xs:element name="kvalitetshevingForEksisterendeMatrikkelenhetResponse" type="tns:kvalitetshevingForEksisterendeMatrikkelenhetResponse"/>
+
+  <xs:element name="lockForForretning" type="tns:lockForForretning"/>
+
+  <xs:element name="lockForForretningForAnleggsprojeksjonsflater" type="tns:lockForForretningForAnleggsprojeksjonsflater"/>
+
+  <xs:element name="lockForForretningForAnleggsprojeksjonsflaterResponse" type="tns:lockForForretningForAnleggsprojeksjonsflaterResponse"/>
+
+  <xs:element name="lockForForretningForMatrikkelenheter" type="tns:lockForForretningForMatrikkelenheter"/>
+
+  <xs:element name="lockForForretningForMatrikkelenheterResponse" type="tns:lockForForretningForMatrikkelenheterResponse"/>
+
+  <xs:element name="lockForForretningForTeiger" type="tns:lockForForretningForTeiger"/>
+
+  <xs:element name="lockForForretningForTeigerResponse" type="tns:lockForForretningForTeigerResponse"/>
+
+  <xs:element name="lockForForretningMedFestegrunner" type="tns:lockForForretningMedFestegrunner"/>
+
+  <xs:element name="lockForForretningMedFestegrunnerResponse" type="tns:lockForForretningMedFestegrunnerResponse"/>
+
+  <xs:element name="lockForForretningMedFestetPa" type="tns:lockForForretningMedFestetPa"/>
+
+  <xs:element name="lockForForretningMedFestetPaResponse" type="tns:lockForForretningMedFestetPaResponse"/>
+
+  <xs:element name="lockForForretningMedNaboerForMatrikkelenhet" type="tns:lockForForretningMedNaboerForMatrikkelenhet"/>
+
+  <xs:element name="lockForForretningMedNaboerForMatrikkelenhetResponse" type="tns:lockForForretningMedNaboerForMatrikkelenhetResponse"/>
+
+  <xs:element name="lockForForretningMedNaboerForMatrikkelenheter" type="tns:lockForForretningMedNaboerForMatrikkelenheter"/>
+
+  <xs:element name="lockForForretningMedNaboerForMatrikkelenheterResponse" type="tns:lockForForretningMedNaboerForMatrikkelenheterResponse"/>
+
+  <xs:element name="lockForForretningMedSeksjoner" type="tns:lockForForretningMedSeksjoner"/>
+
+  <xs:element name="lockForForretningMedSeksjonerResponse" type="tns:lockForForretningMedSeksjonerResponse"/>
+
+  <xs:element name="lockForForretningNaboerForAnleggsprojeksjonsflater" type="tns:lockForForretningNaboerForAnleggsprojeksjonsflater"/>
+
+  <xs:element name="lockForForretningNaboerForAnleggsprojeksjonsflaterResponse" type="tns:lockForForretningNaboerForAnleggsprojeksjonsflaterResponse"/>
+
+  <xs:element name="lockForForretningNaboerForTeiger" type="tns:lockForForretningNaboerForTeiger"/>
+
+  <xs:element name="lockForForretningNaboerForTeigerResponse" type="tns:lockForForretningNaboerForTeigerResponse"/>
+
+  <xs:element name="lockForForretningOpphevSlettetSeksjonering" type="tns:lockForForretningOpphevSlettetSeksjonering"/>
+
+  <xs:element name="lockForForretningOpphevSlettetSeksjoneringResponse" type="tns:lockForForretningOpphevSlettetSeksjoneringResponse"/>
+
+  <xs:element name="lockForForretningResponse" type="tns:lockForForretningResponse"/>
+
+  <xs:element name="lockForMatrikkelenhetTilknyttingForAnleggsprojeksjonsflate" type="tns:lockForMatrikkelenhetTilknyttingForAnleggsprojeksjonsflate"/>
+
+  <xs:element name="lockForMatrikkelenhetTilknyttingForAnleggsprojeksjonsflateResponse" type="tns:lockForMatrikkelenhetTilknyttingForAnleggsprojeksjonsflateResponse"/>
+
+  <xs:element name="lockForMatrikkelenhetTilknyttingForMatrikkelenheter" type="tns:lockForMatrikkelenhetTilknyttingForMatrikkelenheter"/>
+
+  <xs:element name="lockForMatrikkelenhetTilknyttingForMatrikkelenheterResponse" type="tns:lockForMatrikkelenhetTilknyttingForMatrikkelenheterResponse"/>
+
+  <xs:element name="lockForMatrikkelenhetTilknyttingForTeiger" type="tns:lockForMatrikkelenhetTilknyttingForTeiger"/>
+
+  <xs:element name="lockForMatrikkelenhetTilknyttingForTeigerResponse" type="tns:lockForMatrikkelenhetTilknyttingForTeigerResponse"/>
+
+  <xs:element name="matrikkelenhetUtgar" type="tns:matrikkelenhetUtgar"/>
+
+  <xs:element name="matrikkelenhetUtgarResponse" type="tns:matrikkelenhetUtgarResponse"/>
+
+  <xs:element name="matrikulerEksisterendeFeste" type="tns:matrikulerEksisterendeFeste"/>
+
+  <xs:element name="matrikulerEksisterendeFesteResponse" type="tns:matrikulerEksisterendeFesteResponse"/>
+
+  <xs:element name="matrikulerNyAnleggseiendom" type="tns:matrikulerNyAnleggseiendom"/>
+
+  <xs:element name="matrikulerNyAnleggseiendomResponse" type="tns:matrikulerNyAnleggseiendomResponse"/>
+
+  <xs:element name="matrikulerNyGrunneiendom" type="tns:matrikulerNyGrunneiendom"/>
+
+  <xs:element name="matrikulerNyGrunneiendomResponse" type="tns:matrikulerNyGrunneiendomResponse"/>
+
+  <xs:element name="nyGrunneiendomFraFester" type="tns:nyGrunneiendomFraFester"/>
+
+  <xs:element name="nyGrunneiendomFraFesterResponse" type="tns:nyGrunneiendomFraFesterResponse"/>
+
+  <xs:element name="nymatrikulerFraMatrikulertGrunn" type="tns:nymatrikulerFraMatrikulertGrunn"/>
+
+  <xs:element name="nymatrikulerFraMatrikulertGrunnResponse" type="tns:nymatrikulerFraMatrikulertGrunnResponse"/>
+
+  <xs:element name="omgjoringAvPunktfesteTilFeste" type="tns:omgjoringAvPunktfesteTilFeste"/>
+
+  <xs:element name="omgjoringAvPunktfesteTilFesteResponse" type="tns:omgjoringAvPunktfesteTilFesteResponse"/>
+
+  <xs:element name="omnummererMatrikkelenhet" type="tns:omnummererMatrikkelenhet"/>
+
+  <xs:element name="omnummererMatrikkelenhetKommuneendring" type="tns:omnummererMatrikkelenhetKommuneendring"/>
+
+  <xs:element name="omnummererMatrikkelenhetKommuneendringResponse" type="tns:omnummererMatrikkelenhetKommuneendringResponse"/>
+
+  <xs:element name="omnummererMatrikkelenhetResponse" type="tns:omnummererMatrikkelenhetResponse"/>
+
+  <xs:element name="omregistrerGrunneiendomTilAnleggseiendomUendretId" type="tns:omregistrerGrunneiendomTilAnleggseiendomUendretId"/>
+
+  <xs:element name="omregistrerGrunneiendomTilAnleggseiendomUendretIdResponse" type="tns:omregistrerGrunneiendomTilAnleggseiendomUendretIdResponse"/>
+
+  <xs:element name="opphevSlettetSeksjonering" type="tns:opphevSlettetSeksjonering"/>
+
+  <xs:element name="opphevSlettetSeksjoneringResponse" type="tns:opphevSlettetSeksjoneringResponse"/>
+
+  <xs:element name="opplosRegistrertJordsameie" type="tns:opplosRegistrertJordsameie"/>
+
+  <xs:element name="opplosRegistrertJordsameieResponse" type="tns:opplosRegistrertJordsameieResponse"/>
+
+  <xs:element name="opprettNyttJordsameie" type="tns:opprettNyttJordsameie"/>
+
+  <xs:element name="opprettNyttJordsameieResponse" type="tns:opprettNyttJordsameieResponse"/>
+
+  <xs:element name="oppretteNyttFeste" type="tns:oppretteNyttFeste"/>
+
+  <xs:element name="oppretteNyttFesteResponse" type="tns:oppretteNyttFesteResponse"/>
+
+  <xs:element name="registrerAktuellEier" type="tns:registrerAktuellEier"/>
+
+  <xs:element name="registrerAktuellEierResponse" type="tns:registrerAktuellEierResponse"/>
+
+  <xs:element name="registrerUregistrertJordsameie" type="tns:registrerUregistrertJordsameie"/>
+
+  <xs:element name="registrerUregistrertJordsameieResponse" type="tns:registrerUregistrertJordsameieResponse"/>
+
+  <xs:element name="removeAvtaleGrensePunktfeste" type="tns:removeAvtaleGrensePunktfeste"/>
+
+  <xs:element name="removeAvtaleGrensePunktfesteResponse" type="tns:removeAvtaleGrensePunktfesteResponse"/>
+
+  <xs:element name="removeAvtaleStedbundenRettighet" type="tns:removeAvtaleStedbundenRettighet"/>
+
+  <xs:element name="removeAvtaleStedbundenRettighetResponse" type="tns:removeAvtaleStedbundenRettighetResponse"/>
+
+  <xs:element name="removeGrunnerverv" type="tns:removeGrunnerverv"/>
+
+  <xs:element name="removeGrunnervervResponse" type="tns:removeGrunnervervResponse"/>
+
+  <xs:element name="removeJordskifteKrevd" type="tns:removeJordskifteKrevd"/>
+
+  <xs:element name="removeJordskifteKrevdResponse" type="tns:removeJordskifteKrevdResponse"/>
+
+  <xs:element name="removeKlage" type="tns:removeKlage"/>
+
+  <xs:element name="removeKlageResponse" type="tns:removeKlageResponse"/>
+
+  <xs:element name="removeSamlaFastEiendom" type="tns:removeSamlaFastEiendom"/>
+
+  <xs:element name="removeSamlaFastEiendomResponse" type="tns:removeSamlaFastEiendomResponse"/>
+
+  <xs:element name="reseksjonerMatrikkelenhet" type="tns:reseksjonerMatrikkelenhet"/>
+
+  <xs:element name="reseksjonerMatrikkelenhetResponse" type="tns:reseksjonerMatrikkelenhetResponse"/>
+
+  <xs:element name="rettingAvForretning" type="tns:rettingAvForretning"/>
+
+  <xs:element name="rettingAvForretningResponse" type="tns:rettingAvForretningResponse"/>
+
+  <xs:element name="reverserOmnummerering" type="tns:reverserOmnummerering"/>
+
+  <xs:element name="reverserOmnummereringResponse" type="tns:reverserOmnummereringResponse"/>
+
+  <xs:element name="sammenslaMatrikkelenheter" type="tns:sammenslaMatrikkelenheter"/>
+
+  <xs:element name="sammenslaMatrikkelenheterResponse" type="tns:sammenslaMatrikkelenheterResponse"/>
+
+  <xs:element name="seksjonerMatrikkelenhet" type="tns:seksjonerMatrikkelenhet"/>
+
+  <xs:element name="seksjonerMatrikkelenhetResponse" type="tns:seksjonerMatrikkelenhetResponse"/>
+
+  <xs:element name="slettSeksjonering" type="tns:slettSeksjonering"/>
+
+  <xs:element name="slettSeksjoneringResponse" type="tns:slettSeksjoneringResponse"/>
+
+  <xs:element name="splittingAvFeste" type="tns:splittingAvFeste"/>
+
+  <xs:element name="splittingAvFesteResponse" type="tns:splittingAvFesteResponse"/>
+
+  <xs:element name="trinnIFullforingAvOppmalingsforretning" type="tns:trinnIFullforingAvOppmalingsforretning"/>
+
+  <xs:element name="trinnIFullforingAvOppmalingsforretningResponse" type="tns:trinnIFullforingAvOppmalingsforretningResponse"/>
+
+  <xs:element name="updateAvtaleGrensePunktfeste" type="tns:updateAvtaleGrensePunktfeste"/>
+
+  <xs:element name="updateAvtaleGrensePunktfesteResponse" type="tns:updateAvtaleGrensePunktfesteResponse"/>
+
+  <xs:element name="updateAvtaleStedbundenRettighet" type="tns:updateAvtaleStedbundenRettighet"/>
+
+  <xs:element name="updateAvtaleStedbundenRettighetResponse" type="tns:updateAvtaleStedbundenRettighetResponse"/>
+
+  <xs:element name="updateGrunnerverv" type="tns:updateGrunnerverv"/>
+
+  <xs:element name="updateGrunnervervResponse" type="tns:updateGrunnervervResponse"/>
+
+  <xs:element name="updateJordskifteKrevd" type="tns:updateJordskifteKrevd"/>
+
+  <xs:element name="updateJordskifteKrevdResponse" type="tns:updateJordskifteKrevdResponse"/>
+
+  <xs:element name="updateKlage" type="tns:updateKlage"/>
+
+  <xs:element name="updateKlageResponse" type="tns:updateKlageResponse"/>
+
+  <xs:element name="updateSamlaFastEiendom" type="tns:updateSamlaFastEiendom"/>
+
+  <xs:element name="updateSamlaFastEiendomResponse" type="tns:updateSamlaFastEiendomResponse"/>
+
+  <xs:element name="vedlikeholdGrenseISjo" type="tns:vedlikeholdGrenseISjo"/>
+
+  <xs:element name="vedlikeholdGrenseISjoResponse" type="tns:vedlikeholdGrenseISjoResponse"/>
+
+  <xs:complexType name="lockForForretningForMatrikkelenheter">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIds" type="ns1:MatrikkelenhetIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="lockForForretningForMatrikkelenheterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:LockedObjectsForForretningTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="lockForMatrikkelenhetTilknyttingForAnleggsprojeksjonsflate">
+    <xs:sequence>
+      <xs:element name="anleggsprojeksjonsFlateIds" type="ns1:AnleggsprojeksjonsflateIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="lockForMatrikkelenhetTilknyttingForAnleggsprojeksjonsflateResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetTilknyttingTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="removeGrunnerverv">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:GrunnervervUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="removeGrunnervervResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="lockForForretningMedNaboerForMatrikkelenheter">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIds" type="ns1:MatrikkelenhetIdList"/>
+      <xs:element name="lockUtenNaboerMatrikkelenhetIds" nillable="true" type="ns1:MatrikkelenhetIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="lockForForretningMedNaboerForMatrikkelenheterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:ForretningMedNaboerTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="matrikulerNyGrunneiendom">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:ForretningUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="matrikulerNyGrunneiendomResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="insertJordskifteKrevd">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:JordskifteKrevdUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="insertJordskifteKrevdResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="endreEgenskap">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:EndreEgenskapUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="endreEgenskapResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="endreMatrikkelenhetstype">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:EndreMatrikkelenhetstypeUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="endreMatrikkelenhetstypeResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="splittingAvFeste">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:SplittingAvFesteUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="splittingAvFesteResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="fullforMidlertidigForretningDL">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:FullforingAvMidlertidigForretningDLUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="fullforMidlertidigForretningDLResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="removeAvtaleGrensePunktfeste">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:AvtaleGrensePunktfesteUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="removeAvtaleGrensePunktfesteResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="sammenslaMatrikkelenheter">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:SammenslaMatrikkelenheterUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="sammenslaMatrikkelenheterResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="updateAvtaleStedbundenRettighet">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:AvtaleStedbundenRettighetUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updateAvtaleStedbundenRettighetResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="aktiverUtgattMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:AktiverUtgattMatrikkelenhetUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="aktiverUtgattMatrikkelenhetResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="removeSamlaFastEiendom">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:SamlaFastEiendomUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="removeSamlaFastEiendomResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="lockForForretningMedSeksjoner">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="lockUtgatteSeksjoner" type="xs:boolean"/>
+      <xs:element name="lockNaboer" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="lockForForretningMedSeksjonerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:ForretningMedSeksjonerTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="opplosRegistrertJordsameie">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:OpplosRegistrertJordsameieUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="opplosRegistrertJordsameieResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="fradelNyGrunneiendom">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:NyGrunneiendomUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="fradelNyGrunneiendomResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="avbrytIgangsattSammenslaing">
+    <xs:sequence>
+      <xs:element name="forretningId" type="ns8:SammenslaingForretningId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="avbrytIgangsattSammenslaingResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="lockForForretningMedFestetPa">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="lockFestetPaa" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="lockForForretningMedFestetPaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:LockedObjectsForForretningTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="insertKlage">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:KlageUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="insertKlageResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="updateJordskifteKrevd">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:JordskifteKrevdUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updateJordskifteKrevdResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="omgjoringAvPunktfesteTilFeste">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:OmgjoringAvPunktfesteTilArealfesteUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="omgjoringAvPunktfesteTilFesteResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="reseksjonerMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:ReseksjonerUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reseksjonerMatrikkelenhetResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="insertSamlaFastEiendom">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:SamlaFastEiendomUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="insertSamlaFastEiendomResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="removeJordskifteKrevd">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:JordskifteKrevdUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="removeJordskifteKrevdResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="nyGrunneiendomFraFester">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:NyGrunneiendomFraFesterUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="nyGrunneiendomFraFesterResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="slettSeksjonering">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:SlettSeksjoneringUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="slettSeksjoneringResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="oppretteNyttFeste">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:NyFestegrunnUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="oppretteNyttFesteResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="matrikulerEksisterendeFeste">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:NyFestegrunnUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="matrikulerEksisterendeFesteResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="grensejustering">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:GrensejusteringUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="grensejusteringResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="seksjonerMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:SeksjonerMatrikkelenhetUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="seksjonerMatrikkelenhetResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="lockForMatrikkelenhetTilknyttingForMatrikkelenheter">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIds" type="ns1:MatrikkelenhetIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="lockForMatrikkelenhetTilknyttingForMatrikkelenheterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetTilknyttingTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reverserOmnummerering">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:ReverserOmnummereringUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="reverserOmnummereringResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="registrerAktuellEier">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:RegistrerAktuellEierUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="registrerAktuellEierResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="removeAvtaleStedbundenRettighet">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:AvtaleStedbundenRettighetUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="removeAvtaleStedbundenRettighetResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="lockForForretningForAnleggsprojeksjonsflater">
+    <xs:sequence>
+      <xs:element name="flateIds" type="ns1:AnleggsprojeksjonsflateIdList"/>
+      <xs:element name="lockMatrikkelenheter" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="lockForForretningForAnleggsprojeksjonsflaterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:LockedObjectsForForretningTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="omregistrerGrunneiendomTilAnleggseiendomUendretId">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:OmregistrerGrunneiendomTilAnleggseiendomUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="omregistrerGrunneiendomTilAnleggseiendomUendretIdResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="omnummererMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:OmnummereringUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="omnummererMatrikkelenhetResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="updateGrunnerverv">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:GrunnervervUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updateGrunnervervResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="lockForForretningOpphevSlettetSeksjonering">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="lockNaboer" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="lockForForretningOpphevSlettetSeksjoneringResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:ForretningMedSeksjonerTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="kvalitetshevingForEksisterendeMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:KvalitetshevingForEksisterendeMatrikkelenhetUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="kvalitetshevingForEksisterendeMatrikkelenhetResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="registrerUregistrertJordsameie">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:RegistrerUregistrertJordsameieUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="registrerUregistrertJordsameieResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="lockForForretningNaboerForTeiger">
+    <xs:sequence>
+      <xs:element name="teigIds" type="ns1:TeigIdList"/>
+      <xs:element name="lockMatrikkelenheter" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="lockForForretningNaboerForTeigerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:LockedObjectsForForretningTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updateKlage">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:KlageUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updateKlageResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="fradelNyAnleggseiendom">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:FradelAnleggseiendomUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="fradelNyAnleggseiendomResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="matrikkelenhetUtgar">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:MatrikkelenhetUtgarUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="matrikkelenhetUtgarResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="lockForForretningForTeiger">
+    <xs:sequence>
+      <xs:element name="teigIds" type="ns1:TeigIdList"/>
+      <xs:element name="lockMatrikkelenheter" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="lockForForretningForTeigerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:LockedObjectsForForretningTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="vedlikeholdGrenseISjo">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:VedlikeholdGrenseISjoUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="vedlikeholdGrenseISjoResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="lockForMatrikkelenhetTilknyttingForTeiger">
+    <xs:sequence>
+      <xs:element name="teigIds" type="ns1:TeigIdList"/>
+      <xs:element name="lockNaboer" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="lockForMatrikkelenhetTilknyttingForTeigerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:MatrikkelenhetTilknyttingTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="opprettNyttJordsameie">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:OpprettNyttJordsameieUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="opprettNyttJordsameieResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="insertAvtaleStedbundenRettighet">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:AvtaleStedbundenRettighetUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="insertAvtaleStedbundenRettighetResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="lockForForretning">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="lockForForretningResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:LockedObjectsForForretningTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="arealoverforing">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:ArealoverforingUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="arealoverforingResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="feilrettingAvSeksjoner">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:FeilrettingAvSeksjonerUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="feilrettingAvSeksjonerResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="omnummererMatrikkelenhetKommuneendring">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:OmnummereringKommuneendringUnitOfWorkTransfer"/>
+      <xs:element name="vegadresseOmadresseringer" type="ns1:VegadresseIdTilKommuneendringOmadresseringerMap"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="omnummererMatrikkelenhetKommuneendringResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="lockForForretningMedFestegrunner">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetIds" type="ns1:MatrikkelenhetIdList"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="lockForForretningMedFestegrunnerResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:ForretningMedFestegrunnerTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updateSamlaFastEiendom">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:SamlaFastEiendomUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updateSamlaFastEiendomResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="lockForForretningNaboerForAnleggsprojeksjonsflater">
+    <xs:sequence>
+      <xs:element name="flateIds" type="ns1:AnleggsprojeksjonsflateIdList"/>
+      <xs:element name="lockMatrikkelenheter" type="xs:boolean"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="lockForForretningNaboerForAnleggsprojeksjonsflaterResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:LockedObjectsForForretningTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="rettingAvForretning">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:RettingAvForretningUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="rettingAvForretningResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="removeKlage">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:KlageUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="removeKlageResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="lockForForretningMedNaboerForMatrikkelenhet">
+    <xs:sequence>
+      <xs:element name="matrikkelenhetId" type="ns1:MatrikkelenhetId"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="lockForForretningMedNaboerForMatrikkelenhetResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="ns1:ForretningMedNaboerTransfer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="trinnIFullforingAvOppmalingsforretning">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:TrinnIFullforingAvOppmalingsforretningUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="trinnIFullforingAvOppmalingsforretningResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="insertGrunnerverv">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:GrunnervervUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="insertGrunnervervResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="opphevSlettetSeksjonering">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:OpphevSlettetSeksjoneringUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="opphevSlettetSeksjoneringResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="forJordskifteForretning">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:JordskifteForretningUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="forJordskifteForretningResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="insertAvtaleGrensePunktfeste">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:AvtaleGrensePunktfesteUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="insertAvtaleGrensePunktfesteResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="nymatrikulerFraMatrikulertGrunn">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:NymatrikulerFraMatrikulertGrunnUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="nymatrikulerFraMatrikulertGrunnResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="arealoverforingMellomFesteOgFestetPa">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:ArealoverforingMellomFestegrunnOgFestetPaUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="arealoverforingMellomFesteOgFestetPaResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="updateAvtaleGrensePunktfeste">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:AvtaleGrensePunktfesteUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="updateAvtaleGrensePunktfesteResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="arealoverforingMellomFestegrunner">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:ArealoverforingMellomFestegrunnerUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="arealoverforingMellomFestegrunnerResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="matrikulerNyAnleggseiendom">
+    <xs:sequence>
+      <xs:element name="transfer" type="ns1:NymatrikulerAnleggseiendomUnitOfWorkTransfer"/>
+      <xs:element name="matrikkelContext" type="ns3:MatrikkelContext"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="matrikulerNyAnleggseiendomResponse">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>
