@@ -1,14 +1,10 @@
 openapi: 3.0.0
 servers:
-  - description: Development endpoint
-    url: http://localhost:8086/api/v1
   # Added by API Auto Mocking Plugin
   - description: Production endpoint
     url: https://test-matrikkel-api.azurewebsites.net/api/v1
   - description: Development endpoint
-    url: http://localhost:8080/api/v1/
-  - description: SwaggerHub API Auto Mocking
-    url: https://virtserver.swaggerhub.com/VTFK/kartverket-matrikkel-api/1.0.0
+    url: http://localhost:3000/api/v1/
 info:
   title: Kartverket Matrikkel API Proxy
   description: Kartverket Matrikkel
@@ -142,12 +138,12 @@ components:
       required:
         - polygon
       properties:
-        matrikkelContext:
-          $ref: '#/components/schemas/MatrikkelContext'
         koordinatsystemKodeId:
           $ref: '#/components/schemas/koordinatsystemKodeId'
         polygon:
           $ref: '#/components/schemas/Polygon'
+        matrikkelContext:
+          $ref: '#/components/schemas/MatrikkelContext'
     StoreRequest:
       type: object
       required:
@@ -294,7 +290,7 @@ components:
     resolve:
       in: query
       name: resolve
-      description: Should type information be resolved for the data?
+      description: Should type information be resolved for the data? (Experimental)
       schema:
         type: boolean
         default: false
