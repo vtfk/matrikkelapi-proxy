@@ -20,9 +20,8 @@ name: "Test: Build and deploy to Azure"
 on:
   push:
     branches:
-      - main
-      - test
-    workflow_dispatch:
+      - '*'
+  workflow_dispatch:
 
 env:
   AZURE_WEBAPP_NAME: test-app-matrikkelproxy-api  # set this to your application's name
