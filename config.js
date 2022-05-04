@@ -1,3 +1,13 @@
+/*
+  Import dependencies
+*/
+const path = require('path');
+const envPath = path.resolve(__dirname, `.env.${process.env.NODE_ENV}`);
+require('dotenv').config({ path: envPath }) // Load different .env files based on NODE_ENV
+
+/*
+  Config
+*/
 module.exports = {
   hostname: process.env.HOSTNAME || '0.0.0.0',
   port: process.env.PORT || 3000,
