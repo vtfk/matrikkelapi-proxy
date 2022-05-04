@@ -2,7 +2,6 @@
 // Setup Application Insights if applicable, this must be done before loading any other depdendencies
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const config = require('./config');
-if (process.env.NODE_ENV !== 'production') console.log('Starting app with this config', config);
 if (config.APPLICATIONINSIGHTS_CONNECTION_STRING) {
   const appInsights = require('applicationinsights')
   console.log('Setting up application insights')
@@ -12,6 +11,13 @@ if (config.APPLICATIONINSIGHTS_CONNECTION_STRING) {
   } catch (err) {
     console.error('❌ ApplicationInsights failed\n', err)
   }
+}
+
+
+if (['true', true].includes(config.DEBUG)) {
+  console.log('====================\n ENVIRONMENT\n====================');
+  console.log('Environment variables', process.env);
+  console.log('Starting app with this config', config);
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
