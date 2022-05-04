@@ -1,4 +1,20 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Setup Application Insights if applicable, this must be done before loading any other depdendencies
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+const config = require('./config');
+if (process.env.NODE_ENV !== 'production') console.log('Starting app with this config', config);
+if (config.APPLICATIONINSIGHTS_CONNECTION_STRING) {
+  const appInsights = require('applicationinsights')
+  console.log('Setting up application insights')
+  try {
+    appInsights.setup().setSendLiveMetrics(true).setAutoCollectConsole(true).start();
+    console.log('✅ ApplicationInsights ready')
+  } catch (err) {
+    console.error('❌ ApplicationInsights failed\n', err)
+  }
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Import dependencies
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const http = require('http');                                         // For hosting the web server
@@ -11,7 +27,7 @@ const cors = require('cors');                                         // For han
 const swaggerUi = require('swagger-ui-express');                      // For hosting and displaying the APIs documentation
 const OpenApiValidator = require('express-openapi-validator');        // Validates all routes based on the requested resource
 require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` })    // Load different .env files based on NODE_ENV
-const config = require('./config');                                   // Loads the config
+
 const WSDLClient = require('./lib/WSDLClient/WSDLClient');            // WSDLClient is initialized here for pre-loading all WSDL-files into memory
 WSDLClient.loadAllFiles();                                            // Load all files into memory
 
@@ -24,8 +40,6 @@ const port = config.port;                                             // Get the
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Create App
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-console.log('Starting app with this config');
-console.log(config);
 const app = express();
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
