@@ -31,7 +31,7 @@
     "cross-env": "7.0.3",
     "jest": "27.2.1",
     "morgan": "1.10.0",
-    "nodemon": "2.0.16",
+    "nodemon": "2.0.18",
     "snyk": "1.833.0",
     "standardx": "7.0.0"
   },
