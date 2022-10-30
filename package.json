@@ -40,7 +40,7 @@
     "applicationinsights": "^2.3.2",
     "axios": "^0.21.4",
     "cors": "^2.8.5",
-    "dotenv": "^10.0.0",
+    "dotenv": "^15.0.0",
     "express": "^4.17.1",
     "express-openapi-validator": "^4.13.1",
     "jsonwebtoken": "^8.5.1",
